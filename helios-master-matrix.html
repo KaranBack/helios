@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>HELIOS Master Matrix · Cluster Berlin-Brandenburg</title>
+<title>HELIOS Master Matrix · SNOW Assignment Groups</title>
 <style>
   :root {
     --helios: #c8102e;
@@ -11,12 +11,13 @@
     --ink: #1a1a1a;
     --muted: #555;
     --line: #cfcfcf;
-    --head: #f2f2f2;
-    --bln: #fde8eb;
-    --beb: #e8f0fa;
-    --bs: #f5edd8;
-    --yes: #1b7a3d;
-    --note: #6b5a00;
+    --head: #f3f3f3;
+    --ok: #e7f6ec;
+    --ok-fg: #146c2e;
+    --bad: #fde8e8;
+    --bad-fg: #9b1c1c;
+    --wait: #fff6da;
+    --wait-fg: #7a5b00;
   }
   * { box-sizing: border-box; }
   body {
@@ -32,17 +33,8 @@
     color: #fff;
     padding: 14px 18px 12px;
   }
-  .topbar h1 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .topbar p {
-    margin: 4px 0 0;
-    opacity: 0.92;
-    font-size: 12.5px;
-  }
+  .topbar h1 { margin: 0; font-size: 22px; font-weight: 700; }
+  .topbar p { margin: 4px 0 0; opacity: 0.92; font-size: 12.5px; }
   .toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -67,7 +59,7 @@
     border: 1px solid #bbb;
     border-radius: 3px;
     padding: 5px 8px;
-    min-width: 160px;
+    min-width: 170px;
     font: inherit;
   }
   .meta {
@@ -76,108 +68,72 @@
     font-size: 12px;
     padding-bottom: 4px;
   }
-  .wrap { padding: 0 0 40px; overflow: auto; }
+  .banner {
+    margin: 12px 18px;
+    padding: 10px 12px;
+    border: 1px solid #f0c2c8;
+    background: #fff5f6;
+    border-radius: 4px;
+    color: #6d121c;
+  }
+  .banner code { font-size: 12px; }
+  .wrap { padding: 0 18px 28px; overflow: auto; }
   table.matrix {
     border-collapse: collapse;
-    width: max-content;
-    min-width: 100%;
+    width: 100%;
+    min-width: 960px;
   }
   table.matrix th, table.matrix td {
     border: 1px solid var(--line);
-    padding: 6px 8px;
-    vertical-align: middle;
+    padding: 7px 9px;
+    vertical-align: top;
   }
   table.matrix thead th {
     background: var(--head);
     position: sticky;
     top: 58px;
     z-index: 10;
-    font-size: 11px;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  table.matrix thead tr.site th {
-    top: 58px;
-    text-align: center;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-  }
-  table.matrix thead tr.role th {
-    top: 86px;
-    text-align: center;
-  }
-  th.sticky-col, td.sticky-col {
-    position: sticky;
-    left: 0;
-    background: #fff;
-    z-index: 5;
-    min-width: 220px;
-    max-width: 320px;
-  }
-  th.sticky-col-2, td.sticky-col-2 {
-    position: sticky;
-    left: 220px;
-    background: #fff;
-    z-index: 5;
-    min-width: 280px;
-    max-width: 420px;
-    font-family: Consolas, "Courier New", monospace;
-    font-size: 12px;
-  }
-  thead th.sticky-col, thead th.sticky-col-2 {
-    z-index: 15;
-    background: var(--head);
-  }
-  .site-bln { background: var(--bln) !important; }
-  .site-beb { background: var(--beb) !important; }
-  .site-bs { background: var(--bs) !important; }
-  td.mark {
-    text-align: center;
-    font-weight: 700;
-    color: var(--yes);
-    font-size: 14px;
-  }
-  td.mark.partial { color: var(--note); }
-  td.cat {
-    white-space: nowrap;
-    color: var(--muted);
+    text-align: left;
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
   }
-  td.hint {
-    color: var(--muted);
-    font-size: 12px;
-    max-width: 360px;
+  td.group {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
   }
+  .badge {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .badge.active { background: var(--ok); color: var(--ok-fg); }
+  .badge.remove { background: var(--bad); color: var(--bad-fg); }
+  .badge.add { background: var(--wait); color: var(--wait-fg); }
   tr.hide { display: none; }
   tr:hover td { background: #f7fbfd; }
-  tr:hover td.sticky-col,
-  tr:hover td.sticky-col-2 { background: #f7fbfd; }
-  .legend, .notes {
-    padding: 16px 18px;
-    border-top: 1px solid var(--line);
-  }
-  .legend h2, .notes h2 {
-    margin: 0 0 8px;
-    font-size: 15px;
+  tr.status-remove td { background: #fff8f8; }
+  tr.status-add td { background: #fffdf3; }
+  .hint { color: var(--muted); font-size: 12px; }
+  .section {
+    padding: 8px 18px 0;
+    font-size: 14px;
+    font-weight: 700;
     color: var(--helios-dark);
   }
-  .legend ul, .notes ul, .notes ol {
-    margin: 0;
-    padding-left: 18px;
-  }
-  .legend li, .notes li { margin: 3px 0; }
   .footer {
-    padding: 10px 18px 24px;
+    padding: 8px 18px 28px;
     color: var(--muted);
     font-size: 11px;
   }
   @media print {
-    .toolbar { position: static; }
+    .toolbar, .banner { position: static; }
     table.matrix thead th { position: static; }
-    th.sticky-col, td.sticky-col, th.sticky-col-2, td.sticky-col-2 { position: static; }
-    .topbar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
@@ -185,521 +141,351 @@
 
 <div class="topbar">
   <h1>HELIOS Master Matrix</h1>
-  <p>Cluster Berlin-Brandenburg · Benutzerrechte / AD-Gruppen · Standorte BLN · BEB · BS</p>
+  <p>ServiceNow Assignment Groups · Helios &amp; FDT · KB-Referenz (Format jak CL-Gotha-Master-KB-Full.html)</p>
 </div>
 
 <div class="toolbar">
   <div class="field">
     <label for="q">Suche</label>
-    <input id="q" type="search" placeholder="System, Gruppe, Hinweis…" />
+    <input id="q" type="search" placeholder="z. B. GIF-IT, Gotha, Fieldservice…" autocomplete="off" />
   </div>
   <div class="field">
-    <label for="kat">Kategorie</label>
-    <select id="kat">
+    <label for="status">Status</label>
+    <select id="status">
+      <option value="all">Alle</option>
+      <option value="active" selected>Nur aktywne (w SNOW)</option>
+      <option value="remove">Do usunięcia z matrix</option>
+      <option value="add">Do dodania (z XLSM)</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="region">Region / Cluster</label>
+    <select id="region">
       <option value="">Alle</option>
-      <option>Basis</option>
-      <option>App</option>
-      <option>SAP</option>
-      <option>aQrate</option>
-      <option>Laufwerk</option>
-      <option>Verteiler</option>
-      <option>PDMS</option>
-      <option>Muse</option>
-      <option>Zenzy</option>
-      <option>FSLogix</option>
-      <option>Profil</option>
     </select>
   </div>
-  <div class="field">
-    <label for="site">Standort-Spalten</label>
-    <select id="site">
-      <option value="all">Alle anzeigen</option>
-      <option value="BLN">nur BLN</option>
-      <option value="BEB">nur BEB</option>
-      <option value="BS">nur BS</option>
-    </select>
-  </div>
-  <div class="meta"><span id="count">–</span> Zeilen · Quelle: Benutzeranträge RO-IT</div>
+  <div class="meta"><span id="count">–</span> Zeilen · search z normalizacją myślników</div>
 </div>
 
+<div class="banner">
+  <strong>Update z czatu KG:</strong> usunąć grupy nieistniejące w SNOW; dodać grupy z
+  <code>Assignment Groups - Helios &amp; FDT SNOW new.xlsm</code>.
+  Brak w workspace: <code>CL-Gotha-Master-KB-Full.html</code> (OneDrive) oraz XLSM — wrzuć do
+  <code>docs/quellen/</code>, wtedy merge 1:1. Szczegóły:
+  <code>docs/wytyczne-snow-matrix-update.md</code>.
+</div>
+
+<p class="section">Assignment Groups</p>
 <div class="wrap">
 <table class="matrix" id="matrix">
   <thead>
-    <tr class="site">
-      <th class="sticky-col" rowspan="2">Kategorie / System</th>
-      <th class="sticky-col-2" rowspan="2">AD-Gruppe / Wert</th>
-      <th class="site-bln" colspan="3">BLN · Berlin Buch</th>
-      <th class="site-beb" colspan="3">BEB · Emil von Behring</th>
-      <th class="site-bs" colspan="3">BS · Bad Saarow</th>
-      <th rowspan="2">Hinweis</th>
-    </tr>
-    <tr class="role">
-      <th class="site-bln col-BLN">Ärzte</th>
-      <th class="site-bln col-BLN">Pflege</th>
-      <th class="site-bln col-BLN">Verw. / Alle</th>
-      <th class="site-beb col-BEB">Ärzte</th>
-      <th class="site-beb col-BEB">Pflege</th>
-      <th class="site-beb col-BEB">Verw. / Alle</th>
-      <th class="site-bs col-BS">Ärzte</th>
-      <th class="site-bs col-BS">Pflege</th>
-      <th class="site-bs col-BS">Verw. / Alle</th>
+    <tr>
+      <th>Assignment Group</th>
+      <th>Region / Cluster</th>
+      <th>Status</th>
+      <th>Uwaga / zamiennik</th>
     </tr>
   </thead>
   <tbody>
-    <!-- ● = Standard / immer | ◐ = situativ / analog Antrag | — = n/a -->
-
-    <tr data-kat="Basis">
-      <td class="sticky-col cat">Basis · Quota</td>
-      <td class="sticky-col-2">BLN-Quota-User-0000.3GB</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Default Quota intern</td>
+    <!-- ===== DO USUNIĘCIA (nie istnieją w SNOW) ===== -->
+    <tr data-status="remove" data-region="CL-Gotha">
+      <td class="group">CL-Gotha | Klinische Anwendungen</td>
+      <td>CL-Gotha</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="Basis">
-      <td class="sticky-col cat">Basis · Quota</td>
-      <td class="sticky-col-2">BEB-quota-user-0000.3GB</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Default Quota</td>
+    <tr data-status="remove" data-region="CL-Gotha">
+      <td class="group">CL-Gotha | Infrastruktur</td>
+      <td>CL-Gotha</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="Basis">
-      <td class="sticky-col cat">Basis · Fachbereich</td>
-      <td class="sticky-col-2">BS-FB-XXX</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">●</td><td class="mark col-BS">●</td><td class="mark col-BS">●</td>
-      <td class="hint">anhand Fachbereich &amp; Berufsgruppe, z. B. BS-FB-Neuro</td>
+    <tr data-status="remove" data-region="CL-Gotha">
+      <td class="group">CL-Gotha | SAP</td>
+      <td>CL-Gotha</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · Outlook</td>
-      <td class="sticky-col-2">BLN-app-CI-Sign-Outlook</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">interne Mitarbeiter</td>
+    <tr data-status="remove" data-region="CL-Gotha">
+      <td class="group">CL-Gotha | Accountmanagement</td>
+      <td>CL-Gotha</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · Outlook</td>
-      <td class="sticky-col-2">BLN-App-Outlook-Signatur</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">externe Benutzer</td>
-    </tr>
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · Outlook</td>
-      <td class="sticky-col-2">BEB-app-Outlook-StdPrf / ohne-PRF</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Profil je Antrag wählen</td>
-    </tr>
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · Rightfax</td>
-      <td class="sticky-col-2">BEB-app-Rightfax-Sync-Enabled</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint"></td>
-    </tr>
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · IRIS</td>
-      <td class="sticky-col-2">BLN-App-IrisView</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Pflege-Set: immer</td>
-    </tr>
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · IRIS</td>
-      <td class="sticky-col-2">BEB-App-IrisView</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB partial">◐</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Pflege-Set: immer</td>
-    </tr>
-    <tr data-kat="App">
-      <td class="sticky-col cat">App · IRIS</td>
-      <td class="sticky-col-2">BS-App-IrisView</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS partial">◐</td><td class="mark col-BS">●</td><td class="mark col-BS partial">◐</td>
-      <td class="hint">Pflege-Set: immer</td>
+    <tr data-status="remove" data-region="CL-Gotha">
+      <td class="group">CL-Gotha | Field Service</td>
+      <td>CL-Gotha</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
 
-    <tr data-kat="SAP">
-      <td class="sticky-col cat">SAP</td>
-      <td class="sticky-col-2">BLN-sap-user</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Rollen zusätzlich digitaler SAP-Antrag / Launchpad</td>
+    <tr data-status="remove" data-region="CL-Gifhorn">
+      <td class="group">CL-Gifhorn | Klinische Anwendungen</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="SAP">
-      <td class="sticky-col cat">SAP</td>
-      <td class="sticky-col-2">BEB-SAP-User</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">digitaler Benutzerantrag</td>
+    <tr data-status="remove" data-region="CL-Gifhorn">
+      <td class="group">CL-Gifhorn | Infrastruktur</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="SAP">
-      <td class="sticky-col cat">SAP</td>
-      <td class="sticky-col-2">BS · analog Fachbereich</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS partial">◐</td><td class="mark col-BS partial">◐</td><td class="mark col-BS partial">◐</td>
-      <td class="hint">Gruppen anhand Fachbereich &amp; Berufsgruppe</td>
+    <tr data-status="remove" data-region="CL-Gifhorn">
+      <td class="group">Medico / KIS Team</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Naming → <code>CL-Gifhorn | Medico / KIS Team</code></td>
     </tr>
-
-    <tr data-kat="aQrate">
-      <td class="sticky-col cat">aQrate</td>
-      <td class="sticky-col-2">BLN-Aqrate-Grp-xxxxx</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">entsprechend Abteilung</td>
+    <tr data-status="remove" data-region="CL-Gifhorn">
+      <td class="group">CL-Gifhorn | Accountmanagement</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="aQrate">
-      <td class="sticky-col cat">aQrate</td>
-      <td class="sticky-col-2">BEB-Aqrate-Grp-User</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint"></td>
-    </tr>
-    <tr data-kat="aQrate">
-      <td class="sticky-col cat">aQrate</td>
-      <td class="sticky-col-2">BS-aQrate-Grp-XXX</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">●</td><td class="mark col-BS">●</td><td class="mark col-BS">●</td>
-      <td class="hint">Externe: BS-aQrate-Grp-BS-FB-Sonstige</td>
+    <tr data-status="remove" data-region="CL-Gifhorn">
+      <td class="group">CL-Gifhorn | Local IT / Field Service</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
 
-    <tr data-kat="Laufwerk">
-      <td class="sticky-col cat">Laufwerk · Home</td>
-      <td class="sticky-col-2">BLN-LW-USR-HomeShares-{AH|IR|SZ}</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Support → UserHomes; Auto-Anlage bei Erstanmeldung</td>
+    <tr data-status="remove" data-region="Saxony - North Franconia (East)">
+      <td class="group">KC-IT | MVZ</td>
+      <td>Saxony - North Franconia (East)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
-    <tr data-kat="Laufwerk">
-      <td class="sticky-col cat">Laufwerk · Home</td>
-      <td class="sticky-col-2">BEB-LW-USR-HomeShares-{AH|IR|SZ}</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint"></td>
-    </tr>
-    <tr data-kat="Profil">
-      <td class="sticky-col cat">Profil · Home</td>
-      <td class="sticky-col-2">\\BSCLFILE01\Home$\%username%</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">●</td><td class="mark col-BS">●</td><td class="mark col-BS">●</td>
-      <td class="hint">Extension Attribute 5 pflegen</td>
-    </tr>
-    <tr data-kat="Profil">
-      <td class="sticky-col cat">Profil</td>
-      <td class="sticky-col-2">BEB-LW-Prof-Path</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint"></td>
-    </tr>
-    <tr data-kat="FSLogix">
-      <td class="sticky-col cat">FSLogix</td>
-      <td class="sticky-col-2">BLN-CTX-FSLogix1Pfad / FSLogix2Pfad</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">nur EINE Gruppe vergeben</td>
+    <tr data-status="remove" data-region="Saxony - North Franconia (East)">
+      <td class="group">PL-IT | MVZ</td>
+      <td>Saxony - North Franconia (East)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Nie istnieje w SNOW</td>
     </tr>
 
-    <tr data-kat="Verteiler">
-      <td class="sticky-col cat">Verteiler · Alle</td>
-      <td class="sticky-col-2">BLN-Alle-Mitarbeiter-HK / VBHD / …</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">●</td><td class="mark col-BLN">●</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">nach Mailbox; GmbH vom Antrag; Exchange alle :15</td>
+    <tr data-status="remove" data-region="Central Thuringia (South)">
+      <td class="group">GRE-IT | Fieldservice</td>
+      <td>Central Thuringia (South)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Zamiast: <code>GRE-IT</code>, <code>GRE-IT | Mgt</code></td>
     </tr>
-    <tr data-kat="Verteiler">
-      <td class="sticky-col cat">Verteiler · Alle</td>
-      <td class="sticky-col-2">BEB-alle-Mitarbeiter-HK</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">●</td><td class="mark col-BEB">●</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">nach Mailbox</td>
+    <tr data-status="remove" data-region="Black Forest - Lake Constance (South)">
+      <td class="group">MUE-IT | Infrastruktur</td>
+      <td>Black Forest - Lake Constance (South)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Zamiast: <code>MUE-IT</code>, <code>MUE-IT | Fieldservice</code></td>
     </tr>
-    <tr data-kat="Verteiler">
-      <td class="sticky-col cat">Verteiler · Ärzte</td>
-      <td class="sticky-col-2">{Standort}-CA / -OA / -Ärzte (FB)</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">●</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">CA/OA/Ärzte immer je Station &amp; Fachbereich</td>
+    <tr data-status="remove" data-region="Black Forest - Lake Constance (South)">
+      <td class="group">TIT-IT | Infrastruktur</td>
+      <td>Black Forest - Lake Constance (South)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Zamiast: <code>TIT-IT</code>, <code>TIT-IT | Fieldservice</code></td>
     </tr>
-    <tr data-kat="Verteiler">
-      <td class="sticky-col cat">Verteiler · Pflege</td>
-      <td class="sticky-col-2">BLN-Pflege / BEB-Pflegedienst / BS-Pflegedienst</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">●</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">●</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">●</td><td class="mark col-BS">—</td>
-      <td class="hint">Pflegekräfte immer aufnehmen</td>
+    <tr data-status="remove" data-region="Magdeburg (East)">
+      <td class="group">OC-IT | Infrastruktur</td>
+      <td>Magdeburg (East)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Zamiast: <code>OC-IT | Servicedesk</code>, <code>OC-IT | Fieldservice</code></td>
     </tr>
-    <tr data-kat="Verteiler">
-      <td class="sticky-col cat">Verteiler · BS</td>
-      <td class="sticky-col-2">BS-VG-XXX</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">●</td><td class="mark col-BS">●</td><td class="mark col-BS">●</td>
-      <td class="hint">Verteilergruppe Fachbereich</td>
+    <tr data-status="remove" data-region="Magdeburg (East)">
+      <td class="group">ZE-IT | Infrastruktur</td>
+      <td>Magdeburg (East)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Zamiast: <code>ZE-IT | Servicedesk</code>, <code>ZE-IT | Fieldservice</code></td>
     </tr>
-
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Pflege</td>
-      <td class="sticky-col-2">BLN-PDMS-Pflege-ITSIMC-alle</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">C1-11 / C2-31 / C2-32 / Nephro-Dialyse · nur EINE PDMS-Gruppe</td>
+    <tr data-status="remove" data-region="Leipzig (East)">
+      <td class="group">LPZ-IT | Infrastruktur</td>
+      <td>Leipzig (East)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Tylko grupa MGT</td>
     </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Pflege</td>
-      <td class="sticky-col-2">BLN-PDMS-Pflege-AnästhAWR</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">ZOP Anästhesie / AWR</td>
+    <tr data-status="remove" data-region="South Lower Saxony - North Hesse (West)">
+      <td class="group">HBH-IT | Fieldservice</td>
+      <td>South Lower Saxony - North Hesse (West)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Tylko <code>HBH-IT</code> (bez subgroup)</td>
     </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Ärzte</td>
-      <td class="sticky-col-2">BLN-PDMS-Ärzte-Intensiv</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">C1-11 Intensiv</td>
+    <tr data-status="remove" data-region="South Lower Saxony - North Hesse (West)">
+      <td class="group">KS-IT | Fieldservice</td>
+      <td>South Lower Saxony - North Hesse (West)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Tylko <code>KS-IT</code></td>
     </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Ärzte</td>
-      <td class="sticky-col-2">BLN-PDMS-Ärzte-Innere</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">C2-31 Kardio-IMC</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Ärzte</td>
-      <td class="sticky-col-2">BLN-PDMS-Ärzte-Intensiv-WA</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Kardio + Nephrologie (Nephrologen)</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Ärzte</td>
-      <td class="sticky-col-2">BLN-PDMS-Ärzte-Neuro</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">C2-32 Stroke</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Ärzte</td>
-      <td class="sticky-col-2">BLN-PDMS-Ärzte-WA</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">alle Anästhesie (ZOP/IMC)</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · Funk.</td>
-      <td class="sticky-col-2">BLN-PDMS-Funktionsbereiche</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Physio / Logo / Ergo</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · MedCo</td>
-      <td class="sticky-col-2">BLN-PDMS-MedCo</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Med-Controlling</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · BEB</td>
-      <td class="sticky-col-2">BEB-PDMS-Pflege-*</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB partial">◐</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">siehe WikIT BEB PDMS Nutzergruppen</td>
-    </tr>
-    <tr data-kat="PDMS">
-      <td class="sticky-col cat">PDMS · BS</td>
-      <td class="sticky-col-2">BS-PDMS-Pflege-* / Ärzte-*</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS partial">◐</td><td class="mark col-BS partial">◐</td><td class="mark col-BS">—</td>
-      <td class="hint">ITS/IMC oft über BS-FB-AINS-* verknüpft</td>
+    <tr data-status="remove" data-region="South Lower Saxony - North Hesse (West)">
+      <td class="group">WAR-IT | Fieldservice</td>
+      <td>South Lower Saxony - North Hesse (West)</td>
+      <td><span class="badge remove">USUŃ</span></td>
+      <td class="hint">Tylko <code>WAR-IT</code></td>
     </tr>
 
-    <tr data-kat="Muse">
-      <td class="sticky-col cat">Muse · WebMuse</td>
-      <td class="sticky-col-2">BLN-Webmuse-Allgemein + BLN-Webmuse-XXX</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Kostenstelle nötig; Replikation ~24h; Citrix ZD_MUSE_sqAdmin</td>
+    <!-- ===== AKTYWNE / POPRAWNE (z komentarzy przy usunięciach) ===== -->
+    <tr data-status="active" data-region="CL-Gifhorn">
+      <td class="group">CL-Gifhorn | Medico / KIS Team</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Poprawna nazwa zamiast „Medico / KIS Team”</td>
     </tr>
-    <tr data-kat="Muse">
-      <td class="sticky-col cat">Muse · CGM</td>
-      <td class="sticky-col-2">BLN-MUSE-User-temp</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">nie manuell anlegen</td>
+    <tr data-status="active" data-region="Central Thuringia (South)">
+      <td class="group">GRE-IT</td>
+      <td>Central Thuringia (South)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
     </tr>
-    <tr data-kat="Muse">
-      <td class="sticky-col cat">Muse · CGM MVZ</td>
-      <td class="sticky-col-2">VBLN-MUSE-User-temp</td>
-      <td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td><td class="mark col-BLN partial">◐</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">BLN MVZ</td>
+    <tr data-status="active" data-region="Central Thuringia (South)">
+      <td class="group">GRE-IT | Mgt</td>
+      <td>Central Thuringia (South)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
     </tr>
-    <tr data-kat="Muse">
-      <td class="sticky-col cat">Muse · CGM</td>
-      <td class="sticky-col-2">BEB-MUSE-User-temp</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB partial">◐</td><td class="mark col-BEB partial">◐</td><td class="mark col-BEB partial">◐</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">nie manuell anlegen</td>
+    <tr data-status="active" data-region="Black Forest - Lake Constance (South)">
+      <td class="group">MUE-IT</td>
+      <td>Black Forest - Lake Constance (South)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
     </tr>
-    <tr data-kat="Muse">
-      <td class="sticky-col cat">Muse · CGM</td>
-      <td class="sticky-col-2">BS-MUSE-User-temp</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS partial">◐</td><td class="mark col-BS partial">◐</td><td class="mark col-BS partial">◐</td>
-      <td class="hint">nie manuell anlegen</td>
+    <tr data-status="active" data-region="Black Forest - Lake Constance (South)">
+      <td class="group">MUE-IT | Fieldservice</td>
+      <td>Black Forest - Lake Constance (South)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Black Forest - Lake Constance (South)">
+      <td class="group">TIT-IT</td>
+      <td>Black Forest - Lake Constance (South)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Black Forest - Lake Constance (South)">
+      <td class="group">TIT-IT | Fieldservice</td>
+      <td>Black Forest - Lake Constance (South)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Magdeburg (East)">
+      <td class="group">OC-IT | Servicedesk</td>
+      <td>Magdeburg (East)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Magdeburg (East)">
+      <td class="group">OC-IT | Fieldservice</td>
+      <td>Magdeburg (East)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Magdeburg (East)">
+      <td class="group">ZE-IT | Servicedesk</td>
+      <td>Magdeburg (East)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Magdeburg (East)">
+      <td class="group">ZE-IT | Fieldservice</td>
+      <td>Magdeburg (East)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Istnieje w SNOW</td>
+    </tr>
+    <tr data-status="active" data-region="Leipzig (East)">
+      <td class="group">LPZ-IT | Mgt</td>
+      <td>Leipzig (East)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Jedyna grupa MGT dla LPZ</td>
+    </tr>
+    <tr data-status="active" data-region="South Lower Saxony - North Hesse (West)">
+      <td class="group">HBH-IT</td>
+      <td>South Lower Saxony - North Hesse (West)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Bez subgroup</td>
+    </tr>
+    <tr data-status="active" data-region="South Lower Saxony - North Hesse (West)">
+      <td class="group">KS-IT</td>
+      <td>South Lower Saxony - North Hesse (West)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Bez subgroup</td>
+    </tr>
+    <tr data-status="active" data-region="South Lower Saxony - North Hesse (West)">
+      <td class="group">WAR-IT</td>
+      <td>South Lower Saxony - North Hesse (West)</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Bez subgroup</td>
     </tr>
 
-    <tr data-kat="Zenzy">
-      <td class="sticky-col cat">Zenzy</td>
-      <td class="sticky-col-2">BLN-app-Zenzy2-Arztmodul</td>
-      <td class="mark col-BLN">●</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Ticket + Windows-ID an Zenzy-Team; Cc BLN.Zenzy@</td>
+    <!-- Przykład Gifhorn / search GIF-IT (placeholder do uzupełnienia z pełnego HTML / XLSM) -->
+    <tr data-status="active" data-region="CL-Gifhorn">
+      <td class="group">GIF-IT</td>
+      <td>CL-Gifhorn</td>
+      <td><span class="badge active">AKTYWNA</span></td>
+      <td class="hint">Przykład pod search (GIF-IT). Pełna lista z XLSM / Gotha HTML.</td>
     </tr>
-    <tr data-kat="Zenzy">
-      <td class="sticky-col cat">Zenzy</td>
-      <td class="sticky-col-2">BEB-app-Zenzy2-Arztmodul</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">●</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">—</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Ärzte-Set</td>
-    </tr>
-    <tr data-kat="Zenzy">
-      <td class="sticky-col cat">Zenzy</td>
-      <td class="sticky-col-2">BS-cit-HELIOS-Berlin-Zenzy2-Arztmodul</td>
-      <td class="mark col-BLN">—</td><td class="mark col-BLN">—</td><td class="mark col-BLN">—</td>
-      <td class="mark col-BEB">—</td><td class="mark col-BEB">—</td><td class="mark col-BEB">—</td>
-      <td class="mark col-BS">●</td><td class="mark col-BS">—</td><td class="mark col-BS">—</td>
-      <td class="hint">Ärzte-Set</td>
+
+    <!-- ===== DO DODANIA — placeholder pod XLSM ===== -->
+    <tr data-status="add" data-region="(z XLSM)">
+      <td class="group">[pending] Assignment Groups z XLSM</td>
+      <td>(z XLSM)</td>
+      <td><span class="badge add">DODAJ</span></td>
+      <td class="hint">Wgraj <code>Assignment Groups - Helios &amp; FDT SNOW new.xlsm</code> → uzupełnimy wiersze</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<section class="legend">
-  <h2>Legende</h2>
-  <ul>
-    <li><strong>●</strong> = Standard / grundsätzlich vergeben</li>
-    <li><strong>◐</strong> = situativ laut Benutzerantrag (Station, Kostenstelle, Fachbereich)</li>
-    <li><strong>—</strong> = nicht zutreffend für diese Spalte</li>
-  </ul>
-  <p style="margin:8px 0 0;color:var(--muted)">
-    Login-Skripte: BLN <code>BLN\Scripts\Login\blnusers.bat</code> ·
-    BEB <code>BEB\Scripts\Login\bebusers.bat</code> ·
-    BS <code>BS\login.cmd</code>
-  </p>
-</section>
-
-<section class="notes">
-  <h2>Checkliste Benutzerantrag (Kurz)</h2>
-  <ol>
-    <li>Ticketbetreff: Datum – Standort – Name (Funktion) Helios-ID · Marker LÖ / NÄ / UMZUG / ROTATION</li>
-    <li>IDM/LOGA prüfen · Anträge 14 Tage im Voraus · Rotation: Rechte nur ergänzen, nicht entziehen</li>
-    <li>Namenskonvention Vorname.Nachname @helios-gesundheit.de · sAMAccountName max. 12</li>
-    <li>Passwort Helios+Jahr · „Kennwort ändern“ erst nach Test · Mailbox-Aktivierung in Anmerkung</li>
-    <li>PDMS: nur eine Gruppe · FSLogix: nur eine Pfad-Gruppe</li>
-    <li>UMRA Telefonbuch pflegen · Exchange-Verteiler nach Mailbox (:15)</li>
-  </ol>
-  <h2 style="margin-top:16px">Prozesse (Kurz)</h2>
-  <ul>
-    <li><strong>Projektlaufwerk:</strong> Fileserver → AD FR/R/W-Gruppen (Schema Standort-LW-PRJ-…) → DFS Namespace → NTFS nur Ändern</li>
-    <li><strong>Abwesenheitsnotiz:</strong> Exchange Management Shell · Set-MailboxAutoReplyConfiguration · bei Ausscheiden Standardtext mit Nachfolger</li>
-  </ul>
-</section>
-
 <p class="footer">
-  Interne Arbeitsmatrix · kein Ersatz für WikIT / ZD-IT-Richtlinien ·
-  Datenstand aus Benutzeranträge, Laufwerks-Anlage, Abwesenheitsnotiz (siehe <code>docs/quellen/</code>).
-  Datei: <code>helios-master-matrix.html</code> — lokal im Browser öffnen.
+  Interne KB · wytyczne: <code>docs/wytyczne-snow-matrix-update.md</code> ·
+  notatki czatu: <code>docs/chat-kg-snow-matrix.md</code> ·
+  legacy AD BLN/BEB/BS: <code>docs/legacy-bln-beb-bs-ad-matrix.html</code>
 </p>
 
 <script>
 (function () {
+  function norm(s) {
+    return String(s || "")
+      .toLowerCase()
+      .replace(/[\u200b-\u200d\ufeff]/g, "")
+      .replace(/\u00a0/g, " ")
+      .replace(/[\u2010-\u2015\u2212\ufe58\ufe63\uff0d]/g, "-")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   const q = document.getElementById("q");
-  const kat = document.getElementById("kat");
-  const site = document.getElementById("site");
+  const status = document.getElementById("status");
+  const region = document.getElementById("region");
   const count = document.getElementById("count");
   const rows = Array.from(document.querySelectorAll("#matrix tbody tr"));
 
+  // populate regions
+  const regions = [...new Set(rows.map((r) => r.getAttribute("data-region")).filter(Boolean))].sort();
+  regions.forEach((r) => {
+    const opt = document.createElement("option");
+    opt.value = r;
+    opt.textContent = r;
+    region.appendChild(opt);
+  });
+
+  // precompute searchable text with normalization (fixes GIF-IT / dash issues)
+  rows.forEach((tr) => {
+    tr.dataset.search = norm(tr.textContent);
+  });
+
   function apply() {
-    const query = (q.value || "").trim().toLowerCase();
-    const k = kat.value;
+    const query = norm(q.value);
+    const st = status.value;
+    const rg = region.value;
     let visible = 0;
     rows.forEach((tr) => {
-      const text = tr.textContent.toLowerCase();
-      const okQ = !query || text.includes(query);
-      const okK = !k || tr.getAttribute("data-kat") === k;
-      const show = okQ && okK;
+      const okQ = !query || tr.dataset.search.includes(query);
+      const okS = st === "all" || tr.getAttribute("data-status") === st;
+      const okR = !rg || tr.getAttribute("data-region") === rg;
+      const show = okQ && okS && okR;
       tr.classList.toggle("hide", !show);
       if (show) visible++;
     });
     count.textContent = String(visible);
-
-    const s = site.value;
-    document.querySelectorAll(".col-BLN, .col-BEB, .col-BS").forEach((el) => {
-      if (s === "all") {
-        el.style.display = "";
-        return;
-      }
-      const showCol = el.classList.contains("col-" + s);
-      el.style.display = showCol ? "" : "none";
-    });
-    // site header cells
-    document.querySelectorAll("thead tr.site th[colspan]").forEach((th) => {
-      if (s === "all") { th.style.display = ""; return; }
-      const map = { BLN: "BLN", BEB: "BEB", BS: "BS" };
-      const label = th.textContent;
-      th.style.display = label.includes(map[s]) ? "" : "none";
-    });
   }
 
   q.addEventListener("input", apply);
-  kat.addEventListener("change", apply);
-  site.addEventListener("change", apply);
+  status.addEventListener("change", apply);
+  region.addEventListener("change", apply);
   apply();
 })();
 </script>
