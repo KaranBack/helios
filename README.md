@@ -1,26 +1,20 @@
-# HELIOS Matrix
+# HELIOS Master Matrix
 
-Interaktive **Berechtigungsmatrix** für den Helios-Cluster Berlin-Brandenburg (BLN · BEB · BS).
+Gotowy plik HTML (jak Master Matrix): macierz uprawnień AD dla klastra Berlin-Brandenburg.
 
-## Inhalt
+## Plik
 
-- AD-Gruppen nach Standort, Rolle und System (Windows-Basis, SAP, aQrate, Laufwerke, Verteiler, PDMS, Muse, Zenzy)
-- Checkliste für Benutzeranträge
-- Kurzprozesse: Projektlaufwerk anlegen, Abwesenheitsnotiz (Exchange)
+Otwórz w przeglądarce:
 
-## Start
-
-```bash
-npm install
-npm run dev
+```text
+helios-master-matrix.html
 ```
 
-Build:
+Bez instalacji, bez builda — pojedynczy plik HTML z filtrami (szukaj / kategoria / lokalizacja).
 
-```bash
-npm run build
-```
+## Zawartość
 
-## Daten
-
-Einträge liegen in `src/data/matrix.ts` und basieren auf den RO-IT-Dokumenten (Benutzeranträge, Laufwerks-Anlage, Abwesenheitsnotiz).
+- Macierz krzyżowa: system/grupa AD × BLN/BEB/BS × Ärzte / Pflege / Verwaltung
+- Legenda ● / ◐ / —
+- Krótka checklista wniosku użytkownika + procesy (Laufwerk, OOO)
+- Źródła PDF w `docs/quellen/`
