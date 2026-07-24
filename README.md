@@ -1,27 +1,20 @@
 # HELIOS Master Matrix
 
-Statyczny HTML (format jak `CL-Gotha-Master-KB-Full.html`) — **SNOW Assignment Groups**.
-
-## Plik główny
-
-Otwórz w przeglądarce:
+**Główna baza wiedzy dla agentów:** jeden plik HTML.
 
 ```text
 helios-master-matrix.html
 ```
 
-## Dokumentacja update (czat KG)
+Otwórz lokalnie w przeglądarce (bez instalacji). Zawiera:
 
-- [`docs/wytyczne-snow-matrix-update.md`](docs/wytyczne-snow-matrix-update.md) — lista **USUŃ** / **DODAJ**, zamienniki, fix search `GIF-IT`
-- [`docs/chat-kg-snow-matrix.md`](docs/chat-kg-snow-matrix.md) — skrót wątku
+- Start / instrukcje dla agentów
+- SNOW Assignment Groups (USUŃ / AKTYWNA / DODAJ)
+- Ticket & checklista Benutzerantrag
+- Berechtigungssets Ärzte/Pflege
+- AD Matrix BLN/BEB/BS
+- Subsysteme routing, PDMS, Muse, Zenzy, Diktat
+- Projektlaufwerk, Abwesenheitsnotiz, Windows-Anlage
+- Globalna wyszukiwarka (normalizacja myślników — działa `GIF-IT`)
 
-## Brakujące źródła (wrzuć do `docs/quellen/`)
-
-1. `CL-Gotha-Master-KB-Full.html` (OneDrive)
-2. `Assignment Groups - Helios & FDT SNOW new.xlsm`
-
-Po wrzuceniu: merge pełnej macierzy + import grup z XLSM.
-
-## Inne
-
-- Legacy macierz AD BLN/BEB/BS (z PDF Benutzeranträge): `docs/legacy-bln-beb-bs-ad-matrix.html`
+Kolejne pliki (Gotha Full HTML, XLSM) będą mergowane do tego samego HTML.
