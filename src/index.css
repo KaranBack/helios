@@ -1,0 +1,59 @@
+:root {
+  --bg0: #e8eef2;
+  --bg1: #f4f7f9;
+  --ink: #14202b;
+  --muted: #5a6b78;
+  --line: #c5d2db;
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-solid: #ffffff;
+  --helios: #b90e1c;
+  --helios-deep: #8a0a15;
+  --teal: #0d6b6e;
+  --teal-soft: #d7ecec;
+  --amber: #9a6b12;
+  --amber-soft: #f5e8c8;
+  --chip: #edf2f5;
+  --shadow: 0 18px 50px rgba(20, 32, 43, 0.08);
+  --radius: 14px;
+  --font: "Sora", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--ink);
+  background: var(--bg0);
+  font-family: var(--font);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 8% -10%, rgba(185, 14, 28, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 92% 0%, rgba(13, 107, 110, 0.14), transparent 50%),
+    linear-gradient(165deg, #d9e4eb 0%, var(--bg0) 38%, #eef3f6 100%);
+  background-attachment: fixed;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--helios-deep);
+}
