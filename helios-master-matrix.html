@@ -1,417 +1,318 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HELIOS Master Matrix · Agent Knowledge Base</title>
+<html lang="de"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HELIOS Master Matrix · Swivel Chair Knowledge Base</title>
 <style>
 :root{--helios:#c8102e;--helios-dark:#8f0b20;--ink:#1a1a1a;--muted:#555;--line:#cfcfcf;--head:#f2f2f2;--bln:#fde8eb;--beb:#e8f0fa;--bs:#f5edd8;--ok:#e7f6ec;--okfg:#146c2e;--bad:#fde8e8;--badfg:#9b1c1c;--wait:#fff6da;--waitfg:#7a5b00;--panel:#f7f9fb}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:var(--ink);background:#fff;font-size:13px;line-height:1.4}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:var(--ink);background:#fff;font-size:13px;line-height:1.4}
 .topbar{background:linear-gradient(90deg,var(--helios-dark),var(--helios));color:#fff;padding:14px 18px 12px}
-.topbar h1{margin:0;font-size:22px;font-weight:700}
-.topbar p{margin:4px 0 0;opacity:.93;font-size:12.5px}
+.topbar h1{margin:0;font-size:22px;font-weight:700}.topbar p{margin:4px 0 0;opacity:.93;font-size:12.5px}
 .nav{display:flex;flex-wrap:wrap;gap:6px;padding:10px 18px;background:#111;position:sticky;top:0;z-index:30}
 .nav a{color:#fff;text-decoration:none;background:#333;border-radius:999px;padding:6px 11px;font-size:12px}
 .nav a:hover,.nav a.active{background:var(--helios)}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;padding:10px 18px;border-bottom:1px solid var(--line);background:#fafafa;position:sticky;top:44px;z-index:25}
-.field{display:flex;flex-direction:column;gap:3px}
-.field label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.field{display:flex;flex-direction:column;gap:3px}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
 .field input,.field select{border:1px solid #bbb;border-radius:3px;padding:5px 8px;min-width:180px;font:inherit}
 .meta{margin-left:auto;color:var(--muted);font-size:12px;padding-bottom:4px}
-.section{display:none;padding:16px 18px 28px}
-.section.on{display:block}
+.section{display:none;padding:16px 18px 28px}.section.on{display:block}
 .section h2{margin:0 0 8px;font-size:18px;color:var(--helios-dark)}
-.section h3{margin:18px 0 8px;font-size:15px;color:#222;border-bottom:1px solid var(--line);padding-bottom:4px}
-.lede{color:var(--muted);margin:0 0 12px;max-width:90ch}
-.grid{display:grid;gap:10px}
-@media(min-width:900px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
+.section h3{margin:18px 0 8px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.lede{color:var(--muted);margin:0 0 12px;max-width:95ch}
+.grid{display:grid;gap:10px}@media(min-width:900px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
 .card{border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--panel)}
-.card h4{margin:0 0 6px;font-size:13px}
-.card ol,.card ul{margin:0;padding-left:18px}
-.card li{margin:3px 0}
-.card.alert{background:#fff5f6;border-color:#f0c2c8}
-.card.warn{background:var(--wait);border-color:#e6d392}
-.card.ok{background:var(--ok);border-color:#b7e0c4}
-table{border-collapse:collapse;width:100%;min-width:720px}
-th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}
+.card h4{margin:0 0 6px;font-size:13px}.card ol,.card ul{margin:0;padding-left:18px}.card li{margin:3px 0}
+.card.alert{background:#fff5f6;border-color:#f0c2c8}.card.warn{background:var(--wait);border-color:#e6d392}.card.ok{background:var(--ok);border-color:#b7e0c4}
+table{border-collapse:collapse;width:100%;min-width:720px}th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}
 thead th{background:var(--head);position:sticky;top:102px;z-index:10;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
 .mono{font-family:Consolas,"Courier New",monospace;font-size:12px;font-weight:600}
-.mark{text-align:center;font-weight:700;color:#1b7a3d;font-size:14px}
-.mark.partial{color:#9a6b12}
+.mark{text-align:center;font-weight:700;color:#1b7a3d;font-size:14px}.mark.partial{color:#9a6b12}
 .hint{color:var(--muted);font-size:12px}
 .badge{display:inline-block;border-radius:3px;padding:2px 7px;font-size:11px;font-weight:700}
-.badge.active{background:var(--ok);color:var(--okfg)}
-.badge.remove{background:var(--bad);color:var(--badfg)}
-.badge.add{background:var(--wait);color:var(--waitfg)}
-.site-bln{background:var(--bln)!important}
-.site-beb{background:var(--beb)!important}
-.site-bs{background:var(--bs)!important}
-tr.hide, .card.hide, .block.hide{display:none!important}
-.scroll{overflow:auto}
+.badge.active{background:var(--ok);color:var(--okfg)}.badge.remove{background:var(--bad);color:var(--badfg)}.badge.add{background:var(--wait);color:var(--waitfg)}
+.site-bln{background:var(--bln)!important}.site-beb{background:var(--beb)!important}.site-bs{background:var(--bs)!important}
+tr.hide,.card.hide,.block.hide{display:none!important}.scroll{overflow:auto}
 .footer{padding:10px 18px 30px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
-code,pre{font-family:Consolas,"Courier New",monospace}
-pre{background:#111;color:#eee;padding:10px 12px;border-radius:4px;overflow:auto;font-size:12px;white-space:pre-wrap}
-.kpi{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
-.kpi span{background:#eee;border-radius:999px;padding:4px 10px;font-size:12px}
+code,pre{font-family:Consolas,"Courier New",monospace}pre{background:#111;color:#eee;padding:10px 12px;border-radius:4px;overflow:auto;font-size:12px;white-space:pre-wrap}
+.kpi{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}.kpi span{background:#eee;border-radius:999px;padding:4px 10px;font-size:12px}
+a.ext{color:var(--helios-dark);font-weight:600}
 @media print{.nav,.toolbar{position:static}.section{display:block!important}thead th{position:static}}
-</style>
-</head>
-<body>
+</style></head><body>
 <div class="topbar">
   <h1>HELIOS Master Matrix</h1>
-  <p>Agent Knowledge Base · SNOW Assignment Groups + Cluster Berlin-Brandenburg (BLN / BEB / BS) · First-Level Playbooks</p>
+  <p>Swivel Chair · Catch &amp; Dispatch Knowledge Base · Global Routing + Cluster Playbooks · SNOW Assignment Groups</p>
 </div>
 <nav class="nav" id="nav">
-  <a href="#home" data-sec="home">Start / Agent</a>
+  <a href="#home" data-sec="home">Start</a>
+  <a href="#swivel" data-sec="swivel">Swivel Chair</a>
+  <a href="#routing" data-sec="routing">Global Routing / SAP</a>
   <a href="#snow" data-sec="snow">SNOW Gruppen</a>
-  <a href="#tickets" data-sec="tickets">Ticket &amp; Checkliste</a>
-  <a href="#sets" data-sec="sets">Berechtigungssets</a>
-  <a href="#admatrix" data-sec="admatrix">AD Matrix</a>
-  <a href="#subsysteme" data-sec="subsysteme">Subsysteme</a>
+  <a href="#regeln" data-sec="regeln">Routing-Regeln</a>
+  <a href="#baramundi" data-sec="baramundi">Baramundi</a>
+  <a href="#tickets" data-sec="tickets">Ticket BB</a>
+  <a href="#admatrix" data-sec="admatrix">AD Matrix BB</a>
   <a href="#pdms" data-sec="pdms">PDMS</a>
   <a href="#muse" data-sec="muse">Muse</a>
   <a href="#zenzy" data-sec="zenzy">Zenzy</a>
-  <a href="#diktat" data-sec="diktat">Diktat</a>
   <a href="#laufwerk" data-sec="laufwerk">Laufwerk</a>
   <a href="#ooo" data-sec="ooo">Abwesenheit</a>
-  <a href="#windows" data-sec="windows">Windows Anlage</a>
+  <a href="#windows" data-sec="windows">Windows</a>
 </nav>
 <div class="toolbar">
-  <div class="field"><label for="q">Globale Suche</label><input id="q" type="search" placeholder="GIF-IT, PDMS, Zenzy, Cobas, BLN-…" autocomplete="off"/></div>
-  <div class="meta"><span id="hits">–</span> Treffer in aktueller Ansicht · Suche normalisiert Bindestriche</div>
+  <div class="field"><label for="q">Globale Suche</label><input id="q" type="search" placeholder="GF-IT, Behring, Citrix, iMedOne, SAP, BLN…" autocomplete="off"/></div>
+  <div class="meta"><span id="hits">–</span> · Bindestriche normalisiert (GF-IT / GIF-IT)</div>
 </div>
 
 <section class="section on" id="home">
-  <h2>Start — Anweisungen für Agenten</h2>
-  <p class="lede">Dies ist die <strong>Haupt-Wissensbasis (Master Matrix HTML)</strong>. Bei Ticketbearbeitung zuerst hier suchen, dann SNOW-Assignment und/oder AD-Gruppen/Playbooks anwenden. Weitere Quelldateien (Gotha Full HTML, XLSM) werden nachgeliefert und hier gemerged.</p>
+  <h2>Start — Swivel Chair / Agent KB</h2>
+  <p class="lede"><strong>Główna baza wiedzy:</strong> ten plik HTML (Helios Master Matrix / Global Routing Matrix). Catch &amp; Dispatch: szukaj grupy Assignment → przekaż. Nie troubleshooting L1 (to zespół support / Egipt).</p>
   <div class="kpi">
-    <span>Cluster BB: BLN · BEB · BS</span>
-    <span>SNOW Gruppen-Update (KG)</span>
-    <span>Quellen: Benutzeranträge, Laufwerk, OOO, Chat KG</span>
+    <span>Catch &amp; Dispatch</span>
+    <span>CLBB = Berlin Buch / Zehlendorf (Behring) / Bad Saarow</span>
+    <span>Gifhorn = GF-IT</span>
+    <span>Źródło złych grup: Copilot — NIE używać</span>
   </div>
   <div class="grid two">
     <div class="card alert">
-      <h4>Priorität Update SNOW</h4>
+      <h4>Priorytet naprawczy Matrix</h4>
       <ol>
-        <li>Gruppen aus Liste <em>USUŃ</em> nicht zuweisen / aus Matrix entfernen (nicht in SNOW).</li>
-        <li>Aktive/zamienniki verwenden (GRE-IT, MUE-IT | Fieldservice, …).</li>
-        <li>Neue Gruppen aus <code>Assignment Groups - Helios &amp; FDT SNOW new.xlsm</code> nachreichen (ELO-Mapping).</li>
+        <li>Usuń / nie przypisuj grup z listy <em>USUŃ</em> (nie istnieją w SNOW — produkt Copilota / OneDrive CL-Gotha-Master-KB-Full.html).</li>
+        <li>Używaj potwierdzonych grup (GF-IT, CLBB-IT | …, KR-IT Fieldservice/Infrastruktur, …).</li>
+        <li>Pełna lista „dobrych” grup: po XLSM / mapowaniu ELO — wgrać do tej KB.</li>
       </ol>
     </div>
     <div class="card warn">
-      <h4>Harte Regeln Cluster BB</h4>
+      <h4>Aliasy wyszukiwania Berlin</h4>
       <ul>
-        <li><strong>Rotation:</strong> alte Rechte NICHT entziehen — nur ergänzen.</li>
-        <li><strong>PDMS:</strong> nur EINE Gruppe pro User.</li>
-        <li><strong>FSLogix:</strong> nur EINE Pfad-Gruppe.</li>
-        <li><strong>CGM Muse:</strong> NIE manuell — immer AD-Gruppe *-MUSE-User-temp.</li>
-        <li><strong>Cobas:</strong> keine User bei Standardanlage ohne POCT-Freigabe.</li>
-      </ul>
-    </div>
-    <div class="card ok">
-      <h4>Standort-Codes</h4>
-      <ul>
-        <li><strong>BLN</strong> — Berlin Buch · Login <code>BLN\Scripts\Login\blnusers.bat</code></li>
-        <li><strong>BEB</strong> — Emil von Behring · <code>BEB\Scripts\Login\bebusers.bat</code></li>
-        <li><strong>BS</strong> — Bad Saarow · <code>BS\login.cmd</code></li>
-      </ul>
-    </div>
-    <div class="card">
-      <h4>Wie suchen?</h4>
-      <ul>
-        <li>Oben globale Suche (auch <code>GIF-IT</code> — Bindestriche werden normalisiert).</li>
-        <li>Navigation oben = Themenbereiche.</li>
-        <li>Bei Routing: erst Subsysteme-Tabelle, dann Playbook.</li>
+        <li><strong>Berlin Behring</strong> = Berlin Zehlendorf = <strong>BEB</strong> → grupy <code>CLBB-IT | …</code></li>
+        <li><strong>Berlin Buch</strong> = BLN → <code>CLBB-IT | …</code></li>
+        <li><strong>Bad Saarow</strong> = BS → <code>CLBB-IT | …</code></li>
+        <li>Gifhorn: aktualnie tylko <code>GF-IT</code> (nie CL-Gifhorn | …)</li>
       </ul>
     </div>
   </div>
-  <h3>Quellenstand</h3>
-  <ul>
-    <li>Benutzeranträge RO-IT (PDF) — AD/PDMS/Muse/Zenzy/Diktat</li>
-    <li>Laufwerks Anlage (PDF) — Projektlaufwerk Fileserver/AD/DFS</li>
-    <li>Abwesenheitsnotiz (PDF) — Exchange AutoReply</li>
-    <li>Chat KG — SNOW Assignment Groups remove/replace</li>
-    <li><em>Pending:</em> CL-Gotha-Master-KB-Full.html · Assignment Groups XLSM</li>
-  </ul>
+</section>
+
+<section class="section" id="swivel">
+  <h2>Swivel Chair Process</h2>
+  <div class="grid two">
+    <div class="card ok">
+      <h4>Rola zespołu Swivel Chair</h4>
+      <ul>
+        <li>Wyłącznie <strong>Catch &amp; Dispatch</strong> z głównych kolejek klastrów.</li>
+        <li><strong>Bez</strong> troubleshooting jako L1.</li>
+        <li>Cel: odciążenie kolejek; typowo 100–200 ticketów/dzień w zespole.</li>
+        <li>Ticket omyłkowo na FDT → przekieruj na <strong>Swivel Chair</strong>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Pełny Support</h4>
+      <ul>
+        <li>Właściwy support / troubleshooting: zespół w Egipcie.</li>
+        <li>Dostęp do Baramundi i innych systemów: dla full support team (nie wymagane do samego dispatch).</li>
+        <li>Pytania techniczne do shadowing / Baramundi → Robin.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card warn" style="margin-top:10px">
+    <h4>Ograniczenia dostępu</h4>
+    <p>Brak możliwości wysyłki na część grup Gotha / Gifhorn z poziomu niektórych agentów — używaj potwierdzonych grup (<code>GF-IT</code>) lub eskaluj wg procesu. Nie używaj wymyślonych podgrup CL-Gotha | … / CL-Gifhorn | …</p>
+  </div>
+</section>
+
+<section class="section" id="routing">
+  <h2>Helios Global Routing Matrix — SAP / KIS / SD</h2>
+  <p class="lede">SAP nie zawsze idzie na RS | iSHMED. Często regionalne Klinische Anwendungen / KIS. Kolumna Service Offering: uzupełniać gdy znane; inaczej logika / norecord.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Cluster / Standort</th><th>Service Desk</th><th>Clinical Applications</th><th>SAP / KIS</th><th>Infrastructure</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="block"><td>CL-Wuppertal</td><td class="mono">CL-Wuppertal | Remotesupport</td><td class="mono">CL-Wuppertal | Klinische Anwendungen</td><td class="mono">CL-Wuppertal | SAP</td><td class="hint">—</td><td><span class="badge active">znane</span></td></tr>
+      <tr class="block"><td>Berlin / Brandenburg (cluster)</td><td class="mono">CLBB-IT | Servicedesk</td><td class="mono">CLBB-IT | Klinische Anwendungen</td><td class="mono">CLBB-IT | KIS-Support</td><td class="mono">CLBB-IT | Infrastruktur</td><td><span class="badge active">znane</span></td></tr>
+      <tr class="block"><td>Berlin Buch (BLN)</td><td class="mono">CLBB-IT | Servicedesk</td><td class="mono">CLBB-IT | Klinische Anwendungen</td><td class="mono">CLBB-IT | KIS-Support</td><td class="mono">CLBB-IT | Infrastruktur</td><td><span class="badge active">znane</span></td></tr>
+      <tr class="block"><td>Berlin Zehlendorf / Behring (BEB)</td><td class="mono">CLBB-IT | Servicedesk</td><td class="mono">CLBB-IT | Klinische Anwendungen</td><td class="mono">CLBB-IT | KIS-Support</td><td class="mono">CLBB-IT | Infrastruktur</td><td><span class="badge active">znane</span> alias Behring</td></tr>
+      <tr class="block"><td>Bad Saarow (BS)</td><td class="mono">CLBB-IT | Servicedesk</td><td class="mono">CLBB-IT | Klinische Anwendungen</td><td class="mono">CLBB-IT | KIS-Support</td><td class="mono">CLBB-IT | Infrastruktur</td><td><span class="badge active">znane</span></td></tr>
+      <tr class="block"><td>Krefeld</td><td class="mono">KR-IT | Service Desk</td><td class="mono">KR-IT | Klinische Applikationen</td><td class="hint">? do potwierdzenia</td><td class="mono">KR-IT | Infrastruktur / Fieldservice</td><td><span class="badge add">SAP open</span></td></tr>
+      <tr class="block"><td>Duisburg</td><td class="mono">DU-IT | Client Mgt</td><td class="mono">DU-IT | Software &amp; Systeme</td><td class="hint">? do potwierdzenia</td><td class="hint">—</td><td><span class="badge add">SAP open</span></td></tr>
+      <tr class="block"><td>Region Süd</td><td class="mono">RS | Servicedesk</td><td class="mono">RS | Klinische Prozesse &amp; Anwendungen</td><td class="hint">nie zawsze RS | iSHMED — potwierdzić; przy konflikcie zostaw na głównej SD</td><td class="hint">Account Mgmt w matrix bywa nieprawidłowy</td><td><span class="badge add">SAP open</span></td></tr>
+      <tr class="block"><td>Gifhorn</td><td class="mono">GF-IT</td><td class="hint">podgrupy dopiero w przyszłości</td><td class="hint">—</td><td class="hint">—</td><td><span class="badge active">GF-IT only</span></td></tr>
+      <tr class="block"><td>Gotha / pozostałe clustery</td><td class="hint">pending oficjalna lista</td><td class="hint">pending</td><td class="hint">pending</td><td class="hint">pending</td><td><span class="badge add">open</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint" style="margin-top:8px">Cel: kompletna Global Routing Matrix + unikanie złego routingu SAP. Oficjalne grupy SAP dla brakujących clusterów — zbierane od odpowiedzialnych teamów.</p>
 </section>
 
 <section class="section" id="snow">
-  <h2>SNOW Assignment Groups</h2>
-  <p class="lede">Update aus Chat KG. Filter: Status. Gruppen mit Status USUŃ existieren nicht in ServiceNow — nicht zuweisen.</p>
+  <h2>SNOW Assignment Groups — USUŃ / AKTYWNA / DODAJ</h2>
+  <p class="lede">Złe grupy pochodzą m.in. z <code>CL-Gotha-Master-KB-Full.html</code> (OneDrive / Copilot). Nie przypisywać. Filter status poniżej.</p>
   <div class="field" style="max-width:220px;margin-bottom:10px">
-    <label for="snowStatus">Status-Filter</label>
-    <select id="snowStatus"><option value="all">Alle</option><option value="active">Nur aktive</option><option value="remove">Nur USUŃ</option><option value="add">Nur DODAJ</option></select>
+    <label for="snowStatus">Status</label>
+    <select id="snowStatus"><option value="all">Alle</option><option value="active">Nur aktywne</option><option value="remove" selected>Nur USUŃ</option><option value="add">Nur DODAJ</option></select>
   </div>
-  <div class="scroll"><table id="snowTable"><thead><tr><th>Assignment Group</th><th>Region / Cluster</th><th>Status</th><th>Hinweis</th></tr></thead><tbody>
-<tr class="block" data-status="remove" data-region="CL-Gotha"><td class="mono">CL-Gotha | Klinische Anwendungen</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gotha"><td class="mono">CL-Gotha | Infrastruktur</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gotha"><td class="mono">CL-Gotha | SAP</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gotha"><td class="mono">CL-Gotha | Accountmanagement</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gotha"><td class="mono">CL-Gotha | Field Service</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gifhorn"><td class="mono">CL-Gifhorn | Klinische Anwendungen</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gifhorn"><td class="mono">CL-Gifhorn | Infrastruktur</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gifhorn"><td class="mono">Medico / KIS Team</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Naming → CL-Gifhorn | Medico / KIS Team</td></tr><tr class="block" data-status="remove" data-region="CL-Gifhorn"><td class="mono">CL-Gifhorn | Accountmanagement</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="CL-Gifhorn"><td class="mono">CL-Gifhorn | Local IT / Field Service</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="Saxony - North Franconia (East)"><td class="mono">KC-IT | MVZ</td><td>Saxony - North Franconia (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="Saxony - North Franconia (East)"><td class="mono">PL-IT | MVZ</td><td>Saxony - North Franconia (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Nie istnieje w SNOW</td></tr><tr class="block" data-status="remove" data-region="Central Thuringia (South)"><td class="mono">GRE-IT | Fieldservice</td><td>Central Thuringia (South)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: GRE-IT, GRE-IT | Mgt</td></tr><tr class="block" data-status="remove" data-region="Black Forest - Lake Constance (South)"><td class="mono">MUE-IT | Infrastruktur</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: MUE-IT, MUE-IT | Fieldservice</td></tr><tr class="block" data-status="remove" data-region="Black Forest - Lake Constance (South)"><td class="mono">TIT-IT | Infrastruktur</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: TIT-IT, TIT-IT | Fieldservice</td></tr><tr class="block" data-status="remove" data-region="Magdeburg (East)"><td class="mono">OC-IT | Infrastruktur</td><td>Magdeburg (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: OC-IT | Servicedesk, OC-IT | Fieldservice</td></tr><tr class="block" data-status="remove" data-region="Magdeburg (East)"><td class="mono">ZE-IT | Infrastruktur</td><td>Magdeburg (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: ZE-IT | Servicedesk, ZE-IT | Fieldservice</td></tr><tr class="block" data-status="remove" data-region="Leipzig (East)"><td class="mono">LPZ-IT | Infrastruktur</td><td>Leipzig (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko grupa MGT</td></tr><tr class="block" data-status="remove" data-region="South Lower Saxony - North Hesse (West)"><td class="mono">HBH-IT | Fieldservice</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko HBH-IT</td></tr><tr class="block" data-status="remove" data-region="South Lower Saxony - North Hesse (West)"><td class="mono">KS-IT | Fieldservice</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko KS-IT</td></tr><tr class="block" data-status="remove" data-region="South Lower Saxony - North Hesse (West)"><td class="mono">WAR-IT | Fieldservice</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko WAR-IT</td></tr><tr class="block" data-status="active" data-region="CL-Gifhorn"><td class="mono">CL-Gifhorn | Medico / KIS Team</td><td>CL-Gifhorn</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Poprawna nazwa Medico/KIS</td></tr><tr class="block" data-status="active" data-region="Central Thuringia (South)"><td class="mono">GRE-IT</td><td>Central Thuringia (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Central Thuringia (South)"><td class="mono">GRE-IT | Mgt</td><td>Central Thuringia (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Black Forest - Lake Constance (South)"><td class="mono">MUE-IT</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Black Forest - Lake Constance (South)"><td class="mono">MUE-IT | Fieldservice</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Black Forest - Lake Constance (South)"><td class="mono">TIT-IT</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Black Forest - Lake Constance (South)"><td class="mono">TIT-IT | Fieldservice</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Magdeburg (East)"><td class="mono">OC-IT | Servicedesk</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Magdeburg (East)"><td class="mono">OC-IT | Fieldservice</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Magdeburg (East)"><td class="mono">ZE-IT | Servicedesk</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Magdeburg (East)"><td class="mono">ZE-IT | Fieldservice</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Istnieje w SNOW</td></tr><tr class="block" data-status="active" data-region="Leipzig (East)"><td class="mono">LPZ-IT | Mgt</td><td>Leipzig (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Jedyna grupa MGT dla LPZ</td></tr><tr class="block" data-status="active" data-region="South Lower Saxony - North Hesse (West)"><td class="mono">HBH-IT</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Bez subgroup</td></tr><tr class="block" data-status="active" data-region="South Lower Saxony - North Hesse (West)"><td class="mono">KS-IT</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Bez subgroup</td></tr><tr class="block" data-status="active" data-region="South Lower Saxony - North Hesse (West)"><td class="mono">WAR-IT</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Bez subgroup</td></tr><tr class="block" data-status="active" data-region="CL-Gifhorn"><td class="mono">GIF-IT</td><td>CL-Gifhorn</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Cluster Gifhorn IT (search test)</td></tr><tr class="block" data-status="add" data-region="(XLSM)"><td class="mono">[pending] Assignment Groups aus XLSM</td><td>(XLSM)</td><td><span class="badge add">DODAJ</span></td><td class="hint">Datei: Assignment Groups - Helios &amp; FDT SNOW new.xlsm</td></tr>
-  </tbody></table></div>
+  <div class="scroll"><table id="snowTable"><thead><tr><th>Assignment Group</th><th>Region</th><th>Status</th><th>Hinweis</th></tr></thead>
+  <tbody><tr class="block" data-status="remove"><td class="mono">CL-Gotha | Klinische Anwendungen</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Copilot/halucynacja — brak w SNOW (potwierdzone wyszukiwaniem)</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gotha | Infrastruktur</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gotha | SAP</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gotha | Accountmanagement</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gotha | Field Service</td><td>CL-Gotha</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gifhorn | Klinische Anwendungen</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gifhorn | Infrastruktur</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">Medico / KIS Team</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">ZŁA nazwa — patrz aktywne: CLBB-IT | KIS Support and Medico</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gifhorn | Accountmanagement</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">CL-Gifhorn | Local IT / Field Service</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">KC-IT | MVZ</td><td>Saxony - North Franconia (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">PL-IT | MVZ</td><td>Saxony - North Franconia (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Brak w SNOW</td></tr><tr class="block" data-status="remove"><td class="mono">GRE-IT | Fieldservice</td><td>Central Thuringia (South)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: GRE-IT, GRE-IT | Mgt</td></tr><tr class="block" data-status="remove"><td class="mono">MUE-IT | Infrastruktur</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: MUE-IT, MUE-IT | Fieldservice</td></tr><tr class="block" data-status="remove"><td class="mono">TIT-IT | Infrastruktur</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: TIT-IT, TIT-IT | Fieldservice</td></tr><tr class="block" data-status="remove"><td class="mono">OC-IT | Infrastruktur</td><td>Magdeburg (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: OC-IT | Servicedesk, OC-IT | Fieldservice</td></tr><tr class="block" data-status="remove"><td class="mono">ZE-IT | Infrastruktur</td><td>Magdeburg (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Zamiast: ZE-IT | Servicedesk, ZE-IT | Fieldservice</td></tr><tr class="block" data-status="remove"><td class="mono">LPZ-IT | Infrastruktur</td><td>Leipzig (East)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko MGT</td></tr><tr class="block" data-status="remove"><td class="mono">HBH-IT | Fieldservice</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko HBH-IT</td></tr><tr class="block" data-status="remove"><td class="mono">KS-IT | Fieldservice</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko KS-IT</td></tr><tr class="block" data-status="remove"><td class="mono">WAR-IT | Fieldservice</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge remove">USUŃ</span></td><td class="hint">Tylko WAR-IT</td></tr><tr class="block" data-status="remove"><td class="mono">GIF-IT</td><td>CL-Gifhorn</td><td><span class="badge remove">USUŃ</span></td><td class="hint">NIEUŻYWAĆ — poprawna aktualna grupa to GF-IT (SME Gifhorn)</td></tr><tr class="block" data-status="active"><td class="mono">GF-IT</td><td>CL-Gifhorn / Gifhorn</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">SME: momentan nur diese Zuordnungsgruppe in Gifhorn</td></tr><tr class="block" data-status="active"><td class="mono">CLBB-IT | KIS Support and Medico</td><td>Berlin-Brandenburg / Medico-KIS</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Znalezione w SNOW (zamiast „Medico / KIS Team”)</td></tr><tr class="block" data-status="active"><td class="mono">CLBB-IT | Servicedesk</td><td>Berlin / Brandenburg</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Service Desk cluster BB</td></tr><tr class="block" data-status="active"><td class="mono">CLBB-IT | Klinische Anwendungen</td><td>Berlin / Brandenburg</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Clinical Applications BB</td></tr><tr class="block" data-status="active"><td class="mono">CLBB-IT | KIS-Support</td><td>Berlin Buch / Zehlendorf / Bad Saarow</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">SAP/KIS routing BB</td></tr><tr class="block" data-status="active"><td class="mono">CLBB-IT | Infrastruktur</td><td>Berlin Buch / Zehlendorf / Bad Saarow</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Infrastructure BB</td></tr><tr class="block" data-status="active"><td class="mono">CL-Wuppertal | Remotesupport</td><td>CL-Wuppertal</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Service Desk / Remotesupport</td></tr><tr class="block" data-status="active"><td class="mono">CL-Wuppertal | Klinische Anwendungen</td><td>CL-Wuppertal</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Clinical Applications</td></tr><tr class="block" data-status="active"><td class="mono">CL-Wuppertal | SAP</td><td>CL-Wuppertal</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">SAP group (do weryfikacji vs regional Klinische Anwendungen)</td></tr><tr class="block" data-status="active"><td class="mono">KR-IT | Service Desk</td><td>Krefeld</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">SD</td></tr><tr class="block" data-status="active"><td class="mono">KR-IT | Klinische Applikationen</td><td>Krefeld</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Clinical Apps</td></tr><tr class="block" data-status="active"><td class="mono">KR-IT | Infrastruktur</td><td>Krefeld</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Citrix SERVER issues → tutaj</td></tr><tr class="block" data-status="active"><td class="mono">KR-IT | Fieldservice</td><td>Krefeld</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Citrix CLIENT issues + załączniki bez logowania → tutaj</td></tr><tr class="block" data-status="active"><td class="mono">DU-IT | Client Mgt</td><td>Duisburg</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">SD-like / Client Mgt</td></tr><tr class="block" data-status="active"><td class="mono">DU-IT | Software &amp; Systeme</td><td>Duisburg</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Clinical/Software</td></tr><tr class="block" data-status="active"><td class="mono">RS | Servicedesk</td><td>Region Süd</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">SD — przy niejasnym SAP zostaw na głównej SD</td></tr><tr class="block" data-status="active"><td class="mono">RS | Klinische Prozesse &amp; Anwendungen</td><td>Region Süd</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Clinical</td></tr><tr class="block" data-status="active"><td class="mono">RS | iMedOne</td><td>Region Süd</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">DODAĆ — tickety iMedOne (brakowało w matrixie)</td></tr><tr class="block" data-status="active"><td class="mono">GRE-IT</td><td>Central Thuringia (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK w SNOW</td></tr><tr class="block" data-status="active"><td class="mono">GRE-IT | Mgt</td><td>Central Thuringia (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK w SNOW</td></tr><tr class="block" data-status="active"><td class="mono">MUE-IT</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">MUE-IT | Fieldservice</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">TIT-IT</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">TIT-IT | Fieldservice</td><td>Black Forest - Lake Constance (South)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">OC-IT | Servicedesk</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">OC-IT | Fieldservice</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">ZE-IT | Servicedesk</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">ZE-IT | Fieldservice</td><td>Magdeburg (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">OK</td></tr><tr class="block" data-status="active"><td class="mono">LPZ-IT | Mgt</td><td>Leipzig (East)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Jedyna MGT</td></tr><tr class="block" data-status="active"><td class="mono">HBH-IT</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Bez subgroup</td></tr><tr class="block" data-status="active"><td class="mono">KS-IT</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Bez subgroup</td></tr><tr class="block" data-status="active"><td class="mono">WAR-IT</td><td>South Lower Saxony - North Hesse (West)</td><td><span class="badge active">AKTYWNA</span></td><td class="hint">Bez subgroup</td></tr><tr class="block" data-status="add"><td class="mono">[pending] pełna lista z Assignment Groups XLSM + ELO mapping</td><td>Helios &amp; FDT</td><td><span class="badge add">DODAJ</span></td><td class="hint">Po otrzymaniu listy — update KB/Matrix</td></tr></tbody></table></div>
 </section>
 
-<section class="section" id="tickets">
-  <h2>Ticketkonvention &amp; Checkliste Benutzerantrag</h2>
-  <p class="lede">Scan2Ticket → FirstLevel-Queue → manuell anpassen → Benutzerantrags-Queue. Konto via LOGA/IDM (SV-Nr.). Toolbox: Rechte von Beispieluser kopieren. IDM: Benutzerbrief.</p>
+<section class="section" id="regeln">
+  <h2>Routing-Regeln (Feedback Agenten)</h2>
   <div class="grid two">
-    <div class="card">
-      <h4>Ticketbetreff</h4>
+    <div class="card alert">
+      <h4>Krefeld · Citrix (KR-IT)</h4>
       <ul>
-        <li><strong>Neu:</strong> <code>Datum - Standort - Nachname, Vorname (Funktion) Helios-ID</code><br/>Bsp. <code>01.12 - VBLN - Musterfrau, Doris (Ärztin) IDM: 123456</code></li>
-        <li><strong>Noch nicht IDM:</strong> <code>… - noch nicht im IDM</code></li>
-        <li><strong>Löschen:</strong> <code>LÖ - Datum - Standort - Name</code></li>
-        <li><strong>Namensänderung:</strong> <code>NÄ - Datum - Standort - Name ehemals …</code></li>
-        <li><strong>Umzug:</strong> <code>… UMZUG</code></li>
-        <li><strong>Rotation:</strong> <code>… ROTATION</code> — Rechte nur ergänzen</li>
+        <li><strong>Citrix Server</strong> (problemy z samym serwerem) → <code>KR-IT | Infrastruktur</code></li>
+        <li><strong>Citrix Client</strong> (stacja / klient) → <code>KR-IT | Fieldservice</code></li>
+        <li>Załączniki nie otwierają się bez logowania → <code>KR-IT | Fieldservice</code></li>
+      </ul>
+    </div>
+    <div class="card warn">
+      <h4>Region Süd</h4>
+      <ul>
+        <li><strong>iMedOne</strong> → dodać / używać grupy <code>RS | iMedOne</code> (częste tickety; brakowało w matrixie).</li>
+        <li>SAP Reg Süd: przy dwóch konfliktujących grupach — najpierw weryfikacja; w praktyce przy błędzie Infra → <strong>zostaw na głównej SD</strong> (<code>RS | Servicedesk</code>).</li>
+        <li>Account Management dla Region South w starej matrix bywa <strong>nieprawidłowy</strong> (nie obsługuje tych spraw) — nie kierować tam na ślepo.</li>
+      </ul>
+    </div>
+    <div class="card ok">
+      <h4>Berlin-Brandenburg Medico / KIS</h4>
+      <ul>
+        <li>Nie: <code>Medico / KIS Team</code></li>
+        <li>Tak: <code>CLBB-IT | KIS Support and Medico</code></li>
+        <li>SAP/KIS cluster: <code>CLBB-IT | KIS-Support</code></li>
       </ul>
     </div>
     <div class="card">
-      <h4>Timing / IDM</h4>
+      <h4>Gifhorn / Gotha</h4>
       <ul>
-        <li>IDM aus LOGA (Helios) / REXX (VAMED), ca. 24h</li>
-        <li>Verträge +30 Tage: täglich Helios-ID/AD prüfen</li>
-        <li>Anträge 14 Tage im Voraus bearbeitbar (Sperrungen vermeiden)</li>
-        <li>Kein IDM: Spätestens 7 Tage vorher Antragsteller schriftlich + telefonisch</li>
-        <li>Notizen im Ticket: <code>#Nr</code> im Betreff/Kommentar</li>
+        <li>Gifhorn teraz: tylko <code>GF-IT</code> (inne podgrupy „erst in Zukunft”).</li>
+        <li>CL-Gotha | … podgrupy — nieistniejące / Copilot.</li>
+        <li>Mapowanie poprawnych grup: w toku (kolega / ELO).</li>
       </ul>
     </div>
   </div>
-  <h3>Checkliste — Reihenfolge für Agenten</h3>
-  <ol>
-    <li>Prüfen was beantragt ist (Antrag / Katalogaufgabe).</li>
-    <li>IDM/LOGA &amp; Betriebsstätte (BLN/BEB/BS) verifizieren.</li>
-    <li>AD Namenskonvention: <code>Vorname.Nachname@helios-gesundheit.de</code>; sAMAccountName max. 12; Feld Nachname Pflicht (Launchpad).</li>
-    <li>Passwort <code>Helios</code>+Jahr; Haken „Kennwort ändern“ erst NACH Test.</li>
-    <li>Mailbox: Reiter Rufnummern → Anmerkung <code>Mailbox-Aktivierung</code>.</li>
-    <li>Windows-Gruppen/Laufwerke (AD Matrix) + Verteiler nach Mail (:15).</li>
-    <li>Subsysteme laut Antrag routen (Tabelle Subsysteme).</li>
-    <li>UMRA Telefonbuch: <code>https://telefon.helios-kliniken.de/pages/user_edit.aspx</code> — Replikation ~15 min.</li>
-    <li>Account testen → dann „Kennwort ändern“ setzen → Ticket schließen.</li>
-  </ol>
-  <div class="card alert" style="margin-top:12px">
-    <h4>Wichtige Spezialfälle</h4>
+</section>
+
+<section class="section" id="baramundi">
+  <h2>Baramundi</h2>
+  <div class="card">
+    <h4>Oficjalna dokumentacja</h4>
+    <p><a class="ext" href="https://docs.baramundi.com/helpsetid=m_jobs&amp;externalid=k_jobs&amp;Language=de-de&amp;Version=2025R1" target="_blank" rel="noopener">baramundi Docs — Jobs (2025 R1, DE)</a></p>
     <ul>
-      <li>Externe / Spezial-SAP: Ticket ans SAP-Team — nicht digitaler Benutzerantrag.</li>
-      <li>MS Teams: Lizenz durch Vorgesetzten; immer Lizenztyp + Ticketnummer.</li>
-      <li>Cobas: keine Anlage ohne Schulung; Freigabe POCT; wenn Wbrg-Gruppe existiert → Cockpit Gruppenpflege.</li>
+      <li>To oficjalna dokumentacja producenta (nie lokalna KB Helios).</li>
+      <li>Poziom dostępu weryfikować na podstawie shadowing / obserwacji.</li>
+      <li>Pytania: Robin (pracuje nad tematem z wcześniejszego share).</li>
+      <li>Swivel Chair: dispatch bez wymogu pełnego Baramundi; full support (Egipt) powinien mieć dostępy systemowe.</li>
     </ul>
   </div>
 </section>
 
-<section class="section" id="sets">
-  <h2>Berechtigungssets</h2>
-  <div class="grid three">
-    <div class="card">
-      <h4>Ärzte</h4>
-      <p class="hint">Grundset: UPV Standort-Arzt-Abteilung, Zenzy-Arztmodul, CGM Muse, ggf. PDMS/IRIS.</p>
+<section class="section" id="tickets">
+  <h2>Ticket &amp; Checkliste — Cluster Berlin-Brandenburg (AD)</h2>
+  <p class="lede">Scan2Ticket → FirstLevel → Benutzerantrags-Queue. LOGA/IDM. Toolbox: copy rights. Rotacje: prawa tylko uzupełniać.</p>
+  <div class="grid two">
+    <div class="card"><h4>Betreff</h4>
       <ul>
-        <li><strong>BLN:</strong> PDMS, IRIS; Verteiler CA / OA / Ärzte (Station+FB)</li>
-        <li><strong>BEB:</strong> CA / OA / Ärzte</li>
-        <li><strong>BS:</strong> CA / OA / Ärzte (Station+FB)</li>
+        <li>Neu: <code>Datum - Standort - Name (Funktion) Helios-ID</code></li>
+        <li>LÖ / NÄ / UMZUG / ROTATION</li>
+        <li>Notizen: <code>#Nr</code></li>
       </ul>
     </div>
-    <div class="card">
-      <h4>Pflege</h4>
-      <p class="hint">UPV Standort-Pflege, Stationslaufwerk, CGM Muse, …</p>
+    <div class="card"><h4>Harte Regeln</h4>
       <ul>
-        <li><strong>BLN:</strong> BLN-App-IrisView + Verteiler BLN-Pflege</li>
-        <li><strong>BEB:</strong> BEB-App-IrisView + BEB-Pflegedienst</li>
-        <li><strong>BS:</strong> BS-App-IrisView + BS-Pflegedienst</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h4>Verwaltung / BS Gruppen</h4>
-      <ul>
-        <li><code>BS-FB-XXX</code> Fachbereichsgruppe</li>
-        <li><code>BS-VG-XXX</code> Verteilergruppe</li>
-        <li><code>BS-aQrate-Grp-XXX</code> aQrate Funktionsgruppe</li>
+        <li>PDMS: tylko 1 grupa</li>
+        <li>FSLogix: tylko 1 ścieżka</li>
+        <li>CGM Muse: nigdy ręcznie — AD *-MUSE-User-temp</li>
+        <li>Cobas: tylko po POCT</li>
       </ul>
     </div>
   </div>
+  <ol>
+    <li>Wniosek / katalog — co zamówione</li>
+    <li>IDM + lokalizacja BLN/BEB/BS</li>
+    <li>Nazwa AD: Vorname.Nachname@helios-gesundheit.de; sAMAccount max 12; Nachname obowiązkowe</li>
+    <li>Hasło Helios+Jahr; „ändern” dopiero po teście</li>
+    <li>Mailbox-Aktivierung w Anmerkung</li>
+    <li>Grupy AD Matrix + Verteiler po mailu (:15)</li>
+    <li>UMRA: telefon.helios-kliniken.de · ~15 min</li>
+  </ol>
 </section>
 
 <section class="section" id="admatrix">
-  <h2>AD Berechtigungsmatrix (BLN / BEB / BS)</h2>
-  <p class="lede">Legende: <strong>●</strong> Standard · <strong>◐</strong> situativ laut Antrag · <strong>—</strong> n/a. Spalten: Ärzte / Pflege / Verw.&amp;Alle je Standort.</p>
-  <div class="scroll"><table>
-  <thead>
-    <tr>
-      <th rowspan="2">Kat.</th><th rowspan="2">System</th><th rowspan="2">AD-Gruppe / Wert</th>
-      <th class="site-bln" colspan="3">BLN</th>
-      <th class="site-beb" colspan="3">BEB</th>
-      <th class="site-bs" colspan="3">BS</th>
-      <th rowspan="2">Hinweis</th>
-    </tr>
-    <tr>
-      <th class="site-bln">Ä</th><th class="site-bln">P</th><th class="site-bln">V</th>
-      <th class="site-beb">Ä</th><th class="site-beb">P</th><th class="site-beb">V</th>
-      <th class="site-bs">Ä</th><th class="site-bs">P</th><th class="site-bs">V</th>
-    </tr>
-  </thead>
-  <tbody><tr class="block" data-kat="Basis"><td class="hint">Basis</td><td>Quota</td><td class="mono">BLN-Quota-User-0000.3GB</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Default Quota intern</td></tr><tr class="block" data-kat="Basis"><td class="hint">Basis</td><td>Quota</td><td class="mono">BEB-quota-user-0000.3GB</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Default Quota</td></tr><tr class="block" data-kat="Basis"><td class="hint">Basis</td><td>Fachbereich</td><td class="mono">BS-FB-XXX</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">z.B. BS-FB-Neuro</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Outlook Signatur</td><td class="mono">BLN-app-CI-Sign-Outlook</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">interne Mitarbeiter</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Outlook Signatur</td><td class="mono">BLN-App-Outlook-Signatur</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">externe Benutzer</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Outlook Profil</td><td class="mono">BEB-app-Outlook-StdPrf / ohne-PRF</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Profil je Antrag</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Rightfax</td><td class="mono">BEB-app-Rightfax-Sync-Enabled</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>IRIS</td><td class="mono">BLN-App-IrisView</td><td class="mark">●</td><td class="mark">●</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Pflege-Set: immer</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>IRIS</td><td class="mono">BEB-App-IrisView</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Pflege-Set: immer</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>IRIS</td><td class="mono">BS-App-IrisView</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">●</td><td class="mark partial">◐</td><td class="hint">Pflege-Set: immer</td></tr><tr class="block" data-kat="SAP"><td class="hint">SAP</td><td>SAP User</td><td class="mono">BLN-sap-user</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">+ digitaler SAP-Antrag / Launchpad</td></tr><tr class="block" data-kat="SAP"><td class="hint">SAP</td><td>SAP User</td><td class="mono">BEB-SAP-User</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">digitaler Benutzerantrag</td></tr><tr class="block" data-kat="SAP"><td class="hint">SAP</td><td>SAP</td><td class="mono">BS analog Fachbereich</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="hint">Gruppen je FB/Berufsgruppe</td></tr><tr class="block" data-kat="aQrate"><td class="hint">aQrate</td><td>aQrate</td><td class="mono">BLN-Aqrate-Grp-xxxxx</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">entsprechend Abteilung</td></tr><tr class="block" data-kat="aQrate"><td class="hint">aQrate</td><td>aQrate</td><td class="mono">BEB-Aqrate-Grp-User</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="aQrate"><td class="hint">aQrate</td><td>aQrate</td><td class="mono">BS-aQrate-Grp-XXX</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">Externe: BS-aQrate-Grp-BS-FB-Sonstige</td></tr><tr class="block" data-kat="Laufwerk"><td class="hint">Laufwerk</td><td>Home Share</td><td class="mono">BLN-LW-USR-HomeShares-{AH|IR|SZ}</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Support→UserHomes; Auto bei Erstanmeldung</td></tr><tr class="block" data-kat="Laufwerk"><td class="hint">Laufwerk</td><td>Home Share</td><td class="mono">BEB-LW-USR-HomeShares-{AH|IR|SZ}</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Profil"><td class="hint">Profil</td><td>Home</td><td class="mono">\\BSCLFILE01\Home$\%username%</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">Extension Attribute 5 pflegen</td></tr><tr class="block" data-kat="Profil"><td class="hint">Profil</td><td>Profilpfad</td><td class="mono">BEB-LW-Prof-Path</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="FSLogix"><td class="hint">FSLogix</td><td>FSLogix</td><td class="mono">BLN-CTX-FSLogix1Pfad / 2Pfad</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">NUR EINE Gruppe</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Alle Mitarbeiter</td><td class="mono">BLN-Alle-Mitarbeiter-HK / VBHD / …</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">nach Mailbox; GmbH vom Antrag; :15</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Alle Mitarbeiter</td><td class="mono">BEB-alle-Mitarbeiter-HK</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">nach Mailbox</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Ärzte</td><td class="mono">{Standort}-CA / -OA / -Ärzte (FB)</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="hint">immer je Station &amp; FB</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Pflege</td><td class="mono">BLN-Pflege / BEB-Pflegedienst / BS-Pflegedienst</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="hint">Pflege immer</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>BS VG</td><td class="mono">BS-VG-XXX</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">Verteilergruppe FB</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Pflege</td><td class="mono">BLN-PDMS-Pflege-ITSIMC-alle</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">C1-11/C2-31/C2-32/Nephro · NUR EINE PDMS</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Pflege</td><td class="mono">BLN-PDMS-Pflege-AnästhAWR</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">ZOP Anästhesie/AWR</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Intensiv</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">C1-11 Intensiv</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Innere</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">C2-31 Kardio-IMC</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Intensiv-WA</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Kardio+Nephro (Nephrologen)</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Neuro</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">C2-32 Stroke</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-WA</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">alle Anästhesie ZOP/IMC</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Funk.</td><td class="mono">BLN-PDMS-Funktionsbereiche</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Physio/Logo/Ergo</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>MedCo</td><td class="mono">BLN-PDMS-MedCo</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Med-Controlling</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>BEB</td><td class="mono">BEB-PDMS-Pflege-*</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">WikIT BEB PDMS Nutzergruppen</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>BS</td><td class="mono">BS-PDMS-Pflege-* / Ärzte-*</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="hint">ITS/IMC oft über BS-FB-AINS-*</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>WebMuse</td><td class="mono">BLN-Webmuse-Allgemein + BLN-Webmuse-XXX</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Kostenstelle; Replikation ~24h</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM</td><td class="mono">BLN-MUSE-User-temp</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">NIE manuell anlegen</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM MVZ</td><td class="mono">VBLN-MUSE-User-temp</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">BLN MVZ</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM</td><td class="mono">BEB-MUSE-User-temp</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">NIE manuell</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM</td><td class="mono">BS-MUSE-User-temp</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="hint">NIE manuell</td></tr><tr class="block" data-kat="Zenzy"><td class="hint">Zenzy</td><td>Arztmodul</td><td class="mono">BLN-app-Zenzy2-Arztmodul</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Ticket+Windows-ID an Zenzy-Team</td></tr><tr class="block" data-kat="Zenzy"><td class="hint">Zenzy</td><td>Arztmodul</td><td class="mono">BEB-app-Zenzy2-Arztmodul</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Zenzy"><td class="hint">Zenzy</td><td>Arztmodul</td><td class="mono">BS-cit-HELIOS-Berlin-Zenzy2-Arztmodul</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Gedowin</td><td class="mono">{BLN|BEB|BS}-app-Gedowin</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="hint">Subsysteme</td></tr></tbody>
-  </table></div>
-</section>
-
-<section class="section" id="subsysteme">
-  <h2>Subsysteme &amp; Routing</h2>
-  <p class="lede">Was beantragt ist → wohin / welche Regel. ZD-Citrix-Apps sind kostenpflichtig.</p>
-  <div class="scroll"><table><thead><tr><th>Thema</th><th>Aktion / Ziel</th><th>Hinweis</th></tr></thead><tbody><tr class="block"><td><strong>RIS</strong></td><td>Subsysteme</td><td class="hint">Routing an Subsysteme</td></tr><tr class="block"><td><strong>PACS</strong></td><td>BLN Nutzeranlage PACS (WikIT)</td><td class="hint">BLN-spezifisch</td></tr><tr class="block"><td><strong>DMWE / Diktat</strong></td><td>SecondLevel Service &amp; Support</td><td class="hint">siehe Playbook Diktat</td></tr><tr class="block"><td><strong>CWD</strong></td><td>BS &amp; BLN Subsysteme</td><td class="hint">Schwestern/Pfleger: kein persönlicher Zugang — nur AD-Gruppe</td></tr><tr class="block"><td><strong>Geridoc 2.0</strong></td><td>ZD-Citrix-App</td><td class="hint">Username Vorname.Nachname; ZD-Apps kostenpflichtig — nur echte Nutzer</td></tr><tr class="block"><td><strong>Geridoc &amp; PalliLive</strong></td><td>Cockpit KSS</td><td class="hint">NICHT über BLN-app-Geridoc2 / BLN-app-Pallilive</td></tr><tr class="block"><td><strong>xVianova (MVZ)</strong></td><td>eigenes Formular Benutzeranlage x.vianova</td><td class="hint">Neuanlage/Änderung/Löschung nur über speziellen Antrag</td></tr><tr class="block"><td><strong>syngo.via</strong></td><td>Subsysteme</td><td class="hint"></td></tr><tr class="block"><td><strong>DMO / DMD</strong></td><td>SecondLevel Service &amp; Support</td><td class="hint"></td></tr><tr class="block"><td><strong>Patho</strong></td><td>Subsysteme</td><td class="hint"></td></tr><tr class="block"><td><strong>Celsius C37</strong></td><td>AD-Kopplung / Absprung SAP</td><td class="hint">siehe WikIT celsius37.cancercenter</td></tr><tr class="block"><td><strong>WebMuse / CGM Muse</strong></td><td>SecondLevel + AD-Gruppen</td><td class="hint">siehe Playbook Muse</td></tr><tr class="block"><td><strong>PDMS</strong></td><td>Punkt 5 / AD-Gruppen</td><td class="hint">NUR EINE PDMS-Gruppe</td></tr><tr class="block"><td><strong>Zenzy</strong></td><td>Punkt 6</td><td class="hint">Ticket inkl. Windows-ID weiterleiten</td></tr><tr class="block"><td><strong>Cobas Blutzucker</strong></td><td>NIE bei Standardanlage</td><td class="hint">Erst nach Schulung/Zertifizierung; Freigabe POCT; besser Cockpit Wbrg</td></tr><tr class="block"><td><strong>SAP</strong></td><td>digitaler Antrag / Launchpad</td><td class="hint">BS+BEB digital; BLN Pflege über Launchpad</td></tr><tr class="block"><td><strong>ViewPoint</strong></td><td>Subsysteme</td><td class="hint"></td></tr><tr class="block"><td><strong>MS Teams</strong></td><td>Vorgesetzter / Service &amp; Support</td><td class="hint">Lizenztyp + Ticketnr; Informationworker vs Frontlineworker</td></tr><tr class="block"><td><strong>Pegasos</strong></td><td>—</td><td class="hint"></td></tr><tr class="block"><td><strong>roXtra</strong></td><td>Verantwortliche</td><td class="hint"></td></tr></tbody></table></div>
-  <h3>Cobas / POCT Kontakte</h3>
-  <ul><li><strong>BLN:</strong> Katja Bretting / Cockpit: Schwanitz, Lysanne; Lasslop, Franceska</li><li><strong>BEB:</strong> Lysann Spiller / Nickel, Eike</li><li><strong>BS:</strong> Katrin Marunde / Schweder, Maria</li></ul>
-  <p class="hint">Gruppenbeispiel Cockpit: BLN_COBAS_OPERATOR / LABOR / TECHNIK — Vergabe über Cockpit Gruppenpflege wenn Wbrg existiert.</p>
+  <h2>AD Matrix BLN / BEB / BS</h2>
+  <p class="lede">● Standard · ◐ situativ · — n/a · Ä/P/V = Ärzte / Pflege / Verw.</p>
+  <div class="scroll"><table><thead>
+    <tr><th rowspan="2">Kat.</th><th rowspan="2">System</th><th rowspan="2">AD-Gruppe</th>
+    <th class="site-bln" colspan="3">BLN</th><th class="site-beb" colspan="3">BEB / Behring</th><th class="site-bs" colspan="3">BS</th><th rowspan="2">Hinweis</th></tr>
+    <tr><th class="site-bln">Ä</th><th class="site-bln">P</th><th class="site-bln">V</th>
+    <th class="site-beb">Ä</th><th class="site-beb">P</th><th class="site-beb">V</th>
+    <th class="site-bs">Ä</th><th class="site-bs">P</th><th class="site-bs">V</th></tr>
+  </thead><tbody><tr class="block" data-kat="Basis"><td class="hint">Basis</td><td>Quota</td><td class="mono">BLN-Quota-User-0000.3GB</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Default Quota intern</td></tr><tr class="block" data-kat="Basis"><td class="hint">Basis</td><td>Quota</td><td class="mono">BEB-quota-user-0000.3GB</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Default Quota</td></tr><tr class="block" data-kat="Basis"><td class="hint">Basis</td><td>Fachbereich</td><td class="mono">BS-FB-XXX</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">z.B. BS-FB-Neuro</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Outlook Signatur</td><td class="mono">BLN-app-CI-Sign-Outlook</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">interne</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Outlook Signatur</td><td class="mono">BLN-App-Outlook-Signatur</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">externe</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Outlook Profil</td><td class="mono">BEB-app-Outlook-StdPrf / ohne-PRF</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>Rightfax</td><td class="mono">BEB-app-Rightfax-Sync-Enabled</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>IRIS</td><td class="mono">BLN-App-IrisView</td><td class="mark">●</td><td class="mark">●</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Pflege immer</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>IRIS</td><td class="mono">BEB-App-IrisView</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Pflege immer</td></tr><tr class="block" data-kat="App"><td class="hint">App</td><td>IRIS</td><td class="mono">BS-App-IrisView</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">●</td><td class="mark partial">◐</td><td class="hint">Pflege immer</td></tr><tr class="block" data-kat="SAP"><td class="hint">SAP</td><td>SAP User</td><td class="mono">BLN-sap-user</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">+ digitaler SAP-Antrag</td></tr><tr class="block" data-kat="SAP"><td class="hint">SAP</td><td>SAP User</td><td class="mono">BEB-SAP-User</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="SAP"><td class="hint">SAP</td><td>SAP</td><td class="mono">BS analog Fachbereich</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="hint"></td></tr><tr class="block" data-kat="aQrate"><td class="hint">aQrate</td><td>aQrate</td><td class="mono">BLN-Aqrate-Grp-xxxxx</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="aQrate"><td class="hint">aQrate</td><td>aQrate</td><td class="mono">BEB-Aqrate-Grp-User</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="aQrate"><td class="hint">aQrate</td><td>aQrate</td><td class="mono">BS-aQrate-Grp-XXX</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">Externe: …-Sonstige</td></tr><tr class="block" data-kat="Laufwerk"><td class="hint">Laufwerk</td><td>Home</td><td class="mono">BLN-LW-USR-HomeShares-{AH|IR|SZ}</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Laufwerk"><td class="hint">Laufwerk</td><td>Home</td><td class="mono">BEB-LW-USR-HomeShares-{AH|IR|SZ}</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Profil"><td class="hint">Profil</td><td>Home</td><td class="mono">\\BSCLFILE01\Home$\%username%</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint">ExtAttr5</td></tr><tr class="block" data-kat="Profil"><td class="hint">Profil</td><td>Profil</td><td class="mono">BEB-LW-Prof-Path</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="FSLogix"><td class="hint">FSLogix</td><td>FSLogix</td><td class="mono">BLN-CTX-FSLogix1Pfad / 2Pfad</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">NUR EINE</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Alle</td><td class="mono">BLN-Alle-Mitarbeiter-HK / VBHD / …</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">nach Mailbox</td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Alle</td><td class="mono">BEB-alle-Mitarbeiter-HK</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Ärzte</td><td class="mono">{St}-CA/-OA/-Ärzte</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>Pflege</td><td class="mono">BLN-Pflege / BEB-Pflegedienst / BS-Pflegedienst</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Verteiler"><td class="hint">Verteiler</td><td>BS</td><td class="mono">BS-VG-XXX</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">●</td><td class="mark">●</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Pflege</td><td class="mono">BLN-PDMS-Pflege-ITSIMC-alle</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">NUR EINE PDMS</td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Pflege</td><td class="mono">BLN-PDMS-Pflege-AnästhAWR</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Intensiv</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Innere</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Intensiv-WA</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-Neuro</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Ärzte</td><td class="mono">BLN-PDMS-Ärzte-WA</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>Funk.</td><td class="mono">BLN-PDMS-Funktionsbereiche</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>MedCo</td><td class="mono">BLN-PDMS-MedCo</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>BEB</td><td class="mono">BEB-PDMS-Pflege-*</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="PDMS"><td class="hint">PDMS</td><td>BS</td><td class="mono">BS-PDMS-Pflege-* / Ärzte-*</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>WebMuse</td><td class="mono">BLN-Webmuse-Allgemein + XXX</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">Kostenstelle; 24h</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM</td><td class="mono">BLN-MUSE-User-temp</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint">NIE manuell</td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM MVZ</td><td class="mono">VBLN-MUSE-User-temp</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM</td><td class="mono">BEB-MUSE-User-temp</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Muse"><td class="hint">Muse</td><td>CGM</td><td class="mono">BS-MUSE-User-temp</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="mark partial">◐</td><td class="hint"></td></tr><tr class="block" data-kat="Zenzy"><td class="hint">Zenzy</td><td>Arztmodul</td><td class="mono">BLN-app-Zenzy2-Arztmodul</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Zenzy"><td class="hint">Zenzy</td><td>Arztmodul</td><td class="mono">BEB-app-Zenzy2-Arztmodul</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr><tr class="block" data-kat="Zenzy"><td class="hint">Zenzy</td><td>Arztmodul</td><td class="mono">BS-cit-HELIOS-Berlin-Zenzy2-Arztmodul</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">●</td><td class="mark">—</td><td class="mark">—</td><td class="hint"></td></tr></tbody></table></div>
 </section>
 
 <section class="section" id="pdms">
   <h2>PDMS</h2>
-  <div class="card alert"><strong>Regel:</strong> Jedem Mitarbeiter nur <em>EINE</em> PDMS-Gruppe. Änderungen neuer Bereiche → Team KA.</div>
-  <h3>BLN Mapping</h3>
-  <div class="scroll"><table><thead><tr><th>Beantragter Zugang</th><th>AD-Gruppe</th><th>Rolle</th></tr></thead><tbody><tr class="block"><td>C1-11 ITS; C2-31 Kardio-IMC; C2-32 Anästhesie-IMC/Stroke; Pflege Nephro/Dialyse</td><td class="mono">BLN-PDMS-Pflege-ITSIMC-alle</td><td>Pflege</td></tr><tr class="block"><td>Pflege ZOP Anästhesie und Aufwachraum</td><td class="mono">BLN-PDMS-Pflege-AnästhAWR</td><td>Pflege</td></tr><tr class="block"><td>C1-11 Intensivstation</td><td class="mono">BLN-PDMS-Ärzte-Intensiv</td><td>Ärzte</td></tr><tr class="block"><td>C2-31 Kardio-IMC</td><td class="mono">BLN-PDMS-Ärzte-Innere</td><td>Ärzte</td></tr><tr class="block"><td>C2-31 Kardio+Nephro (nur Nephrologen)</td><td class="mono">BLN-PDMS-Ärzte-Intensiv-WA</td><td>Ärzte</td></tr><tr class="block"><td>C2-32 Stroke Unit</td><td class="mono">BLN-PDMS-Ärzte-Neuro</td><td>Ärzte</td></tr><tr class="block"><td>Alle Ärzte Anästhesie (ZOP oder IMC)</td><td class="mono">BLN-PDMS-Ärzte-WA</td><td>Ärzte</td></tr><tr class="block"><td>Physio, Logo, Ergo</td><td class="mono">BLN-PDMS-Funktionsbereiche</td><td>Funk.</td></tr><tr class="block"><td>Med-Controlling</td><td class="mono">BLN-PDMS-MedCo</td><td>Verw.</td></tr></tbody></table></div>
-  <h3>BEB / BS</h3>
-  <ul>
-    <li>BEB: <code>BEB-PDMS-Pflege-*</code> — siehe WikIT BEB PDMS Nutzergruppen</li>
-    <li>BS Pflege: <code>BS-PDMS-Pflege-*</code> — WikIT PDMS Benutzergruppen; ITS/IMC oft über <code>BS-FB-AINS-Pflege-ITS</code> / <code>…-Anaesthesie</code></li>
-    <li>BS Ärzte: <code>BS-PDMS-Ärzte-PDMS-Anästhesie</code>, <code>BS-PDMS-ÄrzteWeitere</code> (außerhalb ITS/IMC); ITS/IMC über <code>BS-FB-AINS-Arzt-*</code></li>
-  </ul>
+  <div class="card alert"><strong>Nur EINE PDMS-Gruppe pro User.</strong></div>
+  <div class="scroll"><table><thead><tr><th>Zugang</th><th>AD-Gruppe</th><th>Rolle</th></tr></thead><tbody>
+  <tr class="block"><td>ITS/IMC/Stroke/Nephro Pflege</td><td class="mono">BLN-PDMS-Pflege-ITSIMC-alle</td><td>Pflege</td></tr>
+  <tr class="block"><td>ZOP Anästhesie/AWR</td><td class="mono">BLN-PDMS-Pflege-AnästhAWR</td><td>Pflege</td></tr>
+  <tr class="block"><td>C1-11 Intensiv</td><td class="mono">BLN-PDMS-Ärzte-Intensiv</td><td>Ärzte</td></tr>
+  <tr class="block"><td>C2-31 Kardio-IMC</td><td class="mono">BLN-PDMS-Ärzte-Innere</td><td>Ärzte</td></tr>
+  <tr class="block"><td>Kardio+Nephro</td><td class="mono">BLN-PDMS-Ärzte-Intensiv-WA</td><td>Ärzte</td></tr>
+  <tr class="block"><td>Stroke</td><td class="mono">BLN-PDMS-Ärzte-Neuro</td><td>Ärzte</td></tr>
+  <tr class="block"><td>Anästhesie alle</td><td class="mono">BLN-PDMS-Ärzte-WA</td><td>Ärzte</td></tr>
+  <tr class="block"><td>Physio/Logo/Ergo</td><td class="mono">BLN-PDMS-Funktionsbereiche</td><td>Funk.</td></tr>
+  <tr class="block"><td>MedCo</td><td class="mono">BLN-PDMS-MedCo</td><td>Verw.</td></tr>
+  </tbody></table></div>
+  <p class="hint">BEB/BS: WikIT PDMS Nutzergruppen; BS ITS/IMC oft über BS-FB-AINS-*.</p>
 </section>
 
 <section class="section" id="muse">
-  <h2>Muse — WebMuse &amp; CGM Muse</h2>
+  <h2>Muse</h2>
   <div class="grid two">
-    <div class="card">
-      <h4>3.1 BLN WebMuse</h4>
-      <ol>
-        <li>Antrag prüfen ob WebMuse nötig + <strong>Kostenstelle</strong> vorhanden.</li>
-        <li>AD: <code>BLN-Webmuse-Allgemein</code> + <code>BLN-Webmuse-XXX</code>.</li>
-        <li>Replikation Nacht (~24h).</li>
-        <li>Citrix mit CLADM → <code>ZD_MUSE_sqAdmin</code>.</li>
-        <li>Login <code>bln-edv</code> (ohne Domäne).</li>
-        <li>Benutzerverwaltung → User suchen → Stationen → weitere Stationsgruppen → Kostenstelle → speichern.</li>
-      </ol>
+    <div class="card"><h4>WebMuse BLN</h4>
+      <ol><li>Kostenstelle prüfen</li><li>AD BLN-Webmuse-Allgemein + XXX</li><li>~24h Replikation</li><li>Citrix CLADM → ZD_MUSE_sqAdmin → bln-edv → Stationen/Kostenstelle</li></ol>
     </div>
-    <div class="card">
-      <h4>3.2 CGM Muse</h4>
-      <div class="card warn" style="margin-bottom:8px"><strong>BLN:</strong> Rolle HK TFG Bestandsverw./Verbrauchsdoku. BLN wird jedem Berliner Login (BLN124) automatisch zugeordnet — <em>nicht entfernen</em>. Greift für Stationen / belieferte Stationen, nicht einzelne Adressen.</div>
-      <ol>
-        <li>Antrag + Kostenstelle prüfen.</li>
-        <li>Account schon da? JA → Punkt Kostenstelle. NEIN → AD-Gruppe setzen.</li>
-        <li>AD-Gruppen: BLN <code>BLN-MUSE-User-temp</code> · MVZ <code>VBLN-MUSE-User-temp</code> · BEB <code>BEB-MUSE-User-temp</code> · BS <code>BS-MUSE-User-temp</code></li>
-        <li><strong>NIEMALS händisch anlegen</strong> — immer über AD-Gruppe; Replikation ~24h.</li>
-        <li>Kostenstelle: HK Erfasser Unterschriftsberechtigt (Bestellung, neuer Standard) / HK Erfasser (Warenkorb, Sammelaccounts).</li>
-      </ol>
+    <div class="card"><h4>CGM Muse</h4>
+      <p>AD: BLN-MUSE-User-temp / VBLN-… / BEB-… / BS-… · <strong>nie manuell</strong> · HK Erfasser (+Unterschrift) laut Antrag · BLN TFG-Rolle nicht entfernen</p>
     </div>
   </div>
 </section>
 
 <section class="section" id="zenzy">
   <h2>Zenzy</h2>
-  <p class="lede">Benutzerantragsticket inkl. Anhang + Windows-ID weiterleiten an Zenzy-Team (Cc BLN.Zenzy@helios-gesundheit.de; Kontakte: elke.dittmann@ / Anja.Obst@).</p>
-  <div class="scroll"><table><thead><tr><th>Standort</th><th>AD-Gruppe</th></tr></thead><tbody>
-  <tr class="block"><td>Klinikum Berlin Buch</td><td class="mono">BLN-app-Zenzy2-Arztmodul</td></tr>
-  <tr class="block"><td>Emil von Behring</td><td class="mono">BEB-app-Zenzy2-Arztmodul</td></tr>
+  <table><thead><tr><th>Standort</th><th>AD-Gruppe</th></tr></thead><tbody>
+  <tr class="block"><td>Berlin Buch</td><td class="mono">BLN-app-Zenzy2-Arztmodul</td></tr>
+  <tr class="block"><td>Behring / Zehlendorf</td><td class="mono">BEB-app-Zenzy2-Arztmodul</td></tr>
   <tr class="block"><td>Bad Saarow</td><td class="mono">BS-cit-HELIOS-Berlin-Zenzy2-Arztmodul</td></tr>
-  </tbody></table></div>
-</section>
-
-<section class="section" id="diktat">
-  <h2>Diktat / DMWE</h2>
-  <div class="card">
-    <h4>DMWE BLN &amp; BEB (BLN2)</h4>
-    <ol>
-      <li>Citrix Portal mit CLADM → <code>BLN-Diktat-Admin</code>.</li>
-      <li>Einstellungen → Autor (diktieren) → Neu DDU.</li>
-      <li>Benutzername = Windows-Anmeldename; Voller Name komplett klein.</li>
-      <li>Besonderheit Bering: <code>(BLN2)</code> hinter Voller Name; Fachbereiche Bering als BLN2 gelistet.</li>
-      <li>Fachabteilung wählen → Kennwort → Haken nächste Anmeldung ändern → OK.</li>
-      <li>Transkriptionisten: gleiches Vorgehen.</li>
-    </ol>
-    <p class="hint">DMWE BS: eigener Prozess (Standort BS).</p>
-  </div>
+  </tbody></table>
+  <p class="hint">Ticket + Windows-ID an Zenzy-Team / Cc BLN.Zenzy@helios-gesundheit.de</p>
 </section>
 
 <section class="section" id="laufwerk">
-  <h2>Projektlaufwerk anlegen (Fileserver → AD → DFS)</h2>
-  <p class="lede">Beispielprojekt „Abwesenheiten“ / Ordner „ABC“. Drei Systeme pflegen.</p>
-  <div class="grid three">
-    <div class="card"><h4>1. Fileserver (SRVADM)</h4>
-      <ul>
-        <li><code>\\helios-dom…\bln\Support\Projekte\BLNCL02-07-PRJ1</code> oder <code>…-08-PRJ2</code></li>
-        <li>BEB: <code>\\…\beb\Support\Projekte\BEBCL02-02-PRJ1</code></li>
-        <li>Projektordner + Unterordner (Laufwerk) anlegen</li>
-      </ul>
-    </div>
-    <div class="card"><h4>2. AD-Gruppen</h4>
-      <ul>
-        <li>OU: …/Gruppen/BLN/DIR/PRJ bzw. BEB/DIR/PRJ</li>
-        <li>FR-Sicherheitsgruppe → Member of <code>BLN-LW-FS07-PRJ1-R</code> / FS08 / <code>BEB-LW-FS02-PRJ1-R</code></li>
-        <li>R/W: Schema <code>{Standort}-LW-PRJ-{Projekt}_{Ordner}-{R|W}</code></li>
-        <li>Bsp. <code>BLN-LW-PRJ-Abwesenheiten_ABC-W</code></li>
-        <li>R+W in FR-Gruppe aufnehmen</li>
-      </ul>
-    </div>
-    <div class="card"><h4>3. DFS</h4>
-      <ul>
-        <li>DFS-Verwaltung → Namespace-Ordner = Projektname</li>
-        <li>Ordnerziel auf Fileserver-Pfad</li>
-        <li>Explizite Anzeigeberechtigungen + FR-Gruppe (BEB: <code>BEB-File-Manage-ALL-DFS-Projekte-R</code>)</li>
-        <li>NTFS: R/W Gruppen; <strong>nur Ändern, kein Vollzugriff</strong></li>
-        <li>Link in AD-Beschreibung; User eintragen; Auftraggeber informieren</li>
-      </ul>
-    </div>
-  </div>
-  <h3>Home Share</h3>
-  <ul>
-    <li>BLN/BEB: Auto über <code>*-LW-USR-HomeShares-*</code> bei Erstanmeldung</li>
-    <li>Manuell: <code>E:\UserHomes\</code> Vorlage kopieren → Sicherheit Ändern für User</li>
-    <li>BS: <code>\\BSCLFILE01\Home$\%username%</code> + Extension Attribute 5</li>
-  </ul>
+  <h2>Projektlaufwerk</h2>
+  <ol>
+    <li>Fileserver: <code>\…\bln\Support\Projekte\BLNCL02-07-PRJ1|08-PRJ2</code> / BEB <code>BEBCL02-02-PRJ1</code></li>
+    <li>AD FR + R/W: <code>{Standort}-LW-PRJ-{Projekt}_{Ordner}-{R|W}</code> → Member of FS0x-PRJx-R</li>
+    <li>DFS Namespace = Projekt; Ordnerziel; Anzeige+FR; NTFS nur Ändern</li>
+  </ol>
 </section>
 
 <section class="section" id="ooo">
-  <h2>Abwesenheitsnotiz (Exchange)</h2>
-  <p class="lede">Nur auf Anfrage. Benötigt: Text + Zeitraum (+ Username). Sofort aktiv bis User in Outlook abstellt (außer StartTime).</p>
-  <ol>
-    <li>Exchange Management Shell (EX2019-Admin-Desktop).</li>
-    <li>Message-Variable setzen (<code>&lt;br&gt;</code> = Absatz):</li>
-  </ol>
-  <pre>$Message="Sehr geehrte Damen und Herren,&lt;br&gt;&lt;br&gt;ich bin vom 01.01. - 08.01.2023 nicht im Büro. Ihre Emails werden nicht weitergeleitet.&lt;br&gt;&lt;br&gt;Bei dringenden Anfragen wenden Sie sich bitte an vorname.nachname@helios-gesundheit.de."</pre>
+  <h2>Abwesenheitsnotiz</h2>
+  <p>Nur auf Anfrage. EX2019 EMS:</p>
   <pre>Set-MailboxAutoReplyConfiguration -Identity USERNAME -DomainController ZDHDDC18.helios-dom.helios-kliniken.de -AutoReplyState Enabled -InternalMessage $Message -ExternalMessage $Message</pre>
-  <p>Optional geplant: <code>-StartTime …</code>. Identity = sAMAccountName.</p>
-  <div class="card warn">
-    <h4>Ausscheiden — Standardtext</h4>
-    <pre>$Message = "Sehr geehrte Damen und Herren,&lt;br&gt;&lt;br&gt;vielen Dank für Ihre Nachricht. X ist nicht mehr für unser Unternehmen tätig. Bitte wenden Sie sich mit Ihrem Anliegen an Herr/Frau Y (x.y@helios-gesundheit.de).&lt;br&gt;&lt;br&gt;Bitte beachten Sie, dass Ihre Nachricht nicht automatisch weitergeleitet wurde.&lt;br&gt;&lt;br&gt;Beste Grüße&lt;br&gt;&lt;br&gt;Ihr(e) XAbteilungX"</pre>
-  </div>
+  <p class="hint">Ausscheiden: Standardtext mit Nachfolger + Abteilung. Optional -StartTime.</p>
 </section>
 
 <section class="section" id="windows">
-  <h2>Windows / AD Anlage (intern &amp; extern)</h2>
-  <div class="grid two">
-    <div class="card">
-      <h4>Konto anlegen</h4>
-      <ol>
-        <li>Gesamtes Verzeichnis suchen ob User existiert.</li>
-        <li><code>Helios-Dom.helios-kliniken.de</code> → Standort-OU → Benutzer → Standarduser (Laptop → Lokales-Profil; Spezial OU AMAGS/VAMED…).</li>
-        <li>Vor-/Nachname; Anmeldename Vorname.Nachname; UPN @helios-gesundheit.de.</li>
-        <li>Dopplung: 1. Buchstabe+Nachname (ggf. 1.+2. Buchstabe).</li>
-        <li>Prä-Windows 2000 max. 12 Zeichen; Nachname-Feld Pflicht.</li>
-        <li>Passwort Helios+Jahr; „ändern bei Anmeldung“ erst nach Test.</li>
-        <li>Mailbox-Aktivierung in Anmerkung Rufnummern.</li>
-        <li>Mitglied von: Gruppen laut AD Matrix + Antrag.</li>
-        <li>Login-Script Profil-Reiter; UMRA; Exchange Verteiler nach Mail.</li>
-      </ol>
-    </div>
-    <div class="card">
-      <h4>Externe Besonderheiten BS</h4>
-      <ul>
-        <li>Gruppen anhand Fachbereich &amp; Berufsgruppe (<code>BS-FB-Neuro</code>, <code>BS-VG-Neuro</code>).</li>
-        <li>aQrate: <code>BS-aQrate-Grp-BS-FB-…</code>; Externe oft <code>…-Sonstige</code>.</li>
-        <li>User in OU Fachbereich/Berufsgruppe verschieben.</li>
-        <li>Verteiler-Beispiele: <code>BS-Ärzte-Onkologie</code>, <code>BS-CA-Onkologie</code>.</li>
-      </ul>
-      <h4>Exchange Verteiler</h4>
-      <p>Anmeldung SRVADM → Gruppe <code>BLN-Alle-Mitarbeiter-XXX</code> → Mitgliedschaft. Erst nach Mailbox; Sync volle Viertelstunde.</p>
-    </div>
-  </div>
+  <h2>Windows / AD Anlage</h2>
+  <ul>
+    <li>OU Standort → Standarduser (Laptop: Lokales-Profil)</li>
+    <li>UPN @helios-gesundheit.de · sAMAccount ≤12 · Nachname Pflicht</li>
+    <li>Passwort Helios+Jahr · Mailbox-Aktivierung Anmerkung</li>
+    <li>Login-Script: blnusers.bat / bebusers.bat / BS\login.cmd</li>
+    <li>UMRA Telefonbuch · Exchange Verteiler nach Mailbox</li>
+  </ul>
 </section>
 
-<p class="footer">HELIOS Master Matrix · interne Agent-KB · kein Ersatz für WikIT/ZD-Richtlinien · Stand: zusammengeführt aus Benutzeranträge, Laufwerks-Anlage, Abwesenheitsnotiz, Chat KG (SNOW). Pending Merge: CL-Gotha-Master-KB-Full.html + Assignment Groups XLSM.</p>
+<p class="footer">HELIOS Master Matrix · Swivel Chair KB · tylko dane operacyjne (bez prywatnych wiadomości) · Pending: pełny XLSM / ELO mapping + oficjalne SAP dla KR/DU/RS/Gotha</p>
 <script>
 (function(){
   function norm(s){return String(s||"").toLowerCase().replace(/[\u200b-\u200d\ufeff]/g,"").replace(/\u00a0/g," ").replace(/[\u2010-\u2015\u2212\ufe58\ufe63\uff0d]/g,"-").replace(/\s+/g," ").trim()}
@@ -420,7 +321,6 @@ pre{background:#111;color:#eee;padding:10px 12px;border-radius:4px;overflow:auto
   const q=document.getElementById("q");
   const hits=document.getElementById("hits");
   const snowStatus=document.getElementById("snowStatus");
-
   function show(id){
     sections.forEach(s=>s.classList.toggle("on", s.id===id));
     nav.querySelectorAll("a").forEach(a=>a.classList.toggle("active", a.dataset.sec===id));
@@ -430,39 +330,28 @@ pre{background:#111;color:#eee;padding:10px 12px;border-radius:4px;overflow:auto
     const a=e.target.closest("a[data-sec]"); if(!a) return;
     e.preventDefault(); show(a.dataset.sec); history.replaceState(null,"","#"+a.dataset.sec);
   });
-
-  // index searchable nodes
-  const blocks=[...document.querySelectorAll(".block, .card, pre, li, p.lede, h2, h3, h4")];
-  blocks.forEach(el=>{ el.dataset.search=norm(el.textContent); });
-
+  [...document.querySelectorAll(".block, .card")].forEach(el=>{ el.dataset.search=norm(el.textContent); });
   function applySearch(){
     const query=norm(q.value);
-    const active=document.querySelector(".section.on");
-    if(!active){ hits.textContent="0"; return; }
-    let n=0, total=0;
+    const active=document.querySelector(".section.on"); if(!active) return;
+    let n=0,total=0;
     active.querySelectorAll(".block").forEach(el=>{
       total++;
       const st=el.getAttribute("data-status");
-      const okStatus = !snowStatus || snowStatus.value==="all" || !st || st===snowStatus.value;
-      const okQ = !query || (el.dataset.search||norm(el.textContent)).includes(query);
-      const showRow = okStatus && okQ;
-      el.classList.toggle("hide", !showRow);
-      if(showRow) n++;
+      const okS=!snowStatus||snowStatus.value==="all"||!st||st===snowStatus.value;
+      const okQ=!query||(el.dataset.search||"").includes(query);
+      const showRow=okS&&okQ; el.classList.toggle("hide", !showRow); if(showRow) n++;
     });
-    // if no .block in section, count cards
     if(total===0){
-      active.querySelectorAll(".card, pre").forEach(el=>{
-        total++;
-        const okQ=!query||(el.dataset.search||"").includes(query);
-        el.classList.toggle("hide", !okQ);
-        if(okQ) n++;
+      active.querySelectorAll(".card").forEach(el=>{
+        total++; const okQ=!query||(el.dataset.search||"").includes(query);
+        el.classList.toggle("hide", !okQ); if(okQ) n++;
       });
     }
-    hits.textContent=String(n)+(query? " / "+total:"");
+    hits.textContent=String(n);
   }
   q.addEventListener("input", applySearch);
   if(snowStatus) snowStatus.addEventListener("change", applySearch);
-
   const hash=(location.hash||"#home").slice(1);
   show(document.getElementById(hash)?hash:"home");
 })();
