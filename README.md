@@ -1,20 +1,17 @@
 # HELIOS Master Matrix
 
-**Główna baza wiedzy dla agentów:** jeden plik HTML.
+**Jedyny plik końcowy dla agentów:**
 
 ```text
-helios-master-matrix.html
+matrix.html
 ```
 
-Otwórz lokalnie w przeglądarce (bez instalacji). Zawiera:
+**Baza danych wiedzy:**
 
-- Start / instrukcje dla agentów
-- SNOW Assignment Groups (USUŃ / AKTYWNA / DODAJ)
-- Ticket & checklista Benutzerantrag
-- Berechtigungssets Ärzte/Pflege
-- AD Matrix BLN/BEB/BS
-- Subsysteme routing, PDMS, Muse, Zenzy, Diktat
-- Projektlaufwerk, Abwesenheitsnotiz, Windows-Anlage
-- Globalna wyszukiwarka (normalizacja myślników — działa `GIF-IT`)
+```text
+data/kb.json
+```
 
-Kolejne pliki (Gotha Full HTML, XLSM) będą mergowane do tego samego HTML.
+`matrix.html` jest zbudowany z `data/kb.json` (SNOW grupy, Global Routing, reguły, playbooki BB, AD/PDMS/Muse…).
+
+Otwórz `matrix.html` w przeglądarce.
