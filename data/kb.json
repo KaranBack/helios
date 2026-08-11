@@ -114,6 +114,15 @@
       "FieldService": "HBN / MGN | Fieldservice",
       "ServiceDesk": "MGN | Benutzerantrag"
     },
+    "Hildburghausen": {
+      "Infrastructure": "HBN | Infrastruktur",
+      "Clinical": "HBN | Klinische Anwendungen",
+      "SAP": "HBN | SAP",
+      "Account": "HBN | ServiceDesk",
+      "FieldService": "HBN | Fieldservice",
+      "ServiceDesk": "HBN | ServiceDesk",
+      "iMedOne": "HBN | iMedOne"
+    },
     "Schwarzwald-Bodensee": {
       "Infrastructure": "MUE-IT / TIT-IT | Infrastruktur",
       "Clinical": "TBD",
@@ -241,7 +250,8 @@
       "Zenzy",
       "ZzzPat",
       "EISA / PDMS",
-      "Aria"
+      "Aria",
+      "iMedOne"
     ],
     "infrastructure": [
       "Citrix",
@@ -1872,6 +1882,39 @@
         [
           "SAP",
           "TBD"
+        ]
+      ]
+    },
+    {
+      "name": "Hildburghausen",
+      "rows": [
+        [
+          "Service Desk",
+          "HBN | ServiceDesk"
+        ],
+        [
+          "Infrastructure",
+          "HBN | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "HBN | Klinische Anwendungen"
+        ],
+        [
+          "SAP",
+          "HBN | SAP"
+        ],
+        [
+          "Field Service",
+          "HBN | Fieldservice"
+        ],
+        [
+          "iMedOne",
+          "HBN | iMedOne"
+        ],
+        [
+          "Note",
+          "Hildburghausen site groups (HBN). Supportgruppe für iMedOne, Fieldservice, SAP, Infrastruktur, ServiceDesk and Klinische Anwendungen."
         ]
       ]
     },
