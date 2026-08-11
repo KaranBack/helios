@@ -178,6 +178,451 @@
       "Account": "NOM-IT",
       "FieldService": "TBD",
       "ServiceDesk": "NOM-IT"
+    },
+    "Erfurt": {
+      "Infrastructure": "EF-IT | Infrastruktur",
+      "Clinical": "EF-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "EF-IT | Benutzerantrag",
+      "FieldService": "EF-IT | Fieldservice",
+      "ServiceDesk": "EF-IT | ServiceDesk",
+      "Netzwerk": "EF-IT | Netzwerk"
+    },
+    "Schkeuditz": {
+      "Infrastructure": "SKZ-IT | Infrastruktur",
+      "Clinical": "SKZ-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "SKZ-IT | Servicedesk",
+      "FieldService": "SKZ-IT | Fieldservice",
+      "ServiceDesk": "SKZ-IT | Servicedesk",
+      "MVZ": "SKZ-IT | MVZ"
+    },
+    "Pirna": {
+      "Infrastructure": "PIR-IT | Infrastruktur",
+      "Clinical": "PIR-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "PIR-IT | Benutzeranträge",
+      "FieldService": "PIR-IT | Fieldservice",
+      "ServiceDesk": "PIR-IT | ServiceDesk",
+      "iMedOne": "PIR-IT | iMedOne"
+    },
+    "Vogtland": {
+      "Infrastructure": "PL-IT | Infrastruktur",
+      "Clinical": "PL-IT | Klinische Anwendungen",
+      "SAP": "PL-IT | SAP  Basics",
+      "Account": "PL-IT | Benutzeranträge",
+      "FieldService": "PL-IT | Fieldservice",
+      "ServiceDesk": "PL-IT | ServiceDesk"
+    },
+    "Aue": {
+      "Infrastructure": "AU-IT | Infrastruktur",
+      "Clinical": "AU-IT | Klinische Anwendungen",
+      "SAP": "AU-IT | SAP  Basics",
+      "Account": "AU-IT | Benutzeranträge",
+      "FieldService": "AU-IT | Fieldservice",
+      "ServiceDesk": "AU-IT | ServiceDesk"
+    },
+    "Freital": {
+      "Infrastructure": "FTL-IT | Infrastruktur",
+      "Clinical": "FTL-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "FTL-IT | Benutzeranträge",
+      "FieldService": "FTL-IT | Fieldservice",
+      "ServiceDesk": "FTL-IT | ServiceDesk",
+      "iMedOne": "FTL-IT | iMedOne"
+    },
+    "Kronach": {
+      "Infrastructure": "TBD",
+      "Clinical": "KC-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "KC-IT | Servicedesk",
+      "FieldService": "TBD",
+      "ServiceDesk": "KC-IT | Servicedesk"
+    },
+    "Leisnig": {
+      "Infrastructure": "LEI-IT | Infrastruktur",
+      "Clinical": "LEI-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "LEI-IT | Servicedesk",
+      "FieldService": "LEI-IT | Fieldservice",
+      "ServiceDesk": "LEI-IT | Servicedesk",
+      "MVZ": "LEI-IT | MVZ"
+    },
+    "Meiningen": {
+      "Infrastructure": "MGN | Infrastruktur",
+      "Clinical": "MGN | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "MGN | Benutzerantrag",
+      "FieldService": "MGN | Fieldservice",
+      "ServiceDesk": "MGN | ServiceDesk",
+      "iMedOne": "MGN | ImedOne"
+    },
+    "Bad Kissingen": {
+      "Infrastructure": "BKG-IT | Infrastruktur",
+      "Clinical": "BKG-IT | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "BKG-IT | Servicedesk",
+      "FieldService": "TBD",
+      "ServiceDesk": "BKG-IT | Servicedesk"
+    },
+    "Blankenhain": {
+      "Infrastructure": "BLA-IT",
+      "Clinical": "BLA-IT",
+      "SAP": "BLA-IT",
+      "Account": "BLA-IT | Benutzerantrag",
+      "FieldService": "BLA-IT | Fieldservice",
+      "ServiceDesk": "BLA-IT"
+    },
+    "Bleicherode": {
+      "Infrastructure": "BLE-IT",
+      "Clinical": "BLE-IT",
+      "SAP": "BLE-IT",
+      "Account": "BLE-IT",
+      "FieldService": "BLE-IT",
+      "ServiceDesk": "BLE-IT"
+    },
+    "Grebenhain": {
+      "Infrastructure": "GRE-IT",
+      "Clinical": "GRE-IT",
+      "SAP": "GRE-IT",
+      "Account": "GRE-IT",
+      "FieldService": "GRE-IT",
+      "ServiceDesk": "GRE-IT"
+    },
+    "Hünfeld": {
+      "Infrastructure": "HUE-IT",
+      "Clinical": "HUE-IT",
+      "SAP": "HUE-IT",
+      "Account": "HUE-IT",
+      "FieldService": "HUE-IT",
+      "ServiceDesk": "HUE-IT"
+    },
+    "Hildesheim": {
+      "Infrastructure": "HI-IT |  Infrastruktur",
+      "Clinical": "HI-IT | Orbis",
+      "SAP": "TBD",
+      "Account": "HI-IT | Service Desk",
+      "FieldService": "HI-IT",
+      "ServiceDesk": "HI-IT | Service Desk",
+      "Orbis": "HI-IT | Orbis"
+    },
+    "Siegburg": {
+      "Infrastructure": "SU-IT",
+      "Clinical": "SU-IT",
+      "SAP": "SU-IT",
+      "Account": "SU-IT",
+      "FieldService": "SU-IT",
+      "ServiceDesk": "SU-IT"
+    },
+    "Schwelm": {
+      "Infrastructure": "SWE-IT",
+      "Clinical": "SWE-IT",
+      "SAP": "SWE-IT",
+      "Account": "SWE-IT",
+      "FieldService": "SWE-IT",
+      "ServiceDesk": "SWE-IT"
+    },
+    "Lengerich": {
+      "Infrastructure": "LEN-IT",
+      "Clinical": "LEN-IT",
+      "SAP": "LEN-IT",
+      "Account": "LEN-IT",
+      "FieldService": "LEN-IT",
+      "ServiceDesk": "LEN-IT"
+    },
+    "Niederberg": {
+      "Infrastructure": "NDB-IT",
+      "Clinical": "NDB-IT",
+      "SAP": "NDB-IT",
+      "Account": "NDB-IT",
+      "FieldService": "NDB-IT",
+      "ServiceDesk": "NDB-IT"
+    },
+    "Oberhausen": {
+      "Infrastructure": "OB-IT",
+      "Clinical": "OB-IT",
+      "SAP": "OB-IT",
+      "Account": "OB-IT",
+      "FieldService": "OB-IT",
+      "ServiceDesk": "OB-IT"
+    },
+    "Attendorn": {
+      "Infrastructure": "ATT-IT",
+      "Clinical": "ATT-IT",
+      "SAP": "ATT-IT",
+      "Account": "ATT-IT",
+      "FieldService": "ATT-IT",
+      "ServiceDesk": "ATT-IT"
+    },
+    "Bonn": {
+      "Infrastructure": "BON-IT",
+      "Clinical": "BON-IT",
+      "SAP": "BON-IT",
+      "Account": "BON-IT",
+      "FieldService": "BON-IT",
+      "ServiceDesk": "BON-IT"
+    },
+    "Wipperfürth": {
+      "Infrastructure": "GM-IT",
+      "Clinical": "GM-IT",
+      "SAP": "GM-IT",
+      "Account": "GM-IT",
+      "FieldService": "GM-IT",
+      "ServiceDesk": "GM-IT"
+    },
+    "Warburg": {
+      "Infrastructure": "WAR-IT",
+      "Clinical": "WAR-IT",
+      "SAP": "WAR-IT",
+      "Account": "WAR-IT",
+      "FieldService": "WAR-IT",
+      "ServiceDesk": "WAR-IT"
+    },
+    "Helmstedt": {
+      "Infrastructure": "HE-IT",
+      "Clinical": "HE-IT",
+      "SAP": "HE-IT",
+      "Account": "HE-IT",
+      "FieldService": "HE-IT",
+      "ServiceDesk": "HE-IT"
+    },
+    "Nienburg": {
+      "Infrastructure": "NI-IT",
+      "Clinical": "NI-IT",
+      "SAP": "NI-IT",
+      "Account": "NI-IT",
+      "FieldService": "NI-IT",
+      "ServiceDesk": "NI-IT"
+    },
+    "Salzgitter": {
+      "Infrastructure": "SZ-IT",
+      "Clinical": "SZ-IT",
+      "SAP": "SZ-IT",
+      "Account": "SZ-IT",
+      "FieldService": "SZ-IT",
+      "ServiceDesk": "SZ-IT"
+    },
+    "Uelzen": {
+      "Infrastructure": "UE-IT",
+      "Clinical": "UE-IT",
+      "SAP": "UE-IT",
+      "Account": "UE-IT",
+      "FieldService": "UE-IT",
+      "ServiceDesk": "UE-IT"
+    },
+    "Herzberg": {
+      "Infrastructure": "HBH-IT",
+      "Clinical": "HBH-IT",
+      "SAP": "HBH-IT",
+      "Account": "HBH-IT",
+      "FieldService": "HBH-IT",
+      "ServiceDesk": "HBH-IT"
+    },
+    "Erlenbach": {
+      "Infrastructure": "ELB-IT",
+      "Clinical": "ELB-IT",
+      "SAP": "ELB-IT",
+      "Account": "ELB-IT",
+      "FieldService": "ELB-IT",
+      "ServiceDesk": "ELB-IT"
+    },
+    "Wiesbaden Local": {
+      "Infrastructure": "WID-IT",
+      "Clinical": "WID-IT",
+      "SAP": "WID-IT",
+      "Account": "WID-IT",
+      "FieldService": "WID-IT",
+      "ServiceDesk": "WID-IT"
+    },
+    "Dachau": {
+      "Infrastructure": "DAH-IT",
+      "Clinical": "DAH-IT",
+      "SAP": "DAH-IT",
+      "Account": "DAH-IT",
+      "FieldService": "DAH-IT",
+      "ServiceDesk": "DAH-IT"
+    },
+    "Indersdorf": {
+      "Infrastructure": "IDD-IT",
+      "Clinical": "IDD-IT",
+      "SAP": "IDD-IT",
+      "Account": "IDD-IT",
+      "FieldService": "IDD-IT",
+      "ServiceDesk": "IDD-IT"
+    },
+    "München Pasing": {
+      "Infrastructure": "MPA-IT",
+      "Clinical": "MPA-IT",
+      "SAP": "MPA-IT",
+      "Account": "MPA-IT",
+      "FieldService": "MPA-IT",
+      "ServiceDesk": "MPA-IT"
+    },
+    "München Perlach": {
+      "Infrastructure": "MPE-IT",
+      "Clinical": "MPE-IT",
+      "SAP": "MPE-IT",
+      "Account": "MPE-IT",
+      "FieldService": "MPE-IT",
+      "ServiceDesk": "MPE-IT"
+    },
+    "Breisach": {
+      "Infrastructure": "BRE-IT",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "BRE-IT",
+      "FieldService": "BRE-IT | Fieldservice",
+      "ServiceDesk": "BRE-IT"
+    },
+    "Rottweil": {
+      "Infrastructure": "ROT-IT",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "ROT-IT",
+      "FieldService": "ROT-IT | Fieldservice",
+      "ServiceDesk": "ROT-IT"
+    },
+    "Mülheim": {
+      "Infrastructure": "MUE-IT",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "MUE-IT",
+      "FieldService": "MUE-IT | Fieldservice",
+      "ServiceDesk": "MUE-IT"
+    },
+    "Titisee": {
+      "Infrastructure": "TIT-IT",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "TIT-IT",
+      "FieldService": "TIT-IT | Fieldservice",
+      "ServiceDesk": "TIT-IT"
+    },
+    "Überlingen": {
+      "Infrastructure": "UEB-IT",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "UEB-IT",
+      "FieldService": "UEB-IT  | Fieldservice",
+      "ServiceDesk": "UEB-IT"
+    },
+    "Köthen": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "KOET-IT | Servicedesk",
+      "FieldService": "KOET-IT | Fieldservice",
+      "ServiceDesk": "KOET-IT | Servicedesk"
+    },
+    "Oschersleben": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "OC-IT | Servicedesk",
+      "FieldService": "OC-IT | Fieldservice",
+      "ServiceDesk": "OC-IT | Servicedesk"
+    },
+    "Burg": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "BRG-IT | Servicedesk",
+      "FieldService": "BRG-IT | Fieldservice",
+      "ServiceDesk": "BRG-IT | Servicedesk"
+    },
+    "Mansfeld-Südharz": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "MSH-IT | Servicedesk",
+      "FieldService": "MSH-IT | Fieldservice",
+      "ServiceDesk": "MSH-IT | Servicedesk"
+    },
+    "Vogelsang-Gommern": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "VGM-IT | Servicedesk",
+      "FieldService": "VGM-IT | Fieldservice",
+      "ServiceDesk": "VGM-IT | Servicedesk"
+    },
+    "Zerbst": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "ZE-IT | Servicedesk",
+      "FieldService": "ZE-IT | Fieldservice",
+      "ServiceDesk": "ZE-IT | Servicedesk"
+    },
+    "CL-Nordsee": {
+      "Infrastructure": "CL-Nordsee | Infrastruktur",
+      "Clinical": "CL-Nordsee | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "CL-Nordsee | Service Desk",
+      "FieldService": "CL-Nordsee | Fieldservice",
+      "ServiceDesk": "CL-Nordsee | Service Desk"
+    },
+    "CL-Ostsee": {
+      "Infrastructure": "CL-Ostsee | Infrastruktur",
+      "Clinical": "CL-Ostsee | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "CL-Ostsee | Service Desk",
+      "FieldService": "CL-Ostsee | Fieldservice",
+      "ServiceDesk": "CL-Ostsee | Service Desk"
+    },
+    "CL-Nordbaden": {
+      "Infrastructure": "TBD",
+      "Clinical": "CL-Nordbaden | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "CL-Nordbaden | Fieldservice",
+      "ServiceDesk": "TBD"
+    },
+    "CL-Südbaden": {
+      "Infrastructure": "TBD",
+      "Clinical": "CL-Südbaden | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD"
+    },
+    "Cluster Sachsen": {
+      "Infrastructure": "CLS-IT | Infrastruktur",
+      "Clinical": "CLS-IT | iMedOne",
+      "SAP": "CLS-IT | SAP Expert",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD",
+      "iMedOne": "CLS-IT | iMedOne",
+      "MVZ": "CLS-IT | MVZ"
+    },
+    "Cluster Sachsen-Anhalt": {
+      "Infrastructure": "CLST-IT | Infrastruktur",
+      "Clinical": "CLST-IT | Application Management",
+      "SAP": "CLST-IT | SAP",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD",
+      "Medico": "CLST-IT | Medico",
+      "MVZ": "CLST-IT | MVZ"
+    },
+    "Region Ost": {
+      "Infrastructure": "RO-IT | Infrastruktur",
+      "Clinical": "RO | Klinische Anwendungen | Subsysteme",
+      "SAP": "RO | Klinische Anwendungen SAP",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD",
+      "Schnittstellen": "RO | Klinische Anwendungen | Schnittstellen",
+      "KeyUser": "RO | KeyUser-Management"
+    },
+    "CL-Rhein-Main": {
+      "Infrastructure": "TBD",
+      "Clinical": "CL-Rhein-Main | Klinische Anwendungen",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD"
     }
   },
   "apps": {
@@ -2135,6 +2580,800 @@
         [
           "SAP",
           "CLBB-IT | KIS Support"
+        ]
+      ]
+    },
+    {
+      "name": "Erfurt",
+      "rows": [
+        [
+          "Service Desk",
+          "EF-IT | ServiceDesk"
+        ],
+        [
+          "Account / Benutzerantrag",
+          "EF-IT | Benutzerantrag"
+        ],
+        [
+          "Infrastructure",
+          "EF-IT | Infrastruktur"
+        ],
+        [
+          "Network",
+          "EF-IT | Netzwerk"
+        ],
+        [
+          "Clinical Applications",
+          "EF-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "EF-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Schkeuditz",
+      "rows": [
+        [
+          "Service Desk",
+          "SKZ-IT | Servicedesk"
+        ],
+        [
+          "Infrastructure",
+          "SKZ-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "SKZ-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "SKZ-IT | Fieldservice"
+        ],
+        [
+          "MVZ",
+          "SKZ-IT | MVZ"
+        ]
+      ]
+    },
+    {
+      "name": "Pirna",
+      "rows": [
+        [
+          "Service Desk",
+          "PIR-IT | ServiceDesk"
+        ],
+        [
+          "Account / Benutzeranträge",
+          "PIR-IT | Benutzeranträge"
+        ],
+        [
+          "Infrastructure",
+          "PIR-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "PIR-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "PIR-IT | Fieldservice"
+        ],
+        [
+          "iMedOne",
+          "PIR-IT | iMedOne"
+        ]
+      ]
+    },
+    {
+      "name": "Vogtland",
+      "rows": [
+        [
+          "Service Desk",
+          "PL-IT | ServiceDesk"
+        ],
+        [
+          "Account / Benutzeranträge",
+          "PL-IT | Benutzeranträge"
+        ],
+        [
+          "Infrastructure",
+          "PL-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "PL-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "PL-IT | Fieldservice"
+        ],
+        [
+          "SAP Basics",
+          "PL-IT | SAP  Basics"
+        ]
+      ]
+    },
+    {
+      "name": "Aue",
+      "rows": [
+        [
+          "Service Desk",
+          "AU-IT | ServiceDesk"
+        ],
+        [
+          "Account / Benutzeranträge",
+          "AU-IT | Benutzeranträge"
+        ],
+        [
+          "Infrastructure",
+          "AU-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "AU-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "AU-IT | Fieldservice"
+        ],
+        [
+          "SAP Basics",
+          "AU-IT | SAP  Basics"
+        ]
+      ]
+    },
+    {
+      "name": "Freital",
+      "rows": [
+        [
+          "Service Desk",
+          "FTL-IT | ServiceDesk"
+        ],
+        [
+          "Account / Benutzeranträge",
+          "FTL-IT | Benutzeranträge"
+        ],
+        [
+          "Infrastructure",
+          "FTL-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "FTL-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "FTL-IT | Fieldservice"
+        ],
+        [
+          "iMedOne",
+          "FTL-IT | iMedOne"
+        ]
+      ]
+    },
+    {
+      "name": "Kronach",
+      "rows": [
+        [
+          "Service Desk",
+          "KC-IT | Servicedesk"
+        ],
+        [
+          "Clinical Applications",
+          "KC-IT | Klinische Anwendungen"
+        ]
+      ]
+    },
+    {
+      "name": "Leisnig",
+      "rows": [
+        [
+          "Service Desk",
+          "LEI-IT | Servicedesk"
+        ],
+        [
+          "Infrastructure",
+          "LEI-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "LEI-IT | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "LEI-IT | Fieldservice"
+        ],
+        [
+          "MVZ",
+          "LEI-IT | MVZ"
+        ]
+      ]
+    },
+    {
+      "name": "Meiningen",
+      "rows": [
+        [
+          "Service Desk",
+          "MGN | ServiceDesk"
+        ],
+        [
+          "Account / Benutzerantrag",
+          "MGN | Benutzerantrag"
+        ],
+        [
+          "Infrastructure",
+          "MGN | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "MGN | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "MGN | Fieldservice"
+        ],
+        [
+          "iMedOne",
+          "MGN | ImedOne"
+        ]
+      ]
+    },
+    {
+      "name": "Bad Kissingen",
+      "rows": [
+        [
+          "Service Desk",
+          "BKG-IT | Servicedesk"
+        ],
+        [
+          "Infrastructure",
+          "BKG-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "BKG-IT | Klinische Anwendungen"
+        ]
+      ]
+    },
+    {
+      "name": "Blankenhain",
+      "rows": [
+        [
+          "General IT",
+          "BLA-IT"
+        ],
+        [
+          "Account / Benutzerantrag",
+          "BLA-IT | Benutzerantrag"
+        ],
+        [
+          "Field Service",
+          "BLA-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Bleicherode",
+      "rows": [
+        [
+          "General IT",
+          "BLE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Grebenhain",
+      "rows": [
+        [
+          "General IT",
+          "GRE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Hünfeld",
+      "rows": [
+        [
+          "General IT",
+          "HUE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Hildesheim",
+      "rows": [
+        [
+          "General IT",
+          "HI-IT"
+        ],
+        [
+          "Service Desk",
+          "HI-IT | Service Desk"
+        ],
+        [
+          "Infrastructure",
+          "HI-IT |  Infrastruktur"
+        ],
+        [
+          "Orbis",
+          "HI-IT | Orbis"
+        ]
+      ]
+    },
+    {
+      "name": "Siegburg",
+      "rows": [
+        [
+          "General IT",
+          "SU-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Schwelm",
+      "rows": [
+        [
+          "General IT",
+          "SWE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Lengerich",
+      "rows": [
+        [
+          "General IT",
+          "LEN-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Niederberg",
+      "rows": [
+        [
+          "General IT",
+          "NDB-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Oberhausen",
+      "rows": [
+        [
+          "General IT",
+          "OB-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Attendorn",
+      "rows": [
+        [
+          "General IT",
+          "ATT-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Bonn",
+      "rows": [
+        [
+          "General IT",
+          "BON-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Wipperfürth",
+      "rows": [
+        [
+          "General IT",
+          "GM-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Warburg",
+      "rows": [
+        [
+          "General IT",
+          "WAR-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Helmstedt",
+      "rows": [
+        [
+          "General IT",
+          "HE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Nienburg",
+      "rows": [
+        [
+          "General IT",
+          "NI-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Salzgitter",
+      "rows": [
+        [
+          "General IT",
+          "SZ-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Uelzen",
+      "rows": [
+        [
+          "General IT",
+          "UE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Herzberg",
+      "rows": [
+        [
+          "General IT",
+          "HBH-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Erlenbach",
+      "rows": [
+        [
+          "General IT",
+          "ELB-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Wiesbaden Local",
+      "rows": [
+        [
+          "General IT",
+          "WID-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Dachau",
+      "rows": [
+        [
+          "General IT",
+          "DAH-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Indersdorf",
+      "rows": [
+        [
+          "General IT",
+          "IDD-IT"
+        ]
+      ]
+    },
+    {
+      "name": "München Pasing",
+      "rows": [
+        [
+          "General IT",
+          "MPA-IT"
+        ]
+      ]
+    },
+    {
+      "name": "München Perlach",
+      "rows": [
+        [
+          "General IT",
+          "MPE-IT"
+        ]
+      ]
+    },
+    {
+      "name": "Breisach",
+      "rows": [
+        [
+          "General IT",
+          "BRE-IT"
+        ],
+        [
+          "Field Service",
+          "BRE-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Rottweil",
+      "rows": [
+        [
+          "General IT",
+          "ROT-IT"
+        ],
+        [
+          "Field Service",
+          "ROT-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Mülheim",
+      "rows": [
+        [
+          "General IT",
+          "MUE-IT"
+        ],
+        [
+          "Field Service",
+          "MUE-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Titisee",
+      "rows": [
+        [
+          "General IT",
+          "TIT-IT"
+        ],
+        [
+          "Field Service",
+          "TIT-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Überlingen",
+      "rows": [
+        [
+          "General IT",
+          "UEB-IT"
+        ],
+        [
+          "Field Service",
+          "UEB-IT  | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Köthen",
+      "rows": [
+        [
+          "Service Desk",
+          "KOET-IT | Servicedesk"
+        ],
+        [
+          "Field Service",
+          "KOET-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Oschersleben",
+      "rows": [
+        [
+          "Service Desk",
+          "OC-IT | Servicedesk"
+        ],
+        [
+          "Field Service",
+          "OC-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Burg",
+      "rows": [
+        [
+          "Service Desk",
+          "BRG-IT | Servicedesk"
+        ],
+        [
+          "Field Service",
+          "BRG-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Mansfeld-Südharz",
+      "rows": [
+        [
+          "Service Desk",
+          "MSH-IT | Servicedesk"
+        ],
+        [
+          "Field Service",
+          "MSH-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Vogelsang-Gommern",
+      "rows": [
+        [
+          "Service Desk",
+          "VGM-IT | Servicedesk"
+        ],
+        [
+          "Field Service",
+          "VGM-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "Zerbst",
+      "rows": [
+        [
+          "Service Desk",
+          "ZE-IT | Servicedesk"
+        ],
+        [
+          "Field Service",
+          "ZE-IT | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "CL-Nordsee",
+      "rows": [
+        [
+          "Service Desk",
+          "CL-Nordsee | Service Desk"
+        ],
+        [
+          "Infrastructure",
+          "CL-Nordsee | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "CL-Nordsee | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "CL-Nordsee | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "CL-Ostsee",
+      "rows": [
+        [
+          "Service Desk",
+          "CL-Ostsee | Service Desk"
+        ],
+        [
+          "Infrastructure",
+          "CL-Ostsee | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "CL-Ostsee | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "CL-Ostsee | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "CL-Nordbaden",
+      "rows": [
+        [
+          "Clinical Applications",
+          "CL-Nordbaden | Klinische Anwendungen"
+        ],
+        [
+          "Field Service",
+          "CL-Nordbaden | Fieldservice"
+        ]
+      ]
+    },
+    {
+      "name": "CL-Südbaden",
+      "rows": [
+        [
+          "Clinical Applications",
+          "CL-Südbaden | Klinische Anwendungen"
+        ]
+      ]
+    },
+    {
+      "name": "Cluster Sachsen",
+      "rows": [
+        [
+          "Infrastructure",
+          "CLS-IT | Infrastruktur"
+        ],
+        [
+          "iMedOne",
+          "CLS-IT | iMedOne"
+        ],
+        [
+          "SAP Expert",
+          "CLS-IT | SAP Expert"
+        ],
+        [
+          "MVZ",
+          "CLS-IT | MVZ"
+        ],
+        [
+          "MVZ Management",
+          "CLS-IT | MVZ | Mgt"
+        ]
+      ]
+    },
+    {
+      "name": "Cluster Sachsen-Anhalt",
+      "rows": [
+        [
+          "Infrastructure",
+          "CLST-IT | Infrastruktur"
+        ],
+        [
+          "Application Management / Clinical",
+          "CLST-IT | Application Management"
+        ],
+        [
+          "Medico",
+          "CLST-IT | Medico"
+        ],
+        [
+          "SAP",
+          "CLST-IT | SAP"
+        ],
+        [
+          "MVZ",
+          "CLST-IT | MVZ"
+        ]
+      ]
+    },
+    {
+      "name": "Region Ost",
+      "rows": [
+        [
+          "Infrastructure",
+          "RO-IT | Infrastruktur"
+        ],
+        [
+          "Clinical Applications SAP",
+          "RO | Klinische Anwendungen SAP"
+        ],
+        [
+          "Clinical Applications Subsysteme",
+          "RO | Klinische Anwendungen | Subsysteme"
+        ],
+        [
+          "Clinical Applications Schnittstellen",
+          "RO | Klinische Anwendungen | Schnittstellen"
+        ],
+        [
+          "KeyUser Management",
+          "RO | KeyUser-Management"
+        ]
+      ]
+    },
+    {
+      "name": "CL-Rhein-Main",
+      "rows": [
+        [
+          "Clinical Applications",
+          "CL-Rhein-Main | Klinische Anwendungen"
+        ],
+        [
+          "Local IT (Erlenbach)",
+          "ELB-IT"
         ]
       ]
     }
