@@ -1107,7 +1107,7 @@
   ],
   "wave1": [
     {
-      "topic": "Passwort / Login / Account",
+      "topic": "Password / Login / Account",
       "keywords": [
         "Passwort",
         "Kennwort",
@@ -1117,20 +1117,20 @@
         "Lernbar",
         "AD Passwort"
       ],
-      "description": "Probleme mit Kennwort, Login oder gesperrten Benutzerkonten.",
-      "quick": "AD prüfen, Konto entsperren, Passwort zurücksetzen, Login testen.",
+      "description": "Problems with passwords, login or locked user accounts.",
+      "quick": "Check AD, unlock account, reset password, test login.",
       "group": "Ext_WW_AD_FLS_Capgemini_Helios"
     },
     {
-      "topic": "Account deaktiviert / MFA",
+      "topic": "Account disabled / MFA",
       "keywords": [
         "Account deaktiviert",
         "MFA",
         "Zugriff",
         "Benutzeradministration"
       ],
-      "description": "Zentrale Benutzerverwaltung und MFA Themen.",
-      "quick": "Account Status prüfen und an zentrale Administration weiterleiten.",
+      "description": "Central user administration and MFA topics.",
+      "quick": "Check account status and escalate to central administration.",
       "group": "Ext_WW_OCC_SLS_Capgemini_Helios"
     },
     {
@@ -1144,12 +1144,12 @@
         "SendAs",
         "FullAccess"
       ],
-      "description": "Mailboxen, Verteiler und Exchange Berechtigungen.",
-      "quick": "Mailbox Berechtigungen prüfen, Benutzer hinzufügen, Speicher prüfen.",
+      "description": "Mailboxes, distribution lists and Exchange permissions.",
+      "quick": "Check mailbox permissions, add user, check storage.",
       "group": "Ext_WW_Collaboration_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Drucker / FollowMe / Zebra",
+      "topic": "Printer / FollowMe / Zebra",
       "keywords": [
         "Drucker",
         "FollowMe",
@@ -1162,12 +1162,12 @@
         "Papierstau",
         "Scanfehler"
       ],
-      "description": "Druckprobleme, FollowMe Printing und Zebra-Etikettendrucker.",
-      "quick": "Standarddrucker/FollowMe → Printer Services. Zebra einzelnes Gerät → Local IT. Zebra mehrere Geräte → RS | Klinische Prozesse & Anwendungen.",
+      "description": "Printing issues, FollowMe Printing and Zebra label printers.",
+      "quick": "Standard printer/FollowMe → Printer Services. Single Zebra device → Local IT. Multiple Zebra devices → RS | Klinische Prozesse & Anwendungen.",
       "group": "Ext_WW_Printer-Services_SLS_Capgemini_Helios / Local IT / RS | Klinische Prozesse & Anwendungen"
     },
     {
-      "topic": "Rezeptdrucker / Nadeldrucker",
+      "topic": "Prescription / needle printer",
       "keywords": [
         "Rezeptdrucker",
         "Nadeldrucker",
@@ -1178,20 +1178,20 @@
         "Offline",
         "Online"
       ],
-      "description": "Probleme mit Rezeptdruckern und Nadeldruckern.",
-      "quick": "Offline → Local IT. Online aber druckt nicht → Printer Services.",
+      "description": "Issues with prescription printers and needle printers.",
+      "quick": "Offline → Local IT. Online but not printing → Printer Services.",
       "group": "Local IT / Ext_WW_Printer-Services_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Drucker-Hardware / Vor-Ort-Prüfung",
+      "topic": "Printer hardware / onsite check",
       "keywords": [
         "Hardwaredefekt",
         "Scanner defekt",
         "Papierstau",
         "Druckstreifen"
       ],
-      "description": "Physischer Drucker oder Scanner Defekt.",
-      "quick": "Basisprüfung durchführen und Vor-Ort-Kontrolle veranlassen.",
+      "description": "Physical printer or scanner defect.",
+      "quick": "Perform basic checks and arrange onsite inspection.",
       "group": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
     },
     {
@@ -1203,8 +1203,8 @@
         "SAP Berechtigung",
         "D-Berichte"
       ],
-      "description": "SAP Zugriffe, Rollen und Launchpad.",
-      "quick": "SAP Zugriff prüfen, GUI testen, Cache leeren.",
+      "description": "SAP access, roles and Launchpad.",
+      "quick": "Check SAP access, test GUI, clear cache.",
       "group": "CL-Wuppertal | SAP"
     },
     {
@@ -1216,8 +1216,8 @@
         "i.s.h.med",
         "SAP i.s.h.med"
       ],
-      "description": "SAP und KIS (i.s.h.med)",
-      "quick": "SAP Zugriff prüfen, Fehlerbild dokumentieren und eskalieren.",
+      "description": "SAP and KIS (i.s.h.med).",
+      "quick": "Check SAP access, document the error and escalate.",
       "group": "SAP i.s.h.med | Mgt"
     },
     {
@@ -1229,23 +1229,23 @@
         "Black Screen",
         "Sitzung hängt"
       ],
-      "description": "Virtuelle Arbeitsplätze und veröffentlichte Anwendungen.",
-      "quick": "Session reset, Logoff, Citrix Workspace Repair.",
+      "description": "Virtual workplaces and published applications.",
+      "quick": "Session reset, logoff, Citrix Workspace Repair.",
       "group": "Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Klinische Anwendungen",
+      "topic": "Clinical applications",
       "keywords": [
         "Patientenakte",
         "ePA",
         "Formular"
       ],
-      "description": "Klinische Anwendungen und klinische Prozesse.",
-      "quick": "Nicht durch SD lösen, Ticket mit Fehlerbild eskalieren.",
+      "description": "Clinical applications and clinical processes.",
+      "quick": "Not solvable by SD — escalate ticket with error details.",
       "group": "RS | Klinische Prozesse & Anwendungen"
     },
     {
-      "topic": "GLIFHORN KIS / Medico / SAP",
+      "topic": "Gifhorn KIS / Medico / SAP",
       "keywords": [
         "GLIFHORN Medico",
         "Blaue Welt",
@@ -1254,12 +1254,12 @@
         "DRG",
         "SAP GLIFHORN"
       ],
-      "description": "Medico KIS, auch als \"Blaue Welt\" oder \"Userportal\" bekannt.",
-      "quick": "Nicht durch SD lösen, Ticket mit Fehlerbeschreibung weiterleiten.",
+      "description": "Medico KIS, also known as \"Blaue Welt\" or \"Userportal\".",
+      "quick": "Not solvable by SD — forward ticket with error description.",
       "group": "KR-IT | Medico"
     },
     {
-      "topic": "Hardware / Monitor / Dockingstation",
+      "topic": "Hardware / Monitor / Docking station",
       "keywords": [
         "Monitor",
         "Bildschirm",
@@ -1267,24 +1267,24 @@
         "Dockingstation",
         "Akku"
       ],
-      "description": "Arbeitsplatzhardware.",
-      "quick": "Kabel prüfen, Neustart durchführen, Gegentest durchführen.",
+      "description": "Workplace hardware.",
+      "quick": "Check cables, reboot, perform swap test.",
       "group": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
     },
     {
-      "topic": "PC langsam / Speicher voll",
+      "topic": "Slow PC / disk full",
       "keywords": [
         "PC langsam",
         "Rechner langsam",
         "C voll",
         "Speicherplatz"
       ],
-      "description": "Leistungsprobleme des Arbeitsplatzes.",
-      "quick": "Task Manager, Uptime und Laufwerk prüfen.",
+      "description": "Workplace performance issues.",
+      "quick": "Check Task Manager, uptime and disk space.",
       "group": "Ext_WW_Physical-Workplace_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Netzwerk / WLAN / Internet",
+      "topic": "Network / WLAN / Internet",
       "keywords": [
         "WLAN",
         "Internet",
@@ -1293,12 +1293,12 @@
         "APN",
         "MACMON"
       ],
-      "description": "Verbindungsprobleme Netzwerk oder WLAN.",
-      "quick": "Adapter prüfen, WLAN Zertifikat prüfen, MACMON prüfen.",
+      "description": "Network or WLAN connectivity issues.",
+      "quick": "Check adapter, WLAN certificate and MACMON.",
       "group": "Ext_WW_Network_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Mobile Geräte / Intune / Firmenhandys",
+      "topic": "Mobile devices / Intune / company phones",
       "keywords": [
         "iPhone",
         "Android",
@@ -1309,8 +1309,8 @@
         "Firmenhandy",
         "Smartphone"
       ],
-      "description": "Probleme mit mobilen Endgeräten, Intune und Mobilfunkdiensten.",
-      "quick": "Gerätesynchronisierung, Compliance, Intune-Registrierung und Benutzerzuordnung prüfen.",
+      "description": "Issues with mobile devices, Intune and mobile services.",
+      "quick": "Check device sync, compliance, Intune enrollment and user mapping.",
       "group": "Ext_WW_Mobile-Workplace_SLS_Capgemini_Helios"
     },
     {
@@ -1323,8 +1323,8 @@
         "Teams Chat",
         "Kanal"
       ],
-      "description": "Probleme mit Microsoft Teams, SharePoint oder OneDrive.",
-      "quick": "Lizenz, Berechtigungen und Synchronisation prüfen.",
+      "description": "Issues with Microsoft Teams, SharePoint or OneDrive.",
+      "quick": "Check license, permissions and synchronization.",
       "group": "Ext_WW_Collaboration_SLS_Capgemini_Helios"
     },
     {
@@ -1336,12 +1336,12 @@
         "Subscription",
         "Cloud Access"
       ],
-      "description": "Support für Azure-Dienste und Cloud-Infrastruktur.",
-      "quick": "Betroffene Ressource und Fehlermeldung dokumentieren.",
+      "description": "Support for Azure services and cloud infrastructure.",
+      "quick": "Document affected resource and error message.",
       "group": "Ext_WW_Cloud-Services_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Kubernetes / Container Plattform",
+      "topic": "Kubernetes / Container platform",
       "keywords": [
         "Kubernetes",
         "K8S",
@@ -1349,12 +1349,12 @@
         "Container",
         "Cluster"
       ],
-      "description": "Probleme mit Kubernetes-Clustern und Containern.",
-      "quick": "Clustername, Namespace und Fehlermeldung angeben.",
+      "description": "Issues with Kubernetes clusters and containers.",
+      "quick": "Provide cluster name, namespace and error message.",
       "group": "Ext_WW_Kubernetes_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Datenbanken",
+      "topic": "Databases",
       "keywords": [
         "SQL",
         "Oracle",
@@ -1362,12 +1362,12 @@
         "Datenbank",
         "DB Access"
       ],
-      "description": "Datenbankadministration und Datenbankzugriffe.",
-      "quick": "Datenbankname, Umgebung und Fehlermeldung dokumentieren.",
+      "description": "Database administration and database access.",
+      "quick": "Document database name, environment and error message.",
       "group": "Ext_WW_Database-PaaS_SLS_Capgemini_Helios"
     },
     {
-      "topic": "VMware / Virtuelle Maschinen",
+      "topic": "VMware / Virtual machines",
       "keywords": [
         "VMware",
         "vCenter",
@@ -1375,8 +1375,8 @@
         "Virtuelle Maschine",
         "VM"
       ],
-      "description": "Probleme mit VMware-Infrastruktur und virtuellen Maschinen.",
-      "quick": "Name der VM und Beschreibung des Problems angeben.",
+      "description": "Issues with VMware infrastructure and virtual machines.",
+      "quick": "Provide VM name and problem description.",
       "group": "Ext_WW_VMWare-CentralServer-CIaaS_SLS_Capgemini_Helios"
     },
     {
@@ -1388,8 +1388,8 @@
         "SSH",
         "Patch"
       ],
-      "description": "Zentrale Linux-Server und Betriebssystemadministration.",
-      "quick": "Hostname, Fehlermeldung und Auswirkung dokumentieren.",
+      "description": "Central Linux servers and OS administration.",
+      "quick": "Document hostname, error message and impact.",
       "group": "Ext_WW_Linux-CentralServer-CIaaS_SLS_Capgemini_Helios"
     },
     {
@@ -1400,8 +1400,8 @@
         "RDP",
         "Microsoft Server"
       ],
-      "description": "Zentrale Windows-Server-Infrastruktur.",
-      "quick": "Servername und Fehlerbeschreibung dokumentieren.",
+      "description": "Central Windows server infrastructure.",
+      "quick": "Document server name and error description.",
       "group": "Ext_WW_Microsoft-CentralServer-CIaaS_SLS_Capgemini_Helios"
     },
     {
@@ -1412,8 +1412,8 @@
         "Deployment",
         "Paketierung"
       ],
-      "description": "Verteilung und Installation von Softwarepaketen.",
-      "quick": "Name der Anwendung und Zielgerät angeben.",
+      "description": "Distribution and installation of software packages.",
+      "quick": "Provide application name and target device.",
       "group": "Ext_WW_S/w deployment_SLS_Capgemini_Helios"
     },
     {
@@ -1425,8 +1425,8 @@
         "SAN",
         "NAS"
       ],
-      "description": "Datensicherung, Wiederherstellung und Storage-Infrastruktur.",
-      "quick": "Betroffene Systeme und gewünschter Wiederherstellungspunkt angeben.",
+      "description": "Backup, restore and storage infrastructure.",
+      "quick": "Provide affected systems and desired restore point.",
       "group": "Ext_WW_Storage-SharedDCInfra-CIaaS_SLS_Capgemini_Helios"
     },
     {
@@ -1437,8 +1437,8 @@
         "WebLogic",
         "Applikationsplattform"
       ],
-      "description": "Betrieb und Support von Middleware- und Plattformdiensten.",
-      "quick": "Logdateien und Umgebung dokumentieren.",
+      "description": "Operation and support of middleware and platform services.",
+      "quick": "Document logs and environment.",
       "group": "Ext_WW_Application Platform Management_SLS_Capgemini_Helios"
     },
     {
@@ -1450,8 +1450,8 @@
         "SCORCH",
         "Alert"
       ],
-      "description": "Monitoring- und Managementwerkzeuge.",
-      "quick": "Alarm-ID und betroffenen Dienst dokumentieren.",
+      "description": "Monitoring and management tools.",
+      "quick": "Document alert ID and affected service.",
       "group": "Ext_WW_Tools-PaaS_SLS_Capgemini_Helios"
     },
     {
@@ -1462,36 +1462,36 @@
         "Data Export",
         "Litigation Hold"
       ],
-      "description": "Datenexporte, Compliance-Anforderungen und rechtliche Aufbewahrung.",
-      "quick": "Betroffenen Benutzer und Umfang der Anforderung angeben.",
+      "description": "Data exports, compliance requirements and legal hold.",
+      "quick": "Provide affected user and request scope.",
       "group": "Ext_WW_eDiscovery_TLS_Capgemini_Helios"
     },
     {
-      "topic": "Applikations-Paketierung",
+      "topic": "Application packaging",
       "keywords": [
         "MSI",
         "Packaging",
         "Softwarepaket",
         "Anwendungspaket"
       ],
-      "description": "Erstellung und Anpassung von Softwarepaketen.",
-      "quick": "Anwendungsname und Anforderungen dokumentieren.",
+      "description": "Creation and customization of software packages.",
+      "quick": "Document application name and requirements.",
       "group": "Ext_WW_WPS_AppsPackaging_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Bestellung Mobilgeräte",
+      "topic": "Mobile device ordering",
       "keywords": [
         "Handy Bestellung",
         "SIM Bestellung",
         "Neues Smartphone",
         "Mobilfunkauftrag"
       ],
-      "description": "Beschaffung von Mobiltelefonen und SIM-Karten.",
-      "quick": "Genehmigung und Benutzerdaten prüfen.",
+      "description": "Procurement of mobile phones and SIM cards.",
+      "quick": "Check approval and user details.",
       "group": "Ext_WW_WPS_MobileDeviceProcurement_SLS_Capgemini_Helios"
     },
     {
-      "topic": "Berechtigungen / AD Gruppen",
+      "topic": "Permissions / AD groups",
       "keywords": [
         "Freischaltung",
         "AD Gruppe",
@@ -1499,8 +1499,8 @@
         "Berechtigung",
         "Zugriff"
       ],
-      "description": "Rechteverwaltung und AD Gruppen.",
-      "quick": "Passende AD Gruppe finden und Mitgliedschaft hinzufügen.",
+      "description": "Rights management and AD groups.",
+      "quick": "Find matching AD group and add membership.",
       "group": "Ext_WW_AD_FLS_Capgemini_Helios"
     }
   ],

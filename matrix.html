@@ -118,11 +118,42 @@ footer {
 .src-problem { background:#fff3cd; color:#7a5b00; }
 .home-search-wrap { margin-bottom: 16px; }
 #globalHitsMeta { margin-top: 8px; }
+.search-panel { display:flex; flex-direction:column; gap:12px; }
+.search-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.search-row .search-box { flex: 2 1 280px; }
+.search-row .filter-select { flex: 1 1 180px; min-width:160px; }
+.search-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip {
+    display:inline-flex; align-items:center; gap:6px;
+    border:1px solid var(--border); background:#fff; color:#334155;
+    border-radius:999px; padding:6px 12px; font-size:12px; cursor:pointer;
+    user-select:none;
+}
+.chip input { accent-color: var(--secondary); }
+.chip.active, .chip:has(input:checked) {
+    background:#e8f3fb; border-color:#7eb6dd; color: var(--primary); font-weight:600;
+}
+.search-hint { color:#64748b; font-size:12px; width:100%; }
+.suggest-wrap { position:relative; flex:2 1 280px; min-width:250px; }
+.suggest-wrap .search-box { width:100%; }
+.suggest-list {
+    position:absolute; left:0; right:0; top:100%; z-index:30;
+    background:#fff; border:1px solid var(--border); border-radius:6px;
+    box-shadow:0 8px 24px rgba(0,0,0,.12); max-height:240px; overflow:auto;
+    display:none;
+}
+.suggest-list.on { display:block; }
+.suggest-item {
+    padding:8px 12px; cursor:pointer; border-bottom:1px solid #f1f5f9; font-size:13px;
+}
+.suggest-item:hover, .suggest-item.active { background:#eef6fc; }
+.suggest-item small { color:#64748b; margin-left:6px; }
 
 .hide { display: none !important; }
 @media (max-width: 700px) {
     header h1 { font-size: 20px; }
     .controls-card { flex-direction: column; align-items: stretch; }
+    .search-row .filter-select, .suggest-wrap { min-width:100%; }
 }
 </style>
 </head>
@@ -144,25 +175,65 @@ footer {
 <div class="container">
 
 <section class="section on" id="home">
-    <div class="controls-card home-search-wrap">
-        <input type="text" id="globalSearchAll" class="search-box" placeholder="Szukaj w całej bazie: aplikacja, cluster, klinika, problem, grupa..." oninput="filterGlobalSearch()" autofocus>
-        <span class="meta" id="globalHitsMeta">Wpisz frazę, aby przeszukać całą bazę</span>
+    <div class="controls-card home-search-wrap search-panel">
+        <div class="search-chips" id="searchTypeChips" role="group" aria-label="Search scope">
+            <label class="chip active"><input type="checkbox" name="stype" value="application" checked onchange="onSearchFiltersChanged()"> Applications</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="cluster" checked onchange="onSearchFiltersChanged()"> Clusters &amp; main groups</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="location" checked onchange="onSearchFiltersChanged()"> Locations / clinics</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="problem" checked onchange="onSearchFiltersChanged()"> Problems / keywords</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="berlin" checked onchange="onSearchFiltersChanged()"> Berlin Groups</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="wave1" checked onchange="onSearchFiltersChanged()"> Egipt Wave 1</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="global" checked onchange="onSearchFiltersChanged()"> Global Helios</label>
+        </div>
+        <div class="search-row">
+            <div class="suggest-wrap">
+                <input type="text" id="globalSearchAll" class="search-box" list="globalSuggestDatalist"
+                    placeholder="Search by application, cluster, location, problem or assignment group..."
+                    oninput="onGlobalSearchInput()" onkeydown="onGlobalSearchKey(event)" autofocus autocomplete="off">
+                <datalist id="globalSuggestDatalist"></datalist>
+                <div class="suggest-list" id="globalSuggestList"></div>
+            </div>
+            <select id="searchMatchMode" class="filter-select" onchange="filterGlobalSearch()">
+                <option value="anywhere">Match: Anywhere</option>
+                <option value="topic">Match: Topic / name</option>
+                <option value="group">Match: Assignment group</option>
+                <option value="keyword">Match: Keywords / problems</option>
+            </select>
+            <select id="searchClusterFilter" class="filter-select" onchange="filterGlobalSearch()">
+                <option value="">All locations / clusters</option>
+            </select>
+            <select id="searchPreset" class="filter-select" onchange="applySearchPreset()">
+                <option value="">Quick preset…</option>
+                <option value="apps">Applications only</option>
+                <option value="clusters">Clusters &amp; main groups</option>
+                <option value="locations">Locations / clinics</option>
+                <option value="problems">Problems / keywords</option>
+                <option value="berlin">Berlin Groups</option>
+                <option value="wave1">Egipt Wave 1</option>
+                <option value="global">Global Helios</option>
+                <option value="all">Everything</option>
+            </select>
+        </div>
+        <div class="search-row">
+            <span class="search-hint">Tip: select search scopes above, then type a name (e.g. MetaVision, Berlin, Duisburg, Password) or an assignment group.</span>
+            <span class="meta" id="globalHitsMeta">Enter a search term to query the knowledge base</span>
+        </div>
     </div>
     <div class="card">
-        <div class="card-header"><span>Wyniki wyszukiwania</span></div>
+        <div class="card-header"><span>Search results</span></div>
         <div class="card-content">
             <table>
                 <thead>
                     <tr>
-                        <th style="width:12%">Źródło</th>
-                        <th style="width:18%">Temat / Aplikacja</th>
-                        <th style="width:14%">Cluster / Klinika</th>
+                        <th style="width:12%">Source</th>
+                        <th style="width:18%">Topic / Application</th>
+                        <th style="width:14%">Cluster / Location</th>
                         <th style="width:22%">Assignment Group</th>
-                        <th style="width:34%">Szczegóły / instrukcja</th>
+                        <th style="width:34%">Details / guidance</th>
                     </tr>
                 </thead>
                 <tbody id="globalSearchTable">
-                    <tr><td colspan="5" class="meta">Brak zapytania — wyszukiwanie obejmuje Application Base, Clusters, Berlin Groups, Egipt Wave 1 i Global Helios Groups.</td></tr>
+                    <tr><td colspan="5" class="meta">No query yet — use the scopes and filters above to search Applications, Clusters, Locations, Berlin Groups, Egipt Wave 1 and Global Helios.</td></tr>
                 </tbody>
             </table>
         </div>
@@ -171,7 +242,7 @@ footer {
 
 <section class="section" id="apps">
     <div class="controls-card">
-        <input type="text" id="searchInput" class="search-box" placeholder="Szukaj po nazwie aplikacji..." oninput="filterApplications()">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search by application name..." oninput="filterApplications()">
         <select id="clusterFilter" class="filter-select" onchange="filterApplications()">
             <option value="">All Clusters</option>
 <option value="CL-Wuppertal">CL-Wuppertal</option>
@@ -195,7 +266,7 @@ footer {
 <option value="Südniedersachsen-Nordhessen">Südniedersachsen-Nordhessen</option>
             <option value="Global Helios">Global Helios</option>
         </select>
-        <span class="meta"><span id="recordCount">0</span> aplikacji</span>
+        <span class="meta"><span id="recordCount">0</span> applications</span>
     </div>
     <div class="card">
         <div class="card-header">
@@ -222,10 +293,10 @@ footer {
 
 <section class="section" id="clusters">
     <div class="controls-card">
-        <input type="text" id="clusterSearch" class="search-box" placeholder="Szukaj cluster / lokalizacja / grupa..." oninput="filterClusters()">
+        <input type="text" id="clusterSearch" class="search-box" placeholder="Search cluster / location / group..." oninput="filterClusters()">
     </div>
     <div class="card">
-        <div class="card-header"><span>Ogólny routing dla clusterów</span></div>
+        <div class="card-header"><span>General cluster routing</span></div>
         <div class="card-content">
             <table>
                 <thead>
@@ -243,14 +314,14 @@ footer {
 
 <section class="section" id="berlin">
     <div class="controls-card">
-        <input type="text" id="berlinSearch" class="search-box" placeholder="Szukaj grupy Berlin / aplikacja / keyword..." oninput="filterBerlin()">
+        <input type="text" id="berlinSearch" class="search-box" placeholder="Search Berlin group / application / keyword..." oninput="filterBerlin()">
     </div>
     <div id="berlinContent"></div>
 </section>
 
 <section class="section" id="wave1">
     <div class="controls-card">
-        <input type="text" id="wave1Search" class="search-box" placeholder="Suche Keyword, Thema oder Assignment Group..." oninput="filterWave1()">
+        <input type="text" id="wave1Search" class="search-box" placeholder="Search keyword, topic or assignment group..." oninput="filterWave1()">
     </div>
     <div class="card">
         <div class="card-header"><span>Egipt Wave 1 — Keyword Routing</span></div>
@@ -258,8 +329,8 @@ footer {
             <table>
                 <thead>
                     <tr>
-                        <th>Thema</th><th>Keywords</th><th>Beschreibung</th>
-                        <th>Schnelllösung Service Desk</th><th>Assignment Group</th>
+                        <th>Topic</th><th>Keywords</th><th>Description</th>
+                        <th>Service Desk quick fix</th><th>Assignment Group</th>
                     </tr>
                 </thead>
                 <tbody id="wave1Table"></tbody>
@@ -308,7 +379,7 @@ footer {
 
 <script>
 /* Knowledge base data */
-const KB = {"meta": {"title": "Helios Master Matrix", "subtitle": "Global Routing · Berlin KB · Wave 1 Keyword Routing · v2026-08-11", "version": "2026-08-11", "author": "Krystian Karankiewicz / Capgemini Swivel Chair"}, "clusters": {"CL-Wuppertal": {"Infrastructure": "CL-Wuppertal | Infrastruktur", "Clinical": "CL-Wuppertal | Klinische Anwendungen", "SAP": "CL-Wuppertal | SAP", "Account": "CL-Wuppertal | Accountmanagement", "FieldService": "CL-Wuppertal | Field Service", "ServiceDesk": "CL-Wuppertal | Remotesupport"}, "Berlin": {"Infrastructure": "CLBB-IT | Infrastruktur", "Clinical": "CLBB-IT | Klinische Anwendungen", "SAP": "CLBB-IT | KIS-Support", "Account": "CLBB-IT | Accountmanagement", "FieldService": "BLN-IT | Fieldservice", "ServiceDesk": "CLBB-IT | Servicedesk"}, "Berlin Zehlendorf": {"Infrastructure": "CLBB-IT | Infrastruktur", "Clinical": "CLBB-IT | Klinische Anwendungen", "SAP": "CLBB-IT | KIS-Support", "Account": "CLBB-IT | Accountmanagement", "FieldService": "BEB-IT | Fieldservice", "ServiceDesk": "CLBB-IT | Servicedesk"}, "Bad Saarow": {"Infrastructure": "CLBB-IT | Infrastruktur", "Clinical": "CLBB-IT | Klinische Anwendungen", "SAP": "CLBB-IT | KIS-Support", "Account": "CLBB-IT | Accountmanagement", "FieldService": "BS-IT | Fieldservice", "ServiceDesk": "CLBB-IT | Servicedesk"}, "Krefeld": {"Infrastructure": "KR-IT | Infrastruktur", "Clinical": "KR-IT | Klinische Applikationen", "SAP": "KR-IT | Medico", "Account": "KR-IT", "FieldService": "KR-IT | Fieldservice", "ServiceDesk": "KR-IT | Service Desk"}, "Kassel": {"Infrastructure": "KS-IT", "Clinical": "KS-IT", "SAP": "KS-IT", "Account": "KS-IT", "FieldService": "KS-IT", "ServiceDesk": "KS-IT"}, "Duisburg": {"Infrastructure": "DU-IT | Infrastruktur", "Clinical": "SKZ-IT | Klinische Anwendungen", "SAP": "SAP Basis", "Account": "DU-IT | Client Mgt", "FieldService": "DU-IT | Client Mgt", "Software": "DU-IT | Software & Systeme", "Orbis": "Orbis", "Muse": "AMOR/MUSE", "JiveX": "SKZ-IT | Klinische Anwendungen", "ServiceDesk": "DU-IT | Client Mgt"}, "Region Süd": {"Infrastructure": "RS | Infrastruktur", "Clinical": "RS | Klinische Prozesse & Anwendungen", "SAP": "RS | iSHMED", "Account": "RS MVZ Support", "FieldService": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios", "ServiceDesk": "RS | Servicedesk"}, "Gotha": {"Infrastructure": "GTH-IT", "Clinical": "GTH-IT", "SAP": "GTH-IT", "Account": "GTH-IT", "FieldService": "GTH-IT | Mgt", "ServiceDesk": "GTH-IT"}, "Gifhorn": {"Infrastructure": "GF-IT", "Clinical": "GF-IT", "SAP": "GF-IT", "Account": "GF-IT", "FieldService": "GF-IT", "ServiceDesk": "GF-IT"}, "Sachsen - Nordfranken": {"Infrastructure": "AU-IT / FTL-IT | Infrastruktur", "Clinical": "KC-IT / PL-IT | MVZ", "SAP": "TBD", "Account": "AU-IT / FTL-IT | Benutzeranträge", "FieldService": "AU-IT / FTL-IT / PL-IT | Fieldservice", "ServiceDesk": "AU-IT / FTL-IT | Benutzeranträge"}, "Thüringen Mitte": {"Infrastructure": "EF-IT | Infrastruktur", "Clinical": "TBD", "SAP": "TBD", "Account": "BLA-IT / EF-IT | Benutzerantrag", "FieldService": "BLA-IT / EF-IT / GRE-IT | Fieldservice", "ServiceDesk": "BLA-IT / EF-IT | Benutzerantrag"}, "Mainfranken-Südthüringen": {"Infrastructure": "BKG-IT / HBN / MGN | Infrastruktur", "Clinical": "TBD", "SAP": "TBD", "Account": "MGN | Benutzerantrag", "FieldService": "HBN / MGN | Fieldservice", "ServiceDesk": "MGN | Benutzerantrag"}, "Schwarzwald-Bodensee": {"Infrastructure": "MUE-IT / TIT-IT | Infrastruktur", "Clinical": "TBD", "SAP": "TBD", "Account": "TBD", "FieldService": "BRE-IT / MUE-IT / ROT-IT | Fieldservice", "ServiceDesk": "TBD"}, "Magdeburg": {"Infrastructure": "OC-IT / ZE-IT | Infrastruktur", "Clinical": "TBD", "SAP": "TBD", "Account": "KOET-IT / OC-IT | Servicedesk", "FieldService": "KOET-IT / VGM-IT / ZE-IT | Fieldservice", "ServiceDesk": "KOET-IT / OC-IT | Servicedesk"}, "Wiesbaden-Main-Taunus": {"Infrastructure": "CL-Wiesbaden-Taunus | Infrastruktur", "Clinical": "TBD", "SAP": "TBD", "Account": "CL-Wiesbaden-Taunus | ServiceDesk", "FieldService": "HSK / IDS | Fieldservice", "ServiceDesk": "CL-Wiesbaden-Taunus | ServiceDesk"}, "Leipzig": {"Infrastructure": "LEI-IT / LPZ-IT | Infrastruktur", "Clinical": "LEI-IT / LPZ-IT | MVZ", "SAP": "TBD", "Account": "LPZ-IT | Active Directory", "FieldService": "LEI-IT / LPZ-IT | Fieldservice", "ServiceDesk": "LPZ-IT | Active Directory"}, "Oberbayern": {"Infrastructure": "TBD", "Clinical": "TBD", "SAP": "TBD", "Account": "TBD", "FieldService": "DAH-IT / IDD-IT / MPA-IT", "ServiceDesk": "TBD"}, "Südniedersachsen-Nordhessen": {"Infrastructure": "HI-IT | Infrastruktur", "Clinical": "TBD", "SAP": "TBD", "Account": "TBD", "FieldService": "HBH-IT / KS-IT / WAR-IT | Fieldservice", "ServiceDesk": "TBD"}}, "apps": {"clinical": ["MetaVision", "Orbis", "JiveX", "AQURE", "RIS", "PACS", "GE PACS", "K-PACS", "BrainLab", "BioJet", "CardioSoft", "Centricity RIS", "Centricity Cardiology", "CGM Muse", "Cloverleaf", "Delegate", "GeriDoc", "Waveware", "AVP", "EPIAS", "FACSLyric", "Halo AP", "HKWin", "HMS", "Hyper.COM", "Hyper.TELEMED", "IntelliSpace Cardiovascular", "IntelliSpace Perinatal", "ix.connect", "iXServ", "JiveX Dicom Broker", "Jocap XL", "Jomosoft", "Kapselendoskopie", "KiDSafe", "KiTAP", "Mac-Lab", "MediConnect", "mediCAD", "Mortara HScribe", "MyMediktor", "NarkoData", "navify", "Nephro 7", "NIDA Plattform", "ODSeasy", "Oncobox", "OPUS::L", "Pacer", "PADSY", "PillCam", "Polaris.One", "QIAxcel", "Qims", "QUALImagiQ", "RDG", "Scanner Administrator Manager", "Schmerzvisite", "Sentinel", "Telepaxx", "TempLog", "TKmed", "Trium", "Ultraschallgeräte", "Uroflow", "Uronav", "V-Stats", "Viewpoint", "ViMeDat", "Vyntus Walk", "Welch Allyn Connex", "XLab", "ZEN", "Zenzy", "ZzzPat", "EISA / PDMS", "Aria"], "infrastructure": ["Citrix", "C37", "Citrix Virtual Apps and Desktops", "VPN", "Secure VPN", "SAP GUI", "SAP NWBC", "SAP Router", "Printer Mapping", "Printer Configuration", "FollowMe Printing", "Baramundi", "MACMON", "CheckMK", "PRTG", "BitLocker", "DHCP", "DameWare", "Active Directory", "Active Fax", "Apex One", "DMO", "Dragon Medical Direct", "Nuance Dragon Medical One", "SpeaKING Dictat", "Firewall", "Hyper-V", "Identity Manager", "IGEL OS", "IGEL UMS", "iris-PrintBox", "iris-VIEW", "KODIP Server", "NetWorker", "NPS", "OpenVAS", "ORCA AVA", "Power PDF", "PW Self Service", "Royal TS", "TA-Cockpit", "Time Office", "USV Management", "Visual Studio", "VMware vSphere", "WLAN", "WUPABS", "XPressions Faxserver"], "sap": ["Amasys", "Pegasus", "HBA", "HKSCAN", "HKWAB", "i.s.h.med", "IS-H", "KODIP Suite", "Krankenkassenkartenleser", "QS-MED", "Medico", "HTP"], "account": ["Password Reset", "User Unlock", "Account Activation", "Account Reactivation", "Folder Access", "Network Drive Access", "Shared Mailbox Access", "Distribution Group Access", "Exchange Distribution Lists", "O365 License", "M365 License", "Teams License", "AD Group Membership", "Basic SAP Access"], "field": ["Notebook Defect", "Monitor Defect", "Docking Station", "Headset Defect", "Keyboard Defect", "Mouse Defect", "Tablet Problem", "iPad Problem", "Phone Problem", "Workstation Setup", "Workplace Setup", "Office Relocation", "Cabling", "Printer Hardware Defect", "Printer Paper Jam", "Toner Empty", "Monitor Installation", "Zebra Printer", "Delegate iPad", "Photo Printer"]}, "berlinAz": {"Amasys": "CLBB-IT | KIS-Support", "Active Directory": "CLBB-IT | Servicedesk", "AirWatch": "CLBB-IT | Servicedesk", "AQURE": "CLBB-IT | Klinische Anwendungen", "Aria": "CLBB-IT | Klinische Anwendungen", "Baramundi": "CLBB-IT | Infrasturktur", "BitLocker": "CLBB-IT | Infrasturktur", "BrainLab": "CLBB-IT | Klinische Anwendungen", "CardioSoft": "CLBB-IT | Klinische Anwendungen", "Centricity RIS": "CLBB-IT | Klinische Anwendungen", "CGM Muse": "CLBB-IT | Servicedesk", "Citrix Virtual Apps": "CLBB-IT | Infrasturktur", "Citrix": "CLBB-IT | Infrasturktur", "Cloverleaf": "CLBB-IT | Klinische Anwendungen", "DameWare": "CLBB-IT | Infrasturktur", "Delegate": "CLBB-IT | Klinische Anwendungen", "DHCP": "CLBB-IT | Infrasturktur", "DMO": "CLBB-IT | Servicedesk", "EPIAS": "CLBB-IT | Klinische Anwendungen", "Exchange": "CLBB-IT | Servicedesk", "FACSLyric": "CLBB-IT | Klinische Anwendungen", "Firewall": "CLBB-IT | Infrasturktur", "FollowMe Printing": "CLBB-IT | Servicedesk", "GE PACS": "CLBB-IT | Klinische Anwendungen", "GeriDoc": "CLBB-IT | Klinische Anwendungen", "Halo AP": "CLBB-IT | Klinische Anwendungen", "HBA": "CLBB-IT | KIS-Support", "HKSCAN": "CLBB-IT | KIS-Support", "HKWAB": "CLBB-IT | KIS-Support", "Hyper-V": "CLBB-IT | Infrasturktur", "Identity Manager": "CLBB-IT | Servicedesk", "IGEL OS / UMS": "CLBB-IT | Servicedesk", "IGEL OS": "CLBB-IT | Servicedesk", "IGEL UMS": "CLBB-IT | Servicedesk", "i.s.h.med": "CLBB-IT | KIS-Support", "IS-H": "CLBB-IT | KIS-Support", "IntelliSpace Cardiovascular": "CLBB-IT | Klinische Anwendungen", "IntelliSpace Perinatal": "CLBB-IT | Klinische Anwendungen", "JiveX": "CLBB-IT | Klinische Anwendungen", "K-PACS": "CLBB-IT | Klinische Anwendungen", "KiDSafe": "CLBB-IT | Klinische Anwendungen", "KODIP Suite": "CLBB-IT | KIS-Support", "LOGA": "HR Application Owner", "MACMON": "CLBB-IT | Infrasturktur", "MediConnect": "CLBB-IT | Klinische Anwendungen", "mediCAD": "CLBB-IT | Klinische Anwendungen", "MetaVision": "CLBB-IT | Klinische Anwendungen", "MFA": "CLBB-IT | Servicedesk", "MyHelios": "ZD IT", "NarkoData": "CLBB-IT | Klinische Anwendungen", "NetWorker": "CLBB-IT | Infrasturktur", "Nuance Dragon Medical One": "CLBB-IT | Infrasturktur", "Oncobox": "CLBB-IT | Klinische Anwendungen", "OpenVAS": "CLBB-IT | Infrasturktur", "Outlook": "CLBB-IT | Servicedesk", "PACS": "CLBB-IT | Klinische Anwendungen", "PADSY": "CLBB-IT | Klinische Anwendungen", "Pegasus": "CLBB-IT | KIS-Support", "Polaris.One": "CLBB-IT | Klinische Anwendungen", "Power PDF": "CLBB-IT | Servicedesk", "PRTG": "CLBB-IT | Infrastruktur", "QS-MED": "CLBB-IT | KIS-Support", "QlikView": "CLBB-IT | Servicedesk", "RIS": "CLBB-IT | Klinische Anwendungen", "Royal TS": "CLBB-IT | Infrasturktur", "SAP GUI": "CLBB-IT | KIS-Support", "SAP NWBC": "CLBB-IT | KIS-Support", "SAP Router": "CLBB-IT | KIS-Support", "Secure VPN": "CLBB-IT | Infrasturktur", "Sentinel": "CLBB-IT | Klinische Anwendungen", "SpeaKING Dictat": "CLBB-IT | Infrasturktur", "Teams": "CLBB-IT | Servicedesk", "Telepaxx": "CLBB-IT | Klinische Anwendungen", "Time Office": "CLBB-IT | Infrasturktur", "TKmed": "CLBB-IT | Klinische Anwendungen", "Trium": "CLBB-IT | Klinische Anwendungen", "USV Management": "CLBB-IT | Infrasturktur", "Uronav": "CLBB-IT | Klinische Anwendungen", "Viewpoint": "CLBB-IT | Klinische Anwendungen", "Visual Studio": "CLBB-IT | Servicedesk", "VMware vSphere": "CLBB-IT | Infrasturktur", "VPN": "CLBB-IT | Servicedesk / CLBB-IT | Infrasturktur", "Waveware": "waveware | DEIN-MP", "WLAN": "CLBB-IT | Infrasturktur", "XLab": "CLBB-IT | Klinische Anwendungen", "xPhone": "CLBB-IT | Servicedesk", "XWiki": "CLBB-IT | Servicedesk", "ZEN": "CLBB-IT | Klinische Anwendungen", "ZEUS": "CLBB-IT | Klinische Anwendungen"}, "berlin": {"assignmentGroups": [{"group": "BEB-IT | Fieldservice", "responsibility": "OSS — Berlin Zehlendorf / Helios Klinikum Emil von Behring GmbH"}, {"group": "BLN-IT | Fieldservice", "responsibility": "OSS — Berlin Buch"}, {"group": "BS-IT | Fieldservice", "responsibility": "OSS — Bad Saarow"}, {"group": "CLBB-IT | Servicedesk", "responsibility": "Initial analysis and routing, SD L2"}, {"group": "CLBB-IT | Infrasturktur", "responsibility": "Infrastructure and backend systems, LAN, VPN, Network, Firewall, DNS"}, {"group": "CLBB-IT | Klinische Anwendungen", "responsibility": "Clinical applications/systems and medical applications"}, {"group": "CLBB-IT | KIS-Support", "responsibility": "SAP applications and workflows"}, {"group": "CLBB-IT | Accountmanagement", "responsibility": "User accounts and permissions"}, {"group": "CLBB-IT | MVZ", "responsibility": "xVianova, Medidoc applications and workflows"}, {"group": "CLBB-IT | Servicedesk | Mgt", "responsibility": "Management and procurement approvals"}], "requiredInfo": [{"info": "User Name", "required": "Yes", "notes": "Always collect requestor information"}, {"info": "Phone Number", "required": "Preferred", "notes": "Required for callback scenarios"}, {"info": "Location", "required": "Yes", "notes": "Building / Clinic / Department / Roomnumber"}, {"info": "Department", "required": "Preferred", "notes": ""}, {"info": "Hostname", "required": "Yes", "notes": "Hostname or Asset Tag"}, {"info": "Error Message", "required": "Yes", "notes": "Exact wording whenever available"}, {"info": "Screenshot", "required": "Preferred", "notes": "Especially for SAP and clinical applications"}, {"info": "Application Name", "required": "Yes", "notes": "Identify affected system"}, {"info": "Business Impact", "required": "Yes", "notes": "Number of users or patient impact"}, {"info": "Issue Start Date", "required": "Yes", "notes": "When issue first occurred"}], "routingDecision": [{"q": "Does the issue follow the user regardless of device?", "yes": "Servicedesk", "no": "Continue investigation"}, {"q": "Is physical intervention required?", "yes": "Field Service", "no": "Continue investigation"}, {"q": "Is it related to Citrix, VPN, Printer Mapping or Software Installation?", "yes": "Infrastruktur", "no": "Continue investigation"}, {"q": "Is the application used directly for patient treatment or diagnostics?", "yes": "Klinische Anwendungen", "no": "Continue investigation"}, {"q": "Can the user login successfully into SAP?", "yes": "KIS-Support", "no": "KIS-Support"}], "lan": [{"issue": "No LAN connectivity", "group": "OSS", "notes": "Verify cable first"}, {"issue": "LAN port issue", "group": "OSS", "notes": "Check patching"}, {"issue": "Switch connectivity", "group": "CLBB-IT | Infrasturktur", "notes": "Network infrastructure"}, {"issue": "DNS problem", "group": "CLBB-IT | Infrasturktur", "notes": "DNS services"}, {"issue": "Firewall request", "group": "CLBB-IT | Infrasturktur", "notes": "Firewall changes"}], "vpn": [{"issue": "Token not received", "group": "CLBB-IT | Servicedesk", "action": "Investigate MFA method"}, {"issue": "VPN Login Failed", "group": "CLBB-IT | Servicedesk", "action": "Verify password and special characters"}, {"issue": "Cisco Secure Client missing", "group": "CLBB-IT | Servicedesk", "action": "Deploy through Baramundi"}, {"issue": "Remote Desktop access failure", "group": "CLBB-IT | Infrasturktur", "action": "RDP troubleshooting"}], "desktop": [{"issue": "Laptop does not start", "group": "OSS", "notes": "Hardware investigation"}, {"issue": "Black screen", "group": "OSS", "notes": "Physical troubleshooting"}, {"issue": "Docking station issue", "group": "OSS", "notes": "Hardware support"}, {"issue": "No WiFi", "group": "OSS", "notes": "Basic troubleshooting"}, {"issue": "Device slow", "group": "OSS", "notes": "Check storage and Task Manager"}], "hardware": [{"type": "Laptop", "model": "Dell 14 Pro"}, {"type": "Desktop", "model": "Dell Pro Micro Plus"}, {"type": "CPU", "model": "Intel Core Ultra 5"}, {"type": "RAM", "model": "16 GB"}, {"type": "Storage", "model": "256 GB SSD"}], "major": [{"criteria": "Patient safety risk", "classification": "Major Incident"}, {"criteria": "Entire ward unavailable", "classification": "Major Incident"}, {"criteria": "Large scale outage", "classification": "Major Incident"}], "taskforce": ["What is not working?", "What is still working?", "Who is affected?", "How many users are affected?", "Since when?", "Error message?", "Work restricted or unavailable?", "Possible workaround?"], "services": [{"service": "Active Directory", "owner": "CLBB-IT | Servicedesk"}, {"service": "Windows", "owner": "CLBB-IT | Servicedesk"}, {"service": "Office", "owner": "CLBB-IT | Servicedesk"}, {"service": "Citrix", "owner": "CLBB-IT | Infrasturktur"}, {"service": "SAP", "owner": "CLBB-IT | KIS-Support"}, {"service": "VPN", "owner": "CLBB-IT | Infrasturktur"}, {"service": "MFA", "owner": "CLBB-IT | Servicedesk"}, {"service": "Baramundi", "owner": "CLBB-IT | Infrasturktur"}, {"service": "IAM", "owner": "CLBB-IT | Infrasturktur"}, {"service": "HR Onboarding / Offboarding", "owner": "CLBB-IT | Accountmanagement"}], "keywords": [{"keyword": "Password", "group": "CLBB-IT | Servicedesk"}, {"keyword": "VPN", "group": "CLBB-IT | Servicedesk / CLBB-IT | Infrasturktur"}, {"keyword": "RDP", "group": "CLBB-IT | Infrasturktur"}, {"keyword": "LAN", "group": "OSS"}, {"keyword": "Switch", "group": "CLBB-IT | Infrasturktur"}, {"keyword": "DNS", "group": "CLBB-IT | Infrasturktur"}, {"keyword": "Firewall", "group": "CLBB-IT | Infrasturktur"}, {"keyword": "Docking Station", "group": "OSS"}, {"keyword": "Dell 14 Pro", "group": "OSS"}, {"keyword": "Clinical System", "group": "CLBB-IT | Klinische Anwendungen"}, {"keyword": "SAP", "group": "CLBB-IT | KIS-Support"}, {"keyword": "License", "group": "CLBB-IT | Servicedesk | Mgt"}, {"keyword": "M365 License", "group": "CLBB-IT | Servicedesk | Mgt"}, {"keyword": "Procurement", "group": "CLBB-IT | Servicedesk | Mgt"}, {"keyword": "PRTG", "group": "CLBB-IT | Infrastruktur"}, {"keyword": "Certificate Expiry", "group": "CLBB-IT | Infrastruktur"}, {"keyword": "WLAN Zertifikat", "group": "CLBB-IT | Infrastruktur"}, {"keyword": "Monitoring Alert", "group": "CLBB-IT | Infrastruktur"}], "specific": [{"group": "CLBB-IT | Servicedesk | Mgt", "usage": "Requests requiring approval, procurement, hardware orders and licenses generating costs"}, {"group": "Other Mgt groups", "usage": "Not relevant for Service Desk. Do not use unless explicitly instructed by management"}], "sap": [{"type": "SAP Incident", "group": "CLBB-IT | KIS-Support"}, {"type": "SAP Access Issue", "group": "CLBB-IT | KIS-Support"}, {"type": "SAP Functional Problem", "group": "CLBB-IT | KIS-Support"}, {"type": "SAP Application Error", "group": "CLBB-IT | KIS-Support"}], "licenses": [{"type": "Microsoft 365 License", "group": "CLBB-IT | Servicedesk | Mgt"}, {"type": "Office License", "group": "CLBB-IT | Servicedesk | Mgt"}, {"type": "Exchange License", "group": "CLBB-IT | Servicedesk | Mgt"}, {"type": "Teams License", "group": "CLBB-IT | Servicedesk | Mgt"}, {"type": "General User License Request", "group": "CLBB-IT | Servicedesk | Mgt"}], "infraTickets": [{"scenario": "Monitoring ticket without affected user", "group": "CLBB-IT | Infrastruktur"}, {"scenario": "PRTG generated infrastructure alert", "group": "CLBB-IT | Infrastruktur"}, {"scenario": "Device certificate expiry alert", "group": "CLBB-IT | Infrastruktur"}, {"scenario": "Infrastructure monitoring notifications", "group": "CLBB-IT | Infrastruktur"}], "notes": ["If there is no clear ownership after initial investigation, route the ticket to Service Desk L2 for additional analysis. Always collect hostname, error message and business impact before reassignment.", "SAP → CLBB-IT | KIS-Support", "M365 Licenses and Procurement → CLBB-IT | Servicedesk | Mgt", "PRTG and Certificate Alerts → CLBB-IT | Infrastruktur", "Missing Affected User → Sebastian Wildebrandt", "Only Servicedesk | Mgt should be used from Mgt groups."], "doc": {"document": "CL-Berlin Master Knowledge Base", "version": "1.0", "status": "Production Draft", "cluster": "Berlin Brandenburg", "sites": "Berlin Buch, Berlin Zehlendorf, Bad Saarow", "author": "Krystian Karankiewicz", "date": "15 July 2026"}}, "globalHelios": [{"service": "Active Directory", "group": "Ext_WW_AD_SLS_Capgemini_Helios", "notes": "Second level Support for AD for Helios"}, {"service": "MFA", "group": "Ext_WW_OCC_SLS_Capgemini_Helios", "notes": "Second Level Support for OCC-User-Administration for Helios"}, {"service": "Office 365 / Teams / Outlook", "group": "Ext_WW_Collaboration_SLS_Capgemini_Helios", "notes": "Second Level Support O365 and Collaboration for Helios"}, {"service": "Mobile Device / Mobile Services", "group": "Ext_WW_Mobile-Workplace_SLS_Capgemini_Helios", "notes": "Second Level Support Group for Mobile Service for Helios"}, {"service": "Physical Workplace", "group": "Ext_WW_Physical-Workplace_SLS_Capgemini_Helios", "notes": "Second Level Support Group for Physical Workplace for Helios"}, {"service": "Virtual Workplace", "group": "Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios", "notes": "Second Level Support Virtual-Workplace"}, {"service": "Printer Services", "group": "Ext_WW_Printer-Services_SLS_Capgemini_Helios", "notes": "All printing topics for Helios"}, {"service": "Network Services", "group": "Ext_WW_Network_SLS_Capgemini_Helios", "notes": "Helios Network incident and request management (2nd level)"}, {"service": "Azure", "group": "Ext_WW_Cloud-Services_SLS_Capgemini_Helios", "notes": "Azure cloud hosting and management for Helios"}, {"service": "Kubernetes", "group": "Ext_WW_Kubernetes_SLS_Capgemini_Helios", "notes": "Second Level Support for Kubernetes from EU for Helios"}, {"service": "Databases", "group": "Ext_WW_Database-PaaS_SLS_Capgemini_Helios", "notes": "Central Databases for Helios"}, {"service": "VMWare", "group": "Ext_WW_VMWare-CentralServer-CIaaS_SLS_Capgemini_Helios", "notes": "Central Hypervisor (Onsite & AVS) Infra for Helios"}, {"service": "Linux Admin Berlin", "group": "Ext_DE_Berlin-LinuxAdmin_Capgemini_Helios", "notes": "Linux and OS administration for Helios Berlin"}, {"service": "Application Platform Management", "group": "Ext_WW_Application Platform Management_SLS_Capgemini_Helios", "notes": "Second Level Support for Application Platform Management"}, {"service": "Linux Central Server", "group": "Ext_WW_Linux-CentralServer-CIaaS_SLS_Capgemini_Helios", "notes": "Central Linux server for Helios"}, {"service": "Microsoft Central Server", "group": "Ext_WW_Microsoft-CentralServer-CIaaS_SLS_Capgemini_Helios", "notes": "Central Windows server for Helios"}, {"service": "Software Deployment", "group": "Ext_WW_S/w deployment_SLS_Capgemini_Helios", "notes": "Software Packaging & Distribution for Helios"}, {"service": "Storage Shared DC Infra", "group": "Ext_WW_Storage-SharedDCInfra-CIaaS_SLS_Capgemini_Helios", "notes": "Central Backup & Storage service"}, {"service": "Tools PaaS", "group": "Ext_WW_Tools-PaaS_SLS_Capgemini_Helios", "notes": "Nagios, CheckMK, SCCM, SCORCH"}, {"service": "Swivel Chair Queue", "group": "Ext_WW_Swivel-Chair-Helios_Capgemini_Helios", "notes": "Global Service Desk queue to re-key tickets from Helios SNOW"}, {"service": "eDiscovery", "group": "Ext_WW_eDiscovery_TLS_Capgemini_Helios", "notes": "Litigation hold, retrieval and export of user data"}, {"service": "WPS Apps Packaging", "group": "Ext_WW_WPS_AppsPackaging_SLS_Capgemini_Helios", "notes": "Second Level Support AppsPackaging"}, {"service": "WPS Mobile Device Procurement", "group": "Ext_WW_WPS_MobileDeviceProcurement_SLS_Capgemini_Helios", "notes": "Mobile Device Procurement"}, {"service": "AD FLS", "group": "Ext_WW_AD_FLS_Capgemini_Helios", "notes": "First Level Support for AD"}, {"service": "FSO Attended Support", "group": "Ext_DE_FSO_AttendedSupport_SLS_Capgemini_Helios", "notes": "VIP / Executive onsite support"}, {"service": "FSO Incidents Dispatch", "group": "Ext_DE_FSO_Incidents_Dispatch_SLS_Capgemini_Helios", "notes": "Incident Tickets for Dispatch Engineers"}, {"service": "FSO Incidents", "group": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios", "notes": "Incident Tickets for Onsite Services + Mobile technicians"}, {"service": "FSO Service Requests Dispatch", "group": "Ext_DE_FSO_ServiceRequests_Dispatch_SLS_Capgemini_Helios", "notes": "Service Requests for Dispatch Engineers"}, {"service": "FSO Service Requests", "group": "Ext_DE_FSO_ServiceRequests_SLS_Capgemini_Helios", "notes": "Service Requests for Onsite Services + Mobile technicians"}, {"service": "FSO KM", "group": "EXT_DE_FSO_SLS_Capgemini_KM_Helios", "notes": "Field Service Knowledge Management"}, {"service": "FSO SmartHands Dispatch", "group": "Ext_DE_FSO_SmartHands_Dispatch_SLS_Capgemini_Helios", "notes": "SmartHands for Infrastructure & Network (dispatch)"}, {"service": "FSO SmartHands", "group": "Ext_DE_FSO_SmartHands_SLS_Capgemini_Helios", "notes": "SmartHands for Infrastructure & Network (onsite)"}, {"service": "Berlin Database Admin", "group": "Ext_DE_Berlin-DatabaseAdmin_SLS_Capgemini", "notes": "Database operations for Helios"}, {"service": "Berlin Windows Admin", "group": "Ext_DE_Berlin-WindowsAdmin_SLS_Capgemini", "notes": "Windows and OS administration for Helios"}, {"service": "Berlin Service Desk FLS", "group": "Ext_DE_Berlin-Service-Desk_FLS_Capgemini", "notes": "L1 support for Berlin-related incidents"}, {"service": "Access Manager (IIQ)", "group": "Access Manager (IIQ) | Zentrale", "notes": "Identity account and access management"}, {"service": "Endpoint Detection & Response (EDR)", "group": "EDR | Zentrale", "notes": "Endpoint security"}, {"service": "INK | DMO / DocuSign / MDM", "group": "INK | Zentrale", "notes": "Mobile devices, dictations, DocuSign"}, {"service": "Passwordstate", "group": "Passwordstate | Zentrale", "notes": "Privileged password management"}, {"service": "SysOp | AD/Exchange", "group": "SysOp | AD/Exchange | Zentrale", "notes": "Tier 3 AD and mailboxes"}, {"service": "SysOp | Citrix", "group": "SysOp | Citrix | Zentrale", "notes": "Application and desktop publishing"}, {"service": "SysOp | VM / Storage", "group": "SysOp | VM | Zentrale", "notes": "VM infrastructure and storage"}, {"service": "Web Application Firewall (WAF)", "group": "WAF | Zentrale", "notes": "Perimeter security for web apps"}, {"service": "Web Security Gateway (WSG)", "group": "WSG | Zentrale", "notes": "Network traffic security and filtering"}], "wave1": [{"topic": "Passwort / Login / Account", "keywords": ["Passwort", "Kennwort", "Konto gesperrt", "Windows Login", "Outlook Login", "Lernbar", "AD Passwort"], "description": "Probleme mit Kennwort, Login oder gesperrten Benutzerkonten.", "quick": "AD prüfen, Konto entsperren, Passwort zurücksetzen, Login testen.", "group": "Ext_WW_AD_FLS_Capgemini_Helios"}, {"topic": "Account deaktiviert / MFA", "keywords": ["Account deaktiviert", "MFA", "Zugriff", "Benutzeradministration"], "description": "Zentrale Benutzerverwaltung und MFA Themen.", "quick": "Account Status prüfen und an zentrale Administration weiterleiten.", "group": "Ext_WW_OCC_SLS_Capgemini_Helios"}, {"topic": "Outlook / Exchange / Shared Mailbox", "keywords": ["Outlook", "Mailbox", "Shared Mailbox", "Verteiler", "Postfach voll", "SendAs", "FullAccess"], "description": "Mailboxen, Verteiler und Exchange Berechtigungen.", "quick": "Mailbox Berechtigungen prüfen, Benutzer hinzufügen, Speicher prüfen.", "group": "Ext_WW_Collaboration_SLS_Capgemini_Helios"}, {"topic": "Drucker / FollowMe / Zebra", "keywords": ["Drucker", "FollowMe", "Zebra", "Etiketten", "Labeldruck", "Kalibrierung", "Barcode", "Scanner", "Papierstau", "Scanfehler"], "description": "Druckprobleme, FollowMe Printing und Zebra-Etikettendrucker.", "quick": "Standarddrucker/FollowMe → Printer Services. Zebra einzelnes Gerät → Local IT. Zebra mehrere Geräte → RS | Klinische Prozesse & Anwendungen.", "group": "Ext_WW_Printer-Services_SLS_Capgemini_Helios / Local IT / RS | Klinische Prozesse & Anwendungen"}, {"topic": "Rezeptdrucker / Nadeldrucker", "keywords": ["Rezeptdrucker", "Nadeldrucker", "Epson", "Rezept", "Formulardruck", "Druckt nicht", "Offline", "Online"], "description": "Probleme mit Rezeptdruckern und Nadeldruckern.", "quick": "Offline → Local IT. Online aber druckt nicht → Printer Services.", "group": "Local IT / Ext_WW_Printer-Services_SLS_Capgemini_Helios"}, {"topic": "Drucker-Hardware / Vor-Ort-Prüfung", "keywords": ["Hardwaredefekt", "Scanner defekt", "Papierstau", "Druckstreifen"], "description": "Physischer Drucker oder Scanner Defekt.", "quick": "Basisprüfung durchführen und Vor-Ort-Kontrolle veranlassen.", "group": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"}, {"topic": "SAP (Wuppertal)", "keywords": ["SAP Login", "Launchpad", "SAP Rolle", "SAP Berechtigung", "D-Berichte"], "description": "SAP Zugriffe, Rollen und Launchpad.", "quick": "SAP Zugriff prüfen, GUI testen, Cache leeren.", "group": "CL-Wuppertal | SAP"}, {"topic": "SAP / KIS (Gotha)", "keywords": ["SAP", "KIS", "GOTHA", "i.s.h.med", "SAP i.s.h.med"], "description": "SAP und KIS (i.s.h.med)", "quick": "SAP Zugriff prüfen, Fehlerbild dokumentieren und eskalieren.", "group": "SAP i.s.h.med | Mgt"}, {"topic": "Citrix / Polaris / Published Apps", "keywords": ["Citrix", "Polaris", "Published App", "Black Screen", "Sitzung hängt"], "description": "Virtuelle Arbeitsplätze und veröffentlichte Anwendungen.", "quick": "Session reset, Logoff, Citrix Workspace Repair.", "group": "Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios"}, {"topic": "Klinische Anwendungen", "keywords": ["Patientenakte", "ePA", "Formular"], "description": "Klinische Anwendungen und klinische Prozesse.", "quick": "Nicht durch SD lösen, Ticket mit Fehlerbild eskalieren.", "group": "RS | Klinische Prozesse & Anwendungen"}, {"topic": "GLIFHORN KIS / Medico / SAP", "keywords": ["GLIFHORN Medico", "Blaue Welt", "Userportal", "KIS GLIFHORN", "DRG", "SAP GLIFHORN"], "description": "Medico KIS, auch als \"Blaue Welt\" oder \"Userportal\" bekannt.", "quick": "Nicht durch SD lösen, Ticket mit Fehlerbeschreibung weiterleiten.", "group": "KR-IT | Medico"}, {"topic": "Hardware / Monitor / Dockingstation", "keywords": ["Monitor", "Bildschirm", "Notebook", "Dockingstation", "Akku"], "description": "Arbeitsplatzhardware.", "quick": "Kabel prüfen, Neustart durchführen, Gegentest durchführen.", "group": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"}, {"topic": "PC langsam / Speicher voll", "keywords": ["PC langsam", "Rechner langsam", "C voll", "Speicherplatz"], "description": "Leistungsprobleme des Arbeitsplatzes.", "quick": "Task Manager, Uptime und Laufwerk prüfen.", "group": "Ext_WW_Physical-Workplace_SLS_Capgemini_Helios"}, {"topic": "Netzwerk / WLAN / Internet", "keywords": ["WLAN", "Internet", "LAN", "Zertifikat", "APN", "MACMON"], "description": "Verbindungsprobleme Netzwerk oder WLAN.", "quick": "Adapter prüfen, WLAN Zertifikat prüfen, MACMON prüfen.", "group": "Ext_WW_Network_SLS_Capgemini_Helios"}, {"topic": "Mobile Geräte / Intune / Firmenhandys", "keywords": ["iPhone", "Android", "Intune", "Company Portal", "MDM", "SIM Karte", "Firmenhandy", "Smartphone"], "description": "Probleme mit mobilen Endgeräten, Intune und Mobilfunkdiensten.", "quick": "Gerätesynchronisierung, Compliance, Intune-Registrierung und Benutzerzuordnung prüfen.", "group": "Ext_WW_Mobile-Workplace_SLS_Capgemini_Helios"}, {"topic": "Microsoft Teams / SharePoint / OneDrive", "keywords": ["Teams", "SharePoint", "OneDrive", "Teams Meeting", "Teams Chat", "Kanal"], "description": "Probleme mit Microsoft Teams, SharePoint oder OneDrive.", "quick": "Lizenz, Berechtigungen und Synchronisation prüfen.", "group": "Ext_WW_Collaboration_SLS_Capgemini_Helios"}, {"topic": "Azure Cloud Services", "keywords": ["Azure", "Cloud", "Azure VM", "Subscription", "Cloud Access"], "description": "Support für Azure-Dienste und Cloud-Infrastruktur.", "quick": "Betroffene Ressource und Fehlermeldung dokumentieren.", "group": "Ext_WW_Cloud-Services_SLS_Capgemini_Helios"}, {"topic": "Kubernetes / Container Plattform", "keywords": ["Kubernetes", "K8S", "Pod", "Container", "Cluster"], "description": "Probleme mit Kubernetes-Clustern und Containern.", "quick": "Clustername, Namespace und Fehlermeldung angeben.", "group": "Ext_WW_Kubernetes_SLS_Capgemini_Helios"}, {"topic": "Datenbanken", "keywords": ["SQL", "Oracle", "MSSQL", "Datenbank", "DB Access"], "description": "Datenbankadministration und Datenbankzugriffe.", "quick": "Datenbankname, Umgebung und Fehlermeldung dokumentieren.", "group": "Ext_WW_Database-PaaS_SLS_Capgemini_Helios"}, {"topic": "VMware / Virtuelle Maschinen", "keywords": ["VMware", "vCenter", "ESXi", "Virtuelle Maschine", "VM"], "description": "Probleme mit VMware-Infrastruktur und virtuellen Maschinen.", "quick": "Name der VM und Beschreibung des Problems angeben.", "group": "Ext_WW_VMWare-CentralServer-CIaaS_SLS_Capgemini_Helios"}, {"topic": "Linux Central Server", "keywords": ["Linux", "RedHat", "Ubuntu", "SSH", "Patch"], "description": "Zentrale Linux-Server und Betriebssystemadministration.", "quick": "Hostname, Fehlermeldung und Auswirkung dokumentieren.", "group": "Ext_WW_Linux-CentralServer-CIaaS_SLS_Capgemini_Helios"}, {"topic": "Microsoft Windows Server", "keywords": ["Windows Server", "IIS", "RDP", "Microsoft Server"], "description": "Zentrale Windows-Server-Infrastruktur.", "quick": "Servername und Fehlerbeschreibung dokumentieren.", "group": "Ext_WW_Microsoft-CentralServer-CIaaS_SLS_Capgemini_Helios"}, {"topic": "Software Deployment / SCCM", "keywords": ["SCCM", "Software Installation", "Deployment", "Paketierung"], "description": "Verteilung und Installation von Softwarepaketen.", "quick": "Name der Anwendung und Zielgerät angeben.", "group": "Ext_WW_S/w deployment_SLS_Capgemini_Helios"}, {"topic": "Backup / Storage / Restore", "keywords": ["Backup", "Restore", "Storage", "SAN", "NAS"], "description": "Datensicherung, Wiederherstellung und Storage-Infrastruktur.", "quick": "Betroffene Systeme und gewünschter Wiederherstellungspunkt angeben.", "group": "Ext_WW_Storage-SharedDCInfra-CIaaS_SLS_Capgemini_Helios"}, {"topic": "Application Platform Management", "keywords": ["Middleware", "Tomcat", "WebLogic", "Applikationsplattform"], "description": "Betrieb und Support von Middleware- und Plattformdiensten.", "quick": "Logdateien und Umgebung dokumentieren.", "group": "Ext_WW_Application Platform Management_SLS_Capgemini_Helios"}, {"topic": "Monitoring Tools", "keywords": ["Nagios", "CheckMK", "Monitoring", "SCORCH", "Alert"], "description": "Monitoring- und Managementwerkzeuge.", "quick": "Alarm-ID und betroffenen Dienst dokumentieren.", "group": "Ext_WW_Tools-PaaS_SLS_Capgemini_Helios"}, {"topic": "eDiscovery / Compliance", "keywords": ["eDiscovery", "Compliance", "Data Export", "Litigation Hold"], "description": "Datenexporte, Compliance-Anforderungen und rechtliche Aufbewahrung.", "quick": "Betroffenen Benutzer und Umfang der Anforderung angeben.", "group": "Ext_WW_eDiscovery_TLS_Capgemini_Helios"}, {"topic": "Applikations-Paketierung", "keywords": ["MSI", "Packaging", "Softwarepaket", "Anwendungspaket"], "description": "Erstellung und Anpassung von Softwarepaketen.", "quick": "Anwendungsname und Anforderungen dokumentieren.", "group": "Ext_WW_WPS_AppsPackaging_SLS_Capgemini_Helios"}, {"topic": "Bestellung Mobilgeräte", "keywords": ["Handy Bestellung", "SIM Bestellung", "Neues Smartphone", "Mobilfunkauftrag"], "description": "Beschaffung von Mobiltelefonen und SIM-Karten.", "quick": "Genehmigung und Benutzerdaten prüfen.", "group": "Ext_WW_WPS_MobileDeviceProcurement_SLS_Capgemini_Helios"}, {"topic": "Berechtigungen / AD Gruppen", "keywords": ["Freischaltung", "AD Gruppe", "Gruppe", "Berechtigung", "Zugriff"], "description": "Rechteverwaltung und AD Gruppen.", "quick": "Passende AD Gruppe finden und Mitgliedschaft hinzufügen.", "group": "Ext_WW_AD_FLS_Capgemini_Helios"}], "fsoGuide": [{"group": "Ext_DE_FSO_AttendedSupport_SLS_Capgemini_Helios", "type": "Attended Support", "when": "VIP users, executive support and high-priority onsite activities"}, {"group": "Ext_DE_FSO_Incidents_Dispatch_SLS_Capgemini_Helios", "type": "Incident Dispatch", "when": "Engineer must travel to resolve an Incident (VIP dispatch)"}, {"group": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios", "type": "Field Service Incident", "when": "Hardware failures, docking stations, monitors, workplace devices, physical printer issues"}, {"group": "Ext_DE_FSO_ServiceRequests_Dispatch_SLS_Capgemini_Helios", "type": "Dispatch Service Request", "when": "Planned service requiring travel: installations, hardware replacement, office relocation"}, {"group": "Ext_DE_FSO_ServiceRequests_SLS_Capgemini_Helios", "type": "Service Request", "when": "Workstation setup, monitor installation, peripheral delivery"}, {"group": "EXT_DE_FSO_SLS_Capgemini_KM_Helios", "type": "Knowledge Management", "when": "Knowledge articles, documentation, process updates"}, {"group": "Ext_DE_FSO_SmartHands_Dispatch_SLS_Capgemini_Helios", "type": "SmartHands Dispatch", "when": "Infra/Network activities requiring travel (rack, cabling, switch, server)"}, {"group": "Ext_DE_FSO_SmartHands_SLS_Capgemini_Helios", "type": "SmartHands Onsite", "when": "Infra/Network hands-on work at customer location"}], "locationCards": [{"name": "MVZ Region West", "rows": [["Account / Service Desk", "MVZ-IT RN/RW Team"], ["Infrastructure", "MVZ-IT RN/RW Team"], ["Clinical Applications", "MVZ-IT RN/RW Team & MVZ Produktmanagement"], ["SAP / KIS", "MVZ-IT RN/RW Team & MVZ Produktmanagement"], ["Field Service", "MVZ-IT RN/RW Team"], ["Note", "Region West und Nord wurden IT-seitig zusammengelegt. Je nach Thema erfolgt die Zusammenarbeit mit der Zentralen IT."]]}, {"name": "CL-Wuppertal", "rows": [["Service Desk", "CL-Wuppertal | Remotesupport"], ["Account Management", "CL-Wuppertal | Accountmanagement"], ["Infrastructure", "CL-Wuppertal | Infrastruktur"], ["Field Service", "CL-Wuppertal | Field Service"], ["Clinical Applications", "CL-Wuppertal | Klinische Anwendungen"], ["SAP", "CL-Wuppertal | SAP"]]}, {"name": "Berlin / Brandenburg", "rows": [["Service Desk", "CLBB-IT | Servicedesk"], ["Infrastructure", "CLBB-IT | Infrastruktur"], ["Clinical Applications", "CLBB-IT | Klinische Anwendungen"], ["KIS / SAP", "CLBB-IT | KIS-Support"], ["Account Management", "CLBB-IT | Accountmanagement"], ["MVZ", "CLBB-IT | MVZ"], ["Berlin Buch", "BLN-IT | Fieldservice"], ["Berlin Zehlendorf", "BEB-IT | Fieldservice"], ["Bad Saarow", "BS-IT | Fieldservice"]]}, {"name": "Krefeld", "rows": [["Service Desk", "KR-IT | Service Desk"], ["Infrastructure", "KR-IT | Infrastruktur"], ["Clinical Applications", "KR-IT | Klinische Applikationen"], ["Medico", "KR-IT | Medico"], ["SAP", "KR-IT | Klinische Applikationen"], ["Field Service", "KR-IT | Fieldservice"], ["General IT", "KR-IT"]]}, {"name": "Kassel", "rows": [["Service Desk", "KS-IT"], ["Infrastructure", "KS-IT"], ["Clinical Applications", "KS-IT"], ["SAP / KIS", "KS-IT"], ["Field Service", "KS-IT"], ["General IT", "KS-IT"]]}, {"name": "Duisburg", "rows": [["Account / Service Desk", "DU-IT | Client Mgt"], ["Infrastructure", "DU-IT | Infrastruktur"], ["Clinical Applications", "SKZ-IT | Klinische Anwendungen"], ["SAP", "SAP Basis"], ["Field Service", "DU-IT | Client Mgt"], ["Softwares (DMO / Baramundi / C37)", "DU-IT | Software & Systeme"], ["Orbis (KIS)", "Orbis"], ["CGM Muse", "AMOR/MUSE"], ["JiveX", "SKZ-IT | Klinische Anwendungen"]]}, {"name": "Region South", "rows": [["Service Desk", "RS | Servicedesk"], ["Infrastructure", "RS | Infrastruktur"], ["Clinical Applications", "RS | Klinische Prozesse & Anwendungen"], ["iSHMED", "RS | iSHMED"], ["MVZ", "RS MVZ Support"], ["OSS", "OSS - Klinik or Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"]]}, {"name": "Gotha", "rows": [["General IT / Support", "GTH-IT"], ["Management / Field Service", "GTH-IT | Mgt"]]}, {"name": "Gifhorn", "rows": [["General IT / Support", "GF-IT"]]}, {"name": "Sachsen - Nordfranken", "rows": [["Account Management", "AU-IT / FTL-IT | Benutzeranträge"], ["Infrastructure", "AU-IT / FTL-IT | Infrastruktur"], ["Field Service", "AU-IT / FTL-IT / PL-IT | Fieldservice"], ["Clinical / MVZ", "KC-IT / PL-IT | MVZ"], ["SAP", "TBD"]]}, {"name": "Thüringen Mitte", "rows": [["Account Management", "BLA-IT / EF-IT | Benutzerantrag"], ["Infrastructure", "EF-IT | Infrastruktur"], ["Field Service", "BLA-IT / EF-IT / GRE-IT | Fieldservice"], ["Clinical", "TBD"], ["SAP", "TBD"]]}, {"name": "Mainfranken-Südthüringen", "rows": [["Account Management", "MGN | Benutzerantrag"], ["Infrastructure", "BKG-IT / HBN / MGN | Infrastruktur"], ["Field Service", "HBN / MGN | Fieldservice"], ["Clinical", "TBD"], ["SAP", "TBD"]]}, {"name": "Schwarzwald-Bodensee", "rows": [["Infrastructure", "MUE-IT / TIT-IT | Infrastruktur"], ["Field Service", "BRE-IT / MUE-IT / ROT-IT | Fieldservice"], ["Account / Clinical / SAP", "TBD"]]}, {"name": "Magdeburg", "rows": [["Service Desk / Account", "KOET-IT / OC-IT | Servicedesk"], ["Infrastructure", "OC-IT / ZE-IT | Infrastruktur"], ["Field Service", "KOET-IT / VGM-IT / ZE-IT | Fieldservice"], ["Clinical / SAP", "TBD"]]}, {"name": "Wiesbaden-Main-Taunus", "rows": [["Service Desk / Account", "CL-Wiesbaden-Taunus | ServiceDesk"], ["Infrastructure", "CL-Wiesbaden-Taunus | Infrastruktur"], ["Field Service", "HSK / IDS | Fieldservice"], ["Clinical / SAP", "TBD"]]}, {"name": "Leipzig", "rows": [["Active Directory / Account", "LPZ-IT | Active Directory"], ["Infrastructure", "LEI-IT / LPZ-IT | Infrastruktur"], ["Field Service", "LEI-IT / LPZ-IT | Fieldservice"], ["Clinical / MVZ", "LEI-IT / LPZ-IT | MVZ"], ["SAP", "TBD"]]}, {"name": "Oberbayern", "rows": [["Field Service", "DAH-IT / IDD-IT / MPA-IT"], ["Infrastructure / Clinical / SAP", "TBD"]]}, {"name": "Südniedersachsen-Nordhessen", "rows": [["Infrastructure", "HI-IT | Infrastruktur"], ["Field Service", "HBH-IT / KS-IT / WAR-IT | Fieldservice"], ["Account / Clinical / SAP", "TBD"]]}]};
+const KB = {"meta":{"title":"Helios Master Matrix","subtitle":"Global Routing · Berlin KB · Wave 1 Keyword Routing · v2026-08-11","version":"2026-08-11","author":"Krystian Karankiewicz / Capgemini Swivel Chair"},"clusters":{"CL-Wuppertal":{"Infrastructure":"CL-Wuppertal | Infrastruktur","Clinical":"CL-Wuppertal | Klinische Anwendungen","SAP":"CL-Wuppertal | SAP","Account":"CL-Wuppertal | Accountmanagement","FieldService":"CL-Wuppertal | Field Service","ServiceDesk":"CL-Wuppertal | Remotesupport"},"Berlin":{"Infrastructure":"CLBB-IT | Infrastruktur","Clinical":"CLBB-IT | Klinische Anwendungen","SAP":"CLBB-IT | KIS-Support","Account":"CLBB-IT | Accountmanagement","FieldService":"BLN-IT | Fieldservice","ServiceDesk":"CLBB-IT | Servicedesk"},"Berlin Zehlendorf":{"Infrastructure":"CLBB-IT | Infrastruktur","Clinical":"CLBB-IT | Klinische Anwendungen","SAP":"CLBB-IT | KIS-Support","Account":"CLBB-IT | Accountmanagement","FieldService":"BEB-IT | Fieldservice","ServiceDesk":"CLBB-IT | Servicedesk"},"Bad Saarow":{"Infrastructure":"CLBB-IT | Infrastruktur","Clinical":"CLBB-IT | Klinische Anwendungen","SAP":"CLBB-IT | KIS-Support","Account":"CLBB-IT | Accountmanagement","FieldService":"BS-IT | Fieldservice","ServiceDesk":"CLBB-IT | Servicedesk"},"Krefeld":{"Infrastructure":"KR-IT | Infrastruktur","Clinical":"KR-IT | Klinische Applikationen","SAP":"KR-IT | Medico","Account":"KR-IT","FieldService":"KR-IT | Fieldservice","ServiceDesk":"KR-IT | Service Desk"},"Kassel":{"Infrastructure":"KS-IT","Clinical":"KS-IT","SAP":"KS-IT","Account":"KS-IT","FieldService":"KS-IT","ServiceDesk":"KS-IT"},"Duisburg":{"Infrastructure":"DU-IT | Infrastruktur","Clinical":"SKZ-IT | Klinische Anwendungen","SAP":"SAP Basis","Account":"DU-IT | Client Mgt","FieldService":"DU-IT | Client Mgt","Software":"DU-IT | Software & Systeme","Orbis":"Orbis","Muse":"AMOR/MUSE","JiveX":"SKZ-IT | Klinische Anwendungen","ServiceDesk":"DU-IT | Client Mgt"},"Region Süd":{"Infrastructure":"RS | Infrastruktur","Clinical":"RS | Klinische Prozesse & Anwendungen","SAP":"RS | iSHMED","Account":"RS MVZ Support","FieldService":"Ext_DE_FSO_Incidents_SLS_Capgemini_Helios","ServiceDesk":"RS | Servicedesk"},"Gotha":{"Infrastructure":"GTH-IT","Clinical":"GTH-IT","SAP":"GTH-IT","Account":"GTH-IT","FieldService":"GTH-IT | Mgt","ServiceDesk":"GTH-IT"},"Gifhorn":{"Infrastructure":"GF-IT","Clinical":"GF-IT","SAP":"GF-IT","Account":"GF-IT","FieldService":"GF-IT","ServiceDesk":"GF-IT"},"Sachsen - Nordfranken":{"Infrastructure":"AU-IT / FTL-IT | Infrastruktur","Clinical":"KC-IT / PL-IT | MVZ","SAP":"TBD","Account":"AU-IT / FTL-IT | Benutzeranträge","FieldService":"AU-IT / FTL-IT / PL-IT | Fieldservice","ServiceDesk":"AU-IT / FTL-IT | Benutzeranträge"},"Thüringen Mitte":{"Infrastructure":"EF-IT | Infrastruktur","Clinical":"TBD","SAP":"TBD","Account":"BLA-IT / EF-IT | Benutzerantrag","FieldService":"BLA-IT / EF-IT / GRE-IT | Fieldservice","ServiceDesk":"BLA-IT / EF-IT | Benutzerantrag"},"Mainfranken-Südthüringen":{"Infrastructure":"BKG-IT / HBN / MGN | Infrastruktur","Clinical":"TBD","SAP":"TBD","Account":"MGN | Benutzerantrag","FieldService":"HBN / MGN | Fieldservice","ServiceDesk":"MGN | Benutzerantrag"},"Schwarzwald-Bodensee":{"Infrastructure":"MUE-IT / TIT-IT | Infrastruktur","Clinical":"TBD","SAP":"TBD","Account":"TBD","FieldService":"BRE-IT / MUE-IT / ROT-IT | Fieldservice","ServiceDesk":"TBD"},"Magdeburg":{"Infrastructure":"OC-IT / ZE-IT | Infrastruktur","Clinical":"TBD","SAP":"TBD","Account":"KOET-IT / OC-IT | Servicedesk","FieldService":"KOET-IT / VGM-IT / ZE-IT | Fieldservice","ServiceDesk":"KOET-IT / OC-IT | Servicedesk"},"Wiesbaden-Main-Taunus":{"Infrastructure":"CL-Wiesbaden-Taunus | Infrastruktur","Clinical":"TBD","SAP":"TBD","Account":"CL-Wiesbaden-Taunus | ServiceDesk","FieldService":"HSK / IDS | Fieldservice","ServiceDesk":"CL-Wiesbaden-Taunus | ServiceDesk"},"Leipzig":{"Infrastructure":"LEI-IT / LPZ-IT | Infrastruktur","Clinical":"LEI-IT / LPZ-IT | MVZ","SAP":"TBD","Account":"LPZ-IT | Active Directory","FieldService":"LEI-IT / LPZ-IT | Fieldservice","ServiceDesk":"LPZ-IT | Active Directory"},"Oberbayern":{"Infrastructure":"TBD","Clinical":"TBD","SAP":"TBD","Account":"TBD","FieldService":"DAH-IT / IDD-IT / MPA-IT","ServiceDesk":"TBD"},"Südniedersachsen-Nordhessen":{"Infrastructure":"HI-IT | Infrastruktur","Clinical":"TBD","SAP":"TBD","Account":"TBD","FieldService":"HBH-IT / KS-IT / WAR-IT | Fieldservice","ServiceDesk":"TBD"}},"apps":{"clinical":["MetaVision","Orbis","JiveX","AQURE","RIS","PACS","GE PACS","K-PACS","BrainLab","BioJet","CardioSoft","Centricity RIS","Centricity Cardiology","CGM Muse","Cloverleaf","Delegate","GeriDoc","Waveware","AVP","EPIAS","FACSLyric","Halo AP","HKWin","HMS","Hyper.COM","Hyper.TELEMED","IntelliSpace Cardiovascular","IntelliSpace Perinatal","ix.connect","iXServ","JiveX Dicom Broker","Jocap XL","Jomosoft","Kapselendoskopie","KiDSafe","KiTAP","Mac-Lab","MediConnect","mediCAD","Mortara HScribe","MyMediktor","NarkoData","navify","Nephro 7","NIDA Plattform","ODSeasy","Oncobox","OPUS::L","Pacer","PADSY","PillCam","Polaris.One","QIAxcel","Qims","QUALImagiQ","RDG","Scanner Administrator Manager","Schmerzvisite","Sentinel","Telepaxx","TempLog","TKmed","Trium","Ultraschallgeräte","Uroflow","Uronav","V-Stats","Viewpoint","ViMeDat","Vyntus Walk","Welch Allyn Connex","XLab","ZEN","Zenzy","ZzzPat","EISA / PDMS","Aria"],"infrastructure":["Citrix","C37","Citrix Virtual Apps and Desktops","VPN","Secure VPN","SAP GUI","SAP NWBC","SAP Router","Printer Mapping","Printer Configuration","FollowMe Printing","Baramundi","MACMON","CheckMK","PRTG","BitLocker","DHCP","DameWare","Active Directory","Active Fax","Apex One","DMO","Dragon Medical Direct","Nuance Dragon Medical One","SpeaKING Dictat","Firewall","Hyper-V","Identity Manager","IGEL OS","IGEL UMS","iris-PrintBox","iris-VIEW","KODIP Server","NetWorker","NPS","OpenVAS","ORCA AVA","Power PDF","PW Self Service","Royal TS","TA-Cockpit","Time Office","USV Management","Visual Studio","VMware vSphere","WLAN","WUPABS","XPressions Faxserver"],"sap":["Amasys","Pegasus","HBA","HKSCAN","HKWAB","i.s.h.med","IS-H","KODIP Suite","Krankenkassenkartenleser","QS-MED","Medico","HTP"],"account":["Password Reset","User Unlock","Account Activation","Account Reactivation","Folder Access","Network Drive Access","Shared Mailbox Access","Distribution Group Access","Exchange Distribution Lists","O365 License","M365 License","Teams License","AD Group Membership","Basic SAP Access"],"field":["Notebook Defect","Monitor Defect","Docking Station","Headset Defect","Keyboard Defect","Mouse Defect","Tablet Problem","iPad Problem","Phone Problem","Workstation Setup","Workplace Setup","Office Relocation","Cabling","Printer Hardware Defect","Printer Paper Jam","Toner Empty","Monitor Installation","Zebra Printer","Delegate iPad","Photo Printer"]},"berlinAz":{"Amasys":"CLBB-IT | KIS-Support","Active Directory":"CLBB-IT | Servicedesk","AirWatch":"CLBB-IT | Servicedesk","AQURE":"CLBB-IT | Klinische Anwendungen","Aria":"CLBB-IT | Klinische Anwendungen","Baramundi":"CLBB-IT | Infrasturktur","BitLocker":"CLBB-IT | Infrasturktur","BrainLab":"CLBB-IT | Klinische Anwendungen","CardioSoft":"CLBB-IT | Klinische Anwendungen","Centricity RIS":"CLBB-IT | Klinische Anwendungen","CGM Muse":"CLBB-IT | Servicedesk","Citrix Virtual Apps":"CLBB-IT | Infrasturktur","Citrix":"CLBB-IT | Infrasturktur","Cloverleaf":"CLBB-IT | Klinische Anwendungen","DameWare":"CLBB-IT | Infrasturktur","Delegate":"CLBB-IT | Klinische Anwendungen","DHCP":"CLBB-IT | Infrasturktur","DMO":"CLBB-IT | Servicedesk","EPIAS":"CLBB-IT | Klinische Anwendungen","Exchange":"CLBB-IT | Servicedesk","FACSLyric":"CLBB-IT | Klinische Anwendungen","Firewall":"CLBB-IT | Infrasturktur","FollowMe Printing":"CLBB-IT | Servicedesk","GE PACS":"CLBB-IT | Klinische Anwendungen","GeriDoc":"CLBB-IT | Klinische Anwendungen","Halo AP":"CLBB-IT | Klinische Anwendungen","HBA":"CLBB-IT | KIS-Support","HKSCAN":"CLBB-IT | KIS-Support","HKWAB":"CLBB-IT | KIS-Support","Hyper-V":"CLBB-IT | Infrasturktur","Identity Manager":"CLBB-IT | Servicedesk","IGEL OS / UMS":"CLBB-IT | Servicedesk","IGEL OS":"CLBB-IT | Servicedesk","IGEL UMS":"CLBB-IT | Servicedesk","i.s.h.med":"CLBB-IT | KIS-Support","IS-H":"CLBB-IT | KIS-Support","IntelliSpace Cardiovascular":"CLBB-IT | Klinische Anwendungen","IntelliSpace Perinatal":"CLBB-IT | Klinische Anwendungen","JiveX":"CLBB-IT | Klinische Anwendungen","K-PACS":"CLBB-IT | Klinische Anwendungen","KiDSafe":"CLBB-IT | Klinische Anwendungen","KODIP Suite":"CLBB-IT | KIS-Support","LOGA":"HR Application Owner","MACMON":"CLBB-IT | Infrasturktur","MediConnect":"CLBB-IT | Klinische Anwendungen","mediCAD":"CLBB-IT | Klinische Anwendungen","MetaVision":"CLBB-IT | Klinische Anwendungen","MFA":"CLBB-IT | Servicedesk","MyHelios":"ZD IT","NarkoData":"CLBB-IT | Klinische Anwendungen","NetWorker":"CLBB-IT | Infrasturktur","Nuance Dragon Medical One":"CLBB-IT | Infrasturktur","Oncobox":"CLBB-IT | Klinische Anwendungen","OpenVAS":"CLBB-IT | Infrasturktur","Outlook":"CLBB-IT | Servicedesk","PACS":"CLBB-IT | Klinische Anwendungen","PADSY":"CLBB-IT | Klinische Anwendungen","Pegasus":"CLBB-IT | KIS-Support","Polaris.One":"CLBB-IT | Klinische Anwendungen","Power PDF":"CLBB-IT | Servicedesk","PRTG":"CLBB-IT | Infrastruktur","QS-MED":"CLBB-IT | KIS-Support","QlikView":"CLBB-IT | Servicedesk","RIS":"CLBB-IT | Klinische Anwendungen","Royal TS":"CLBB-IT | Infrasturktur","SAP GUI":"CLBB-IT | KIS-Support","SAP NWBC":"CLBB-IT | KIS-Support","SAP Router":"CLBB-IT | KIS-Support","Secure VPN":"CLBB-IT | Infrasturktur","Sentinel":"CLBB-IT | Klinische Anwendungen","SpeaKING Dictat":"CLBB-IT | Infrasturktur","Teams":"CLBB-IT | Servicedesk","Telepaxx":"CLBB-IT | Klinische Anwendungen","Time Office":"CLBB-IT | Infrasturktur","TKmed":"CLBB-IT | Klinische Anwendungen","Trium":"CLBB-IT | Klinische Anwendungen","USV Management":"CLBB-IT | Infrasturktur","Uronav":"CLBB-IT | Klinische Anwendungen","Viewpoint":"CLBB-IT | Klinische Anwendungen","Visual Studio":"CLBB-IT | Servicedesk","VMware vSphere":"CLBB-IT | Infrasturktur","VPN":"CLBB-IT | Servicedesk / CLBB-IT | Infrasturktur","Waveware":"waveware | DEIN-MP","WLAN":"CLBB-IT | Infrasturktur","XLab":"CLBB-IT | Klinische Anwendungen","xPhone":"CLBB-IT | Servicedesk","XWiki":"CLBB-IT | Servicedesk","ZEN":"CLBB-IT | Klinische Anwendungen","ZEUS":"CLBB-IT | Klinische Anwendungen"},"berlin":{"assignmentGroups":[{"group":"BEB-IT | Fieldservice","responsibility":"OSS — Berlin Zehlendorf / Helios Klinikum Emil von Behring GmbH"},{"group":"BLN-IT | Fieldservice","responsibility":"OSS — Berlin Buch"},{"group":"BS-IT | Fieldservice","responsibility":"OSS — Bad Saarow"},{"group":"CLBB-IT | Servicedesk","responsibility":"Initial analysis and routing, SD L2"},{"group":"CLBB-IT | Infrasturktur","responsibility":"Infrastructure and backend systems, LAN, VPN, Network, Firewall, DNS"},{"group":"CLBB-IT | Klinische Anwendungen","responsibility":"Clinical applications/systems and medical applications"},{"group":"CLBB-IT | KIS-Support","responsibility":"SAP applications and workflows"},{"group":"CLBB-IT | Accountmanagement","responsibility":"User accounts and permissions"},{"group":"CLBB-IT | MVZ","responsibility":"xVianova, Medidoc applications and workflows"},{"group":"CLBB-IT | Servicedesk | Mgt","responsibility":"Management and procurement approvals"}],"requiredInfo":[{"info":"User Name","required":"Yes","notes":"Always collect requestor information"},{"info":"Phone Number","required":"Preferred","notes":"Required for callback scenarios"},{"info":"Location","required":"Yes","notes":"Building / Clinic / Department / Roomnumber"},{"info":"Department","required":"Preferred","notes":""},{"info":"Hostname","required":"Yes","notes":"Hostname or Asset Tag"},{"info":"Error Message","required":"Yes","notes":"Exact wording whenever available"},{"info":"Screenshot","required":"Preferred","notes":"Especially for SAP and clinical applications"},{"info":"Application Name","required":"Yes","notes":"Identify affected system"},{"info":"Business Impact","required":"Yes","notes":"Number of users or patient impact"},{"info":"Issue Start Date","required":"Yes","notes":"When issue first occurred"}],"routingDecision":[{"q":"Does the issue follow the user regardless of device?","yes":"Servicedesk","no":"Continue investigation"},{"q":"Is physical intervention required?","yes":"Field Service","no":"Continue investigation"},{"q":"Is it related to Citrix, VPN, Printer Mapping or Software Installation?","yes":"Infrastruktur","no":"Continue investigation"},{"q":"Is the application used directly for patient treatment or diagnostics?","yes":"Klinische Anwendungen","no":"Continue investigation"},{"q":"Can the user login successfully into SAP?","yes":"KIS-Support","no":"KIS-Support"}],"lan":[{"issue":"No LAN connectivity","group":"OSS","notes":"Verify cable first"},{"issue":"LAN port issue","group":"OSS","notes":"Check patching"},{"issue":"Switch connectivity","group":"CLBB-IT | Infrasturktur","notes":"Network infrastructure"},{"issue":"DNS problem","group":"CLBB-IT | Infrasturktur","notes":"DNS services"},{"issue":"Firewall request","group":"CLBB-IT | Infrasturktur","notes":"Firewall changes"}],"vpn":[{"issue":"Token not received","group":"CLBB-IT | Servicedesk","action":"Investigate MFA method"},{"issue":"VPN Login Failed","group":"CLBB-IT | Servicedesk","action":"Verify password and special characters"},{"issue":"Cisco Secure Client missing","group":"CLBB-IT | Servicedesk","action":"Deploy through Baramundi"},{"issue":"Remote Desktop access failure","group":"CLBB-IT | Infrasturktur","action":"RDP troubleshooting"}],"desktop":[{"issue":"Laptop does not start","group":"OSS","notes":"Hardware investigation"},{"issue":"Black screen","group":"OSS","notes":"Physical troubleshooting"},{"issue":"Docking station issue","group":"OSS","notes":"Hardware support"},{"issue":"No WiFi","group":"OSS","notes":"Basic troubleshooting"},{"issue":"Device slow","group":"OSS","notes":"Check storage and Task Manager"}],"hardware":[{"type":"Laptop","model":"Dell 14 Pro"},{"type":"Desktop","model":"Dell Pro Micro Plus"},{"type":"CPU","model":"Intel Core Ultra 5"},{"type":"RAM","model":"16 GB"},{"type":"Storage","model":"256 GB SSD"}],"major":[{"criteria":"Patient safety risk","classification":"Major Incident"},{"criteria":"Entire ward unavailable","classification":"Major Incident"},{"criteria":"Large scale outage","classification":"Major Incident"}],"taskforce":["What is not working?","What is still working?","Who is affected?","How many users are affected?","Since when?","Error message?","Work restricted or unavailable?","Possible workaround?"],"services":[{"service":"Active Directory","owner":"CLBB-IT | Servicedesk"},{"service":"Windows","owner":"CLBB-IT | Servicedesk"},{"service":"Office","owner":"CLBB-IT | Servicedesk"},{"service":"Citrix","owner":"CLBB-IT | Infrasturktur"},{"service":"SAP","owner":"CLBB-IT | KIS-Support"},{"service":"VPN","owner":"CLBB-IT | Infrasturktur"},{"service":"MFA","owner":"CLBB-IT | Servicedesk"},{"service":"Baramundi","owner":"CLBB-IT | Infrasturktur"},{"service":"IAM","owner":"CLBB-IT | Infrasturktur"},{"service":"HR Onboarding / Offboarding","owner":"CLBB-IT | Accountmanagement"}],"keywords":[{"keyword":"Password","group":"CLBB-IT | Servicedesk"},{"keyword":"VPN","group":"CLBB-IT | Servicedesk / CLBB-IT | Infrasturktur"},{"keyword":"RDP","group":"CLBB-IT | Infrasturktur"},{"keyword":"LAN","group":"OSS"},{"keyword":"Switch","group":"CLBB-IT | Infrasturktur"},{"keyword":"DNS","group":"CLBB-IT | Infrasturktur"},{"keyword":"Firewall","group":"CLBB-IT | Infrasturktur"},{"keyword":"Docking Station","group":"OSS"},{"keyword":"Dell 14 Pro","group":"OSS"},{"keyword":"Clinical System","group":"CLBB-IT | Klinische Anwendungen"},{"keyword":"SAP","group":"CLBB-IT | KIS-Support"},{"keyword":"License","group":"CLBB-IT | Servicedesk | Mgt"},{"keyword":"M365 License","group":"CLBB-IT | Servicedesk | Mgt"},{"keyword":"Procurement","group":"CLBB-IT | Servicedesk | Mgt"},{"keyword":"PRTG","group":"CLBB-IT | Infrastruktur"},{"keyword":"Certificate Expiry","group":"CLBB-IT | Infrastruktur"},{"keyword":"WLAN Zertifikat","group":"CLBB-IT | Infrastruktur"},{"keyword":"Monitoring Alert","group":"CLBB-IT | Infrastruktur"}],"specific":[{"group":"CLBB-IT | Servicedesk | Mgt","usage":"Requests requiring approval, procurement, hardware orders and licenses generating costs"},{"group":"Other Mgt groups","usage":"Not relevant for Service Desk. Do not use unless explicitly instructed by management"}],"sap":[{"type":"SAP Incident","group":"CLBB-IT | KIS-Support"},{"type":"SAP Access Issue","group":"CLBB-IT | KIS-Support"},{"type":"SAP Functional Problem","group":"CLBB-IT | KIS-Support"},{"type":"SAP Application Error","group":"CLBB-IT | KIS-Support"}],"licenses":[{"type":"Microsoft 365 License","group":"CLBB-IT | Servicedesk | Mgt"},{"type":"Office License","group":"CLBB-IT | Servicedesk | Mgt"},{"type":"Exchange License","group":"CLBB-IT | Servicedesk | Mgt"},{"type":"Teams License","group":"CLBB-IT | Servicedesk | Mgt"},{"type":"General User License Request","group":"CLBB-IT | Servicedesk | Mgt"}],"infraTickets":[{"scenario":"Monitoring ticket without affected user","group":"CLBB-IT | Infrastruktur"},{"scenario":"PRTG generated infrastructure alert","group":"CLBB-IT | Infrastruktur"},{"scenario":"Device certificate expiry alert","group":"CLBB-IT | Infrastruktur"},{"scenario":"Infrastructure monitoring notifications","group":"CLBB-IT | Infrastruktur"}],"notes":["If there is no clear ownership after initial investigation, route the ticket to Service Desk L2 for additional analysis. Always collect hostname, error message and business impact before reassignment.","SAP → CLBB-IT | KIS-Support","M365 Licenses and Procurement → CLBB-IT | Servicedesk | Mgt","PRTG and Certificate Alerts → CLBB-IT | Infrastruktur","Missing Affected User → Sebastian Wildebrandt","Only Servicedesk | Mgt should be used from Mgt groups."],"doc":{"document":"CL-Berlin Master Knowledge Base","version":"1.0","status":"Production Draft","cluster":"Berlin Brandenburg","sites":"Berlin Buch, Berlin Zehlendorf, Bad Saarow","author":"Krystian Karankiewicz","date":"15 July 2026"}},"globalHelios":[{"service":"Active Directory","group":"Ext_WW_AD_SLS_Capgemini_Helios","notes":"Second level Support for AD for Helios"},{"service":"MFA","group":"Ext_WW_OCC_SLS_Capgemini_Helios","notes":"Second Level Support for OCC-User-Administration for Helios"},{"service":"Office 365 / Teams / Outlook","group":"Ext_WW_Collaboration_SLS_Capgemini_Helios","notes":"Second Level Support O365 and Collaboration for Helios"},{"service":"Mobile Device / Mobile Services","group":"Ext_WW_Mobile-Workplace_SLS_Capgemini_Helios","notes":"Second Level Support Group for Mobile Service for Helios"},{"service":"Physical Workplace","group":"Ext_WW_Physical-Workplace_SLS_Capgemini_Helios","notes":"Second Level Support Group for Physical Workplace for Helios"},{"service":"Virtual Workplace","group":"Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios","notes":"Second Level Support Virtual-Workplace"},{"service":"Printer Services","group":"Ext_WW_Printer-Services_SLS_Capgemini_Helios","notes":"All printing topics for Helios"},{"service":"Network Services","group":"Ext_WW_Network_SLS_Capgemini_Helios","notes":"Helios Network incident and request management (2nd level)"},{"service":"Azure","group":"Ext_WW_Cloud-Services_SLS_Capgemini_Helios","notes":"Azure cloud hosting and management for Helios"},{"service":"Kubernetes","group":"Ext_WW_Kubernetes_SLS_Capgemini_Helios","notes":"Second Level Support for Kubernetes from EU for Helios"},{"service":"Databases","group":"Ext_WW_Database-PaaS_SLS_Capgemini_Helios","notes":"Central Databases for Helios"},{"service":"VMWare","group":"Ext_WW_VMWare-CentralServer-CIaaS_SLS_Capgemini_Helios","notes":"Central Hypervisor (Onsite & AVS) Infra for Helios"},{"service":"Linux Admin Berlin","group":"Ext_DE_Berlin-LinuxAdmin_Capgemini_Helios","notes":"Linux and OS administration for Helios Berlin"},{"service":"Application Platform Management","group":"Ext_WW_Application Platform Management_SLS_Capgemini_Helios","notes":"Second Level Support for Application Platform Management"},{"service":"Linux Central Server","group":"Ext_WW_Linux-CentralServer-CIaaS_SLS_Capgemini_Helios","notes":"Central Linux server for Helios"},{"service":"Microsoft Central Server","group":"Ext_WW_Microsoft-CentralServer-CIaaS_SLS_Capgemini_Helios","notes":"Central Windows server for Helios"},{"service":"Software Deployment","group":"Ext_WW_S/w deployment_SLS_Capgemini_Helios","notes":"Software Packaging & Distribution for Helios"},{"service":"Storage Shared DC Infra","group":"Ext_WW_Storage-SharedDCInfra-CIaaS_SLS_Capgemini_Helios","notes":"Central Backup & Storage service"},{"service":"Tools PaaS","group":"Ext_WW_Tools-PaaS_SLS_Capgemini_Helios","notes":"Nagios, CheckMK, SCCM, SCORCH"},{"service":"Swivel Chair Queue","group":"Ext_WW_Swivel-Chair-Helios_Capgemini_Helios","notes":"Global Service Desk queue to re-key tickets from Helios SNOW"},{"service":"eDiscovery","group":"Ext_WW_eDiscovery_TLS_Capgemini_Helios","notes":"Litigation hold, retrieval and export of user data"},{"service":"WPS Apps Packaging","group":"Ext_WW_WPS_AppsPackaging_SLS_Capgemini_Helios","notes":"Second Level Support AppsPackaging"},{"service":"WPS Mobile Device Procurement","group":"Ext_WW_WPS_MobileDeviceProcurement_SLS_Capgemini_Helios","notes":"Mobile Device Procurement"},{"service":"AD FLS","group":"Ext_WW_AD_FLS_Capgemini_Helios","notes":"First Level Support for AD"},{"service":"FSO Attended Support","group":"Ext_DE_FSO_AttendedSupport_SLS_Capgemini_Helios","notes":"VIP / Executive onsite support"},{"service":"FSO Incidents Dispatch","group":"Ext_DE_FSO_Incidents_Dispatch_SLS_Capgemini_Helios","notes":"Incident Tickets for Dispatch Engineers"},{"service":"FSO Incidents","group":"Ext_DE_FSO_Incidents_SLS_Capgemini_Helios","notes":"Incident Tickets for Onsite Services + Mobile technicians"},{"service":"FSO Service Requests Dispatch","group":"Ext_DE_FSO_ServiceRequests_Dispatch_SLS_Capgemini_Helios","notes":"Service Requests for Dispatch Engineers"},{"service":"FSO Service Requests","group":"Ext_DE_FSO_ServiceRequests_SLS_Capgemini_Helios","notes":"Service Requests for Onsite Services + Mobile technicians"},{"service":"FSO KM","group":"EXT_DE_FSO_SLS_Capgemini_KM_Helios","notes":"Field Service Knowledge Management"},{"service":"FSO SmartHands Dispatch","group":"Ext_DE_FSO_SmartHands_Dispatch_SLS_Capgemini_Helios","notes":"SmartHands for Infrastructure & Network (dispatch)"},{"service":"FSO SmartHands","group":"Ext_DE_FSO_SmartHands_SLS_Capgemini_Helios","notes":"SmartHands for Infrastructure & Network (onsite)"},{"service":"Berlin Database Admin","group":"Ext_DE_Berlin-DatabaseAdmin_SLS_Capgemini","notes":"Database operations for Helios"},{"service":"Berlin Windows Admin","group":"Ext_DE_Berlin-WindowsAdmin_SLS_Capgemini","notes":"Windows and OS administration for Helios"},{"service":"Berlin Service Desk FLS","group":"Ext_DE_Berlin-Service-Desk_FLS_Capgemini","notes":"L1 support for Berlin-related incidents"},{"service":"Access Manager (IIQ)","group":"Access Manager (IIQ) | Zentrale","notes":"Identity account and access management"},{"service":"Endpoint Detection & Response (EDR)","group":"EDR | Zentrale","notes":"Endpoint security"},{"service":"INK | DMO / DocuSign / MDM","group":"INK | Zentrale","notes":"Mobile devices, dictations, DocuSign"},{"service":"Passwordstate","group":"Passwordstate | Zentrale","notes":"Privileged password management"},{"service":"SysOp | AD/Exchange","group":"SysOp | AD/Exchange | Zentrale","notes":"Tier 3 AD and mailboxes"},{"service":"SysOp | Citrix","group":"SysOp | Citrix | Zentrale","notes":"Application and desktop publishing"},{"service":"SysOp | VM / Storage","group":"SysOp | VM | Zentrale","notes":"VM infrastructure and storage"},{"service":"Web Application Firewall (WAF)","group":"WAF | Zentrale","notes":"Perimeter security for web apps"},{"service":"Web Security Gateway (WSG)","group":"WSG | Zentrale","notes":"Network traffic security and filtering"}],"wave1":[{"topic":"Password / Login / Account","keywords":["Passwort","Kennwort","Konto gesperrt","Windows Login","Outlook Login","Lernbar","AD Passwort"],"description":"Problems with passwords, login or locked user accounts.","quick":"Check AD, unlock account, reset password, test login.","group":"Ext_WW_AD_FLS_Capgemini_Helios"},{"topic":"Account disabled / MFA","keywords":["Account deaktiviert","MFA","Zugriff","Benutzeradministration"],"description":"Central user administration and MFA topics.","quick":"Check account status and escalate to central administration.","group":"Ext_WW_OCC_SLS_Capgemini_Helios"},{"topic":"Outlook / Exchange / Shared Mailbox","keywords":["Outlook","Mailbox","Shared Mailbox","Verteiler","Postfach voll","SendAs","FullAccess"],"description":"Mailboxes, distribution lists and Exchange permissions.","quick":"Check mailbox permissions, add user, check storage.","group":"Ext_WW_Collaboration_SLS_Capgemini_Helios"},{"topic":"Printer / FollowMe / Zebra","keywords":["Drucker","FollowMe","Zebra","Etiketten","Labeldruck","Kalibrierung","Barcode","Scanner","Papierstau","Scanfehler"],"description":"Printing issues, FollowMe Printing and Zebra label printers.","quick":"Standard printer/FollowMe → Printer Services. Single Zebra device → Local IT. Multiple Zebra devices → RS | Klinische Prozesse & Anwendungen.","group":"Ext_WW_Printer-Services_SLS_Capgemini_Helios / Local IT / RS | Klinische Prozesse & Anwendungen"},{"topic":"Prescription / needle printer","keywords":["Rezeptdrucker","Nadeldrucker","Epson","Rezept","Formulardruck","Druckt nicht","Offline","Online"],"description":"Issues with prescription printers and needle printers.","quick":"Offline → Local IT. Online but not printing → Printer Services.","group":"Local IT / Ext_WW_Printer-Services_SLS_Capgemini_Helios"},{"topic":"Printer hardware / onsite check","keywords":["Hardwaredefekt","Scanner defekt","Papierstau","Druckstreifen"],"description":"Physical printer or scanner defect.","quick":"Perform basic checks and arrange onsite inspection.","group":"Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"},{"topic":"SAP (Wuppertal)","keywords":["SAP Login","Launchpad","SAP Rolle","SAP Berechtigung","D-Berichte"],"description":"SAP access, roles and Launchpad.","quick":"Check SAP access, test GUI, clear cache.","group":"CL-Wuppertal | SAP"},{"topic":"SAP / KIS (Gotha)","keywords":["SAP","KIS","GOTHA","i.s.h.med","SAP i.s.h.med"],"description":"SAP and KIS (i.s.h.med).","quick":"Check SAP access, document the error and escalate.","group":"SAP i.s.h.med | Mgt"},{"topic":"Citrix / Polaris / Published Apps","keywords":["Citrix","Polaris","Published App","Black Screen","Sitzung hängt"],"description":"Virtual workplaces and published applications.","quick":"Session reset, logoff, Citrix Workspace Repair.","group":"Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios"},{"topic":"Clinical applications","keywords":["Patientenakte","ePA","Formular"],"description":"Clinical applications and clinical processes.","quick":"Not solvable by SD — escalate ticket with error details.","group":"RS | Klinische Prozesse & Anwendungen"},{"topic":"Gifhorn KIS / Medico / SAP","keywords":["GLIFHORN Medico","Blaue Welt","Userportal","KIS GLIFHORN","DRG","SAP GLIFHORN"],"description":"Medico KIS, also known as \"Blaue Welt\" or \"Userportal\".","quick":"Not solvable by SD — forward ticket with error description.","group":"KR-IT | Medico"},{"topic":"Hardware / Monitor / Docking station","keywords":["Monitor","Bildschirm","Notebook","Dockingstation","Akku"],"description":"Workplace hardware.","quick":"Check cables, reboot, perform swap test.","group":"Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"},{"topic":"Slow PC / disk full","keywords":["PC langsam","Rechner langsam","C voll","Speicherplatz"],"description":"Workplace performance issues.","quick":"Check Task Manager, uptime and disk space.","group":"Ext_WW_Physical-Workplace_SLS_Capgemini_Helios"},{"topic":"Network / WLAN / Internet","keywords":["WLAN","Internet","LAN","Zertifikat","APN","MACMON"],"description":"Network or WLAN connectivity issues.","quick":"Check adapter, WLAN certificate and MACMON.","group":"Ext_WW_Network_SLS_Capgemini_Helios"},{"topic":"Mobile devices / Intune / company phones","keywords":["iPhone","Android","Intune","Company Portal","MDM","SIM Karte","Firmenhandy","Smartphone"],"description":"Issues with mobile devices, Intune and mobile services.","quick":"Check device sync, compliance, Intune enrollment and user mapping.","group":"Ext_WW_Mobile-Workplace_SLS_Capgemini_Helios"},{"topic":"Microsoft Teams / SharePoint / OneDrive","keywords":["Teams","SharePoint","OneDrive","Teams Meeting","Teams Chat","Kanal"],"description":"Issues with Microsoft Teams, SharePoint or OneDrive.","quick":"Check license, permissions and synchronization.","group":"Ext_WW_Collaboration_SLS_Capgemini_Helios"},{"topic":"Azure Cloud Services","keywords":["Azure","Cloud","Azure VM","Subscription","Cloud Access"],"description":"Support for Azure services and cloud infrastructure.","quick":"Document affected resource and error message.","group":"Ext_WW_Cloud-Services_SLS_Capgemini_Helios"},{"topic":"Kubernetes / Container platform","keywords":["Kubernetes","K8S","Pod","Container","Cluster"],"description":"Issues with Kubernetes clusters and containers.","quick":"Provide cluster name, namespace and error message.","group":"Ext_WW_Kubernetes_SLS_Capgemini_Helios"},{"topic":"Databases","keywords":["SQL","Oracle","MSSQL","Datenbank","DB Access"],"description":"Database administration and database access.","quick":"Document database name, environment and error message.","group":"Ext_WW_Database-PaaS_SLS_Capgemini_Helios"},{"topic":"VMware / Virtual machines","keywords":["VMware","vCenter","ESXi","Virtuelle Maschine","VM"],"description":"Issues with VMware infrastructure and virtual machines.","quick":"Provide VM name and problem description.","group":"Ext_WW_VMWare-CentralServer-CIaaS_SLS_Capgemini_Helios"},{"topic":"Linux Central Server","keywords":["Linux","RedHat","Ubuntu","SSH","Patch"],"description":"Central Linux servers and OS administration.","quick":"Document hostname, error message and impact.","group":"Ext_WW_Linux-CentralServer-CIaaS_SLS_Capgemini_Helios"},{"topic":"Microsoft Windows Server","keywords":["Windows Server","IIS","RDP","Microsoft Server"],"description":"Central Windows server infrastructure.","quick":"Document server name and error description.","group":"Ext_WW_Microsoft-CentralServer-CIaaS_SLS_Capgemini_Helios"},{"topic":"Software Deployment / SCCM","keywords":["SCCM","Software Installation","Deployment","Paketierung"],"description":"Distribution and installation of software packages.","quick":"Provide application name and target device.","group":"Ext_WW_S/w deployment_SLS_Capgemini_Helios"},{"topic":"Backup / Storage / Restore","keywords":["Backup","Restore","Storage","SAN","NAS"],"description":"Backup, restore and storage infrastructure.","quick":"Provide affected systems and desired restore point.","group":"Ext_WW_Storage-SharedDCInfra-CIaaS_SLS_Capgemini_Helios"},{"topic":"Application Platform Management","keywords":["Middleware","Tomcat","WebLogic","Applikationsplattform"],"description":"Operation and support of middleware and platform services.","quick":"Document logs and environment.","group":"Ext_WW_Application Platform Management_SLS_Capgemini_Helios"},{"topic":"Monitoring Tools","keywords":["Nagios","CheckMK","Monitoring","SCORCH","Alert"],"description":"Monitoring and management tools.","quick":"Document alert ID and affected service.","group":"Ext_WW_Tools-PaaS_SLS_Capgemini_Helios"},{"topic":"eDiscovery / Compliance","keywords":["eDiscovery","Compliance","Data Export","Litigation Hold"],"description":"Data exports, compliance requirements and legal hold.","quick":"Provide affected user and request scope.","group":"Ext_WW_eDiscovery_TLS_Capgemini_Helios"},{"topic":"Application packaging","keywords":["MSI","Packaging","Softwarepaket","Anwendungspaket"],"description":"Creation and customization of software packages.","quick":"Document application name and requirements.","group":"Ext_WW_WPS_AppsPackaging_SLS_Capgemini_Helios"},{"topic":"Mobile device ordering","keywords":["Handy Bestellung","SIM Bestellung","Neues Smartphone","Mobilfunkauftrag"],"description":"Procurement of mobile phones and SIM cards.","quick":"Check approval and user details.","group":"Ext_WW_WPS_MobileDeviceProcurement_SLS_Capgemini_Helios"},{"topic":"Permissions / AD groups","keywords":["Freischaltung","AD Gruppe","Gruppe","Berechtigung","Zugriff"],"description":"Rights management and AD groups.","quick":"Find matching AD group and add membership.","group":"Ext_WW_AD_FLS_Capgemini_Helios"}],"fsoGuide":[{"group":"Ext_DE_FSO_AttendedSupport_SLS_Capgemini_Helios","type":"Attended Support","when":"VIP users, executive support and high-priority onsite activities"},{"group":"Ext_DE_FSO_Incidents_Dispatch_SLS_Capgemini_Helios","type":"Incident Dispatch","when":"Engineer must travel to resolve an Incident (VIP dispatch)"},{"group":"Ext_DE_FSO_Incidents_SLS_Capgemini_Helios","type":"Field Service Incident","when":"Hardware failures, docking stations, monitors, workplace devices, physical printer issues"},{"group":"Ext_DE_FSO_ServiceRequests_Dispatch_SLS_Capgemini_Helios","type":"Dispatch Service Request","when":"Planned service requiring travel: installations, hardware replacement, office relocation"},{"group":"Ext_DE_FSO_ServiceRequests_SLS_Capgemini_Helios","type":"Service Request","when":"Workstation setup, monitor installation, peripheral delivery"},{"group":"EXT_DE_FSO_SLS_Capgemini_KM_Helios","type":"Knowledge Management","when":"Knowledge articles, documentation, process updates"},{"group":"Ext_DE_FSO_SmartHands_Dispatch_SLS_Capgemini_Helios","type":"SmartHands Dispatch","when":"Infra/Network activities requiring travel (rack, cabling, switch, server)"},{"group":"Ext_DE_FSO_SmartHands_SLS_Capgemini_Helios","type":"SmartHands Onsite","when":"Infra/Network hands-on work at customer location"}],"locationCards":[{"name":"MVZ Region West","rows":[["Account / Service Desk","MVZ-IT RN/RW Team"],["Infrastructure","MVZ-IT RN/RW Team"],["Clinical Applications","MVZ-IT RN/RW Team & MVZ Produktmanagement"],["SAP / KIS","MVZ-IT RN/RW Team & MVZ Produktmanagement"],["Field Service","MVZ-IT RN/RW Team"],["Note","Region West und Nord wurden IT-seitig zusammengelegt. Je nach Thema erfolgt die Zusammenarbeit mit der Zentralen IT."]]},{"name":"CL-Wuppertal","rows":[["Service Desk","CL-Wuppertal | Remotesupport"],["Account Management","CL-Wuppertal | Accountmanagement"],["Infrastructure","CL-Wuppertal | Infrastruktur"],["Field Service","CL-Wuppertal | Field Service"],["Clinical Applications","CL-Wuppertal | Klinische Anwendungen"],["SAP","CL-Wuppertal | SAP"]]},{"name":"Berlin / Brandenburg","rows":[["Service Desk","CLBB-IT | Servicedesk"],["Infrastructure","CLBB-IT | Infrastruktur"],["Clinical Applications","CLBB-IT | Klinische Anwendungen"],["KIS / SAP","CLBB-IT | KIS-Support"],["Account Management","CLBB-IT | Accountmanagement"],["MVZ","CLBB-IT | MVZ"],["Berlin Buch","BLN-IT | Fieldservice"],["Berlin Zehlendorf","BEB-IT | Fieldservice"],["Bad Saarow","BS-IT | Fieldservice"]]},{"name":"Krefeld","rows":[["Service Desk","KR-IT | Service Desk"],["Infrastructure","KR-IT | Infrastruktur"],["Clinical Applications","KR-IT | Klinische Applikationen"],["Medico","KR-IT | Medico"],["SAP","KR-IT | Klinische Applikationen"],["Field Service","KR-IT | Fieldservice"],["General IT","KR-IT"]]},{"name":"Kassel","rows":[["Service Desk","KS-IT"],["Infrastructure","KS-IT"],["Clinical Applications","KS-IT"],["SAP / KIS","KS-IT"],["Field Service","KS-IT"],["General IT","KS-IT"]]},{"name":"Duisburg","rows":[["Account / Service Desk","DU-IT | Client Mgt"],["Infrastructure","DU-IT | Infrastruktur"],["Clinical Applications","SKZ-IT | Klinische Anwendungen"],["SAP","SAP Basis"],["Field Service","DU-IT | Client Mgt"],["Softwares (DMO / Baramundi / C37)","DU-IT | Software & Systeme"],["Orbis (KIS)","Orbis"],["CGM Muse","AMOR/MUSE"],["JiveX","SKZ-IT | Klinische Anwendungen"]]},{"name":"Region South","rows":[["Service Desk","RS | Servicedesk"],["Infrastructure","RS | Infrastruktur"],["Clinical Applications","RS | Klinische Prozesse & Anwendungen"],["iSHMED","RS | iSHMED"],["MVZ","RS MVZ Support"],["OSS","OSS - Klinik or Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"]]},{"name":"Gotha","rows":[["General IT / Support","GTH-IT"],["Management / Field Service","GTH-IT | Mgt"]]},{"name":"Gifhorn","rows":[["General IT / Support","GF-IT"]]},{"name":"Sachsen - Nordfranken","rows":[["Account Management","AU-IT / FTL-IT | Benutzeranträge"],["Infrastructure","AU-IT / FTL-IT | Infrastruktur"],["Field Service","AU-IT / FTL-IT / PL-IT | Fieldservice"],["Clinical / MVZ","KC-IT / PL-IT | MVZ"],["SAP","TBD"]]},{"name":"Thüringen Mitte","rows":[["Account Management","BLA-IT / EF-IT | Benutzerantrag"],["Infrastructure","EF-IT | Infrastruktur"],["Field Service","BLA-IT / EF-IT / GRE-IT | Fieldservice"],["Clinical","TBD"],["SAP","TBD"]]},{"name":"Mainfranken-Südthüringen","rows":[["Account Management","MGN | Benutzerantrag"],["Infrastructure","BKG-IT / HBN / MGN | Infrastruktur"],["Field Service","HBN / MGN | Fieldservice"],["Clinical","TBD"],["SAP","TBD"]]},{"name":"Schwarzwald-Bodensee","rows":[["Infrastructure","MUE-IT / TIT-IT | Infrastruktur"],["Field Service","BRE-IT / MUE-IT / ROT-IT | Fieldservice"],["Account / Clinical / SAP","TBD"]]},{"name":"Magdeburg","rows":[["Service Desk / Account","KOET-IT / OC-IT | Servicedesk"],["Infrastructure","OC-IT / ZE-IT | Infrastruktur"],["Field Service","KOET-IT / VGM-IT / ZE-IT | Fieldservice"],["Clinical / SAP","TBD"]]},{"name":"Wiesbaden-Main-Taunus","rows":[["Service Desk / Account","CL-Wiesbaden-Taunus | ServiceDesk"],["Infrastructure","CL-Wiesbaden-Taunus | Infrastruktur"],["Field Service","HSK / IDS | Fieldservice"],["Clinical / SAP","TBD"]]},{"name":"Leipzig","rows":[["Active Directory / Account","LPZ-IT | Active Directory"],["Infrastructure","LEI-IT / LPZ-IT | Infrastruktur"],["Field Service","LEI-IT / LPZ-IT | Fieldservice"],["Clinical / MVZ","LEI-IT / LPZ-IT | MVZ"],["SAP","TBD"]]},{"name":"Oberbayern","rows":[["Field Service","DAH-IT / IDD-IT / MPA-IT"],["Infrastructure / Clinical / SAP","TBD"]]},{"name":"Südniedersachsen-Nordhessen","rows":[["Infrastructure","HI-IT | Infrastruktur"],["Field Service","HBH-IT / KS-IT / WAR-IT | Fieldservice"],["Account / Clinical / SAP","TBD"]]}]};
 
 const SN_KB_BASE_URL = "https://fresenius.service-now.com/now/nav/ui/classic/params/target/$knowledge.do%3Fsysparm_search%3D";
 
@@ -704,93 +775,177 @@ function buildSearchIndex() {
     const index = [];
     applicationsDatabase.forEach(item => {
         index.push({
+            type: "application",
             source: "Application",
             sourceClass: "src-app",
             topic: item.application,
             cluster: item.cluster,
             group: item.assignment,
             details: item.category + "\n" + item.action,
+            keywords: item.application,
+            hayTopic: [item.application, item.category].join(" ").toLowerCase(),
+            hayGroup: (item.assignment || "").toLowerCase(),
+            hayKeyword: (item.application || "").toLowerCase(),
             hay: [item.application, item.cluster, item.assignment, item.category, item.action, item.notes].join(" ").toLowerCase()
         });
     });
     Object.keys(KB.clusters || {}).forEach(name => {
         const c = KB.clusters[name];
-        const groups = [c.ServiceDesk, c.Account, c.Infrastructure, c.Clinical, c.SAP, c.FieldService].filter(Boolean).join(" · ");
+        const groupMap = {
+            "Service Desk": c.ServiceDesk,
+            "Account": c.Account,
+            "Infrastructure": c.Infrastructure,
+            "Clinical": c.Clinical,
+            "SAP / KIS": c.SAP,
+            "Field Service": c.FieldService
+        };
+        Object.keys(groupMap).forEach(role => {
+            const g = groupMap[role];
+            if (!g || g === "TBD") return;
+            index.push({
+                type: "cluster",
+                source: "Cluster",
+                sourceClass: "src-cluster",
+                topic: name + " — " + role,
+                cluster: name,
+                group: g,
+                details: "Main cluster assignment group (" + role + ")",
+                keywords: role,
+                hayTopic: (name + " " + role).toLowerCase(),
+                hayGroup: String(g).toLowerCase(),
+                hayKeyword: role.toLowerCase(),
+                hay: [name, role, g].join(" ").toLowerCase()
+            });
+        });
+        const groups = Object.values(groupMap).filter(Boolean).join(" · ");
         index.push({
+            type: "cluster",
             source: "Cluster",
             sourceClass: "src-cluster",
             topic: name,
             cluster: name,
             group: groups,
-            details: "Ogólny routing cluster",
+            details: "General cluster routing overview",
+            keywords: name,
+            hayTopic: name.toLowerCase(),
+            hayGroup: groups.toLowerCase(),
+            hayKeyword: name.toLowerCase(),
             hay: [name, groups].join(" ").toLowerCase()
         });
     });
     (KB.locationCards || []).forEach(card => {
         (card.rows || []).forEach(row => {
             index.push({
-                source: "Cluster",
+                type: "location",
+                source: "Location",
                 sourceClass: "src-cluster",
                 topic: card.name + " — " + row[0],
                 cluster: card.name,
                 group: row[1],
-                details: "Lokalizacja / klinika",
+                details: "Location / clinic routing",
+                keywords: card.name,
+                hayTopic: (card.name + " " + row[0]).toLowerCase(),
+                hayGroup: String(row[1] || "").toLowerCase(),
+                hayKeyword: card.name.toLowerCase(),
                 hay: [card.name, row[0], row[1]].join(" ").toLowerCase()
             });
         });
     });
     (KB.berlin.assignmentGroups || []).forEach(g => {
         index.push({
+            type: "berlin",
             source: "Berlin Groups",
             sourceClass: "src-berlin",
             topic: g.group,
             cluster: "Berlin / Brandenburg",
             group: g.group,
             details: g.responsibility,
+            keywords: "Berlin",
+            hayTopic: (g.group + " " + g.responsibility).toLowerCase(),
+            hayGroup: g.group.toLowerCase(),
+            hayKeyword: "berlin buch zehlendorf behring bad saarow",
             hay: [g.group, g.responsibility, "Berlin", "Buch", "Zehlendorf", "Behring", "Bad Saarow"].join(" ").toLowerCase()
         });
     });
     Object.keys(KB.berlinAz || {}).forEach(app => {
         index.push({
+            type: "berlin",
             source: "Berlin Groups",
             sourceClass: "src-berlin",
             topic: app,
             cluster: "Berlin",
             group: KB.berlinAz[app],
             details: "Berlin A-Z routing",
+            keywords: app,
+            hayTopic: app.toLowerCase(),
+            hayGroup: String(KB.berlinAz[app]).toLowerCase(),
+            hayKeyword: app.toLowerCase(),
             hay: [app, KB.berlinAz[app], "Berlin"].join(" ").toLowerCase()
         });
     });
     (KB.berlin.keywords || []).forEach(k => {
         index.push({
-            source: "Berlin Groups",
+            type: "problem",
+            source: "Problem / Keyword",
             sourceClass: "src-problem",
             topic: k.keyword,
             cluster: "Berlin",
             group: k.group,
-            details: "Berlin keyword / problem",
+            details: "Berlin keyword / problem routing",
+            keywords: k.keyword,
+            hayTopic: k.keyword.toLowerCase(),
+            hayGroup: String(k.group).toLowerCase(),
+            hayKeyword: k.keyword.toLowerCase(),
             hay: [k.keyword, k.group, "Berlin"].join(" ").toLowerCase()
         });
     });
     (KB.wave1 || []).forEach(w => {
+        const kws = (w.keywords || []).join(" ");
         index.push({
+            type: "wave1",
             source: "Egipt Wave 1",
             sourceClass: "src-wave",
             topic: w.topic,
             cluster: "Egipt Wave 1",
             group: w.group,
             details: w.quick + "\n" + w.description,
-            hay: [w.topic, w.description, w.quick, w.group].concat(w.keywords || []).join(" ").toLowerCase()
+            keywords: kws,
+            hayTopic: (w.topic + " " + (w.description || "")).toLowerCase(),
+            hayGroup: String(w.group || "").toLowerCase(),
+            hayKeyword: kws.toLowerCase(),
+            hay: [w.topic, w.description, w.quick, w.group, kws].join(" ").toLowerCase()
+        });
+        // Also index each keyword as a problem-style hit for broader Start search
+        (w.keywords || []).forEach(kw => {
+            index.push({
+                type: "problem",
+                source: "Problem / Keyword",
+                sourceClass: "src-problem",
+                topic: kw,
+                cluster: "Egipt Wave 1",
+                group: w.group,
+                details: w.topic + "\n" + w.quick,
+                keywords: kw,
+                hayTopic: (kw + " " + w.topic).toLowerCase(),
+                hayGroup: String(w.group || "").toLowerCase(),
+                hayKeyword: kw.toLowerCase(),
+                hay: [kw, w.topic, w.group, w.description, w.quick].join(" ").toLowerCase()
+            });
         });
     });
     (KB.globalHelios || []).forEach(g => {
         index.push({
+            type: "global",
             source: "Global Helios",
             sourceClass: "src-global",
             topic: g.service,
             cluster: "Global Helios",
             group: g.group,
             details: g.notes || "",
+            keywords: g.service,
+            hayTopic: g.service.toLowerCase(),
+            hayGroup: String(g.group || "").toLowerCase(),
+            hayKeyword: g.service.toLowerCase(),
             hay: [g.service, g.group, g.notes || ""].join(" ").toLowerCase()
         });
     });
@@ -798,29 +953,212 @@ function buildSearchIndex() {
 }
 
 let searchIndex = [];
+let suggestActive = -1;
+
+function getSelectedSearchTypes() {
+    return Array.from(document.querySelectorAll('#searchTypeChips input[name="stype"]:checked')).map(el => el.value);
+}
+
+function onSearchFiltersChanged() {
+    document.querySelectorAll('#searchTypeChips .chip').forEach(chip => {
+        const input = chip.querySelector('input');
+        chip.classList.toggle('active', !!(input && input.checked));
+    });
+    filterGlobalSearch();
+    updateSuggestions();
+}
+
+function applySearchPreset() {
+    const preset = document.getElementById("searchPreset").value;
+    const map = {
+        apps: ["application"],
+        clusters: ["cluster"],
+        locations: ["location"],
+        problems: ["problem"],
+        berlin: ["berlin"],
+        wave1: ["wave1"],
+        global: ["global"],
+        all: ["application","cluster","location","problem","berlin","wave1","global"]
+    };
+    if (!preset || !map[preset]) return;
+    const selected = new Set(map[preset]);
+    document.querySelectorAll('#searchTypeChips input[name="stype"]').forEach(el => {
+        el.checked = selected.has(el.value);
+    });
+    document.getElementById("searchPreset").value = "";
+    onSearchFiltersChanged();
+}
+
+function populateSearchClusterFilter() {
+    const sel = document.getElementById("searchClusterFilter");
+    const names = new Set();
+    Object.keys(KB.clusters || {}).forEach(n => names.add(n));
+    (KB.locationCards || []).forEach(c => names.add(c.name));
+    names.add("Berlin / Brandenburg");
+    names.add("Global Helios");
+    names.add("Egipt Wave 1");
+    const sorted = Array.from(names).sort((a,b) => a.localeCompare(b));
+    sel.innerHTML = '<option value="">All locations / clusters</option>' +
+        sorted.map(n => '<option value="' + esc(n) + '">' + esc(n) + '</option>').join("");
+}
+
+function populateSuggestDatalist() {
+    const dl = document.getElementById("globalSuggestDatalist");
+    const seen = new Set();
+    const opts = [];
+    searchIndex.forEach(item => {
+        [item.topic, item.cluster].forEach(v => {
+            if (!v || seen.has(v)) return;
+            seen.add(v);
+            opts.push(v);
+        });
+    });
+    opts.sort((a,b) => a.localeCompare(b));
+    dl.innerHTML = opts.slice(0, 800).map(v => '<option value="' + esc(v) + '"></option>').join("");
+}
+
+function scoreHit(item, tokens, matchMode) {
+    let score = 0;
+    const topic = (item.topic || "").toLowerCase();
+    tokens.forEach(t => {
+        if (topic === t) score += 100;
+        else if (topic.startsWith(t)) score += 60;
+        else if (topic.includes(t)) score += 30;
+        if ((item.hayGroup || "").includes(t)) score += 15;
+        if ((item.hayKeyword || "").includes(t)) score += 20;
+        if ((item.hay || "").includes(t)) score += 5;
+    });
+    if (matchMode === "topic") score += 10;
+    return score;
+}
+
+function filterPool(q, types, clusterVal, matchMode) {
+    const tokens = q ? q.split(/\s+/).filter(Boolean) : [];
+    let pool = searchIndex.filter(item => types.includes(item.type));
+    if (clusterVal) {
+        const cv = clusterVal.toLowerCase();
+        pool = pool.filter(item => (item.cluster || "").toLowerCase() === cv || (item.cluster || "").toLowerCase().includes(cv));
+    }
+    if (!tokens.length) return pool.slice(0, 200).map(item => ({ item, score: 0 }));
+
+    const fieldOf = (item) => {
+        if (matchMode === "topic") return item.hayTopic || "";
+        if (matchMode === "group") return item.hayGroup || "";
+        if (matchMode === "keyword") return item.hayKeyword || "";
+        return item.hay || "";
+    };
+
+    const hits = pool.filter(item => {
+        const field = fieldOf(item);
+        return tokens.every(t => field.includes(t));
+    }).map(item => ({ item, score: scoreHit(item, tokens, matchMode) }));
+
+    hits.sort((a, b) => b.score - a.score || a.item.topic.localeCompare(b.item.topic));
+    return hits;
+}
+
+function updateSuggestions() {
+    const q = (document.getElementById("globalSearchAll").value || "").trim().toLowerCase();
+    const box = document.getElementById("globalSuggestList");
+    if (q.length < 2) {
+        box.classList.remove("on");
+        box.innerHTML = "";
+        suggestActive = -1;
+        return;
+    }
+    const types = getSelectedSearchTypes();
+    const clusterVal = document.getElementById("searchClusterFilter").value;
+    const matchMode = document.getElementById("searchMatchMode").value;
+    const hits = filterPool(q, types, clusterVal, matchMode).slice(0, 12);
+    if (!hits.length) {
+        box.classList.remove("on");
+        box.innerHTML = "";
+        return;
+    }
+    box.innerHTML = hits.map((h, i) =>
+        '<div class="suggest-item" data-idx="' + i + '" onmousedown="pickSuggestion(' + i + ')">' +
+        '<strong>' + esc(h.item.topic) + '</strong>' +
+        '<small>' + esc(h.item.source) + ' · ' + esc(h.item.cluster) + '</small></div>'
+    ).join("");
+    box._hits = hits;
+    box.classList.add("on");
+    suggestActive = -1;
+}
+
+function pickSuggestion(idx) {
+    const box = document.getElementById("globalSuggestList");
+    const hits = box._hits || [];
+    if (!hits[idx]) return;
+    document.getElementById("globalSearchAll").value = hits[idx].item.topic;
+    box.classList.remove("on");
+    filterGlobalSearch();
+}
+
+function onGlobalSearchInput() {
+    updateSuggestions();
+    filterGlobalSearch();
+}
+
+function onGlobalSearchKey(e) {
+    const box = document.getElementById("globalSuggestList");
+    if (!box.classList.contains("on")) return;
+    const items = box.querySelectorAll(".suggest-item");
+    if (!items.length) return;
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        suggestActive = (suggestActive + 1) % items.length;
+    } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        suggestActive = (suggestActive - 1 + items.length) % items.length;
+    } else if (e.key === "Enter" && suggestActive >= 0) {
+        e.preventDefault();
+        pickSuggestion(suggestActive);
+        return;
+    } else if (e.key === "Escape") {
+        box.classList.remove("on");
+        return;
+    } else return;
+    items.forEach((el, i) => el.classList.toggle("active", i === suggestActive));
+}
 
 function filterGlobalSearch() {
     const q = (document.getElementById("globalSearchAll").value || "").trim().toLowerCase();
     const tbody = document.getElementById("globalSearchTable");
     const meta = document.getElementById("globalHitsMeta");
-    if (!q) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">Brak zapytania — wyszukiwanie obejmuje Application Base, Clusters, Berlin Groups, Egipt Wave 1 i Global Helios Groups.</td></tr>';
-        meta.textContent = "Wpisz frazę, aby przeszukać całą bazę";
+    const types = getSelectedSearchTypes();
+    const clusterVal = document.getElementById("searchClusterFilter").value;
+    const matchMode = document.getElementById("searchMatchMode").value;
+
+    if (!types.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">Select at least one search scope (Applications, Clusters, Locations, …).</td></tr>';
+        meta.textContent = "No search scope selected";
         return;
     }
-    const tokens = q.split(/\s+/).filter(Boolean);
-    const hits = searchIndex.filter(item => tokens.every(t => item.hay.includes(t))).slice(0, 300);
-    meta.textContent = hits.length + (hits.length === 300 ? "+" : "") + " trafień";
+
+    if (!q && !clusterVal) {
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">No query yet — use the scopes and filters above to search Applications, Clusters, Locations, Berlin Groups, Egipt Wave 1 and Global Helios.</td></tr>';
+        meta.textContent = "Enter a search term to query the knowledge base";
+        return;
+    }
+
+    const hits = filterPool(q, types, clusterVal, matchMode).slice(0, 300);
+    meta.textContent = hits.length + (hits.length === 300 ? "+" : "") + " hits" +
+        (types.length < 7 ? " · filtered scopes" : "") +
+        (clusterVal ? " · " + clusterVal : "") +
+        (matchMode !== "anywhere" ? " · " + matchMode : "");
+
     if (!hits.length) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">Brak wyników dla: ' + esc(q) + '</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">No results for: ' + esc(q || clusterVal) + '</td></tr>';
         return;
     }
     tbody.innerHTML = "";
-    hits.forEach(item => {
+    hits.forEach(({ item }) => {
         const tr = document.createElement("tr");
         tr.innerHTML =
             '<td><span class="src ' + item.sourceClass + '">' + esc(item.source) + '</span></td>' +
-            '<td><strong>' + esc(item.topic) + '</strong></td>' +
+            '<td><strong>' + esc(item.topic) + '</strong>' +
+            (item.keywords && item.type === "problem" ? '<div class="meta">' + esc(item.keywords) + '</div>' : '') +
+            '</td>' +
             '<td>' + esc(item.cluster) + '</td>' +
             '<td><code class="assignment">' + esc(item.group) + '</code>' +
             '<button class="copy-btn" type="button" data-copy="' + esc(item.group) + '">Copy</button></td>' +
@@ -860,12 +1198,22 @@ window.onload = function() {
     document.getElementById("footerVer").textContent = (KB.meta && KB.meta.version) || "";
     buildDatabase();
     searchIndex = buildSearchIndex();
+    populateSearchClusterFilter();
+    populateSuggestDatalist();
     renderApplications(applicationsDatabase);
     renderOverview();
     renderLocationCards();
     renderBerlin();
     renderWave1();
     renderGlobal();
+    filterGlobalSearch();
+
+    document.addEventListener("click", function(e) {
+        const wrap = document.querySelector(".suggest-wrap");
+        if (wrap && !wrap.contains(e.target)) {
+            document.getElementById("globalSuggestList").classList.remove("on");
+        }
+    });
 
     if (location.hash) {
         const id = location.hash.replace("#","");

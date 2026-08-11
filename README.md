@@ -1,27 +1,27 @@
 # Helios Master Matrix
 
-Jedna baza wiedzy Catch & Dispatch / Swivel Chair w pliku **`matrix.html`**.
+Single Catch & Dispatch / Swivel Chair knowledge base in **`matrix.html`**.
 
-## Plik
+## Files
 
-- [`matrix.html`](matrix.html) — pełna baza + UI (styl Global Routing Matrix / Wave 1)
-- [`data/kb.json`](data/kb.json) — ta sama baza w JSON (łatwy diff / backup)
+- [`matrix.html`](matrix.html) — full knowledge base + UI (Global Routing Matrix / Wave 1 style)
+- [`data/kb.json`](data/kb.json) — same database as JSON (easy diff / backup)
 
-## Źródła
+## Sources
 
 - CL-Berlin Master Knowledge Base v1.0
 - Helios Global Routing Matrix v2.8 (Full KB Edition)
 - Helios Service Desk Routing Wave 1
 
-## Zakładki
+## Tabs
 
-| Zakładka | Funkcja |
-|----------|---------|
-| Start | Wyszukiwanie po całej bazie (aplikacja, cluster, klinika, problem) |
-| Application Base | Szukanie po nazwie aplikacji + filtr Cluster |
-| Clusters | Ogólny routing clusterów |
-| Berlin Groups | Grupy Berlin / Brandenburg |
-| Egipt Wave 1 | Keyword routing Wave 1 |
-| Global Helios Groups | Globalne grupy Helios |
+| Tab | Purpose |
+|-----|---------|
+| Start | Advanced whole-database search (scope chips, match mode, location filter, suggestions) |
+| Application Base | Search by application name + Cluster filter |
+| Clusters | General cluster routing |
+| Berlin Groups | Berlin / Brandenburg groups |
+| Egipt Wave 1 | Wave 1 keyword routing |
+| Global Helios Groups | Global Helios assignment groups |
 
-Dane są w `const KB` w `matrix.html` (oraz mirror `data/kb.json`).
+UI language is English. Data lives in `const KB` inside `matrix.html` (mirrored in `data/kb.json`).
