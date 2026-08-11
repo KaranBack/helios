@@ -13,17 +13,15 @@ Jedna baza wiedzy Catch & Dispatch / Swivel Chair w pliku **`matrix.html`**.
 - Helios Global Routing Matrix v2.8 (Full KB Edition)
 - Helios Service Desk Routing Wave 1
 
-## Edycja
+## Zakładki
 
-Otwórz `matrix.html`, znajdź `const KB = { ... }` i edytuj:
+| Zakładka | Funkcja |
+|----------|---------|
+| Start | Wyszukiwanie po całej bazie (aplikacja, cluster, klinika, problem) |
+| Application Base | Szukanie po nazwie aplikacji + filtr Cluster |
+| Clusters | Ogólny routing clusterów |
+| Berlin Groups | Grupy Berlin / Brandenburg |
+| Egipt Wave 1 | Keyword routing Wave 1 |
+| Global Helios Groups | Globalne grupy Helios |
 
-| Cel | Pole |
-|-----|------|
-| Nowy cluster | `KB.clusters` |
-| Karta lokalizacji | `KB.locationCards` |
-| Aplikacje | `KB.apps.*` |
-| Berlin A-Z override | `KB.berlinAz` |
-| Wave 1 keyword | `KB.wave1` |
-| Global Helios group | `KB.globalHelios` |
-
-Po zapisie odśwież przeglądarkę — tabele budują się automatycznie.
+Dane są w `const KB` w `matrix.html` (oraz mirror `data/kb.json`).
