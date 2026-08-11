@@ -19,9 +19,10 @@ Single Catch & Dispatch / Swivel Chair knowledge base in **`matrix.html`**.
 |-----|---------|
 | Start | Advanced whole-database search (scope chips, match mode, location filter, suggestions) |
 | Application Base | Search by application name + Cluster filter |
-| Clusters | General cluster routing |
+| Clusters | General cluster routing (incl. Northeim, Hildburghausen, MVZ) |
 | Berlin Groups | Berlin / Brandenburg groups |
 | Egipt Wave 1 | Wave 1 keyword routing |
 | Global Helios Groups | Global Helios assignment groups |
+| Group Directory | Full ServiceNow assignment-group catalog (name / manager / type / description) |
 
 UI language is English. Data lives in `const KB` inside `matrix.html` (mirrored in `data/kb.json`).
