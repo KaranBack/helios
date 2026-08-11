@@ -170,6 +170,14 @@
       "Account": "TBD",
       "FieldService": "HBH-IT / KS-IT / WAR-IT | Fieldservice",
       "ServiceDesk": "TBD"
+    },
+    "Northeim": {
+      "Infrastructure": "NOM-IT",
+      "Clinical": "TBD",
+      "SAP": "CLBB-IT | KIS Support",
+      "Account": "NOM-IT",
+      "FieldService": "TBD",
+      "ServiceDesk": "NOM-IT"
     }
   },
   "apps": {
@@ -1562,7 +1570,7 @@
       "rows": [
         [
           "Account / Service Desk",
-          "MVZ-IT RN/RW Team"
+          "RN/RW MVZ Support"
         ],
         [
           "Infrastructure",
@@ -1583,6 +1591,51 @@
         [
           "Note",
           "Region West und Nord wurden IT-seitig zusammengelegt. Je nach Thema erfolgt die Zusammenarbeit mit der Zentralen IT."
+        ]
+      ]
+    },
+    {
+      "name": "MVZ Groups",
+      "rows": [
+        [
+          "RN/RW MVZ",
+          "RN/RW MVZ Support"
+        ],
+        [
+          "Leipzig MVZ",
+          "LPZ-IT | MVZ"
+        ],
+        [
+          "Cluster Sachsen MVZ",
+          "CLS-IT | MVZ"
+        ],
+        [
+          "Leisnig MVZ",
+          "LEI-IT | MVZ"
+        ],
+        [
+          "Cluster Sachsen-Anhalt MVZ",
+          "CLST-IT | MVZ"
+        ],
+        [
+          "Cluster Berlin Brandenburg MVZ",
+          "CLBB-IT | MVZ"
+        ],
+        [
+          "Cluster Sachsen MVZ Management",
+          "CLS-IT | MVZ | Mgt"
+        ],
+        [
+          "MVZ Produktmanagement Management",
+          "MVZ Produktmanagement | Mgt"
+        ],
+        [
+          "MVZ Produktmanagement (x.vianova, mediDOK, Timerbee, Patientus, Yext)",
+          "MVZ Produktmanagement"
+        ],
+        [
+          "Region Süd MVZ",
+          "RS MVZ Support"
         ]
       ]
     },
@@ -2031,6 +2084,2443 @@
           "TBD"
         ]
       ]
+    },
+    {
+      "name": "Northeim",
+      "rows": [
+        [
+          "Local IT",
+          "NOM-IT"
+        ],
+        [
+          "Office Apps / Intranet / Hardware",
+          "INK I Clientmanagement"
+        ],
+        [
+          "Outlook / AD / DNS configuration",
+          "SysOp | AD/Exchange"
+        ],
+        [
+          "Internet",
+          "SysOp | Security&Configuration"
+        ],
+        [
+          "Change of standard PC / Laptop configuration",
+          "ZD Infrastruktur Team"
+        ],
+        [
+          "Printer support",
+          "INK I POUMA"
+        ],
+        [
+          "Network infrastructure",
+          "NetOp | Infrastruktur"
+        ],
+        [
+          "No access to external websites (Cyber Defence Center)",
+          "CDC | Inbox"
+        ],
+        [
+          "Mobile device support",
+          "INK | MDM"
+        ],
+        [
+          "CTR Portal rights request",
+          "INK I Unified Communications"
+        ],
+        [
+          "Server Backup",
+          "SysOp | Backup"
+        ],
+        [
+          "SAP",
+          "CLBB-IT | KIS Support"
+        ]
+      ]
+    }
+  ],
+  "groupDirectory": [
+    {
+      "name": "Access Manager (IIQ)",
+      "manager": "Access Manager | Mgt",
+      "type": "ZD-IT",
+      "description": "Access Manager (IIQ) | Supportgruppe für Access Manager (IIQ)"
+    },
+    {
+      "name": "Access Manager | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": "Access Manager Management"
+    },
+    {
+      "name": "AMOR/MUSE",
+      "manager": "AMOR/MUSE | Mgt",
+      "type": "manager, ZD-IT",
+      "description": "ZD AMOR/MUSE | Supportgruppe für AMOR/MUSE"
+    },
+    {
+      "name": "ASES",
+      "manager": "Dienstplan | Mgt",
+      "type": "ZD-IT",
+      "description": "ASES | Supportgruppe für das Dienstplanprogramm ASES -   ATOSS Staff Efficiency Suite."
+    },
+    {
+      "name": "ATT-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Attendorn - IT | Supportgruppe von der Attendorn IT"
+    },
+    {
+      "name": "AU-IT | Benutzeranträge",
+      "manager": "AU-IT | Mgt",
+      "type": "RIT",
+      "description": "Aue | Supportgruppe für Benutzeranträge"
+    },
+    {
+      "name": "AU-IT | Fieldservice",
+      "manager": "AU-IT | Mgt",
+      "type": "RIT",
+      "description": "Aue | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "AU-IT | Infrastruktur",
+      "manager": "AU-IT | Mgt",
+      "type": "RIT",
+      "description": "Aue | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "AU-IT | Klinische Anwendungen",
+      "manager": "AU-IT | Mgt",
+      "type": "RIT",
+      "description": "Aue | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "AU-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Aue IT Management"
+    },
+    {
+      "name": "AU-IT | SAP  Basics",
+      "manager": "AU-IT | Mgt",
+      "type": "RIT",
+      "description": "Aue | Supportgruppe für SAP Basic"
+    },
+    {
+      "name": "AU-IT | ServiceDesk",
+      "manager": "AU-IT | Mgt",
+      "type": "RIT",
+      "description": "Aue | Supportgruppe des ServiceDesks"
+    },
+    {
+      "name": "BA | IT Application Mgt",
+      "manager": "BA | IT Application Mgt | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD Betriebswirtschaftliche Anwendungen | Supportgruppe für IT Application Management"
+    },
+    {
+      "name": "BEB-IT | Fieldservice",
+      "manager": "CLBB-IT | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": "Berlin Emil von Behring IT | Supportgruppe für Emil von Behring Fieldservice"
+    },
+    {
+      "name": "Bilddatennachverarbeitung",
+      "manager": "MIMaP | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für die Applikationen Nuklearmedizin Hermes, Kardio-Bildauswertung cvi42, Bildnachverarbeitung IntelliSpace Portal (ISP) / Advanced Visualization Manager (AVW), Syngo.via"
+    },
+    {
+      "name": "Bilddatentransfer",
+      "manager": "MIMaP | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Bilddatentransfer (Bilddatenportal (HBP), QR-Importer, DicomFeeder (Portal2Pacs), PortalDownloader, Teleradiologie-Gateway (TRGW), Zentrales DICOM-Gateway (ZDGW), Meytec Neuronet, TKmed Traumanetzwerk, Bilddatennetzwerk (BDNW), MedEcon ConnectMT, Peer Review, Zweitmeinungsnetzwerk)"
+    },
+    {
+      "name": "Bildlangzeitarchiv",
+      "manager": "MIMaP | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für DICOM Bildlangzeitarchiv (BLZA) & Telepaxx Medical Data GmbH, e-pacs"
+    },
+    {
+      "name": "BKG-IT | Infrastruktur",
+      "manager": "BKG-IT | Mgt",
+      "type": "RIT",
+      "description": "Bad Kissingen | Supportgruppe für IT Infrastruktur"
+    },
+    {
+      "name": "BKG-IT | Klinische Anwendungen",
+      "manager": "BKG-IT | Mgt",
+      "type": "RIT",
+      "description": "Bad Kissingen | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "BKG-IT | Servicedesk",
+      "manager": "BKG-IT | Mgt",
+      "type": "RIT",
+      "description": "Bad Kissingen | Supportgruppe für IT Servicedesk"
+    },
+    {
+      "name": "BLA-IT",
+      "manager": "BLA-IT | Mgt",
+      "type": "RIT",
+      "description": "Blankenhain | Supportgruppe  Blankenhain IT"
+    },
+    {
+      "name": "BLA-IT | Benutzerantrag",
+      "manager": "BLA-IT | Mgt",
+      "type": "RIT",
+      "description": "Blankenhain | Supportgruppe für Benutzeranträge"
+    },
+    {
+      "name": "BLA-IT | Fieldservice",
+      "manager": "BLA-IT | Mgt",
+      "type": "RIT",
+      "description": "Blankenhain | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "BLA-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "BLE-IT",
+      "manager": "BLE-IT | Mgt",
+      "type": "RIT",
+      "description": "Bleicherode | Supportgruppe  Bleicherode IT"
+    },
+    {
+      "name": "BLE-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "BLN-IT | Fieldservice",
+      "manager": "CLBB-IT | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": "Berlin | Supportgruppe der Berlin IT"
+    },
+    {
+      "name": "BON-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Bonn | Supportgruppe Bonn IT"
+    },
+    {
+      "name": "BRE-IT",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Breisach | Supportgruppe der Breisach IT"
+    },
+    {
+      "name": "BRE-IT | Fieldservice",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Breisach | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "Breitenbach",
+      "manager": "Dienstplan | Mgt",
+      "type": "ZD-IT",
+      "description": "Breitenbach | Supportgruppe von Breitenbach"
+    },
+    {
+      "name": "BRG-IT | Fieldservice",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Burg | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "BRG-IT | Servicedesk",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Burg | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "BS-IT | Fieldservice",
+      "manager": "CLBB-IT | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": "Bad Saarow | Supportgruppe für Bad Saarow Fieldservice"
+    },
+    {
+      "name": "Business Application Registration Approval Group",
+      "manager": "",
+      "type": "ZD-IT",
+      "description": "Approval group for Business Application lifecycle management service requests for Registering a new Business Application"
+    },
+    {
+      "name": "CAB Approval",
+      "manager": "",
+      "type": "ZD-IT",
+      "description": "CAB approvers"
+    },
+    {
+      "name": "Cato / ApoFAKT",
+      "manager": "MedAP | Mgt",
+      "type": "ZD-IT",
+      "description": "3rd Level Supportgruppe für Zytostatikatherapie über Cato und ReadyMed / zugehörige Taxierungstool ApoFakt"
+    },
+    {
+      "name": "CDC | Inbox",
+      "manager": "CDC | Mgt",
+      "type": "ZD-IT",
+      "description": "Cyber Defense Center | Supportgruppe für Inbox"
+    },
+    {
+      "name": "CDC | Sicherheitsprüfung",
+      "manager": "CDC | Mgt",
+      "type": "ZD-IT",
+      "description": "Cyber Defense Center | Supportgrppe für Sicherheitsprüfung"
+    },
+    {
+      "name": "CDR | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "Celsius37",
+      "manager": "Klinische Spezialsystem | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für das Tumordokumentations- und Meldetool von Celius37(C37)"
+    },
+    {
+      "name": "CL-Nordbaden | Fieldservice",
+      "manager": "CL-Nordbaden | Mgt",
+      "type": "RIT",
+      "description": "Cluster Nordbaden | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "CL-Nordbaden | Klinische Anwendungen",
+      "manager": "CL-Nordbaden | Mgt",
+      "type": "RIT",
+      "description": "Cluster Nordbaden | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Nordsee | Fieldservice",
+      "manager": "CL-Nordsee | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": ""
+    },
+    {
+      "name": "CL-Nordsee | Infrastruktur",
+      "manager": "CL-Nordsee | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Cluster Nordsee | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CL-Nordsee | Klinische Anwendungen",
+      "manager": "CL-Nordsee | Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Cluster Nordsee | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Nordsee | Mgt",
+      "manager": "",
+      "type": "RIT",
+      "description": ""
+    },
+    {
+      "name": "CL-Nordsee | Service Desk",
+      "manager": "CL-Nordsee | Service Desk | Mgt",
+      "type": "RIT",
+      "description": "Cluster Nordsee | Supportgruppe für Service Desk"
+    },
+    {
+      "name": "CL-Oberbayern | Klinische Anwendungen",
+      "manager": "CL-Oberbayern | Mgt",
+      "type": "RIT",
+      "description": "Cluster  Oberbyern | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Ostsee | Fieldservice",
+      "manager": "CL-Ostsee | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": "Cluster Ostsee | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "CL-Ostsee | Infrastruktur",
+      "manager": "CL-Ostsee | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Cluster Ostsee | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CL-Ostsee | Klinische Anwendungen",
+      "manager": "CL-Ostsee | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Cluster Ostsee | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Ostsee | Service Desk",
+      "manager": "CL-Ostsee | Service Desk | Mgt",
+      "type": "RIT",
+      "description": "Cluster Ostsee | Supportgruppe für Service Desk"
+    },
+    {
+      "name": "CL-Rhein-Main | Klinische Anwendungen",
+      "manager": "ELB-IT | Mgt",
+      "type": "itil",
+      "description": "Supportgruppe für Klinische Anwendungen der Standorte im Cluster Rhein Main"
+    },
+    {
+      "name": "CL-Südbaden | Klinische Anwendungen",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Cluster Südbaden | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Wiesbaden-Taunus | Infrastruktur",
+      "manager": "CL-Wiesbaden-Taunus | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wiesbaden-Taunus | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CL-Wiesbaden-Taunus | Klinische Anwendungen",
+      "manager": "CL-Wiesbaden-Taunus | Mgt",
+      "type": "itil",
+      "description": "Cluster Wiesbaden-Taunus | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Wiesbaden-Taunus | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CL-Wiesbaden-Taunus | SAP",
+      "manager": "CL-Wiesbaden-Taunus | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wiesbaden-Taunus | Supportgruppe für SAP"
+    },
+    {
+      "name": "CL-Wiesbaden-Taunus | ServiceDesk",
+      "manager": "CL-Wiesbaden-Taunus | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wiesbaden-Taunus | Supportgruppe des ServiceDesks"
+    },
+    {
+      "name": "CL-Wuppertal | Accountmanagement",
+      "manager": "CL-Wuppertal | ServiceDesk | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wuppertal | Supportgruppe für Accountmanagement"
+    },
+    {
+      "name": "CL-Wuppertal | Field Service",
+      "manager": "CL-Wuppertal | ServiceDesk | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wuppertal | Supportgruppe für Field Service"
+    },
+    {
+      "name": "CL-Wuppertal | Infrastruktur",
+      "manager": "CL-Wuppertal | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wuppertal | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CL-Wuppertal | Klinische Anwendungen",
+      "manager": "CL-Wuppertal | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wuppertal | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CL-Wuppertal | Remotesupport",
+      "manager": "CL-Wuppertal | ServiceDesk | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wuppertal | Supportgruppe für Remotesupport"
+    },
+    {
+      "name": "CL-Wuppertal | SAP",
+      "manager": "CL-Wuppertal | SAP | Mgt",
+      "type": "RIT",
+      "description": "Cluster Wuppertal | Supportgruppe für SAP"
+    },
+    {
+      "name": "CLBB-IT | Accountmanagement",
+      "manager": "CLBB-IT | Servicedesk | Mgt",
+      "type": "RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | Fieldservice | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | Infrastruktur",
+      "manager": "CLBB-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CLBB-IT | Infrastruktur | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | KIS Beratung",
+      "manager": "CLBB-IT | KIS Beratung | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe für KIS Beratung"
+    },
+    {
+      "name": "CLBB-IT | KIS Beratung | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | KIS Support",
+      "manager": "CLBB-IT | KIS Support | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe für KIS Support"
+    },
+    {
+      "name": "CLBB-IT | KIS Support | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | Klinische Anwendungen",
+      "manager": "CLBB-IT | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "CLBB-IT | Klinische Anwendungen | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | MVZ",
+      "manager": "CLBB-IT | MVZ | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe für MVZ"
+    },
+    {
+      "name": "CLBB-IT | MVZ | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | Servicedesk",
+      "manager": "CLBB-IT | Servicedesk | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe des ServiceDesks"
+    },
+    {
+      "name": "CLBB-IT | Servicedesk | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLBB-IT | TI",
+      "manager": "CLBB-IT | KIS Support | Mgt",
+      "type": "RIT",
+      "description": "Cluster Berlin Brandenburg | Supportgruppe für TI"
+    },
+    {
+      "name": "CLS-IT | iMedOne",
+      "manager": "CLS-IT | iMedOne | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachen IT | iMedOne"
+    },
+    {
+      "name": "CLS-IT | iMedOne | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Cluster Sachsen IT | iMedOne | Management"
+    },
+    {
+      "name": "CLS-IT | Infrastruktur",
+      "manager": "CLS-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CLS-IT | Infrastruktur | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLS-IT | MVZ",
+      "manager": "CLS-IT | MVZ | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen | Supportgruppe für MVZ"
+    },
+    {
+      "name": "CLS-IT | MVZ | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLS-IT | SAP Expert",
+      "manager": "CLS-IT | SAP | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen | Supportgruppe für SAP Expert"
+    },
+    {
+      "name": "CLS-IT | SAP | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "CLST-IT | Application Management",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen Anhalt IT | Supportgruppe für IT Applikationen oder Klinische Anwendungen oder Subsysteme oder Applicat"
+    },
+    {
+      "name": "CLST-IT | Infrastruktur",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen Anhalt IT | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "CLST-IT | Medico",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen Anhalt IT | Supportgruppe für Medico"
+    },
+    {
+      "name": "CLST-IT | MVZ",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen Anhalt IT | Supportgruppe für MVZ"
+    },
+    {
+      "name": "CLST-IT | SAP",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Cluster Sachsen Anhalt IT | Supportgruppe für SAP"
+    },
+    {
+      "name": "comm.fleet",
+      "manager": "comm.fleet | Mgt",
+      "type": "ZD-IT",
+      "description": "comm.fleet | Supportgruppe für Fuhrparkmanagement Software Support"
+    },
+    {
+      "name": "ConTracker",
+      "manager": "CDR | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Anfragen & Störungen rund um das zentrale Vertragsmanagement (Klinische Anwendungen)"
+    },
+    {
+      "name": "DAH-IT",
+      "manager": "CL-Oberbayern | Mgt",
+      "type": "RIT",
+      "description": "Dachau - IT | Supportgruppe von der Dachau IT"
+    },
+    {
+      "name": "Delegate",
+      "manager": "Delegate | Mgt",
+      "type": "ZD-IT",
+      "description": "Delegate | Supportgruppe für Lebensmittelsoftware"
+    },
+    {
+      "name": "Delegate | Catering",
+      "manager": "Delegate | Mgt",
+      "type": "ZD-IT",
+      "description": "Delegate | Supportgruppe für das Catering"
+    },
+    {
+      "name": "Digitalarchiv",
+      "manager": "CDR | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Anfragen & Störungen rund um das zentrale Patientenarchivsystem (Klinische Anwendungen)"
+    },
+    {
+      "name": "Digitale Pathologie",
+      "manager": "MIMaP | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Digitale Pathologie"
+    },
+    {
+      "name": "DU-IT | Client Mgt",
+      "manager": "DU-IT | Client Mgt | Mgt",
+      "type": "RIT",
+      "description": "Duisburg | Supportgruppe für Client Management"
+    },
+    {
+      "name": "DU-IT | Infrastruktur",
+      "manager": "DU-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Duisburg | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "DU-IT | Orbis",
+      "manager": "DU-IT | Orbis | Mgt",
+      "type": "RIT",
+      "description": "Duisburg | Supportgruppe für Orbis"
+    },
+    {
+      "name": "DU-IT | Personal",
+      "manager": "DU-IT | Personal | Mgt",
+      "type": "RIT",
+      "description": "Duisburg | Supportgruppe für Personal"
+    },
+    {
+      "name": "DU-IT | ServiceDesk",
+      "manager": "DU-IT | ServiceDesk | Mgt",
+      "type": "RIT",
+      "description": "Duisburg | Supportgruppe des Servicedesks"
+    },
+    {
+      "name": "DU-IT | Software & Systeme",
+      "manager": "DU-IT | Software & Systeme | Mgt",
+      "type": "RIT",
+      "description": "Duisburg | Supportgruppe für  Software & Systeme"
+    },
+    {
+      "name": "ebillings-space",
+      "manager": "ebillings-space | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD ebillings-space | Supportgruppe für BusyLamp (ebilling.space)"
+    },
+    {
+      "name": "EDR | Endpoint Detection & Response",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD Endpoint Detection & Response | Supportgruppe für Endpoint Detection & Response"
+    },
+    {
+      "name": "EF-IT | Benutzerantrag",
+      "manager": "EF-IT | Benutzerantrag | Mgt",
+      "type": "RIT",
+      "description": "Erfurt | Supportgruppe für Benutzeranträge"
+    },
+    {
+      "name": "EF-IT | Fieldservice",
+      "manager": "EF-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Erfurt | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "EF-IT | Infrastruktur",
+      "manager": "EF-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Erfurt | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "EF-IT | Infrastruktur | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "EF-IT | Klinische Anwendungen",
+      "manager": "EF-IT | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Erfurt | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "EF-IT | Klinische Anwendungen | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "EF-IT | Netzwerk",
+      "manager": "EF-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Erfurt | Supportgruppe für Netzwerkthemen"
+    },
+    {
+      "name": "EF-IT | ServiceDesk",
+      "manager": "EF-IT | ServiceDesk | Mgt",
+      "type": "RIT",
+      "description": "Erfurt | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "EF-IT | ServiceDesk | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "eHealth | DevOps",
+      "manager": "eHealth | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für eHealth IOP, Imagebau, Automatisierung"
+    },
+    {
+      "name": "eHealth | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "eHealth | Terminbuchung",
+      "manager": "eHealth | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für eHealth Online-Terminbuchung"
+    },
+    {
+      "name": "ELB-IT",
+      "manager": "ELB-IT | Mgt",
+      "type": "RIT",
+      "description": "Erlenbach-IT | Supportgruppe der Erlenbach IT"
+    },
+    {
+      "name": "ELB-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "FAME (Fallbezogene Materialerfassung)",
+      "manager": "FAME | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD FAME | Supportguppe für Zebra Barcode-Scanner"
+    },
+    {
+      "name": "FHS-waveware",
+      "manager": "waveware | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD FHS-waveware | Supportgruppe für FHS-waveware"
+    },
+    {
+      "name": "FHS-waveware | Adressen",
+      "manager": "waveware | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD FHS-waveware | Supportgruppe für FHS-waveware Adressen"
+    },
+    {
+      "name": "Flipper",
+      "manager": "SAP | Rechnungswesen | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD Flipper | Supportgruppe für Flipper"
+    },
+    {
+      "name": "Forensik",
+      "manager": "",
+      "type": "ZD-IT",
+      "description": "Gruppe des Cyber Defense Center"
+    },
+    {
+      "name": "FTL-IT | Benutzeranträge",
+      "manager": "FTL-IT | Mgt",
+      "type": "RIT",
+      "description": "Freital | Supportgruppe für Benutzeranträge"
+    },
+    {
+      "name": "FTL-IT | Fieldservice",
+      "manager": "FTL-IT | Mgt",
+      "type": "RIT",
+      "description": "Freital | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "FTL-IT | iMedOne",
+      "manager": "FTL-IT | Mgt",
+      "type": "RIT",
+      "description": "Freital | Supportgruppe für iMedOne"
+    },
+    {
+      "name": "FTL-IT | Infrastruktur",
+      "manager": "FTL-IT | Mgt",
+      "type": "RIT",
+      "description": "Freital | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "FTL-IT | Klinische Anwendungen",
+      "manager": "FTL-IT | Mgt",
+      "type": "RIT",
+      "description": "Freital | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "FTL-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Freital IT Management"
+    },
+    {
+      "name": "FTL-IT | ServiceDesk",
+      "manager": "FTL-IT | Mgt",
+      "type": "RIT",
+      "description": "Freital | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "Geridoc / Pallilive",
+      "manager": "Klinische Spezialsystem | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Geridoc, Geridoc2, Pallilive"
+    },
+    {
+      "name": "GF-IT",
+      "manager": "GF-IT | Mgt",
+      "type": "RIT",
+      "description": "Gifhorn | Supportgruppe der Gifhorn IT"
+    },
+    {
+      "name": "GM-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Wipperfürth | Supportgruppe der Wipperfürth IT"
+    },
+    {
+      "name": "GRE-IT",
+      "manager": "GRE-IT | Mgt",
+      "type": "RIT",
+      "description": "Grebenhain | Supportgruppe der Grebenhain IT"
+    },
+    {
+      "name": "GRE-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "GTH-IT",
+      "manager": "GTH-IT | Mgt",
+      "type": "RIT",
+      "description": "Gotha | Supportgruppe der Gotha IT"
+    },
+    {
+      "name": "GTH-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "HBH-IT",
+      "manager": "HBH-IT | Mgt",
+      "type": "RIT",
+      "description": "Herzberg | Supportgruppe der Herzberg IT"
+    },
+    {
+      "name": "HBN | Fieldservice",
+      "manager": "HBN | Mgt",
+      "type": "RIT",
+      "description": "Hildburghausen | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "HBN | iMedOne",
+      "manager": "HBN | Mgt",
+      "type": "RIT",
+      "description": "Hildburghausen | Supportgruppe für iMedOne"
+    },
+    {
+      "name": "HBN | Infrastruktur",
+      "manager": "HBN | Mgt",
+      "type": "RIT",
+      "description": "Hildburghausen | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "HBN | Klinische Anwendungen",
+      "manager": "HBN | Mgt",
+      "type": "RIT",
+      "description": "Hildburghausen | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "HBN | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "HBN | SAP",
+      "manager": "HBN | Mgt",
+      "type": "RIT",
+      "description": "Hildburghausen | Supportgruppe für SAP"
+    },
+    {
+      "name": "HBN | ServiceDesk",
+      "manager": "HBN | Mgt",
+      "type": "RIT",
+      "description": "Hildburghausen | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "HE-IT",
+      "manager": "HE-IT | Mgt",
+      "type": "RIT",
+      "description": "Helmstedt | Supportgruppe der Helmstedt IT"
+    },
+    {
+      "name": "HI-IT",
+      "manager": "HI-IT | Mgt",
+      "type": "RIT",
+      "description": "Hildesheim | Supportgruppe  der Hildesheim IT"
+    },
+    {
+      "name": "HI-IT |  Infrastruktur",
+      "manager": "HI-IT |  Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Hildesheim | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "HI-IT | Orbis",
+      "manager": "HI-IT | Orbis | Mgt",
+      "type": "RIT",
+      "description": "Hildesheim | Supportgruppe für Orbis"
+    },
+    {
+      "name": "HI-IT | Service Desk",
+      "manager": "HI-IT | Service Desk | Mgt",
+      "type": "RIT",
+      "description": "Hildesheim | Supportgruppe für Servicedesk"
+    },
+    {
+      "name": "HK-IT",
+      "manager": "HK-IT | Mgt",
+      "type": "ZD-IT, RIT",
+      "description": "ZD Helios Kliniken | Supportgruppe von der ZD HK IT"
+    },
+    {
+      "name": "HSK | Fieldservice",
+      "manager": "CL-Wiesbaden-Taunus | Mgt",
+      "type": "RIT",
+      "description": "HSK Fieldservice | Supportgruppe Horst Schmidt Kliniken IT"
+    },
+    {
+      "name": "HST-IT",
+      "manager": "HST-IT | Mgt",
+      "type": "RIT",
+      "description": "not active in Prod"
+    },
+    {
+      "name": "HUE-IT",
+      "manager": "HUE-IT | Mgt",
+      "type": "RIT",
+      "description": "Hünfeld | Supportgruppe der Hünfeld IT"
+    },
+    {
+      "name": "HUE-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "ID Medics / Arzneimittelkabinett",
+      "manager": "MedAP | Mgt",
+      "type": "ZD-IT",
+      "description": "3rd Level Supportgruppe für ID Medics, Arzneimittelkabinette"
+    },
+    {
+      "name": "IDD-IT",
+      "manager": "CL-Oberbayern | Mgt",
+      "type": "RIT",
+      "description": "Indersdorf - IT | Supportgruppe der Amper Klinik Indersdorf IT"
+    },
+    {
+      "name": "IDS | Fieldservice",
+      "manager": "CL-Wiesbaden-Taunus | Mgt",
+      "type": "RIT",
+      "description": "IDS Fieldservice | Supportgruppe der Idstein IT"
+    },
+    {
+      "name": "iMedOne",
+      "manager": "iMedOne | Mgt",
+      "type": "ZD-IT",
+      "description": "2nd / 3rd Level Supportgruppe für  iMedOne"
+    },
+    {
+      "name": "iMedOne | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "Infrastruktur Consulting",
+      "manager": "Infrastruktur Consulting | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Consulting | Supportgruppe für Infrastruktur Consulting"
+    },
+    {
+      "name": "INK I Clientmanagement",
+      "manager": "INK I Clientmanagement I Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Clientmanagement"
+    },
+    {
+      "name": "INK I Inbox",
+      "manager": "INK | Mgt.",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Inbox"
+    },
+    {
+      "name": "INK I POUMA",
+      "manager": "INK I Clientmanagement I Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für POUMA"
+    },
+    {
+      "name": "INK I Produkt Mgt.",
+      "manager": "INK | Mgt.",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Produkt Mgt."
+    },
+    {
+      "name": "INK I Telematik",
+      "manager": "INK | Mgt.",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Telematik"
+    },
+    {
+      "name": "INK I Unified Communications",
+      "manager": "INK | Mgt.",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Unified Communications"
+    },
+    {
+      "name": "INK | Anwendungen",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Anwendungen"
+    },
+    {
+      "name": "INK | Atlassian",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Atlassian https://myhelios.helios-gesundheit.de/pages/viewpage.action?pageId=90116259"
+    },
+    {
+      "name": "INK | BI",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für BI"
+    },
+    {
+      "name": "INK | DMD",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Dragon Medical Direct (Nuance) https://myhelios.helios-gesundheit.de/pages/viewpage.action?pageId=137494947"
+    },
+    {
+      "name": "INK | DocuSign",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken - Supportgruppe für DocuSign (Digitale Signatur)"
+    },
+    {
+      "name": "INK | KV-Safenet",
+      "manager": "INK | Mgt.",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für KV-Safenet"
+    },
+    {
+      "name": "INK | MDM",
+      "manager": "INK I Clientmanagement I Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken - Supportgruppe für Mobile Device Management (Workspace One)  https://myhelios.helios-gesundheit.de/pages/viewpage.action?pageId=90116178"
+    },
+    {
+      "name": "INK | Mobilfunk",
+      "manager": "INK | Mgt.",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Mobilfunk"
+    },
+    {
+      "name": "INK | OTRS",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für OTRS"
+    },
+    {
+      "name": "INK | Roxtra",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken |  Roxtra   https://myhelios.helios-gesundheit.de/display/IT/RoXtra"
+    },
+    {
+      "name": "INK | RWP",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | Supportgruppe für Remotewartungsportal (Wallix)"
+    },
+    {
+      "name": "INK | SSO",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Infrastruktur Kliniken | SingleSignOn (Imprivata)   https://myhelios.helios-gesundheit.de/pages/viewpage.action?pageId=137494936&src=contextnavpagetreemode"
+    },
+    {
+      "name": "IT Compliance",
+      "manager": "IT Compliance | Mgt",
+      "type": "ZD-IT",
+      "description": "IT Compliance | Supportgruppe für IT Compliance"
+    },
+    {
+      "name": "IT Compliance | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": "IT Compliance | Managergruppe für IT Compliance"
+    },
+    {
+      "name": "IT-Org | Cockpit",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für Cockpit"
+    },
+    {
+      "name": "IT-Org | DevOps",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für DevOps"
+    },
+    {
+      "name": "IT-Org | DIGI-Board",
+      "manager": "IT-Org | PMO | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe fürs DIGI-Board"
+    },
+    {
+      "name": "IT-Org | HIT Datenschutz",
+      "manager": "IT-Org | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für HIT Datenschutz"
+    },
+    {
+      "name": "IT-Org | HIT InfoSec",
+      "manager": "IT-Org | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für HIT InfoSec"
+    },
+    {
+      "name": "IT-Org | HIT Office Mgt BLN",
+      "manager": "IT-Org | HIT Office Mgt BLN | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für HIT Office Management Berlin"
+    },
+    {
+      "name": "IT-Org | HIT Office Mgt BLN | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": "https://myhelios.helios-gesundheit.de/display/IT/Officemanagement"
+    },
+    {
+      "name": "IT-Org | Identity & Access Mgt",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für Identity & Access Management"
+    },
+    {
+      "name": "IT-Org | Identity Manager",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für Identity Manager"
+    },
+    {
+      "name": "IT-Org | IT-Controlling",
+      "manager": "IT-Org | IT-Controlling | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für IT-Controlling"
+    },
+    {
+      "name": "IT-Org | KHZG",
+      "manager": "IT-Org | PMO | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für KHZG"
+    },
+    {
+      "name": "IT-Org | myHelios Bereich ZD IT",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für myHelios für ZD-IT"
+    },
+    {
+      "name": "IT-Org | PMO",
+      "manager": "IT-Org | PMO | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für PMIO"
+    },
+    {
+      "name": "IT-Org | Software Asset Mgt",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT Organisation | Supportgruppe für Software Asset Management"
+    },
+    {
+      "name": "IT-Org | Softwareentwicklung",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für Softwareentwickelung"
+    },
+    {
+      "name": "IT-Org | Stammdatenmanager",
+      "manager": "IT-Org | EIST | Mgt",
+      "type": "ZD-IT",
+      "description": "IT-Org | Supportgruppe für Stammdatenmanager"
+    },
+    {
+      "name": "ITAM | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "ixserv / ix.connect",
+      "manager": "Klinische Spezialsystem | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Aufragseingang über ixserv / ixconnect"
+    },
+    {
+      "name": "KA | IT Application Mgt",
+      "manager": "ITAM | Mgt",
+      "type": "RIT",
+      "description": "Supportgruppe für IT Applikation Management der Klinischen Anwendungen"
+    },
+    {
+      "name": "KC-IT | Klinische Anwendungen",
+      "manager": "KC-IT | Mgt",
+      "type": "RIT",
+      "description": "Kronach | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "KC-IT | Servicedesk",
+      "manager": "KC-IT | Mgt",
+      "type": "RIT",
+      "description": "Kronach | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "Klinische Spezialsystem | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "Kodip / MOMO / QS-Med Suite",
+      "manager": "ITAM | Mgt",
+      "type": "ZD-IT",
+      "description": "2nd / 3rd Level Supportgruppe für Kodip Suite, MOMO, QS-Med Suite"
+    },
+    {
+      "name": "KOET-IT | Fieldservice",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Köthen | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "KOET-IT | Servicedesk",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Köthen | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "KR-IT | Fieldservice",
+      "manager": "KR-IT | Mgt",
+      "type": "RIT",
+      "description": "Krefeld | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "KR-IT | Infrastruktur",
+      "manager": "KR-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Krefeld | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "KR-IT | Infrastruktur | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Krefeld | IT Managementgruppe Infrastruktur"
+    },
+    {
+      "name": "KR-IT | Klinische Applikationen",
+      "manager": "KR-IT | Klinische Applikationen | Mgt",
+      "type": "RIT",
+      "description": "Krefeld | Supportgruppe für  Klinische Applikationen"
+    },
+    {
+      "name": "KR-IT | Klinische Applikationen | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Krefeld | IT Managementgruppe Klinische Applikationen"
+    },
+    {
+      "name": "KR-IT | Medico",
+      "manager": "KR-IT | Klinische Applikationen | Mgt",
+      "type": "RIT",
+      "description": "Krefeld | Supportgruppe für Medico"
+    },
+    {
+      "name": "KR-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Krefeld | IT Managementgruppe Service Desk und Fieldservice"
+    },
+    {
+      "name": "KR-IT | Service Desk",
+      "manager": "KR-IT | Mgt",
+      "type": "RIT",
+      "description": "Krefeld | Supportgruppe des ServiceDesks"
+    },
+    {
+      "name": "KS-IT",
+      "manager": "KS-IT | Mgt",
+      "type": "RIT",
+      "description": "Kassel | Supportgruppe der Kassel IT"
+    },
+    {
+      "name": "LEI-IT | Fieldservice",
+      "manager": "LEI-IT | Mgt",
+      "type": "RIT",
+      "description": "Leisnig | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "LEI-IT | Infrastruktur",
+      "manager": "LEI-IT | Mgt",
+      "type": "RIT",
+      "description": "Leisnig | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "LEI-IT | Klinische Anwendungen",
+      "manager": "LEI-IT | Mgt",
+      "type": "RIT",
+      "description": "Leisnig | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "LEI-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "LEI-IT | MVZ",
+      "manager": "LEI-IT | Mgt",
+      "type": "RIT",
+      "description": "Leisnig  | Supportgruppe für MVZ"
+    },
+    {
+      "name": "LEI-IT | Servicedesk",
+      "manager": "LEI-IT | Mgt",
+      "type": "RIT",
+      "description": "Leisnig | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "LEN-IT",
+      "manager": "LEN-IT | Mgt",
+      "type": "RIT",
+      "description": "Lengerich | Supportgruppe der Lengerich IT"
+    },
+    {
+      "name": "LOGA",
+      "manager": "LOGA | Mgt",
+      "type": "ZD-IT",
+      "description": "not active in Prod"
+    },
+    {
+      "name": "Logbuch",
+      "manager": "Logbuch | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD Logbuch | Supportgruppe für Dynamed Logbuch"
+    },
+    {
+      "name": "Logbuch | Key-User",
+      "manager": "Logbuch | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD Logbuch | Supportgruppe für Key-User Logbuch"
+    },
+    {
+      "name": "LPZ-IT | Active Directory",
+      "manager": "LPZ-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für Active Directory"
+    },
+    {
+      "name": "LPZ-IT | Fieldservice",
+      "manager": "LPZ-IT | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "LPZ-IT | Fieldservice | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "LPZ-IT | iMedOne",
+      "manager": "LPZ-IT | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für iMedOne"
+    },
+    {
+      "name": "LPZ-IT | Infrastruktur | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "LPZ-IT | Klinische Anwendungen | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "LPZ-IT | MVZ",
+      "manager": "LPZ-IT | Fieldservice | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für MVZ"
+    },
+    {
+      "name": "LPZ-IT | Netzwerk",
+      "manager": "LPZ-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für Netzwerk"
+    },
+    {
+      "name": "LPZ-IT | Server",
+      "manager": "LPZ-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für Server"
+    },
+    {
+      "name": "LPZ-IT | Servicedesk",
+      "manager": "LPZ-IT | Servicedesk | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "LPZ-IT | Servicedesk | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "LPZ-IT | Softwareverteilung",
+      "manager": "LPZ-IT | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für Softwareverteilung"
+    },
+    {
+      "name": "LPZ-IT | Subsysteme",
+      "manager": "LPZ-IT | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Leipzig | Supportgruppe für Subsysteme"
+    },
+    {
+      "name": "LucaNet",
+      "manager": "LucaNet | Mgt",
+      "type": "ZD-IT",
+      "description": "ZD LucaNet | Supportgruppe für LucaNet"
+    },
+    {
+      "name": "MedAP | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "MediConnect",
+      "manager": "Klinische Spezialsystem | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für MediConnect von Fleischhacker"
+    },
+    {
+      "name": "Medizintechniknahe Systeme | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "Metadefender",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "ICAP Virenscanner"
+    },
+    {
+      "name": "Metavision",
+      "manager": "Medizintechniknahe Systeme | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für PDMS/ Metavision"
+    },
+    {
+      "name": "MGN | Benutzerantrag",
+      "manager": "MGN | Mgt",
+      "type": "RIT",
+      "description": "Meiningen | Supportgruppe für  Benutzerantrag"
+    },
+    {
+      "name": "MGN | Fieldservice",
+      "manager": "MGN | Mgt",
+      "type": "RIT",
+      "description": "Meiningen | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "MGN | ImedOne",
+      "manager": "MGN | Mgt",
+      "type": "RIT",
+      "description": "Meiningen | Supportgruppe für IMedOne"
+    },
+    {
+      "name": "MGN | Infrastruktur",
+      "manager": "MGN | Mgt",
+      "type": "RIT",
+      "description": "Meiningen | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "MGN | Klinische Anwendungen",
+      "manager": "MGN | Mgt",
+      "type": "RIT",
+      "description": "Meiningen | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "MGN | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "MGN | ServiceDesk",
+      "manager": "MGN | Mgt",
+      "type": "RIT",
+      "description": "Meiningen | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "MIMaP | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "MPA-IT",
+      "manager": "CL-Oberbayern | Mgt",
+      "type": "RIT",
+      "description": "München Pasing | Supportgruppe der München Pasing IT"
+    },
+    {
+      "name": "MPE-IT",
+      "manager": "CL-Oberbayern | Mgt",
+      "type": "RIT",
+      "description": "München Perlach | Supportgruppe der München Perlach IT"
+    },
+    {
+      "name": "MSH-IT | Fieldservice",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Mansfeld-Südharz | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "MSH-IT | Servicedesk",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Mansfeld-Südharz | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "MUE-IT",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Mülheim | Supportgruppe der Mülheim IT"
+    },
+    {
+      "name": "MUE-IT | Fieldservice",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Mülheim | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "MVZ Produktmanagement",
+      "manager": "MVZ Produktmanagement | Mgt",
+      "type": "ZD-IT",
+      "description": "2nd / 3rd Level Supportgruppe für die Produkte  x.vianova, mediDOK, Onlineterminvergabe (Timerbee) , Videosprechstunde (Patientus), Googleeinträge (Yext)"
+    },
+    {
+      "name": "MVZ Produktmanagement | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "NDB-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Niederberg | Supportgruppe der Niederberg IT"
+    },
+    {
+      "name": "NetOp | Automatisierung",
+      "manager": "NetOp | Mgt",
+      "type": "ZD-IT",
+      "description": "Network Operation | Supportgruppen für Automatisierung"
+    },
+    {
+      "name": "NetOp | Inbox",
+      "manager": "NetOp | Mgt",
+      "type": "ZD-IT",
+      "description": "Network Operation | Supportgruppe von der Inbox"
+    },
+    {
+      "name": "NetOp | Infrastruktur",
+      "manager": "NetOp | Mgt",
+      "type": "ZD-IT",
+      "description": "Network Operation | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "NI-IT",
+      "manager": "NI-IT | Mgt",
+      "type": "RIT",
+      "description": "Nienburg | Supportgruppe der Nienburg IT"
+    },
+    {
+      "name": "NOM-IT",
+      "manager": "NOM-IT | Mgt",
+      "type": "RIT",
+      "description": "Northeim | Supportgruppe der Northeim IT"
+    },
+    {
+      "name": "OB-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Oberhausen | Supportgruppe der Oberhausen IT"
+    },
+    {
+      "name": "OC-IT | Fieldservice",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Oschersleben | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "OC-IT | Servicedesk",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Oschersleben | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "Orbis",
+      "manager": "Orbis | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Orbis (zentral)"
+    },
+    {
+      "name": "Orbis | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "Orchestra",
+      "manager": "SAP Basis | Mgt",
+      "type": "ZD-IT",
+      "description": "Orchestra | Supportgruppe für Orchestra"
+    },
+    {
+      "name": "Orchestra | Entwicklung",
+      "manager": "Schnittstellen | Mgt",
+      "type": "ZD-IT",
+      "description": "2nd / 3rd Level Supportgruppe für die zentrale Orchestra Entwicklung"
+    },
+    {
+      "name": "Passwordstate",
+      "manager": "INK | Anwendungen | Mgt",
+      "type": "ZD-IT",
+      "description": "Passwortdstate | Supportgruppe für Passwordstate"
+    },
+    {
+      "name": "Patientenportal",
+      "manager": "eHealth | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Anfragen & Störungen rund um das Patientenportal"
+    },
+    {
+      "name": "PIR-IT | Benutzeranträge",
+      "manager": "PIR-IT | Mgt",
+      "type": "RIT",
+      "description": "Pirna | Supportgruppe für Benutzeranträge"
+    },
+    {
+      "name": "PIR-IT | Fieldservice",
+      "manager": "PIR-IT | Mgt",
+      "type": "RIT",
+      "description": "Pirna | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "PIR-IT | iMedOne",
+      "manager": "PIR-IT | Mgt",
+      "type": "RIT",
+      "description": "Pirna | Supportgruppe für iMedOne"
+    },
+    {
+      "name": "PIR-IT | Infrastruktur",
+      "manager": "PIR-IT | Mgt",
+      "type": "RIT",
+      "description": "Pirna | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "PIR-IT | Klinische Anwendungen",
+      "manager": "PIR-IT | Mgt",
+      "type": "RIT",
+      "description": "Pirna | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "PIR-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Pirna IT Management"
+    },
+    {
+      "name": "PIR-IT | ServiceDesk",
+      "manager": "PIR-IT | Mgt",
+      "type": "RIT",
+      "description": "Pirna | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "PL-IT | Benutzeranträge",
+      "manager": "PL-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogtland | Supportgruppe für Benutzeranträge"
+    },
+    {
+      "name": "PL-IT | Fieldservice",
+      "manager": "PL-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogtland | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "PL-IT | Infrastruktur",
+      "manager": "PL-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogtland | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "PL-IT | Klinische Anwendungen",
+      "manager": "PL-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogtland | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "PL-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Plauen IT Management"
+    },
+    {
+      "name": "PL-IT | SAP  Basics",
+      "manager": "PL-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogtland | Supportgruppe für SAP Basics"
+    },
+    {
+      "name": "PL-IT | ServiceDesk",
+      "manager": "PL-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogtland | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "POCT",
+      "manager": "Klinische Spezialsystem | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für technische Verfügbarkeit und Datenübertragung der POCT Geräte für Blutgase und Blutzucker, POCT Systeme für Blutgase und Blutzucker"
+    },
+    {
+      "name": "RN/RW MVZ Support",
+      "manager": "RN/RW MVZ Support | Mgt",
+      "type": "RIT",
+      "description": "RN/RW MVZ | Supportgruppe für RN/RW MVZ"
+    },
+    {
+      "name": "RO | KeyUser-Management",
+      "manager": "RO | Klinische Anwendungen | Mgt",
+      "type": "itil",
+      "description": "KeyUser Management für klinische Systeme in der Region Ost."
+    },
+    {
+      "name": "RO | Klinische Anwendungen SAP",
+      "manager": "RO | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Region Ost - KLARO Team Klinische Anwendungen Team SAP"
+    },
+    {
+      "name": "RO | Klinische Anwendungen | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": "Region Ost - KLARO Team Klinische Anwendungen Management Gruppe"
+    },
+    {
+      "name": "RO | Klinische Anwendungen | Schnittstellen",
+      "manager": "RO | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Region Ost - KLARO Team Klinische Anwendungen Team Schnittstellen"
+    },
+    {
+      "name": "RO | Klinische Anwendungen | Subsysteme",
+      "manager": "RO | Klinische Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Region Ost - KLARO Team Klinische Anwendungen Team Subsysteme"
+    },
+    {
+      "name": "RO-IT | Infrastruktur",
+      "manager": "RO | Mgt",
+      "type": "RIT",
+      "description": ""
+    },
+    {
+      "name": "ROT-IT",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Rottweil | Supportgruppe der Rottweil IT"
+    },
+    {
+      "name": "ROT-IT | Fieldservice",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Rottweil | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "RS MVZ Support",
+      "manager": "RS MVZ Support | Mgt",
+      "type": "RIT",
+      "description": "Region Süd | Supportgruppe von Medizinisches Versorgungszentrum Support"
+    },
+    {
+      "name": "RS | Accountmanagement",
+      "manager": "RS | Servicedesk | Mgt",
+      "type": "RIT",
+      "description": "Region Süd | Supportgruppe für Accountmanagement"
+    },
+    {
+      "name": "RS | Infrastruktur",
+      "manager": "RS | Infrastruktur | Mgt",
+      "type": "RIT",
+      "description": "Region Süd | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "RS | iSHMED",
+      "manager": "RS | iSHMED  | Mgt",
+      "type": "RIT",
+      "description": "Region Süd | Supportgruppe für ISHMED"
+    },
+    {
+      "name": "RS | Klinische Prozesse & Anwendungen",
+      "manager": "RS | Klinische Prozesse & Anwendungen | Mgt",
+      "type": "RIT",
+      "description": "Region Süd | Supportgruppe für Klinische Prozesse & Anwendungen"
+    },
+    {
+      "name": "RS | Servicedesk",
+      "manager": "RS | Servicedesk | Mgt",
+      "type": "RIT",
+      "description": "Region Süd | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "SAP Basis",
+      "manager": "SAP Basis | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP | Supportgruppe für SAP Basis"
+    },
+    {
+      "name": "SAP Basis | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "SAP Change Management",
+      "manager": "SAP Change Management | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP  Change Management | Supportgruppe für SAP Change Management"
+    },
+    {
+      "name": "SAP Change Management | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": "SAP Change Management | Managergruppe für SAP Change Management"
+    },
+    {
+      "name": "SAP i.s.h.med",
+      "manager": "SAP i.s.h.med | Mgt",
+      "type": "ZD-IT",
+      "description": "3rd Level Supportgruppe für SAP i.s.h.med"
+    },
+    {
+      "name": "SAP i.s.h.med | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "SAP i.s.h.med | TI",
+      "manager": "SAP i.s.h.med | TI | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für Telematik in Verbindung mit SAP i.s.h.med"
+    },
+    {
+      "name": "SAP i.s.h.med | TI | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "SAP Mobile",
+      "manager": "MedAP | Mgt",
+      "type": "ZD-IT",
+      "description": "3rd Level Supportgruppe für mobile SAP Fiori Apps"
+    },
+    {
+      "name": "SAP New Technology",
+      "manager": "SAP New Technology | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP New Technology | Supportgruppe für SAP Technology"
+    },
+    {
+      "name": "SAP New Technology | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": "SAP New Technology | Managergruppe für SAP Technology"
+    },
+    {
+      "name": "SAP | BW (Business Warehouse)",
+      "manager": "SAP | BW (Business Warehouse) | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP | Supportgruppe für BW (Business Warehouse)"
+    },
+    {
+      "name": "SAP | BW (Business Warehouse) | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": "SAP | Managergruppe für SAP | BW (Business Warehouse)"
+    },
+    {
+      "name": "SAP | Dienstplan",
+      "manager": "Dienstplan | Mgt",
+      "type": "ZD-IT",
+      "description": "not active in Prod"
+    },
+    {
+      "name": "SAP | HR",
+      "manager": "SAP | HR | Mgt",
+      "type": "ZD-IT",
+      "description": "not active in Prod"
+    },
+    {
+      "name": "SAP | IS-H | Akut",
+      "manager": "IS-H | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP IS-H Akut | Supportgruppe von SAP IS-H Akut"
+    },
+    {
+      "name": "SAP | IS-H | Formularentwicklung & Standardisierung",
+      "manager": "IS-H | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP IS-H | Supportgruppe für Formularentwicklung & Standardisierung"
+    },
+    {
+      "name": "SAP | IS-H | Inbox",
+      "manager": "IS-H | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP IS-H | Supportgruppe der Inbox"
+    },
+    {
+      "name": "SAP | IS-H | Produkt Mgt",
+      "manager": "IS-H | Mgt",
+      "type": "ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "SAP | IS-H | Reha",
+      "manager": "IS-H | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP IS-H | Supportgruppe für SAP IS-H Reha"
+    },
+    {
+      "name": "SAP | Leasing",
+      "manager": "SAP | Rechnungswesen | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP IS-H | Supportgruppe für SAP Leasing"
+    },
+    {
+      "name": "SAP | Logistik",
+      "manager": "SAP | Logistik | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP | Supportgruppe für Logistik (Einkauf,  Vertrieb, Materialwirtschaft und Lagerlogistik)"
+    },
+    {
+      "name": "SAP | Rechnungswesen",
+      "manager": "SAP | Rechnungswesen | Mgt",
+      "type": "ZD-IT",
+      "description": "SAP | Supportgruppe für Rechnungswesen"
+    },
+    {
+      "name": "Schnittstellen | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "Security | CERT",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Security | Supportgruppe für Security CERT & BSI Meldungen und Kommunikation Cyber Defense Center (CDC) & Security Operation Center (SOC)"
+    },
+    {
+      "name": "Security | E-Mails",
+      "manager": "",
+      "type": "ZD-IT",
+      "description": "Security | E-Mails CDC & SOC"
+    },
+    {
+      "name": "Security | Inbox",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Security | Supportgruppe von der Inbox CDC & SOC"
+    },
+    {
+      "name": "Security | Incident Response",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Security | Supportgruppe für Incident Response CDC & SOC"
+    },
+    {
+      "name": "Security | Network",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Security | Supportgruppe für Network"
+    },
+    {
+      "name": "Security | SIVO",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Security | Supportgruppe für SIVO Sicherheitsvorfälle CDC & SOC"
+    },
+    {
+      "name": "SIEM",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "SIEM | Supportgruppe von SIEM Splunk"
+    },
+    {
+      "name": "SKZ-IT | Fieldservice",
+      "manager": "SKZ-IT | Mgt",
+      "type": "RIT",
+      "description": "Schkeuditz | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "SKZ-IT | Infrastruktur",
+      "manager": "SKZ-IT | Mgt",
+      "type": "RIT",
+      "description": "Schkeuditz | Supportgruppe für Infrastruktur"
+    },
+    {
+      "name": "SKZ-IT | Klinische Anwendungen",
+      "manager": "SKZ-IT | Mgt",
+      "type": "RIT",
+      "description": "Schkeuditz | Supportgruppe für Klinische Anwendungen"
+    },
+    {
+      "name": "SKZ-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "SKZ-IT | MVZ",
+      "manager": "SKZ-IT | Mgt",
+      "type": "RIT",
+      "description": "Schkeuditz | Supportgruppe für Medizinisches Versorgungszentrum"
+    },
+    {
+      "name": "SKZ-IT | Servicedesk",
+      "manager": "SKZ-IT | Mgt",
+      "type": "RIT",
+      "description": "Schkeuditz | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "SNow | Admin",
+      "manager": "SNow | Mgt",
+      "type": "ZD-IT",
+      "description": "ServiceNow Admin | Supportgruppe für ServiceNow Administratoren"
+    },
+    {
+      "name": "SNow | Inbox",
+      "manager": "SNow | Mgt",
+      "type": "Knowledge, ZD-IT",
+      "description": "ServiceNow Inbox | Supportgruppe für ServiceNow Inbox"
+    },
+    {
+      "name": "SNow | Klärungsstelle",
+      "manager": "SNow | Mgt",
+      "type": "ZD-IT",
+      "description": "SNow Klärungsstelle | Supportgruppe Sammler für alle Themen in und um ServiceNow"
+    },
+    {
+      "name": "SOC | Mgt",
+      "manager": "",
+      "type": "manager, ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "SpotMonitor",
+      "manager": "Medizintechniknahe Systeme | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für SpotMonitor"
+    },
+    {
+      "name": "Strahlendosismanagement",
+      "manager": "MIMaP | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für die Applikationen Strahlendosismanagement, Dosismanagement, DoseM, Dosismanagement"
+    },
+    {
+      "name": "SU-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Siegburg | Supportgruppe der Siegburg IT"
+    },
+    {
+      "name": "SWE-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Schwelm | Supportgruppe der Schwelm IT"
+    },
+    {
+      "name": "SysOp | AD/Ex | Directory Services",
+      "manager": "SysOp | AD/Exchange | Mgt",
+      "type": "ZD-IT",
+      "description": "#nicht benötigt für GoLive"
+    },
+    {
+      "name": "SysOp | AD/Ex | E-Mail",
+      "manager": "SysOp | AD/Exchange | Mgt",
+      "type": "ZD-IT",
+      "description": "#nicht benötigt für GoLive"
+    },
+    {
+      "name": "SysOp | AD/Exchange",
+      "manager": "SysOp | AD/Exchange | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für ActiveDirectory/Exchange"
+    },
+    {
+      "name": "SysOp | Backup",
+      "manager": "SysOp | Backup| Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Backup"
+    },
+    {
+      "name": "SysOp | Backup | Inbox",
+      "manager": "SysOp | Backup| Mgt",
+      "type": "ZD-IT",
+      "description": "#nicht benötigt für GoLive"
+    },
+    {
+      "name": "SysOp | Citrix",
+      "manager": "SysOp | Citrix | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Citrix"
+    },
+    {
+      "name": "SysOp | Container Services",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Container Services"
+    },
+    {
+      "name": "SysOp | Databases",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Databases"
+    },
+    {
+      "name": "SysOp | Datacenter Access",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Datacenter Access"
+    },
+    {
+      "name": "SysOp | Dracoon",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Dracoon"
+    },
+    {
+      "name": "SysOp | Inbox",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe von der Inbox"
+    },
+    {
+      "name": "SysOp | Logging",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": ""
+    },
+    {
+      "name": "SysOp | Monitoring",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Monitoring"
+    },
+    {
+      "name": "SysOp | MyHelios-Files",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für MyHelios-Files"
+    },
+    {
+      "name": "SysOp | Patching",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Patching"
+    },
+    {
+      "name": "SysOp | Physical Device",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Physical Device"
+    },
+    {
+      "name": "SysOp | Security&Configuration",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Security&Configuration"
+    },
+    {
+      "name": "SysOp | Storage",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für Storage"
+    },
+    {
+      "name": "SysOp | VM",
+      "manager": "SysOp | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation | Supportgruppe für VM"
+    },
+    {
+      "name": "SysOp | Citrix | Applikationen",
+      "manager": "SysOp | Citrix | Mgt",
+      "type": "ZD-IT",
+      "description": "SysOp | Citrix | Applikationen"
+    },
+    {
+      "name": "SysOp | Citrix | Clients",
+      "manager": "SysOp | Citrix | Mgt",
+      "type": "ZD-IT",
+      "description": "System Operation Citrix Supportgruppe für SysOp Citrix Clients"
+    },
+    {
+      "name": "SysOp | Citrix | Infrastruktur",
+      "manager": "SysOp | Citrix | Mgt",
+      "type": "ZD-IT",
+      "description": "#für GoLive nicht genutzt"
+    },
+    {
+      "name": "SZ-IT",
+      "manager": "SZ-IT | Mgt",
+      "type": "RIT",
+      "description": "Salzgitter | Supportgruppe der Salzgitter IT"
+    },
+    {
+      "name": "Thieme",
+      "manager": "Klinische Spezialsystem | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für digitale Aufnahme / Aufklärung, ECP"
+    },
+    {
+      "name": "TIT-IT",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Tittisee | Supportgruppe der Tittisee IT"
+    },
+    {
+      "name": "TIT-IT | Fieldservice",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Tittisee | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "UE-IT",
+      "manager": "UE-IT | Mgt",
+      "type": "RIT",
+      "description": "Uelzen | Supportgruppe der Uelzen IT"
+    },
+    {
+      "name": "UEB-IT",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Überlingen | Supportgruppe der Überlingen IT"
+    },
+    {
+      "name": "UEB-IT  | Fieldservice",
+      "manager": "CL-Südbaden | Mgt",
+      "type": "RIT",
+      "description": "Überlingen | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "VGM-IT | Fieldservice",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogelsang-Gommern | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "VGM-IT | Servicedesk",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Vogelsang-Gommern | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "Vulnerability Mgt",
+      "manager": "CDC | Mgt",
+      "type": "ZD-IT",
+      "description": "Schwachstellen Management"
+    },
+    {
+      "name": "Vulnerability Scanner",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Vulnerability Scanner | Supportgruppe für SOC, Tenable, Nessus"
+    },
+    {
+      "name": "WAF | Web Application Firewall",
+      "manager": "SOC | Mgt",
+      "type": "ZD-IT",
+      "description": "Web Application Firewall | Supportgruppe für WAF, Akamei, DDos Protection"
+    },
+    {
+      "name": "WAR-IT",
+      "manager": "CL-Wuppertal | Mgt",
+      "type": "RIT",
+      "description": "Warburg  | Supportgruppe der Warburg IT"
+    },
+    {
+      "name": "waveware | DEIN-MP",
+      "manager": "waveware | DEIN-MP | Mgt",
+      "type": "ZD-IT",
+      "description": "waveware | Supportgruppe für waveware DEIN-MP"
+    },
+    {
+      "name": "WID-IT",
+      "manager": "WID-IT | Mgt",
+      "type": "RIT",
+      "description": "WID-IT | Supportgruppe der Wiesbaden IT"
+    },
+    {
+      "name": "WID-IT | Mgt",
+      "manager": "",
+      "type": "manager, RIT",
+      "description": ""
+    },
+    {
+      "name": "WSG | Web Security Gateway",
+      "manager": "CDC | Mgt",
+      "type": "ZD-IT",
+      "description": "Web Security Gateway | Supportgruppe für Administration des Web Security Gateway"
+    },
+    {
+      "name": "ZE-IT | Fieldservice",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Zerbst/Anhalt | Supportgruppe für Fieldservice"
+    },
+    {
+      "name": "ZE-IT | Servicedesk",
+      "manager": "CLST-IT | Mgt",
+      "type": "RIT",
+      "description": "Zerbst/Anhalt | Supportgruppe  des ServiceDesks"
+    },
+    {
+      "name": "ZKIPR (Zentrale KI-Plattform / Reporting)",
+      "manager": "MIMaP | Mgt",
+      "type": "ZD-IT",
+      "description": "Supportgruppe für ZKIPR - Zentrale KI-Plattform und Reporting"
     }
   ]
 }
