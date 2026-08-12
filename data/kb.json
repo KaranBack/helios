@@ -633,6 +633,38 @@
       "Account": "RN/RW MVZ Support",
       "FieldService": "RN/RW MVZ Support",
       "ServiceDesk": "RN/RW MVZ Support"
+    },
+    "MVZ Süd": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD"
+    },
+    "AMAGS": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD"
+    },
+    "HK": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD"
+    },
+    "MVZ Nord": {
+      "Infrastructure": "TBD",
+      "Clinical": "TBD",
+      "SAP": "TBD",
+      "Account": "TBD",
+      "FieldService": "TBD",
+      "ServiceDesk": "TBD"
     }
   },
   "apps": {
@@ -3463,6 +3495,74 @@
           "Wave 2 location. Region West/Nord MVZ — use RN/RW MVZ Support for local MVZ support."
         ]
       ]
+    },
+    {
+      "name": "MVZ Süd",
+      "rows": [
+        [
+          "Wave / planning unit",
+          "MVZ Süd"
+        ],
+        [
+          "Assignment groups",
+          "TBD"
+        ],
+        [
+          "Note",
+          "Wave 3 MVZ Süd — assignment groups TBD"
+        ]
+      ]
+    },
+    {
+      "name": "MVZ Nord",
+      "rows": [
+        [
+          "Wave / planning unit",
+          "MVZ Nord"
+        ],
+        [
+          "Assignment groups",
+          "TBD"
+        ],
+        [
+          "Note",
+          "Wave 5 MVZ Nord — assignment groups TBD"
+        ]
+      ]
+    },
+    {
+      "name": "AMAGS",
+      "rows": [
+        [
+          "Wave / planning unit",
+          "AMAGS"
+        ],
+        [
+          "Assignment groups",
+          "TBD"
+        ],
+        [
+          "Note",
+          "Wave 4 AMAGS — assignment groups TBD"
+        ]
+      ]
+    },
+    {
+      "name": "HK",
+      "rows": [
+        [
+          "Wave / planning unit",
+          "HK"
+        ],
+        [
+          "Assignment groups",
+          "TBD"
+        ],
+        [
+          "Note",
+          "Wave 5 HK — assignment groups TBD"
+        ]
+      ]
     }
   ],
   "groupDirectory": [
@@ -6252,5 +6352,980 @@
         "notes": "All local → SZ-IT; SAP/KIS → iMedOne."
       }
     ]
+  },
+  "planning": {
+    "meta": {
+      "title": "Helios Waves Planning FINAL",
+      "source": "Waves planning FINAL table (Service Unit / Region / Wave)",
+      "version": "2026-08-12",
+      "note": "Counts transcribed from planning sheet. Cells not clearly readable are TBD."
+    },
+    "serviceUnits": [
+      {
+        "unit": "CL-Wuppertal",
+        "clusterKey": "CL-Wuppertal",
+        "locations": 31,
+        "users": 10756,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": true,
+        "wave": 1,
+        "regions": {
+          "Nord": 1,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 19
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Gifhorn",
+        "clusterKey": "Gifhorn",
+        "locations": 16,
+        "users": 1325,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 1,
+        "regions": {
+          "Nord": 5,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Gotha",
+        "clusterKey": "Gotha",
+        "locations": 3,
+        "users": 813,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 1,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 3,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Duisburg (Pilot)",
+        "clusterKey": "Duisburg",
+        "locations": 9,
+        "users": 3674,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": true,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 9
+        },
+        "notes": "Pilot"
+      },
+      {
+        "unit": "Herzberg (Pilot)",
+        "clusterKey": "Herzberg",
+        "locations": 3,
+        "users": 739,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 3
+        },
+        "notes": "Pilot"
+      },
+      {
+        "unit": "Hildesheim",
+        "clusterKey": "Hildesheim",
+        "locations": 4,
+        "users": 2062,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 1
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Kassel",
+        "clusterKey": "Kassel",
+        "locations": 3,
+        "users": 852,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 2
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Krefeld",
+        "clusterKey": "Krefeld",
+        "locations": 10,
+        "users": 5398,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": true,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 9
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Lengerich",
+        "clusterKey": "Lengerich",
+        "locations": 5,
+        "users": 466,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 5
+        },
+        "notes": ""
+      },
+      {
+        "unit": "MVZ West",
+        "clusterKey": "MVZ West",
+        "locations": 55,
+        "users": 456,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "MVZ West locations primarily Region West"
+      },
+      {
+        "unit": "Northeim",
+        "clusterKey": "Northeim",
+        "locations": 2,
+        "users": 677,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 1
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Salzgitter",
+        "clusterKey": "Salzgitter",
+        "locations": 1,
+        "users": 893,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 2,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 1
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Bad Kissingen",
+        "clusterKey": "Bad Kissingen",
+        "locations": "TBD",
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 3,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Blankenhain",
+        "clusterKey": "Blankenhain",
+        "locations": "TBD",
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Bleicherode",
+        "clusterKey": "Bleicherode",
+        "locations": "TBD",
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Erfurt (Pilot)",
+        "clusterKey": "Erfurt",
+        "locations": "TBD",
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": true,
+        "wave": 3,
+        "regions": {
+          "Nord": 1,
+          "Ost": 1,
+          "Süd": 6,
+          "West": 0
+        },
+        "notes": "Pilot"
+      },
+      {
+        "unit": "Hildburghausen",
+        "clusterKey": "Hildburghausen",
+        "locations": "TBD",
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 6,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Cluster Wiesbaden-Taunus",
+        "clusterKey": "Wiesbaden-Main-Taunus",
+        "locations": "TBD",
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": true,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 5,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Service Desk Süd",
+        "clusterKey": "Region Süd",
+        "locations": 17,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 17,
+          "West": 0
+        },
+        "notes": "Service Desk Süd"
+      },
+      {
+        "unit": "MVZ Süd",
+        "clusterKey": "MVZ Süd",
+        "locations": 62,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 4,
+          "Süd": 50,
+          "West": 1
+        },
+        "notes": ""
+      },
+      {
+        "unit": "AMAGS",
+        "clusterKey": "AMAGS",
+        "locations": 26,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 9,
+          "Ost": 10,
+          "Süd": 5,
+          "West": 3
+        },
+        "notes": ""
+      },
+      {
+        "unit": "CL-Berlin Brandenburg",
+        "clusterKey": "Berlin",
+        "locations": 74,
+        "users": 7221,
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": true,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 37,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "CL-Sachsen + Kronach + MVZ",
+        "clusterKey": "Cluster Sachsen",
+        "locations": 60,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 49,
+          "Süd": 3,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Leipzig + MVZ",
+        "clusterKey": "Leipzig",
+        "locations": 24,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 20,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "MVZ CL-Sachsen-Anhalt",
+        "clusterKey": "Cluster Sachsen-Anhalt",
+        "locations": 21,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 23,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "CL-Nordsee",
+        "clusterKey": "CL-Nordsee",
+        "locations": 39,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 26,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "CL-Ostsee",
+        "clusterKey": "CL-Ostsee",
+        "locations": 35,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 21,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Helmstedt",
+        "clusterKey": "Helmstedt",
+        "locations": 2,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 2,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "HK",
+        "clusterKey": "HK",
+        "locations": 25,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 0,
+          "Ost": 17,
+          "Süd": 3,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "MVZ Nord",
+        "clusterKey": "MVZ Nord",
+        "locations": 29,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      },
+      {
+        "unit": "Nienburg",
+        "clusterKey": "Nienburg",
+        "locations": 5,
+        "users": "TBD",
+        "adminPct": "TBD",
+        "clinicalPct": "TBD",
+        "otherPct": "TBD",
+        "ticketsPerMonth": "TBD",
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 3,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": ""
+      }
+    ]
+  },
+  "clusterMeta": {
+    "CL-Wuppertal": {
+      "waves": [
+        1
+      ],
+      "regions": [
+        "Nord",
+        "West"
+      ],
+      "kritis": true,
+      "planningUnits": [
+        "CL-Wuppertal"
+      ]
+    },
+    "Gifhorn": {
+      "waves": [
+        1
+      ],
+      "regions": [
+        "Nord"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Gifhorn"
+      ]
+    },
+    "Gotha": {
+      "waves": [
+        1
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Gotha"
+      ]
+    },
+    "Duisburg": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": true,
+      "planningUnits": [
+        "Duisburg (Pilot)"
+      ]
+    },
+    "Herzberg": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Herzberg (Pilot)"
+      ]
+    },
+    "Hildesheim": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Hildesheim"
+      ]
+    },
+    "Kassel": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Kassel"
+      ]
+    },
+    "Krefeld": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": true,
+      "planningUnits": [
+        "Krefeld"
+      ]
+    },
+    "Lengerich": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Lengerich"
+      ]
+    },
+    "MVZ West": {
+      "waves": [
+        2
+      ],
+      "regions": [],
+      "kritis": false,
+      "planningUnits": [
+        "MVZ West"
+      ]
+    },
+    "Northeim": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Northeim"
+      ]
+    },
+    "Salzgitter": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Salzgitter"
+      ]
+    },
+    "Bad Kissingen": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Bad Kissingen"
+      ]
+    },
+    "Blankenhain": {
+      "waves": [
+        3
+      ],
+      "regions": [],
+      "kritis": false,
+      "planningUnits": [
+        "Blankenhain"
+      ]
+    },
+    "Bleicherode": {
+      "waves": [
+        3
+      ],
+      "regions": [],
+      "kritis": false,
+      "planningUnits": [
+        "Bleicherode"
+      ]
+    },
+    "Erfurt": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Nord",
+        "Ost",
+        "Süd"
+      ],
+      "kritis": true,
+      "planningUnits": [
+        "Erfurt (Pilot)"
+      ]
+    },
+    "Hildburghausen": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Hildburghausen"
+      ]
+    },
+    "Wiesbaden-Main-Taunus": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": true,
+      "planningUnits": [
+        "Cluster Wiesbaden-Taunus"
+      ]
+    },
+    "Region Süd": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Service Desk Süd"
+      ]
+    },
+    "MVZ Süd": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Ost",
+        "Süd",
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "MVZ Süd"
+      ]
+    },
+    "AMAGS": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Nord",
+        "Ost",
+        "Süd",
+        "West"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "AMAGS"
+      ]
+    },
+    "Berlin": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": true,
+      "planningUnits": [
+        "CL-Berlin Brandenburg"
+      ]
+    },
+    "Cluster Sachsen": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost",
+        "Süd"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "CL-Sachsen + Kronach + MVZ"
+      ]
+    },
+    "Leipzig": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Leipzig + MVZ"
+      ]
+    },
+    "Cluster Sachsen-Anhalt": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "MVZ CL-Sachsen-Anhalt"
+      ]
+    },
+    "CL-Nordsee": {
+      "waves": [
+        5
+      ],
+      "regions": [
+        "Nord"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "CL-Nordsee"
+      ]
+    },
+    "CL-Ostsee": {
+      "waves": [
+        5
+      ],
+      "regions": [
+        "Nord"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "CL-Ostsee"
+      ]
+    },
+    "Helmstedt": {
+      "waves": [
+        5
+      ],
+      "regions": [
+        "Nord"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Helmstedt"
+      ]
+    },
+    "HK": {
+      "waves": [
+        5
+      ],
+      "regions": [
+        "Ost",
+        "Süd"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "HK"
+      ]
+    },
+    "MVZ Nord": {
+      "waves": [
+        5
+      ],
+      "regions": [],
+      "kritis": false,
+      "planningUnits": [
+        "MVZ Nord"
+      ]
+    },
+    "Nienburg": {
+      "waves": [
+        5
+      ],
+      "regions": [
+        "Nord"
+      ],
+      "kritis": false,
+      "planningUnits": [
+        "Nienburg"
+      ]
+    }
   }
 }
