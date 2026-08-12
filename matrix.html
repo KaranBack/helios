@@ -288,8 +288,6 @@ tr.wave-5 { background:#f0fdf4; }
                         <th>Service Unit</th>
                         <th>Wave</th>
                         <th>Locations</th>
-                        <th>Users</th>
-                        <th>Tickets Ø/mo</th>
                         <th>KRITIS</th>
                         <th>Nord</th><th>Ost</th><th>Süd</th><th>West</th>
                         <th>Notes</th>
@@ -335,7 +333,6 @@ tr.wave-5 { background:#f0fdf4; }
                         <th>Wave</th>
                         <th>Locations in region</th>
                         <th>Total locations</th>
-                        <th>Users</th>
                         <th>KRITIS</th>
                         <th>Cluster key</th>
                     </tr>
@@ -1050,7 +1047,7 @@ function buildSearchIndex() {
             topic: r.unit,
             cluster: r.clusterKey || r.unit,
             group: "Wave " + r.wave,
-            details: "Locations: " + r.locations + " · Users: " + r.users + (r.kritis ? " · KRITIS" : "") + "\n" + (r.notes || ""),
+            details: "Locations: " + r.locations + (r.kritis ? " · KRITIS" : "") + "\n" + (r.notes || ""),
             keywords: r.unit,
             hayTopic: r.unit.toLowerCase(),
             hayGroup: ("wave " + r.wave).toLowerCase(),
@@ -1568,8 +1565,6 @@ function renderWavesView() {
             "<td><strong>" + esc(r.unit) + "</strong></td>" +
             "<td>Wave " + esc(r.wave) + "</td>" +
             "<td>" + esc(r.locations) + "</td>" +
-            "<td>" + esc(r.users) + "</td>" +
-            "<td>" + esc(r.ticketsPerMonth) + "</td>" +
             "<td>" + (r.kritis ? "<span class=\"kritis-flag\">1</span>" : "") + "</td>" +
             "<td>" + esc(reg.Nord || 0) + "</td>" +
             "<td>" + esc(reg.Ost || 0) + "</td>" +
@@ -1639,7 +1634,6 @@ function renderRegionsView() {
                 "<td>Wave " + esc(r.wave) + "</td>" +
                 "<td>" + esc(n || "—") + "</td>" +
                 "<td>" + esc(r.locations) + "</td>" +
-                "<td>" + esc(r.users) + "</td>" +
                 "<td>" + (r.kritis ? "<span class=\"kritis-flag\">1</span>" : "") + "</td>" +
                 "<td>" + esc(r.clusterKey || "") + "</td>";
             tbody.appendChild(tr);
