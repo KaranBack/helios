@@ -437,12 +437,12 @@
       "ServiceDesk": "WID-IT"
     },
     "Dachau": {
-      "Infrastructure": "DAH-IT",
-      "Clinical": "DAH-IT",
-      "SAP": "DAH-IT",
-      "Account": "DAH-IT",
-      "FieldService": "DAH-IT",
-      "ServiceDesk": "DAH-IT"
+      "Infrastructure": "Dachau - IT",
+      "Clinical": "Dachau - IT",
+      "SAP": "Dachau - IT",
+      "Account": "Dachau - IT",
+      "FieldService": "Dachau - IT",
+      "ServiceDesk": "Dachau - IT"
     },
     "Indersdorf": {
       "Infrastructure": "IDD-IT",
@@ -2337,6 +2337,14 @@
         [
           "OSS",
           "OSS - Klinik or Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
+        ],
+        [
+          "Dachau (Helios Ambulant/Amper-MVZ Dachau GmbH)",
+          "Dachau - IT"
+        ],
+        [
+          "Dachau — group description",
+          "Supportgruppe von der Dachau IT"
         ]
       ]
     },
@@ -3160,8 +3168,40 @@
       "name": "Dachau",
       "rows": [
         [
-          "General IT",
-          "DAH-IT"
+          "Service Desk / Local IT",
+          "Dachau - IT"
+        ],
+        [
+          "Infrastructure",
+          "Dachau - IT"
+        ],
+        [
+          "Clinical Applications",
+          "Dachau - IT"
+        ],
+        [
+          "SAP / KIS",
+          "Dachau - IT"
+        ],
+        [
+          "Field Service",
+          "Dachau - IT"
+        ],
+        [
+          "SNOW group description",
+          "Supportgruppe von der Dachau IT"
+        ],
+        [
+          "SNOW location",
+          "Helios Ambulant/Amper-MVZ Dachau GmbH"
+        ],
+        [
+          "Cluster",
+          "Region South / Region Süd"
+        ],
+        [
+          "Wave",
+          "Wave 3"
         ]
       ]
     },
@@ -7386,6 +7426,20 @@
       "planningUnits": [
         "Nienburg"
       ]
+    },
+    "Dachau": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "parentCluster": "Region Süd",
+      "planningUnits": [
+        "Service Desk Süd"
+      ],
+      "snowLocation": "Helios Ambulant/Amper-MVZ Dachau GmbH"
     }
   }
 }
