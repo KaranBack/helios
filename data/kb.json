@@ -160,7 +160,7 @@
       "Clinical": "TBD",
       "SAP": "TBD",
       "Account": "TBD",
-      "FieldService": "Dachau - IT / IDD-IT / MPA-IT",
+      "FieldService": "DAH-IT / IDD-IT / MPA-IT",
       "ServiceDesk": "TBD"
     },
     "Südniedersachsen-Nordhessen": {
@@ -437,12 +437,12 @@
       "ServiceDesk": "WID-IT"
     },
     "Dachau": {
-      "Infrastructure": "Dachau - IT",
-      "Clinical": "Dachau - IT",
-      "SAP": "Dachau - IT",
-      "Account": "Dachau - IT",
-      "FieldService": "Dachau - IT",
-      "ServiceDesk": "Dachau - IT"
+      "Infrastructure": "DAH-IT",
+      "Clinical": "DAH-IT",
+      "SAP": "DAH-IT",
+      "Account": "DAH-IT",
+      "FieldService": "DAH-IT",
+      "ServiceDesk": "DAH-IT"
     },
     "Indersdorf": {
       "Infrastructure": "IDD-IT",
@@ -2340,11 +2340,11 @@
         ],
         [
           "Dachau (Helios Ambulant/Amper-MVZ Dachau GmbH)",
-          "Dachau - IT"
+          "DAH-IT"
         ],
         [
-          "Dachau — group description",
-          "Supportgruppe von der Dachau IT"
+          "Dachau — SNOW description",
+          "Dachau - IT | Supportgruppe von der Dachau IT"
         ]
       ]
     },
@@ -2567,7 +2567,7 @@
       "rows": [
         [
           "Field Service",
-          "Dachau - IT / IDD-IT / MPA-IT"
+          "DAH-IT / IDD-IT / MPA-IT"
         ],
         [
           "Infrastructure / Clinical / SAP",
@@ -3169,35 +3169,35 @@
       "rows": [
         [
           "Service Desk / Local IT",
-          "Dachau - IT"
+          "DAH-IT"
         ],
         [
           "Infrastructure",
-          "Dachau - IT"
+          "DAH-IT"
         ],
         [
           "Clinical Applications",
-          "Dachau - IT"
+          "DAH-IT"
         ],
         [
           "SAP / KIS",
-          "Dachau - IT"
+          "DAH-IT"
         ],
         [
           "Field Service",
-          "Dachau - IT"
+          "DAH-IT"
         ],
         [
           "SNOW group description",
-          "Supportgruppe von der Dachau IT"
+          "Dachau - IT | Supportgruppe von der Dachau IT"
         ],
         [
           "SNOW location",
           "Helios Ambulant/Amper-MVZ Dachau GmbH"
         ],
         [
-          "Cluster",
-          "Region South / Region Süd"
+          "Parent cluster",
+          "Region South (RS)"
         ],
         [
           "Wave",
@@ -7439,7 +7439,8 @@
       "planningUnits": [
         "Service Desk Süd"
       ],
-      "snowLocation": "Helios Ambulant/Amper-MVZ Dachau GmbH"
+      "snowLocation": "Helios Ambulant/Amper-MVZ Dachau GmbH",
+      "groupDescription": "Dachau - IT | Supportgruppe von der Dachau IT"
     }
   }
 }
