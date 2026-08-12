@@ -1453,7 +1453,7 @@ function isMissing(v) {
 }
 
 function looksLikeKis(v) {
-    return /sap|kis|orbis|medico|imed|ishmed|cgm|muse/i.test(v || "");
+    return /\b(sap|kis|orbis|medico|imedone|imed|ishmed|cgm|muse)\b/i.test(v || "");
 }
 
 /** Resolve Local IT / Service Desk / SAP-KIS for a planning unit from Wave2, clusters and location cards. */
