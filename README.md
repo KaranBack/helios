@@ -22,6 +22,7 @@ Single Catch & Dispatch / Swivel Chair knowledge base in **`matrix.html`**.
 | Clusters | General cluster routing (incl. local sites derived from SNOW groups) |
 | Berlin Groups | Berlin / Brandenburg groups |
 | Egipt Wave 1 | Wave 1 keyword routing |
+| Wave 2 | Wave 2 location routing (Duisburg/Herzberg pilots + rollout sites) |
 | Global Helios Groups | Global Helios assignment groups |
 
 UI language is English. Data lives in `const KB` inside `matrix.html` (mirrored in `data/kb.json`).

@@ -415,7 +415,7 @@
     "Herzberg": {
       "Infrastructure": "HBH-IT",
       "Clinical": "HBH-IT",
-      "SAP": "HBH-IT",
+      "SAP": "TBD",
       "Account": "HBH-IT",
       "FieldService": "HBH-IT",
       "ServiceDesk": "HBH-IT"
@@ -625,6 +625,14 @@
       "Account": "TBD",
       "FieldService": "TBD",
       "ServiceDesk": "TBD"
+    },
+    "MVZ West": {
+      "Infrastructure": "RN/RW MVZ Support",
+      "Clinical": "RN/RW MVZ Support",
+      "SAP": "MVZ Produktmanagement",
+      "Account": "RN/RW MVZ Support",
+      "FieldService": "RN/RW MVZ Support",
+      "ServiceDesk": "RN/RW MVZ Support"
     }
   },
   "apps": {
@@ -2186,6 +2194,10 @@
         [
           "General IT",
           "KR-IT"
+        ],
+        [
+          "Wave",
+          "Wave 2"
         ]
       ]
     },
@@ -2215,6 +2227,10 @@
         [
           "General IT",
           "KS-IT"
+        ],
+        [
+          "Wave",
+          "Wave 2"
         ]
       ]
     },
@@ -2256,6 +2272,10 @@
         [
           "JiveX",
           "SKZ-IT | Klinische Anwendungen"
+        ],
+        [
+          "Wave",
+          "Wave 2 (Pilot)"
         ]
       ]
     },
@@ -2582,6 +2602,10 @@
         [
           "SAP / KIS",
           "CLBB-IT | KIS Support"
+        ],
+        [
+          "Wave",
+          "Wave 2"
         ]
       ]
     },
@@ -2901,6 +2925,10 @@
         [
           "Orbis",
           "HI-IT | Orbis"
+        ],
+        [
+          "Wave",
+          "Wave 2"
         ]
       ]
     },
@@ -2934,8 +2962,12 @@
           "Orbis"
         ],
         [
+          "Wave",
+          "Wave 2"
+        ],
+        [
           "Note",
-          "Lengerich has only LEN-IT as local assignment group. SAP/KIS cases route to Orbis."
+          "Only LEN-IT exists locally. SAP/KIS cases → Orbis."
         ]
       ]
     },
@@ -3023,8 +3055,12 @@
           "iMedOne"
         ],
         [
+          "Wave",
+          "Wave 2"
+        ],
+        [
           "Note",
-          "Salzgitter: all local topics → SZ-IT. SAP/KIS → iMedOne."
+          "All local topics → SZ-IT. SAP/KIS → iMedOne."
         ]
       ]
     },
@@ -3041,8 +3077,20 @@
       "name": "Herzberg",
       "rows": [
         [
-          "General IT",
+          "All / Local IT",
           "HBH-IT"
+        ],
+        [
+          "SAP / KIS",
+          "TBD"
+        ],
+        [
+          "Wave",
+          "Wave 2 (Pilot)"
+        ],
+        [
+          "Note",
+          "Pilot location. Confirmed local group: HBH-IT."
         ]
       ]
     },
@@ -3392,6 +3440,27 @@
         [
           "Local IT (Erlenbach)",
           "ELB-IT"
+        ]
+      ]
+    },
+    {
+      "name": "MVZ West",
+      "rows": [
+        [
+          "All / Local MVZ Support",
+          "RN/RW MVZ Support"
+        ],
+        [
+          "MVZ Product (x.vianova, mediDOK, Timerbee, Patientus, Yext)",
+          "MVZ Produktmanagement"
+        ],
+        [
+          "MVZ Product Management",
+          "MVZ Produktmanagement | Mgt"
+        ],
+        [
+          "Note",
+          "Wave 2 location. Region West/Nord MVZ — use RN/RW MVZ Support for local MVZ support."
         ]
       ]
     }
@@ -5779,5 +5848,409 @@
       "type": "ZD-IT",
       "description": "Supportgruppe für ZKIPR - Zentrale KI-Plattform und Reporting"
     }
-  ]
+  ],
+  "wave2": {
+    "meta": {
+      "title": "Wave 2 Location Routing",
+      "subtitle": "Duisburg & Herzberg pilots + Wave 2 rollout locations",
+      "version": "2026-08-12"
+    },
+    "locations": [
+      {
+        "location": "Duisburg",
+        "status": "Pilot",
+        "clusterKey": "Duisburg",
+        "serviceDesk": "DU-IT | Client Mgt",
+        "account": "DU-IT | Client Mgt",
+        "infrastructure": "DU-IT | Infrastruktur",
+        "clinical": "SKZ-IT | Klinische Anwendungen",
+        "sap": "SAP Basis",
+        "fieldService": "DU-IT | Client Mgt",
+        "specials": [
+          {
+            "topic": "Softwares (DMO / Baramundi / C37)",
+            "group": "DU-IT | Software & Systeme"
+          },
+          {
+            "topic": "Orbis (KIS)",
+            "group": "Orbis"
+          },
+          {
+            "topic": "CGM Muse",
+            "group": "AMOR/MUSE"
+          },
+          {
+            "topic": "JiveX",
+            "group": "SKZ-IT | Klinische Anwendungen"
+          }
+        ],
+        "topics": [],
+        "notes": "Wave 2 pilot. Use Duisburg cluster specials for Orbis/Muse/JiveX/Software."
+      },
+      {
+        "location": "Herzberg",
+        "status": "Pilot",
+        "clusterKey": "Herzberg",
+        "serviceDesk": "HBH-IT",
+        "account": "HBH-IT",
+        "infrastructure": "HBH-IT",
+        "clinical": "HBH-IT",
+        "sap": "TBD",
+        "fieldService": "HBH-IT",
+        "specials": [],
+        "topics": [],
+        "notes": "Wave 2 pilot. Confirmed local group HBH-IT. SAP/KIS specialty TBD."
+      },
+      {
+        "location": "Hildesheim",
+        "status": "Wave 2",
+        "clusterKey": "Hildesheim",
+        "serviceDesk": "HI-IT | Service Desk",
+        "account": "HI-IT | Service Desk",
+        "infrastructure": "HI-IT |  Infrastruktur",
+        "clinical": "HI-IT | Orbis",
+        "sap": "TBD",
+        "fieldService": "HI-IT",
+        "specials": [
+          {
+            "topic": "Orbis",
+            "group": "HI-IT | Orbis"
+          },
+          {
+            "topic": "Infrastructure",
+            "group": "HI-IT |  Infrastruktur"
+          }
+        ],
+        "topics": [],
+        "notes": "Local HI-IT groups. SAP specialty beyond Orbis: TBD."
+      },
+      {
+        "location": "Kassel",
+        "status": "Wave 2",
+        "clusterKey": "Kassel",
+        "serviceDesk": "KS-IT",
+        "account": "KS-IT",
+        "infrastructure": "KS-IT",
+        "clinical": "KS-IT",
+        "sap": "KS-IT",
+        "fieldService": "KS-IT",
+        "specials": [],
+        "topics": [],
+        "notes": "All local IT currently routes to KS-IT. Specialty splits TBD."
+      },
+      {
+        "location": "Krefeld",
+        "status": "Wave 2",
+        "clusterKey": "Krefeld",
+        "serviceDesk": "KR-IT | Service Desk",
+        "account": "KR-IT",
+        "infrastructure": "KR-IT | Infrastruktur",
+        "clinical": "KR-IT | Klinische Applikationen",
+        "sap": "KR-IT | Medico",
+        "fieldService": "KR-IT | Fieldservice",
+        "specials": [
+          {
+            "topic": "Medico",
+            "group": "KR-IT | Medico"
+          }
+        ],
+        "topics": [],
+        "notes": "Use KR-IT role groups from cluster mapping."
+      },
+      {
+        "location": "Lengerich",
+        "status": "Wave 2",
+        "clusterKey": "Lengerich",
+        "serviceDesk": "LEN-IT",
+        "account": "LEN-IT",
+        "infrastructure": "LEN-IT",
+        "clinical": "LEN-IT",
+        "sap": "Orbis",
+        "fieldService": "LEN-IT",
+        "specials": [
+          {
+            "topic": "SAP / KIS",
+            "group": "Orbis"
+          }
+        ],
+        "topics": [
+          {
+            "topic": "Local IT",
+            "group": "LEN-IT",
+            "keywords": [
+              "LEN-IT",
+              "Lengerich"
+            ],
+            "description": "Only local assignment group in Lengerich.",
+            "quick": "Route to LEN-IT."
+          },
+          {
+            "topic": "SAP / KIS",
+            "group": "Orbis",
+            "keywords": [
+              "SAP",
+              "KIS",
+              "Orbis"
+            ],
+            "description": "SAP/KIS cases for Lengerich.",
+            "quick": "Route to Orbis."
+          }
+        ],
+        "notes": "Confirmed: only LEN-IT locally; SAP/KIS → Orbis."
+      },
+      {
+        "location": "MVZ West",
+        "status": "Wave 2",
+        "clusterKey": "MVZ West",
+        "serviceDesk": "RN/RW MVZ Support",
+        "account": "RN/RW MVZ Support",
+        "infrastructure": "RN/RW MVZ Support",
+        "clinical": "RN/RW MVZ Support",
+        "sap": "MVZ Produktmanagement",
+        "fieldService": "RN/RW MVZ Support",
+        "specials": [
+          {
+            "topic": "MVZ Produktmanagement",
+            "group": "MVZ Produktmanagement"
+          }
+        ],
+        "topics": [],
+        "notes": "Use RN/RW MVZ Support for local MVZ. Product topics → MVZ Produktmanagement."
+      },
+      {
+        "location": "Northeim",
+        "status": "Wave 2",
+        "clusterKey": "Northeim",
+        "serviceDesk": "NOM-IT",
+        "account": "NOM-IT",
+        "infrastructure": "NOM-IT",
+        "clinical": "NOM-IT",
+        "sap": "CLBB-IT | KIS Support",
+        "fieldService": "NOM-IT",
+        "specials": [
+          {
+            "topic": "Office Apps / Intranet / Hardware",
+            "group": "INK I Clientmanagement"
+          },
+          {
+            "topic": "Outlook / AD / DNS",
+            "group": "SysOp | AD/Exchange"
+          },
+          {
+            "topic": "Internet",
+            "group": "SysOp | Security&Configuration"
+          },
+          {
+            "topic": "PC/Laptop standard config change",
+            "group": "ZD Infrastruktur Team"
+          },
+          {
+            "topic": "Printer support",
+            "group": "INK I POUMA"
+          },
+          {
+            "topic": "Network",
+            "group": "NetOp | Infrastruktur"
+          },
+          {
+            "topic": "No external websites",
+            "group": "CDC | Inbox"
+          },
+          {
+            "topic": "Mobile / MDM",
+            "group": "INK | MDM"
+          },
+          {
+            "topic": "CTR Portal rights",
+            "group": "INK I Unified Communications"
+          },
+          {
+            "topic": "Server Backup",
+            "group": "SysOp | Backup"
+          },
+          {
+            "topic": "SAP / KIS",
+            "group": "CLBB-IT | KIS Support"
+          }
+        ],
+        "topics": [
+          {
+            "topic": "Local IT",
+            "group": "NOM-IT",
+            "keywords": [
+              "NOM-IT",
+              "Northeim",
+              "Lokales IT"
+            ],
+            "description": "Local IT support for Northeim.",
+            "quick": "Route to NOM-IT."
+          },
+          {
+            "topic": "Office Apps / Intranet / Hardware",
+            "group": "INK I Clientmanagement",
+            "keywords": [
+              "Office",
+              "Intranet",
+              "Hardware",
+              "Clientmanagement"
+            ],
+            "description": "Office apps, intranet and hardware client topics.",
+            "quick": "Route to INK I Clientmanagement."
+          },
+          {
+            "topic": "Outlook / AD / DNS",
+            "group": "SysOp | AD/Exchange",
+            "keywords": [
+              "Outlook",
+              "AD",
+              "DNS",
+              "Exchange"
+            ],
+            "description": "Outlook, Active Directory and DNS configuration.",
+            "quick": "Route to SysOp | AD/Exchange."
+          },
+          {
+            "topic": "Internet access",
+            "group": "SysOp | Security&Configuration",
+            "keywords": [
+              "Internet",
+              "Security",
+              "Configuration"
+            ],
+            "description": "Internet access / security configuration.",
+            "quick": "Route to SysOp | Security&Configuration."
+          },
+          {
+            "topic": "Standard PC / Laptop configuration change",
+            "group": "ZD Infrastruktur Team",
+            "keywords": [
+              "PC",
+              "Laptop",
+              "Standardkonfiguration"
+            ],
+            "description": "Change of standard PC/Laptop configuration.",
+            "quick": "Route to ZD Infrastruktur Team."
+          },
+          {
+            "topic": "Printer support",
+            "group": "INK I POUMA",
+            "keywords": [
+              "Drucker",
+              "Printer",
+              "POUMA"
+            ],
+            "description": "Printer support.",
+            "quick": "Route to INK I POUMA."
+          },
+          {
+            "topic": "Network infrastructure",
+            "group": "NetOp | Infrastruktur",
+            "keywords": [
+              "Netzwerk",
+              "Network",
+              "NetOp"
+            ],
+            "description": "Network infrastructure.",
+            "quick": "Route to NetOp | Infrastruktur."
+          },
+          {
+            "topic": "No access to external websites",
+            "group": "CDC | Inbox",
+            "keywords": [
+              "Website",
+              "extern",
+              "CDC",
+              "Cyber Defence"
+            ],
+            "description": "User cannot access external websites — Cyber Defence Center.",
+            "quick": "Route to CDC | Inbox."
+          },
+          {
+            "topic": "Mobile device support",
+            "group": "INK | MDM",
+            "keywords": [
+              "MDM",
+              "Mobile",
+              "Smartphone"
+            ],
+            "description": "Mobile device support.",
+            "quick": "Route to INK | MDM."
+          },
+          {
+            "topic": "CTR Portal rights",
+            "group": "INK I Unified Communications",
+            "keywords": [
+              "CTR",
+              "Portal",
+              "Unified Communications"
+            ],
+            "description": "Request rights for CTR Portal.",
+            "quick": "Route to INK I Unified Communications."
+          },
+          {
+            "topic": "Server Backup",
+            "group": "SysOp | Backup",
+            "keywords": [
+              "Backup",
+              "Server"
+            ],
+            "description": "Server backup topics.",
+            "quick": "Route to SysOp | Backup."
+          },
+          {
+            "topic": "SAP / KIS",
+            "group": "CLBB-IT | KIS Support",
+            "keywords": [
+              "SAP",
+              "KIS"
+            ],
+            "description": "SAP / KIS cases for Northeim.",
+            "quick": "Route to CLBB-IT | KIS Support."
+          }
+        ],
+        "notes": "Full topic routing confirmed for Northeim."
+      },
+      {
+        "location": "Salzgitter",
+        "status": "Wave 2",
+        "clusterKey": "Salzgitter",
+        "serviceDesk": "SZ-IT",
+        "account": "SZ-IT",
+        "infrastructure": "SZ-IT",
+        "clinical": "SZ-IT",
+        "sap": "iMedOne",
+        "fieldService": "SZ-IT",
+        "specials": [
+          {
+            "topic": "SAP / KIS",
+            "group": "iMedOne"
+          }
+        ],
+        "topics": [
+          {
+            "topic": "Local IT",
+            "group": "SZ-IT",
+            "keywords": [
+              "SZ-IT",
+              "Salzgitter"
+            ],
+            "description": "All local topics in Salzgitter.",
+            "quick": "Route to SZ-IT."
+          },
+          {
+            "topic": "SAP / KIS",
+            "group": "iMedOne",
+            "keywords": [
+              "SAP",
+              "KIS",
+              "iMedOne"
+            ],
+            "description": "SAP/KIS cases for Salzgitter.",
+            "quick": "Route to iMedOne."
+          }
+        ],
+        "notes": "All local → SZ-IT; SAP/KIS → iMedOne."
+      }
+    ]
+  }
 }
