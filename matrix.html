@@ -1413,7 +1413,7 @@ function filterGlobalSearch() {
             if (placeNames.length && (item.type === "cluster" || item.type === "location")) return false;
             return true;
         })
-        .slice(0, 200);
+        .slice(0, placeNames.length ? 40 : 200);
 
     if (title) {
         title.textContent = placeNames.length ? "Related results (applications, problems, waves…)" : "Search results";
