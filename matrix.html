@@ -188,10 +188,9 @@ tr.wave-5 { background:#f0fdf4; }
     <div class="controls-card home-search-wrap search-panel">
         <div class="search-row">
             <div class="suggest-wrap">
-                <input type="text" id="globalSearchAll" class="search-box" list="globalSuggestDatalist"
+                <input type="text" id="globalSearchAll" class="search-box"
                     placeholder="Type a cluster or location (e.g. Duisburg, Krefeld, Berlin) — or an application / problem..."
                     oninput="onGlobalSearchInput()" onkeydown="onGlobalSearchKey(event)" autofocus autocomplete="off">
-                <datalist id="globalSuggestDatalist"></datalist>
                 <div class="suggest-list" id="globalSuggestList"></div>
             </div>
         </div>
@@ -1073,7 +1072,8 @@ const PLACE_ALIASES = {
     "region süd": ["Region Süd", "Region South"],
     "region south": ["Region South", "Region Süd"],
     "mvz": ["MVZ Groups", "MVZ Region West"],
-    "wuppertal": ["CL-Wuppertal"]
+    "wuppertal": ["CL-Wuppertal"],
+    "dachau": ["Dachau", "Region South", "Region Süd"]
 };
 
 function populateClusterFilter() {
@@ -1099,22 +1099,7 @@ function allPlaceNames() {
 }
 
 function populateSuggestDatalist() {
-    const dl = document.getElementById("globalSuggestDatalist");
-    if (!dl) return;
-    const places = allPlaceNames().sort((a,b) => a.localeCompare(b));
-    const extras = [];
-    const seen = new Set(places);
-    searchIndex.forEach(item => {
-        if (item.type === "application" || item.type === "problem" || item.type === "global") {
-            const v = item.topic;
-            if (!v || seen.has(v)) return;
-            seen.add(v);
-            extras.push(v);
-        }
-    });
-    extras.sort((a,b) => a.localeCompare(b));
-    dl.innerHTML = places.concat(extras.slice(0, 400))
-        .map(v => '<option value="' + esc(v) + '"></option>').join("");
+    // Native <datalist> disabled — custom suggest list only (avoids duplicate browser dropdown)
 }
 
 function normalizePlaceQuery(q) {
