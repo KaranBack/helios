@@ -186,28 +186,49 @@ tr.wave-5 { background:#f0fdf4; }
 
 <section class="section on" id="home">
     <div class="controls-card home-search-wrap search-panel">
-        <div class="search-row">
-            <select id="startSearchType" class="filter-select" onchange="onStartSearchTypeChanged()" style="flex:0 1 200px; min-width:160px;">
-                <option value="wave">Wave</option>
-                <option value="cluster">Cluster</option>
-                <option value="region">Region</option>
-                <option value="location">Location</option>
-            </select>
-            <select id="startWaveFilter" class="filter-select" onchange="filterGlobalSearch()" style="flex:0 1 160px; min-width:120px;">
-                <option value="">All Waves</option>
-                <option value="1">Wave 1</option>
-                <option value="2">Wave 2</option>
-                <option value="3">Wave 3</option>
-                <option value="4">Wave 4</option>
-                <option value="5">Wave 5</option>
-            </select>
-            <input type="text" id="globalSearchAll" class="search-box"
-                placeholder="Type to search…"
-                oninput="filterGlobalSearch()" autofocus autocomplete="off">
-            <span class="meta" id="globalHitsMeta">Choose type, then search</span>
+        <div class="search-chips" id="searchTypeChips" role="group" aria-label="Search scope">
+            <label class="chip active"><input type="checkbox" name="stype" value="application" checked onchange="onSearchFiltersChanged()"> Applications</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="cluster" checked onchange="onSearchFiltersChanged()"> Clusters &amp; main groups</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="location" checked onchange="onSearchFiltersChanged()"> Locations / clinics</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="problem" checked onchange="onSearchFiltersChanged()"> Problems / keywords</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="berlin" checked onchange="onSearchFiltersChanged()"> Berlin Groups</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="wave" checked onchange="onSearchFiltersChanged()"> Waves</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="region" checked onchange="onSearchFiltersChanged()"> Regions</label>
+            <label class="chip active"><input type="checkbox" name="stype" value="global" checked onchange="onSearchFiltersChanged()"> Global Helios</label>
         </div>
         <div class="search-row">
-            <span class="search-hint" id="startSearchHint">Search by Wave service unit name (e.g. Duisburg, CL-Wuppertal).</span>
+            <div class="suggest-wrap">
+                <input type="text" id="globalSearchAll" class="search-box" list="globalSuggestDatalist"
+                    placeholder="Search by application, cluster, location, problem or assignment group..."
+                    oninput="onGlobalSearchInput()" onkeydown="onGlobalSearchKey(event)" autofocus autocomplete="off">
+                <datalist id="globalSuggestDatalist"></datalist>
+                <div class="suggest-list" id="globalSuggestList"></div>
+            </div>
+            <select id="searchMatchMode" class="filter-select" onchange="filterGlobalSearch()">
+                <option value="anywhere">Match: Anywhere</option>
+                <option value="topic">Match: Topic / name</option>
+                <option value="group">Match: Assignment group</option>
+                <option value="keyword">Match: Keywords / problems</option>
+            </select>
+            <select id="searchClusterFilter" class="filter-select" onchange="filterGlobalSearch()">
+                <option value="">All locations / clusters</option>
+            </select>
+            <select id="searchPreset" class="filter-select" onchange="applySearchPreset()">
+                <option value="">Quick preset…</option>
+                <option value="apps">Applications only</option>
+                <option value="clusters">Clusters &amp; main groups</option>
+                <option value="locations">Locations / clinics</option>
+                <option value="problems">Problems / keywords</option>
+                <option value="berlin">Berlin Groups</option>
+                <option value="wave">Waves</option>
+                <option value="region">Regions</option>
+                <option value="global">Global Helios</option>
+                <option value="all">Everything</option>
+            </select>
+        </div>
+        <div class="search-row">
+            <span class="search-hint">Tip: select search scopes above, then type a name (e.g. MetaVision, Berlin, Duisburg, Password) or an assignment group.</span>
+            <span class="meta" id="globalHitsMeta">Enter a search term to query the knowledge base</span>
         </div>
     </div>
     <div class="card">
@@ -233,7 +254,7 @@ tr.wave-5 { background:#f0fdf4; }
 
 <section class="section" id="apps">
     <div class="controls-card">
-        <input type="text" id="searchInput" class="search-box" placeholder="Search application / cluster / group..." oninput="filterApplications()">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search by application name..." oninput="filterApplications()">
         <select id="appsWaveFilter" class="filter-select" onchange="filterApplications()" style="flex:0 1 150px; min-width:120px;">
             <option value="">All Waves</option>
             <option value="1">Wave 1</option>
@@ -247,6 +268,7 @@ tr.wave-5 { background:#f0fdf4; }
         </select>
         <span class="meta"><span id="recordCount">0</span> applications</span>
     </div>
+
     <div class="card">
         <div class="card-header">
             <span>Application Base</span>
@@ -357,7 +379,7 @@ tr.wave-5 { background:#f0fdf4; }
 
 <section class="section" id="clusters">
     <div class="controls-card">
-        <input type="text" id="clusterSearch" class="search-box" placeholder="Search cluster / group..." oninput="filterClusters()">
+        <input type="text" id="clusterSearch" class="search-box" placeholder="Search cluster / location / group..." oninput="filterClusters()">
         <select id="clustersWaveFilter" class="filter-select" onchange="filterClusters()" style="flex:0 1 150px; min-width:120px;">
             <option value="">All Waves</option>
             <option value="1">Wave 1</option>
@@ -367,6 +389,7 @@ tr.wave-5 { background:#f0fdf4; }
             <option value="5">Wave 5</option>
         </select>
     </div>
+
     <div class="card">
         <div class="card-header"><span>Clusters — general routing (with Wave / Region tags)</span></div>
         <div class="card-content">
@@ -616,10 +639,10 @@ function filterApplications() {
     const waveVal = (document.getElementById("appsWaveFilter") || {}).value || "";
     const filtered = applicationsDatabase.filter(item => {
         const hay = [item.application, item.cluster, item.assignment, item.category].join(" ").toLowerCase();
-        const matchesText = !q || hay.includes(q);
+        const matchesText = !q || hay.includes(q) || (item.application || "").toLowerCase().includes(q);
         const matchesCluster = !clusterVal || item.cluster === clusterVal;
-        const w = waveOfCluster(item.cluster);
-        const matchesWave = !waveVal || w === waveVal;
+        const meta = (KB.clusterMeta && KB.clusterMeta[item.cluster]) || {};
+        const matchesWave = !waveVal || (meta.waves || []).map(String).includes(waveVal);
         return matchesText && matchesCluster && matchesWave;
     });
     renderApplications(filtered);
@@ -795,6 +818,7 @@ function renderWave1() {
         tbody.appendChild(tr);
     });
     const fso = document.getElementById("fsoTable");
+    if (!fso) return;
     fso.innerHTML = "";
     (KB.fsoGuide || []).forEach(r => {
         const tr = document.createElement("tr");
@@ -1110,134 +1134,458 @@ function waveOfCluster(name) {
     return (meta.waves && meta.waves[0]) ? String(meta.waves[0]) : "";
 }
 
-function onStartSearchTypeChanged() {
-    const t = document.getElementById("startSearchType").value;
-    const hints = {
-        wave: "Search by Wave service unit (e.g. Duisburg, CL-Wuppertal, MVZ West).",
-        cluster: "Search by cluster name or assignment group (e.g. Krefeld, LEN-IT).",
-        region: "Search by region or unit in a region (Nord, Ost, Süd, West).",
-        location: "Search by location / clinic card (e.g. Northeim, Pirna, Erfurt)."
+function getSelectedSearchTypes() {
+    return Array.from(document.querySelectorAll('#searchTypeChips input[name="stype"]:checked')).map(el => el.value);
+}
+
+function onSearchFiltersChanged() {
+    document.querySelectorAll('#searchTypeChips .chip').forEach(chip => {
+        const input = chip.querySelector('input');
+        chip.classList.toggle('active', !!(input && input.checked));
+    });
+    filterGlobalSearch();
+    updateSuggestions();
+}
+
+function applySearchPreset() {
+    const preset = document.getElementById("searchPreset").value;
+    const map = {
+        apps: ["application"],
+        clusters: ["cluster"],
+        locations: ["location"],
+        problems: ["problem"],
+        berlin: ["berlin"],
+        wave: ["wave"],
+        region: ["region"],
+        global: ["global"],
+        all: ["application","cluster","location","problem","berlin","wave","region","global"]
     };
-    const hint = document.getElementById("startSearchHint");
-    if (hint) hint.textContent = hints[t] || "";
-    const waveSel = document.getElementById("startWaveFilter");
-    if (waveSel) waveSel.style.display = (t === "region") ? "" : "";
+    if (!preset || !map[preset]) return;
+    const selected = new Set(map[preset]);
+    document.querySelectorAll('#searchTypeChips input[name="stype"]').forEach(el => {
+        el.checked = selected.has(el.value);
+    });
+    document.getElementById("searchPreset").value = "";
+    onSearchFiltersChanged();
+}
+
+function populateClusterFilter() {
+    const sel = document.getElementById("clusterFilter");
+    if (!sel) return;
+    const current = sel.value;
+    const names = Object.keys(KB.clusters || {}).sort((a,b) => a.localeCompare(b));
+    sel.innerHTML = '<option value="">All Clusters</option>' +
+        names.map(n => '<option value="' + esc(n) + '">' + esc(n) + '</option>').join("") +
+        '<option value="Global Helios">Global Helios</option>';
+    if (current) sel.value = current;
+}
+
+function populateSearchClusterFilter() {
+    const sel = document.getElementById("searchClusterFilter");
+    const names = new Set();
+    Object.keys(KB.clusters || {}).forEach(n => names.add(n));
+    (KB.locationCards || []).forEach(c => names.add(c.name));
+    names.add("Berlin / Brandenburg");
+    names.add("Global Helios");
+    names.add("Egipt Wave 1");
+    const sorted = Array.from(names).sort((a,b) => a.localeCompare(b));
+    sel.innerHTML = '<option value="">All locations / clusters</option>' +
+        sorted.map(n => '<option value="' + esc(n) + '">' + esc(n) + '</option>').join("");
+}
+
+function populateSuggestDatalist() {
+    const dl = document.getElementById("globalSuggestDatalist");
+    const seen = new Set();
+    const opts = [];
+    searchIndex.forEach(item => {
+        [item.topic, item.cluster].forEach(v => {
+            if (!v || seen.has(v)) return;
+            seen.add(v);
+            opts.push(v);
+        });
+    });
+    opts.sort((a,b) => a.localeCompare(b));
+    dl.innerHTML = opts.slice(0, 800).map(v => '<option value="' + esc(v) + '"></option>').join("");
+}
+
+function scoreHit(item, tokens, matchMode) {
+    let score = 0;
+    const topic = (item.topic || "").toLowerCase();
+    tokens.forEach(t => {
+        if (topic === t) score += 100;
+        else if (topic.startsWith(t)) score += 60;
+        else if (topic.includes(t)) score += 30;
+        if ((item.hayGroup || "").includes(t)) score += 15;
+        if ((item.hayKeyword || "").includes(t)) score += 20;
+        if ((item.hay || "").includes(t)) score += 5;
+    });
+    if (matchMode === "topic") score += 10;
+    return score;
+}
+
+function filterPool(q, types, clusterVal, matchMode) {
+    const tokens = q ? q.split(/\s+/).filter(Boolean) : [];
+    let pool = searchIndex.filter(item => types.includes(item.type));
+    if (clusterVal) {
+        const cv = clusterVal.toLowerCase();
+        pool = pool.filter(item => (item.cluster || "").toLowerCase() === cv || (item.cluster || "").toLowerCase().includes(cv));
+    }
+    if (!tokens.length) return pool.slice(0, 200).map(item => ({ item, score: 0 }));
+
+    const fieldOf = (item) => {
+        if (matchMode === "topic") return item.hayTopic || "";
+        if (matchMode === "group") return item.hayGroup || "";
+        if (matchMode === "keyword") return item.hayKeyword || "";
+        return item.hay || "";
+    };
+
+    const hits = pool.filter(item => {
+        const field = fieldOf(item);
+        return tokens.every(t => field.includes(t));
+    }).map(item => ({ item, score: scoreHit(item, tokens, matchMode) }));
+
+    hits.sort((a, b) => b.score - a.score || a.item.topic.localeCompare(b.item.topic));
+    return hits;
+}
+
+function updateSuggestions() {
+    const q = (document.getElementById("globalSearchAll").value || "").trim().toLowerCase();
+    const box = document.getElementById("globalSuggestList");
+    if (q.length < 2) {
+        box.classList.remove("on");
+        box.innerHTML = "";
+        suggestActive = -1;
+        return;
+    }
+    const types = getSelectedSearchTypes();
+    const clusterVal = document.getElementById("searchClusterFilter").value;
+    const matchMode = document.getElementById("searchMatchMode").value;
+    const hits = filterPool(q, types, clusterVal, matchMode).slice(0, 12);
+    if (!hits.length) {
+        box.classList.remove("on");
+        box.innerHTML = "";
+        return;
+    }
+    box.innerHTML = hits.map((h, i) =>
+        '<div class="suggest-item" data-idx="' + i + '" onmousedown="pickSuggestion(' + i + ')">' +
+        '<strong>' + esc(h.item.topic) + '</strong>' +
+        '<small>' + esc(h.item.source) + ' · ' + esc(h.item.cluster) + '</small></div>'
+    ).join("");
+    box._hits = hits;
+    box.classList.add("on");
+    suggestActive = -1;
+}
+
+function pickSuggestion(idx) {
+    const box = document.getElementById("globalSuggestList");
+    const hits = box._hits || [];
+    if (!hits[idx]) return;
+    document.getElementById("globalSearchAll").value = hits[idx].item.topic;
+    box.classList.remove("on");
     filterGlobalSearch();
 }
 
+function onGlobalSearchInput() {
+    updateSuggestions();
+    filterGlobalSearch();
+}
+
+function onGlobalSearchKey(e) {
+    const box = document.getElementById("globalSuggestList");
+    if (!box.classList.contains("on")) return;
+    const items = box.querySelectorAll(".suggest-item");
+    if (!items.length) return;
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        suggestActive = (suggestActive + 1) % items.length;
+    } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        suggestActive = (suggestActive - 1 + items.length) % items.length;
+    } else if (e.key === "Enter" && suggestActive >= 0) {
+        e.preventDefault();
+        pickSuggestion(suggestActive);
+        return;
+    } else if (e.key === "Escape") {
+        box.classList.remove("on");
+        return;
+    } else return;
+    items.forEach((el, i) => el.classList.toggle("active", i === suggestActive));
+}
+
 function filterGlobalSearch() {
-    const type = (document.getElementById("startSearchType") || {}).value || "wave";
-    const wave = (document.getElementById("startWaveFilter") || {}).value || "";
     const q = (document.getElementById("globalSearchAll").value || "").trim().toLowerCase();
     const tbody = document.getElementById("globalSearchTable");
     const meta = document.getElementById("globalHitsMeta");
-    if (!tbody) return;
+    const types = getSelectedSearchTypes();
+    const clusterVal = document.getElementById("searchClusterFilter").value;
+    const matchMode = document.getElementById("searchMatchMode").value;
 
-    let hits = [];
-    if (type === "wave") {
-        ((KB.planning && KB.planning.serviceUnits) || []).forEach(r => {
-            if (wave && String(r.wave) !== wave) return;
-            const hay = [r.unit, r.clusterKey, "wave " + r.wave, r.notes].join(" ").toLowerCase();
-            if (q && !hay.includes(q)) return;
-            const reg = r.regions || {};
-            hits.push({
-                source: "Wave " + r.wave,
-                sourceClass: "src-wave",
-                topic: r.unit,
-                cluster: r.clusterKey || r.unit,
-                group: "Wave " + r.wave + (r.kritis ? " · KRITIS" : ""),
-                details: "Locations: " + r.locations + " · Users: " + r.users +
-                    "\\nNord " + (reg.Nord||0) + " · Ost " + (reg.Ost||0) + " · Süd " + (reg.Süd||0) + " · West " + (reg.West||0) +
-                    (r.notes ? "\\n" + r.notes : "")
-            });
-        });
-    } else if (type === "cluster") {
-        Object.keys(KB.clusters || {}).sort((a,b)=>a.localeCompare(b)).forEach(name => {
-            const w = waveOfCluster(name);
-            if (wave && w !== wave) return;
-            const c = KB.clusters[name];
-            const groups = [c.ServiceDesk, c.Account, c.Infrastructure, c.Clinical, c.SAP, c.FieldService].filter(Boolean).join(" · ");
-            const hay = [name, groups].join(" ").toLowerCase();
-            if (q && !hay.includes(q)) return;
-            hits.push({
-                source: "Cluster",
-                sourceClass: "src-cluster",
-                topic: name,
-                cluster: w ? ("Wave " + w) : "—",
-                group: groups,
-                details: "Service Desk: " + (c.ServiceDesk||"TBD") + "\\nInfra: " + (c.Infrastructure||"TBD") +
-                    "\\nClinical: " + (c.Clinical||"TBD") + "\\nSAP: " + (c.SAP||"TBD") + "\\nField: " + (c.FieldService||"TBD")
-            });
-        });
-    } else if (type === "region") {
-        ["Nord","Ost","Süd","West"].forEach(rn => {
-            ((KB.planning && KB.planning.serviceUnits) || []).forEach(r => {
-                if (wave && String(r.wave) !== wave) return;
-                const n = (r.regions && r.regions[rn]) || 0;
-                const nameHit = (r.unit||"").toLowerCase().includes(rn.toLowerCase());
-                if (!n && !nameHit) return;
-                const hay = [rn, r.unit, r.clusterKey, "wave " + r.wave].join(" ").toLowerCase();
-                if (q && !hay.includes(q)) return;
-                hits.push({
-                    source: "Region " + rn,
-                    sourceClass: "src-region",
-                    topic: r.unit,
-                    cluster: "Wave " + r.wave,
-                    group: r.clusterKey || r.unit,
-                    details: "Locations in " + rn + ": " + (n || "—") + " · Total locations: " + r.locations
-                });
-            });
-        });
-    } else if (type === "location") {
-        (KB.locationCards || []).forEach(card => {
-            const w = waveOfCluster(card.name);
-            if (wave && w && w !== wave) return;
-            if (wave && !w) {
-                // still allow if planning unit maps
-                const pu = ((KB.planning && KB.planning.serviceUnits) || []).find(u => u.clusterKey === card.name || u.unit === card.name);
-                if (pu && String(pu.wave) !== wave) return;
-                if (!pu) return;
-            }
-            const rows = (card.rows || []).map(r => r.join(": ")).join("\\n");
-            const hay = [card.name, rows].join(" ").toLowerCase();
-            if (q && !hay.includes(q)) return;
-            const groups = (card.rows || []).map(r => r[1]).filter(Boolean).join(" · ");
-            hits.push({
-                source: "Location",
-                sourceClass: "src-cluster",
-                topic: card.name,
-                cluster: w ? ("Wave " + w) : "—",
-                group: groups,
-                details: rows
-            });
-        });
-    }
-
-    if (!q && !wave) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">No query yet — choose Wave / Cluster / Region / Location and type a name.</td></tr>';
-        meta.textContent = "Choose type, then search";
+    if (!types.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">Select at least one search scope (Applications, Clusters, Locations, …).</td></tr>';
+        meta.textContent = "No search scope selected";
         return;
     }
 
-    hits = hits.slice(0, 300);
-    meta.textContent = hits.length + (hits.length === 300 ? "+" : "") + " hits · " + type + (wave ? " · Wave " + wave : "");
+    if (!q && !clusterVal) {
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">No query yet — use the scopes and filters above to search Applications, Clusters, Locations, Berlin Groups, Egipt Wave 1 and Global Helios.</td></tr>';
+        meta.textContent = "Enter a search term to query the knowledge base";
+        return;
+    }
+
+    const hits = filterPool(q, types, clusterVal, matchMode).slice(0, 300);
+    meta.textContent = hits.length + (hits.length === 300 ? "+" : "") + " hits" +
+        (types.length < 7 ? " · filtered scopes" : "") +
+        (clusterVal ? " · " + clusterVal : "") +
+        (matchMode !== "anywhere" ? " · " + matchMode : "");
+
     if (!hits.length) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">No results</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">No results for: ' + esc(q || clusterVal) + '</td></tr>';
         return;
     }
     tbody.innerHTML = "";
-    hits.forEach(item => {
+    hits.forEach(({ item }) => {
         const tr = document.createElement("tr");
         tr.innerHTML =
             '<td><span class="src ' + item.sourceClass + '">' + esc(item.source) + '</span></td>' +
-            '<td><strong>' + esc(item.topic) + '</strong></td>' +
+            '<td><strong>' + esc(item.topic) + '</strong>' +
+            (item.keywords && item.type === "problem" ? '<div class="meta">' + esc(item.keywords) + '</div>' : '') +
+            '</td>' +
             '<td>' + esc(item.cluster) + '</td>' +
             '<td><code class="assignment">' + esc(item.group) + '</code>' +
-            (item.group && item.group.indexOf(" · ") < 0 ? '<button class="copy-btn" type="button" data-copy="' + esc(item.group) + '">Copy</button>' : '') +
-            '</td>' +
+            '<button class="copy-btn" type="button" data-copy="' + esc(item.group) + '">Copy</button></td>' +
             '<td><pre class="notes-formatted">' + esc(item.details) + '</pre></td>';
         tbody.appendChild(tr);
     });
+}
+
+
+
+
+
+function renderWave2() {
+    const locs = (KB.wave2 && KB.wave2.locations) || [];
+    const overview = document.getElementById("wave2OverviewTable");
+    const topicsBody = document.getElementById("wave2TopicTable");
+    const specials = document.getElementById("wave2Specials");
+    if (document.getElementById("wave2Count"))
+        document.getElementById("wave2Count").textContent = locs.length;
+    if (overview) {
+        overview.innerHTML = "";
+        locs.forEach(loc => {
+            const tr = document.createElement("tr");
+            tr.className = "w2row";
+            tr.innerHTML =
+                "<td><strong>" + esc(loc.location) + "</strong></td>" +
+                "<td>" + esc(loc.status || "") + "</td>" +
+                "<td><code class=\"assignment\">" + esc(loc.serviceDesk || "TBD") + "</code></td>" +
+                "<td><code class=\"assignment\">" + esc(loc.infrastructure || "TBD") + "</code></td>" +
+                "<td><code class=\"assignment\">" + esc(loc.clinical || "TBD") + "</code></td>" +
+                "<td><code class=\"assignment\">" + esc(loc.sap || "TBD") + "</code></td>" +
+                "<td><code class=\"assignment\">" + esc(loc.fieldService || "TBD") + "</code></td>" +
+                "<td>" + esc(loc.notes || "") + "</td>";
+            overview.appendChild(tr);
+        });
+    }
+    if (topicsBody) {
+        topicsBody.innerHTML = "";
+        locs.forEach(loc => {
+            const topics = loc.topics || [];
+            if (!topics.length) {
+                const tr = document.createElement("tr");
+                tr.className = "w2row";
+                tr.innerHTML =
+                    "<td><strong>" + esc(loc.location) + "</strong></td>" +
+                    "<td>TBD</td><td>TBD</td><td>Topic/keyword routing not yet documented for this location.</td>" +
+                    "<td>TBD</td><td><code class=\"assignment\">TBD</code></td>";
+                topicsBody.appendChild(tr);
+                return;
+            }
+            topics.forEach(t => {
+                const tr = document.createElement("tr");
+                tr.className = "w2row";
+                tr.innerHTML =
+                    "<td><strong>" + esc(loc.location) + "</strong></td>" +
+                    "<td><strong>" + esc(t.topic) + "</strong></td>" +
+                    "<td>" + (t.keywords || []).map(k => "<span class=\"keyword\">" + esc(k) + "</span>").join(" ") + "</td>" +
+                    "<td>" + esc(t.description || "TBD") + "</td>" +
+                    "<td>" + esc(t.quick || "TBD") + "</td>" +
+                    "<td><code class=\"assignment\">" + esc(t.group || "TBD") + "</code>" +
+                    "<button class=\"copy-btn\" type=\"button\" data-copy=\"" + esc(t.group || "") + "\">Copy</button></td>";
+                topicsBody.appendChild(tr);
+            });
+        });
+    }
+    if (specials) {
+        specials.innerHTML = locs.map(loc => {
+            const rows = (loc.specials || []).map(s =>
+                "<tr class=\"w2row\"><td>" + esc(s.topic) + "</td><td><code class=\"assignment\">" + esc(s.group) + "</code>" +
+                "<button class=\"copy-btn\" type=\"button\" data-copy=\"" + esc(s.group) + "\">Copy</button></td></tr>"
+            ).join("");
+            const body = rows || "<tr class=\"w2row\"><td colspan=\"2\" class=\"meta\">No additional specialty groups — TBD</td></tr>";
+            return "<div class=\"card wave2-card\"><div class=\"card-header\" onclick=\"toggleCard(this)\"><span>" +
+                esc(loc.location) + " — specialty routing (" + esc(loc.status || "Wave 2") + ")</span></div>" +
+                "<div class=\"card-content\"><table><thead><tr><th>Topic</th><th>Assignment Group</th></tr></thead><tbody>" +
+                body + "</tbody></table></div></div>";
+        }).join("");
+    }
+}
+
+function filterWave2() {
+    const q = (document.getElementById("wave2Search").value || "").toLowerCase();
+    document.querySelectorAll("#wave2OverviewTable tr.w2row, #wave2TopicTable tr.w2row, #wave2Specials .wave2-card").forEach(el => {
+        const text = el.innerText.toLowerCase();
+        if (el.classList.contains("wave2-card")) el.classList.toggle("hide", q && !text.includes(q));
+        else el.style.display = (!q || text.includes(q)) ? "" : "none";
+    });
+}
+
+
+function getSelectedWaveFilter() {
+    const el = document.querySelector('#waveFilterChips input[name="waveFilter"]:checked');
+    return el ? el.value : "all";
+}
+function getSelectedRegionFilter() {
+    const el = document.querySelector('#regionFilterChips input[name="regionFilter"]:checked');
+    return el ? el.value : "all";
+}
+function syncChipActive(containerSel) {
+    document.querySelectorAll(containerSel + " .chip").forEach(chip => {
+        const input = chip.querySelector("input");
+        chip.classList.toggle("active", !!(input && input.checked));
+    });
+}
+
+function planningUnits() {
+    return (KB.planning && KB.planning.serviceUnits) || [];
+}
+
+function renderWavesView() {
+    syncChipActive("#waveFilterChips");
+    const wave = getSelectedWaveFilter();
+    const q = (document.getElementById("wavesSearch") && document.getElementById("wavesSearch").value || "").toLowerCase();
+    const tbody = document.getElementById("wavesPlanTable");
+    const meta = document.getElementById("wavesMeta");
+    if (!tbody) return;
+    let rows = planningUnits();
+    if (wave !== "all") rows = rows.filter(r => String(r.wave) === String(wave));
+    if (q) rows = rows.filter(r => JSON.stringify(r).toLowerCase().includes(q));
+    tbody.innerHTML = "";
+    rows.forEach(r => {
+        const tr = document.createElement("tr");
+        tr.className = "wave-" + r.wave;
+        const reg = r.regions || {};
+        tr.innerHTML =
+            "<td><strong>" + esc(r.unit) + "</strong></td>" +
+            "<td>Wave " + esc(r.wave) + "</td>" +
+            "<td>" + esc(r.locations) + "</td>" +
+            "<td>" + esc(r.users) + "</td>" +
+            "<td>" + esc(r.ticketsPerMonth) + "</td>" +
+            "<td>" + (r.kritis ? "<span class=\"kritis-flag\">1</span>" : "") + "</td>" +
+            "<td>" + esc(reg.Nord || 0) + "</td>" +
+            "<td>" + esc(reg.Ost || 0) + "</td>" +
+            "<td>" + esc(reg.Süd || 0) + "</td>" +
+            "<td>" + esc(reg.West || 0) + "</td>" +
+            "<td>" + esc(r.notes || "") + "</td>";
+        tbody.appendChild(tr);
+    });
+    if (meta) meta.textContent = rows.length + " service unit(s)" + (wave === "all" ? "" : " · Wave " + wave);
+
+    const host = document.getElementById("wavesRoutingBlock");
+    if (!host) return;
+    const wnum = wave === "all" ? null : Number(wave);
+    let htmlOut = "";
+    if (!wnum || wnum === 1) {
+        htmlOut += '<div class="card"><div class="card-header"><span>Wave 1 — Keyword Routing</span></div><div class="card-content">' +
+            '<table><thead><tr><th>Topic</th><th>Keywords</th><th>Description</th><th>Quick fix</th><th>Assignment Group</th></tr></thead>' +
+            '<tbody id="wave1Table"></tbody></table></div></div>';
+    }
+    if (!wnum || wnum === 2) {
+        htmlOut += '<div class="card"><div class="card-header"><span>Wave 2 — Location Routing Matrix</span></div><div class="card-content">' +
+            '<table><thead><tr><th>Location</th><th>Status</th><th>Service Desk / Local IT</th><th>Infrastructure</th><th>Clinical</th><th>SAP / KIS</th><th>Field Service</th><th>Notes</th></tr></thead>' +
+            '<tbody id="wave2OverviewTable"></tbody></table></div></div>' +
+            '<div class="card"><div class="card-header"><span>Wave 2 — Topic / Keyword Routing</span></div><div class="card-content">' +
+            '<table><thead><tr><th>Location</th><th>Topic</th><th>Keywords</th><th>Description</th><th>Quick fix</th><th>Assignment Group</th></tr></thead>' +
+            '<tbody id="wave2TopicTable"></tbody></table></div></div><div id="wave2Specials"></div>';
+    }
+    if (wnum && wnum >= 3) {
+        htmlOut += '<div class="card"><div class="card-header"><span>Wave ' + wnum + ' — Detailed routing</span></div>' +
+            '<div class="card-content"><div class="note-box">Detailed keyword/topic routing for Wave ' + wnum + ' is <b>TBD</b>. Use the planning table above and Clusters tab for known assignment groups.</div></div></div>';
+    }
+    host.innerHTML = htmlOut;
+    if (!wnum || wnum === 1) renderWave1();
+    if (!wnum || wnum === 2) renderWave2();
+}
+
+function renderRegionsView() {
+    syncChipActive("#regionFilterChips");
+    const region = getSelectedRegionFilter();
+    const q = (document.getElementById("regionsSearch") && document.getElementById("regionsSearch").value || "").toLowerCase();
+    const waveVal = (document.getElementById("regionsWaveFilter") || {}).value || "";
+    const tbody = document.getElementById("regionsTable");
+    const meta = document.getElementById("regionsMeta");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    let count = 0;
+    const regions = region === "all" ? ["Nord", "Ost", "Süd", "West"] : [region];
+    regions.forEach(regName => {
+        planningUnits().forEach(r => {
+            if (waveVal && String(r.wave) !== waveVal) return;
+            const n = (r.regions && r.regions[regName]) || 0;
+            // include if count > 0 OR (MVZ-style with 0 but unit name matches region)
+            const nameHit = (r.unit || "").toLowerCase().includes(regName.toLowerCase()) ||
+                (regName === "Süd" && /süd|sued|south/i.test(r.unit || "")) ||
+                (regName === "Nord" && /nord|north/i.test(r.unit || "")) ||
+                (regName === "West" && /west/i.test(r.unit || "")) ||
+                (regName === "Ost" && /ost|east|berlin|sachsen/i.test(r.unit || ""));
+            if (!n && !nameHit) return;
+            const hay = JSON.stringify(r).toLowerCase();
+            if (q && !hay.includes(q) && !regName.toLowerCase().includes(q)) return;
+            count++;
+            const tr = document.createElement("tr");
+            tr.className = "wave-" + r.wave;
+            tr.innerHTML =
+                "<td><strong>" + esc(regName) + "</strong></td>" +
+                "<td>" + esc(r.unit) + "</td>" +
+                "<td>Wave " + esc(r.wave) + "</td>" +
+                "<td>" + esc(n || "—") + "</td>" +
+                "<td>" + esc(r.locations) + "</td>" +
+                "<td>" + esc(r.users) + "</td>" +
+                "<td>" + (r.kritis ? "<span class=\"kritis-flag\">1</span>" : "") + "</td>" +
+                "<td>" + esc(r.clusterKey || "") + "</td>";
+            tbody.appendChild(tr);
+        });
+    });
+    if (meta) meta.textContent = count + " row(s)" + (region === "all" ? "" : " · " + region);
+
+    const host = document.getElementById("regionsClusterCards");
+    if (!host) return;
+    const keys = new Set();
+    planningUnits().forEach(r => {
+        const reg = r.regions || {};
+        const relevant = region === "all" ? true :
+            (reg[region] || 0) > 0 || (r.unit || "").toLowerCase().includes(region.toLowerCase());
+        if (relevant && r.clusterKey) keys.add(r.clusterKey);
+    });
+    host.innerHTML = Array.from(keys).sort((a,b)=>a.localeCompare(b)).map(name => {
+        const c = KB.clusters[name];
+        if (!c) return "";
+        const metaC = (KB.clusterMeta && KB.clusterMeta[name]) || {};
+        return '<div class="card"><div class="card-header" onclick="toggleCard(this)"><span>' + esc(name) +
+            (metaC.kritis ? ' · KRITIS' : '') +
+            ' · Wave ' + esc((metaC.waves||[]).join("/") || "TBD") +
+            '</span></div><div class="card-content collapsed"><table><tbody>' +
+            '<tr><td>Service Desk</td><td class="assignment">' + esc(c.ServiceDesk||"TBD") + '</td></tr>' +
+            '<tr><td>Infrastructure</td><td class="assignment">' + esc(c.Infrastructure||"TBD") + '</td></tr>' +
+            '<tr><td>Clinical</td><td class="assignment">' + esc(c.Clinical||"TBD") + '</td></tr>' +
+            '<tr><td>SAP / KIS</td><td class="assignment">' + esc(c.SAP||"TBD") + '</td></tr>' +
+            '<tr><td>Field Service</td><td class="assignment">' + esc(c.FieldService||"TBD") + '</td></tr>' +
+            '</tbody></table></div></div>';
+    }).join("");
+}
+
+function waveOfCluster(name) {
+    const meta = (KB.clusterMeta && KB.clusterMeta[name]) || {};
+    return (meta.waves && meta.waves.length) ? String(meta.waves[0]) : "";
 }
 
 function filterClusters() {
@@ -1245,32 +1593,27 @@ function filterClusters() {
     const waveVal = (document.getElementById("clustersWaveFilter") || {}).value || "";
     document.querySelectorAll("#overviewTable tr").forEach(tr => {
         const name = (tr.querySelector("strong") && tr.querySelector("strong").textContent) || "";
-        const w = waveOfCluster(name);
-        const matchesWave = !waveVal || w === waveVal;
+        const meta = (KB.clusterMeta && KB.clusterMeta[name]) || {};
+        const waves = (meta.waves || []).map(String);
+        const matchesWave = !waveVal || waves.includes(waveVal);
         const matchesText = !q || tr.innerText.toLowerCase().includes(q);
         tr.style.display = (matchesWave && matchesText) ? "" : "none";
     });
     document.querySelectorAll("#locationCards .card").forEach(card => {
-        const title = (card.querySelector(".card-header span") && card.querySelector(".card-header span").textContent) || card.innerText;
-        const name = title.split("·")[0].trim();
-        const w = waveOfCluster(name);
-        const matchesWave = !waveVal || w === waveVal || (!w && !waveVal);
-        const matchesText = !q || card.innerText.toLowerCase().includes(q);
-        // If wave filter set and card has no wave meta, hide unless text matches cluster with that wave via planning
-        let okWave = true;
-        if (waveVal) {
-            const meta = (KB.clusterMeta && KB.clusterMeta[name]) || {};
-            okWave = (meta.waves || []).map(String).includes(waveVal);
-            if (!okWave) {
-                // try planning unit match on card name
-                okWave = ((KB.planning && KB.planning.serviceUnits) || []).some(u =>
-                    String(u.wave) === waveVal && (u.clusterKey === name || u.unit === name || (u.unit||"").indexOf(name) >= 0)
-                );
-            }
+        const titleEl = card.querySelector(".card-header span");
+        const name = titleEl ? titleEl.textContent.trim() : "";
+        const meta = (KB.clusterMeta && KB.clusterMeta[name]) || {};
+        let okWave = !waveVal || (meta.waves || []).map(String).includes(waveVal);
+        if (waveVal && !okWave) {
+            okWave = ((KB.planning && KB.planning.serviceUnits) || []).some(u =>
+                String(u.wave) === waveVal && (u.clusterKey === name || u.unit === name)
+            );
         }
+        const matchesText = !q || card.innerText.toLowerCase().includes(q);
         card.classList.toggle("hide", !(okWave && matchesText));
     });
 }
+
 
 function showSection(id) {
     document.querySelectorAll(".section").forEach(s => s.classList.toggle("on", s.id === id));
@@ -1294,6 +1637,8 @@ window.onload = function() {
     buildDatabase();
     searchIndex = buildSearchIndex();
     populateClusterFilter();
+    populateSearchClusterFilter();
+    populateSuggestDatalist();
     renderApplications(applicationsDatabase);
     renderOverview();
     renderLocationCards();
@@ -1301,7 +1646,15 @@ window.onload = function() {
     renderGlobal();
     renderWavesView();
     renderRegionsView();
-    onStartSearchTypeChanged();
+    filterGlobalSearch();
+
+    document.addEventListener("click", function(e) {
+        const wrap = document.querySelector(".suggest-wrap");
+        if (wrap && !wrap.contains(e.target)) {
+            const box = document.getElementById("globalSuggestList");
+            if (box) box.classList.remove("on");
+        }
+    });
 
     if (location.hash) {
         const id = location.hash.replace("#","");
