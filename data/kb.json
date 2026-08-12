@@ -173,10 +173,10 @@
     },
     "Northeim": {
       "Infrastructure": "NOM-IT",
-      "Clinical": "TBD",
+      "Clinical": "NOM-IT",
       "SAP": "CLBB-IT | KIS Support",
       "Account": "NOM-IT",
-      "FieldService": "TBD",
+      "FieldService": "NOM-IT",
       "ServiceDesk": "NOM-IT"
     },
     "Erfurt": {
@@ -325,10 +325,11 @@
     "Lengerich": {
       "Infrastructure": "LEN-IT",
       "Clinical": "LEN-IT",
-      "SAP": "LEN-IT",
+      "SAP": "Orbis",
       "Account": "LEN-IT",
       "FieldService": "LEN-IT",
-      "ServiceDesk": "LEN-IT"
+      "ServiceDesk": "LEN-IT",
+      "Orbis": "Orbis"
     },
     "Niederberg": {
       "Infrastructure": "NDB-IT",
@@ -397,10 +398,11 @@
     "Salzgitter": {
       "Infrastructure": "SZ-IT",
       "Clinical": "SZ-IT",
-      "SAP": "SZ-IT",
+      "SAP": "iMedOne",
       "Account": "SZ-IT",
       "FieldService": "SZ-IT",
-      "ServiceDesk": "SZ-IT"
+      "ServiceDesk": "SZ-IT",
+      "iMedOne": "iMedOne"
     },
     "Uelzen": {
       "Infrastructure": "UE-IT",
@@ -2578,7 +2580,7 @@
           "SysOp | Backup"
         ],
         [
-          "SAP",
+          "SAP / KIS",
           "CLBB-IT | KIS Support"
         ]
       ]
@@ -2924,8 +2926,16 @@
       "name": "Lengerich",
       "rows": [
         [
-          "General IT",
+          "All / Local IT",
           "LEN-IT"
+        ],
+        [
+          "SAP / KIS",
+          "Orbis"
+        ],
+        [
+          "Note",
+          "Lengerich has only LEN-IT as local assignment group. SAP/KIS cases route to Orbis."
         ]
       ]
     },
@@ -3005,8 +3015,16 @@
       "name": "Salzgitter",
       "rows": [
         [
-          "General IT",
+          "All / Local IT",
           "SZ-IT"
+        ],
+        [
+          "SAP / KIS",
+          "iMedOne"
+        ],
+        [
+          "Note",
+          "Salzgitter: all local topics → SZ-IT. SAP/KIS → iMedOne."
         ]
       ]
     },
