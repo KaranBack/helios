@@ -186,53 +186,23 @@ tr.wave-5 { background:#f0fdf4; }
 
 <section class="section on" id="home">
     <div class="controls-card home-search-wrap search-panel">
-        <div class="search-chips" id="searchTypeChips" role="group" aria-label="Search scope">
-            <label class="chip active"><input type="checkbox" name="stype" value="application" checked onchange="onSearchFiltersChanged()"> Applications</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="cluster" checked onchange="onSearchFiltersChanged()"> Clusters &amp; main groups</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="location" checked onchange="onSearchFiltersChanged()"> Locations / clinics</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="problem" checked onchange="onSearchFiltersChanged()"> Problems / keywords</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="berlin" checked onchange="onSearchFiltersChanged()"> Berlin Groups</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="wave" checked onchange="onSearchFiltersChanged()"> Waves</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="region" checked onchange="onSearchFiltersChanged()"> Regions</label>
-            <label class="chip active"><input type="checkbox" name="stype" value="global" checked onchange="onSearchFiltersChanged()"> Global Helios</label>
-        </div>
         <div class="search-row">
             <div class="suggest-wrap">
                 <input type="text" id="globalSearchAll" class="search-box" list="globalSuggestDatalist"
-                    placeholder="Search by application, cluster, location, problem or assignment group..."
+                    placeholder="Type a cluster or location (e.g. Duisburg, Krefeld, Berlin) — or an application / problem..."
                     oninput="onGlobalSearchInput()" onkeydown="onGlobalSearchKey(event)" autofocus autocomplete="off">
                 <datalist id="globalSuggestDatalist"></datalist>
                 <div class="suggest-list" id="globalSuggestList"></div>
             </div>
-            <select id="searchMatchMode" class="filter-select" onchange="filterGlobalSearch()">
-                <option value="anywhere">Match: Anywhere</option>
-                <option value="topic">Match: Topic / name</option>
-                <option value="group">Match: Assignment group</option>
-                <option value="keyword">Match: Keywords / problems</option>
-            </select>
-            <select id="searchClusterFilter" class="filter-select" onchange="filterGlobalSearch()">
-                <option value="">All locations / clusters</option>
-            </select>
-            <select id="searchPreset" class="filter-select" onchange="applySearchPreset()">
-                <option value="">Quick preset…</option>
-                <option value="apps">Applications only</option>
-                <option value="clusters">Clusters &amp; main groups</option>
-                <option value="locations">Locations / clinics</option>
-                <option value="problems">Problems / keywords</option>
-                <option value="berlin">Berlin Groups</option>
-                <option value="wave">Waves</option>
-                <option value="region">Regions</option>
-                <option value="global">Global Helios</option>
-                <option value="all">Everything</option>
-            </select>
         </div>
         <div class="search-row">
-            <span class="search-hint">Tip: select search scopes above, then type a name (e.g. MetaVision, Berlin, Duisburg, Password) or an assignment group.</span>
-            <span class="meta" id="globalHitsMeta">Enter a search term to query the knowledge base</span>
+            <span class="search-hint">Tip: enter a cluster or location name to see <strong>all assignment groups</strong> for that place. You can also search applications, problems or group names.</span>
+            <span class="meta" id="globalHitsMeta">Type a cluster, location, application or problem</span>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header"><span>Search results</span></div>
+    <div id="placeGroupsPanel"></div>
+    <div class="card" id="relatedSearchCard">
+        <div class="card-header"><span id="relatedSearchTitle">Search results</span></div>
         <div class="card-content">
             <table>
                 <thead>
@@ -245,7 +215,7 @@ tr.wave-5 { background:#f0fdf4; }
                     </tr>
                 </thead>
                 <tbody id="globalSearchTable">
-                    <tr><td colspan="5" class="meta">No query yet — choose Wave / Cluster / Region / Location and type a name.</td></tr>
+                    <tr><td colspan="5" class="meta">Start typing a cluster or location name (e.g. Duisburg) to list all of its groups.</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1134,40 +1104,15 @@ function waveOfCluster(name) {
     return (meta.waves && meta.waves[0]) ? String(meta.waves[0]) : "";
 }
 
-function getSelectedSearchTypes() {
-    return Array.from(document.querySelectorAll('#searchTypeChips input[name="stype"]:checked')).map(el => el.value);
-}
-
-function onSearchFiltersChanged() {
-    document.querySelectorAll('#searchTypeChips .chip').forEach(chip => {
-        const input = chip.querySelector('input');
-        chip.classList.toggle('active', !!(input && input.checked));
-    });
-    filterGlobalSearch();
-    updateSuggestions();
-}
-
-function applySearchPreset() {
-    const preset = document.getElementById("searchPreset").value;
-    const map = {
-        apps: ["application"],
-        clusters: ["cluster"],
-        locations: ["location"],
-        problems: ["problem"],
-        berlin: ["berlin"],
-        wave: ["wave"],
-        region: ["region"],
-        global: ["global"],
-        all: ["application","cluster","location","problem","berlin","wave","region","global"]
-    };
-    if (!preset || !map[preset]) return;
-    const selected = new Set(map[preset]);
-    document.querySelectorAll('#searchTypeChips input[name="stype"]').forEach(el => {
-        el.checked = selected.has(el.value);
-    });
-    document.getElementById("searchPreset").value = "";
-    onSearchFiltersChanged();
-}
+const PLACE_ALIASES = {
+    "berlin": ["Berlin", "Berlin / Brandenburg", "Berlin Zehlendorf"],
+    "berlin brandenburg": ["Berlin / Brandenburg", "Berlin"],
+    "region sud": ["Region Süd", "Region South"],
+    "region süd": ["Region Süd", "Region South"],
+    "region south": ["Region South", "Region Süd"],
+    "mvz": ["MVZ Groups", "MVZ Region West"],
+    "wuppertal": ["CL-Wuppertal"]
+};
 
 function populateClusterFilter() {
     const sel = document.getElementById("clusterFilter");
@@ -1180,35 +1125,162 @@ function populateClusterFilter() {
     if (current) sel.value = current;
 }
 
-function populateSearchClusterFilter() {
-    const sel = document.getElementById("searchClusterFilter");
+function allPlaceNames() {
     const names = new Set();
     Object.keys(KB.clusters || {}).forEach(n => names.add(n));
     (KB.locationCards || []).forEach(c => names.add(c.name));
-    names.add("Berlin / Brandenburg");
-    names.add("Global Helios");
-    names.add("Egipt Wave 1");
-    const sorted = Array.from(names).sort((a,b) => a.localeCompare(b));
-    sel.innerHTML = '<option value="">All locations / clusters</option>' +
-        sorted.map(n => '<option value="' + esc(n) + '">' + esc(n) + '</option>').join("");
+    ((KB.wave2 && KB.wave2.locations) || []).forEach(l => {
+        if (l.location) names.add(l.location);
+        if (l.clusterKey) names.add(l.clusterKey);
+    });
+    return Array.from(names);
 }
 
 function populateSuggestDatalist() {
     const dl = document.getElementById("globalSuggestDatalist");
-    const seen = new Set();
-    const opts = [];
+    if (!dl) return;
+    const places = allPlaceNames().sort((a,b) => a.localeCompare(b));
+    const extras = [];
+    const seen = new Set(places);
     searchIndex.forEach(item => {
-        [item.topic, item.cluster].forEach(v => {
+        if (item.type === "application" || item.type === "problem" || item.type === "global") {
+            const v = item.topic;
             if (!v || seen.has(v)) return;
             seen.add(v);
-            opts.push(v);
-        });
+            extras.push(v);
+        }
     });
-    opts.sort((a,b) => a.localeCompare(b));
-    dl.innerHTML = opts.slice(0, 800).map(v => '<option value="' + esc(v) + '"></option>').join("");
+    extras.sort((a,b) => a.localeCompare(b));
+    dl.innerHTML = places.concat(extras.slice(0, 400))
+        .map(v => '<option value="' + esc(v) + '"></option>').join("");
 }
 
-function scoreHit(item, tokens, matchMode) {
+function normalizePlaceQuery(q) {
+    return (q || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+}
+
+function scorePlaceName(name, q) {
+    const n = name.toLowerCase();
+    const qLow = (q || "").toLowerCase().trim();
+    if (!qLow || qLow.length < 2) return 0;
+    if (n === qLow) return 100;
+    if (n.startsWith(qLow + " ") || n.startsWith(qLow + "/") || n.startsWith(qLow + "-")) return 85;
+    if (n.startsWith(qLow)) return 80;
+
+    // Match whole name segments (avoid "Berlin" hitting "Überlingen")
+    const tokens = n.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+    if (tokens.some(t => t === qLow)) return 95;
+    if (qLow.length >= 3 && tokens.some(t => t.startsWith(qLow))) return 78;
+
+    const qFlat = normalizePlaceQuery(qLow);
+    const nFlat = normalizePlaceQuery(n);
+    const flatTokens = nFlat.split(/[^a-z0-9]+/).filter(Boolean);
+    if (flatTokens.some(t => t === qFlat)) return 93;
+    if (qFlat.length >= 3 && flatTokens.some(t => t.startsWith(qFlat))) return 76;
+
+    const qTokens = qFlat.split(/\s+/).filter(Boolean);
+    if (qTokens.length > 1 && qTokens.every(t => flatTokens.some(ft => ft === t || ft.startsWith(t)))) return 70;
+    return 0;
+}
+
+function findMatchingPlaces(q) {
+    if (!q || q.length < 2) return [];
+    const qLow = q.toLowerCase().trim();
+    const aliasHits = PLACE_ALIASES[qLow] || PLACE_ALIASES[normalizePlaceQuery(q)] || [];
+    const scored = new Map();
+
+    aliasHits.forEach(name => {
+        scored.set(name, Math.max(scored.get(name) || 0, 95));
+    });
+
+    allPlaceNames().forEach(name => {
+        const s = scorePlaceName(name, q);
+        if (s >= 60) scored.set(name, Math.max(scored.get(name) || 0, s));
+    });
+
+    return Array.from(scored.entries())
+        .map(([name, score]) => ({ name, score }))
+        .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
+        .slice(0, 8);
+}
+
+function getGroupsForPlace(placeName) {
+    const rows = [];
+    const seen = new Set();
+    const push = (area, group, source) => {
+        if (!group || group === "TBD") return;
+        const key = area + "||" + group;
+        if (seen.has(key)) return;
+        seen.add(key);
+        rows.push({ area, group, source });
+    };
+
+    const cluster = KB.clusters && KB.clusters[placeName];
+    if (cluster) {
+        [
+            ["Service Desk", cluster.ServiceDesk],
+            ["Account", cluster.Account],
+            ["Infrastructure", cluster.Infrastructure],
+            ["Clinical Applications", cluster.Clinical],
+            ["SAP / KIS", cluster.SAP],
+            ["Field Service", cluster.FieldService]
+        ].forEach(([area, group]) => push(area, group, "Cluster"));
+    }
+
+    (KB.locationCards || []).forEach(card => {
+        if (card.name !== placeName) return;
+        (card.rows || []).forEach(r => push(r[0], r[1], "Location"));
+    });
+
+    ((KB.wave2 && KB.wave2.locations) || []).forEach(loc => {
+        if (loc.location !== placeName && loc.clusterKey !== placeName) return;
+        push("Service Desk", loc.serviceDesk, "Wave 2");
+        push("Infrastructure", loc.infrastructure, "Wave 2");
+        push("Clinical Applications", loc.clinical, "Wave 2");
+        push("SAP / KIS", loc.sap, "Wave 2");
+        push("Field Service", loc.fieldService, "Wave 2");
+        (loc.topics || []).forEach(t => push(t.topic, t.group, "Wave 2 topic"));
+        (loc.specials || []).forEach(s => push(s.topic, s.group, "Wave 2 special"));
+    });
+
+    return rows;
+}
+
+function renderPlaceGroups(places) {
+    const host = document.getElementById("placeGroupsPanel");
+    if (!host) return 0;
+    if (!places.length) {
+        host.innerHTML = "";
+        return 0;
+    }
+    let groupCount = 0;
+    host.innerHTML = places.map(p => {
+        const groups = getGroupsForPlace(p.name);
+        groupCount += groups.length;
+        if (!groups.length) {
+            return '<div class="card"><div class="card-header"><span>Groups for ' + esc(p.name) +
+                '</span></div><div class="card-content"><p class="meta">No assignment groups found for this place.</p></div></div>';
+        }
+        const meta = (KB.clusterMeta && KB.clusterMeta[p.name]) || {};
+        const waveTag = (meta.waves || []).map(w => "Wave " + w).join(", ");
+        const regionTag = (meta.regions || []).join(", ");
+        const badges = [waveTag, regionTag, meta.kritis ? "KRITIS" : ""].filter(Boolean).join(" · ");
+        const body = '<table><thead><tr><th style="width:28%">Area / role</th><th style="width:52%">Assignment Group</th><th style="width:20%">Source</th></tr></thead><tbody>' +
+            groups.map(g =>
+                "<tr><td><strong>" + esc(g.area) + "</strong></td>" +
+                '<td><code class="assignment">' + esc(g.group) + '</code>' +
+                '<button class="copy-btn" type="button" data-copy="' + esc(g.group) + '">Copy</button></td>' +
+                "<td>" + esc(g.source) + "</td></tr>"
+            ).join("") + "</tbody></table>";
+        return '<div class="card place-groups-card"><div class="card-header"><span>All groups — ' + esc(p.name) +
+            (badges ? ' <span style="font-weight:400;opacity:.9">(' + esc(badges) + ")</span>" : "") +
+            "</span><span style=\"font-weight:400;font-size:13px\">" + groups.length + " groups</span></div>" +
+            '<div class="card-content">' + body + "</div></div>";
+    }).join("");
+    return groupCount;
+}
+
+function scoreHit(item, tokens) {
     let score = 0;
     const topic = (item.topic || "").toLowerCase();
     tokens.forEach(t => {
@@ -1219,37 +1291,33 @@ function scoreHit(item, tokens, matchMode) {
         if ((item.hayKeyword || "").includes(t)) score += 20;
         if ((item.hay || "").includes(t)) score += 5;
     });
-    if (matchMode === "topic") score += 10;
     return score;
 }
 
-function filterPool(q, types, clusterVal, matchMode) {
+function filterPool(q, placeNames) {
     const tokens = q ? q.split(/\s+/).filter(Boolean) : [];
-    let pool = searchIndex.filter(item => types.includes(item.type));
-    if (clusterVal) {
-        const cv = clusterVal.toLowerCase();
-        pool = pool.filter(item => (item.cluster || "").toLowerCase() === cv || (item.cluster || "").toLowerCase().includes(cv));
+    const pool = searchIndex.slice();
+    if (placeNames && placeNames.length) {
+        const set = new Set(placeNames.map(n => n.toLowerCase()));
+        // Only related apps / problems / wave rows for the matched place(s)
+        const related = pool.filter(item =>
+            item.type !== "cluster" && item.type !== "location" &&
+            set.has((item.cluster || "").toLowerCase())
+        );
+        const ranked = related.map(item => ({ item, score: scoreHit(item, tokens) }));
+        ranked.sort((a, b) => b.score - a.score || a.item.topic.localeCompare(b.item.topic));
+        return ranked;
     }
-    if (!tokens.length) return pool.slice(0, 200).map(item => ({ item, score: 0 }));
-
-    const fieldOf = (item) => {
-        if (matchMode === "topic") return item.hayTopic || "";
-        if (matchMode === "group") return item.hayGroup || "";
-        if (matchMode === "keyword") return item.hayKeyword || "";
-        return item.hay || "";
-    };
-
-    const hits = pool.filter(item => {
-        const field = fieldOf(item);
-        return tokens.every(t => field.includes(t));
-    }).map(item => ({ item, score: scoreHit(item, tokens, matchMode) }));
-
+    if (!tokens.length) return [];
+    const hits = pool.filter(item => tokens.every(t => (item.hay || "").includes(t)))
+        .map(item => ({ item, score: scoreHit(item, tokens) }));
     hits.sort((a, b) => b.score - a.score || a.item.topic.localeCompare(b.item.topic));
     return hits;
 }
 
 function updateSuggestions() {
-    const q = (document.getElementById("globalSearchAll").value || "").trim().toLowerCase();
+    const raw = (document.getElementById("globalSearchAll").value || "").trim();
+    const q = raw.toLowerCase();
     const box = document.getElementById("globalSuggestList");
     if (q.length < 2) {
         box.classList.remove("on");
@@ -1257,19 +1325,23 @@ function updateSuggestions() {
         suggestActive = -1;
         return;
     }
-    const types = getSelectedSearchTypes();
-    const clusterVal = document.getElementById("searchClusterFilter").value;
-    const matchMode = document.getElementById("searchMatchMode").value;
-    const hits = filterPool(q, types, clusterVal, matchMode).slice(0, 12);
+    const places = findMatchingPlaces(raw);
+    const hits = places.length
+        ? places.map(p => ({ label: p.name, kind: "Cluster / location", fill: p.name }))
+        : filterPool(q, null).slice(0, 12).map(h => ({
+            label: h.item.topic,
+            kind: h.item.source,
+            fill: h.item.topic
+        }));
     if (!hits.length) {
         box.classList.remove("on");
         box.innerHTML = "";
         return;
     }
-    box.innerHTML = hits.map((h, i) =>
+    box.innerHTML = hits.slice(0, 12).map((h, i) =>
         '<div class="suggest-item" data-idx="' + i + '" onmousedown="pickSuggestion(' + i + ')">' +
-        '<strong>' + esc(h.item.topic) + '</strong>' +
-        '<small>' + esc(h.item.source) + ' · ' + esc(h.item.cluster) + '</small></div>'
+        "<strong>" + esc(h.label) + "</strong>" +
+        "<small>" + esc(h.kind) + "</small></div>"
     ).join("");
     box._hits = hits;
     box.classList.add("on");
@@ -1280,7 +1352,7 @@ function pickSuggestion(idx) {
     const box = document.getElementById("globalSuggestList");
     const hits = box._hits || [];
     if (!hits[idx]) return;
-    document.getElementById("globalSearchAll").value = hits[idx].item.topic;
+    document.getElementById("globalSearchAll").value = hits[idx].fill || hits[idx].label;
     box.classList.remove("on");
     filterGlobalSearch();
 }
@@ -1313,47 +1385,65 @@ function onGlobalSearchKey(e) {
 }
 
 function filterGlobalSearch() {
-    const q = (document.getElementById("globalSearchAll").value || "").trim().toLowerCase();
+    const raw = (document.getElementById("globalSearchAll").value || "").trim();
+    const q = raw.toLowerCase();
     const tbody = document.getElementById("globalSearchTable");
     const meta = document.getElementById("globalHitsMeta");
-    const types = getSelectedSearchTypes();
-    const clusterVal = document.getElementById("searchClusterFilter").value;
-    const matchMode = document.getElementById("searchMatchMode").value;
+    const title = document.getElementById("relatedSearchTitle");
+    const placePanel = document.getElementById("placeGroupsPanel");
 
-    if (!types.length) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">Select at least one search scope (Applications, Clusters, Locations, …).</td></tr>';
-        meta.textContent = "No search scope selected";
+    if (!q) {
+        if (placePanel) placePanel.innerHTML = "";
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">Start typing a cluster or location name (e.g. Duisburg) to list all of its groups.</td></tr>';
+        meta.textContent = "Type a cluster, location, application or problem";
+        if (title) title.textContent = "Search results";
         return;
     }
 
-    if (!q && !clusterVal) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">No query yet — use the scopes and filters above to search Applications, Clusters, Locations, Berlin Groups, Egipt Wave 1 and Global Helios.</td></tr>';
-        meta.textContent = "Enter a search term to query the knowledge base";
-        return;
+    const places = findMatchingPlaces(raw).filter(p => p.score >= 70 || getGroupsForPlace(p.name).length);
+    // Prefer strong place matches (exact / prefix / alias)
+    const strongPlaces = places.filter(p => p.score >= 70);
+    const usePlaces = strongPlaces.length ? strongPlaces : (places[0] && places[0].score >= 60 ? [places[0]] : []);
+    const groupCount = renderPlaceGroups(usePlaces.map(p => ({ name: p.name })));
+
+    const placeNames = usePlaces.map(p => p.name);
+    const hits = filterPool(q, placeNames.length ? placeNames : null)
+        .filter(({ item }) => {
+            // When showing place group cards, hide redundant cluster/location index rows
+            if (placeNames.length && (item.type === "cluster" || item.type === "location")) return false;
+            return true;
+        })
+        .slice(0, 200);
+
+    if (title) {
+        title.textContent = placeNames.length ? "Related results (applications, problems, waves…)" : "Search results";
     }
 
-    const hits = filterPool(q, types, clusterVal, matchMode).slice(0, 300);
-    meta.textContent = hits.length + (hits.length === 300 ? "+" : "") + " hits" +
-        (types.length < 7 ? " · filtered scopes" : "") +
-        (clusterVal ? " · " + clusterVal : "") +
-        (matchMode !== "anywhere" ? " · " + matchMode : "");
+    const parts = [];
+    if (groupCount) parts.push(groupCount + " group" + (groupCount === 1 ? "" : "s") + " for " + placeNames.join(", "));
+    parts.push(hits.length + (hits.length === 200 ? "+" : "") + " related hit" + (hits.length === 1 ? "" : "s"));
+    meta.textContent = parts.join(" · ");
 
+    if (!hits.length && !groupCount) {
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">No results for: ' + esc(raw) + "</td></tr>";
+        return;
+    }
     if (!hits.length) {
-        tbody.innerHTML = '<tr><td colspan="5" class="meta">No results for: ' + esc(q || clusterVal) + '</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="meta">All assignment groups for this place are listed above.</td></tr>';
         return;
     }
     tbody.innerHTML = "";
     hits.forEach(({ item }) => {
         const tr = document.createElement("tr");
         tr.innerHTML =
-            '<td><span class="src ' + item.sourceClass + '">' + esc(item.source) + '</span></td>' +
-            '<td><strong>' + esc(item.topic) + '</strong>' +
-            (item.keywords && item.type === "problem" ? '<div class="meta">' + esc(item.keywords) + '</div>' : '') +
-            '</td>' +
-            '<td>' + esc(item.cluster) + '</td>' +
-            '<td><code class="assignment">' + esc(item.group) + '</code>' +
+            '<td><span class="src ' + item.sourceClass + '">' + esc(item.source) + "</span></td>" +
+            "<td><strong>" + esc(item.topic) + "</strong>" +
+            (item.keywords && item.type === "problem" ? '<div class="meta">' + esc(item.keywords) + "</div>" : "") +
+            "</td>" +
+            "<td>" + esc(item.cluster) + "</td>" +
+            '<td><code class="assignment">' + esc(item.group) + "</code>" +
             '<button class="copy-btn" type="button" data-copy="' + esc(item.group) + '">Copy</button></td>' +
-            '<td><pre class="notes-formatted">' + esc(item.details) + '</pre></td>';
+            '<td><pre class="notes-formatted">' + esc(item.details) + "</pre></td>";
         tbody.appendChild(tr);
     });
 }
@@ -1637,7 +1727,6 @@ window.onload = function() {
     buildDatabase();
     searchIndex = buildSearchIndex();
     populateClusterFilter();
-    populateSearchClusterFilter();
     populateSuggestDatalist();
     renderApplications(applicationsDatabase);
     renderOverview();
