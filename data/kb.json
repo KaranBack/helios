@@ -141,8 +141,8 @@
     },
     "Wiesbaden-Main-Taunus": {
       "Infrastructure": "CL-Wiesbaden-Taunus | Infrastruktur",
-      "Clinical": "TBD",
-      "SAP": "TBD",
+      "Clinical": "CL-Wiesbaden-Taunus | ServiceDesk",
+      "SAP": "CL-Wiesbaden-Taunus | ServiceDesk",
       "Account": "CL-Wiesbaden-Taunus | ServiceDesk",
       "FieldService": "HSK / IDS | Fieldservice",
       "ServiceDesk": "CL-Wiesbaden-Taunus | ServiceDesk"
@@ -150,7 +150,7 @@
     "Leipzig": {
       "Infrastructure": "LEI-IT / LPZ-IT | Infrastruktur",
       "Clinical": "LEI-IT / LPZ-IT | MVZ",
-      "SAP": "TBD",
+      "SAP": "LPZ-IT | Active Directory",
       "Account": "LPZ-IT | Active Directory",
       "FieldService": "LEI-IT / LPZ-IT | Fieldservice",
       "ServiceDesk": "LPZ-IT | Active Directory"
@@ -182,7 +182,7 @@
     "Erfurt": {
       "Infrastructure": "EF-IT | Infrastruktur",
       "Clinical": "EF-IT | Klinische Anwendungen",
-      "SAP": "TBD",
+      "SAP": "EF-IT | ServiceDesk",
       "Account": "EF-IT | Benutzerantrag",
       "FieldService": "EF-IT | Fieldservice",
       "ServiceDesk": "EF-IT | ServiceDesk",
@@ -260,9 +260,9 @@
     "Bad Kissingen": {
       "Infrastructure": "BKG-IT | Infrastruktur",
       "Clinical": "BKG-IT | Klinische Anwendungen",
-      "SAP": "TBD",
+      "SAP": "BKG-IT | Servicedesk",
       "Account": "BKG-IT | Servicedesk",
-      "FieldService": "TBD",
+      "FieldService": "BKG-IT | Servicedesk",
       "ServiceDesk": "BKG-IT | Servicedesk"
     },
     "Blankenhain": {
@@ -300,7 +300,7 @@
     "Hildesheim": {
       "Infrastructure": "HI-IT |  Infrastruktur",
       "Clinical": "HI-IT | Orbis",
-      "SAP": "TBD",
+      "SAP": "HI-IT | Orbis",
       "Account": "HI-IT | Service Desk",
       "FieldService": "HI-IT",
       "ServiceDesk": "HI-IT | Service Desk",
@@ -415,7 +415,7 @@
     "Herzberg": {
       "Infrastructure": "HBH-IT",
       "Clinical": "HBH-IT",
-      "SAP": "TBD",
+      "SAP": "HBH-IT",
       "Account": "HBH-IT",
       "FieldService": "HBH-IT",
       "ServiceDesk": "HBH-IT"
@@ -559,7 +559,7 @@
     "CL-Nordsee": {
       "Infrastructure": "CL-Nordsee | Infrastruktur",
       "Clinical": "CL-Nordsee | Klinische Anwendungen",
-      "SAP": "TBD",
+      "SAP": "CL-Nordsee | Service Desk",
       "Account": "CL-Nordsee | Service Desk",
       "FieldService": "CL-Nordsee | Fieldservice",
       "ServiceDesk": "CL-Nordsee | Service Desk"
@@ -567,7 +567,7 @@
     "CL-Ostsee": {
       "Infrastructure": "CL-Ostsee | Infrastruktur",
       "Clinical": "CL-Ostsee | Klinische Anwendungen",
-      "SAP": "TBD",
+      "SAP": "CL-Ostsee | Service Desk",
       "Account": "CL-Ostsee | Service Desk",
       "FieldService": "CL-Ostsee | Fieldservice",
       "ServiceDesk": "CL-Ostsee | Service Desk"
@@ -592,9 +592,9 @@
       "Infrastructure": "CLS-IT | Infrastruktur",
       "Clinical": "CLS-IT | iMedOne",
       "SAP": "CLS-IT | SAP Expert",
-      "Account": "TBD",
-      "FieldService": "TBD",
-      "ServiceDesk": "TBD",
+      "Account": "CLS-IT | MVZ",
+      "FieldService": "CLS-IT | Infrastruktur",
+      "ServiceDesk": "CLS-IT | MVZ",
       "iMedOne": "CLS-IT | iMedOne",
       "MVZ": "CLS-IT | MVZ"
     },
@@ -602,9 +602,9 @@
       "Infrastructure": "CLST-IT | Infrastruktur",
       "Clinical": "CLST-IT | Application Management",
       "SAP": "CLST-IT | SAP",
-      "Account": "TBD",
-      "FieldService": "TBD",
-      "ServiceDesk": "TBD",
+      "Account": "CLST-IT | MVZ",
+      "FieldService": "CLST-IT | Infrastruktur",
+      "ServiceDesk": "CLST-IT | MVZ",
       "Medico": "CLST-IT | Medico",
       "MVZ": "CLST-IT | MVZ"
     },
@@ -635,36 +635,36 @@
       "ServiceDesk": "RN/RW MVZ Support"
     },
     "MVZ Süd": {
-      "Infrastructure": "TBD",
-      "Clinical": "TBD",
-      "SAP": "TBD",
-      "Account": "TBD",
-      "FieldService": "TBD",
-      "ServiceDesk": "TBD"
+      "Infrastructure": "RS | Infrastruktur",
+      "Clinical": "RS | Klinische Prozesse & Anwendungen",
+      "SAP": "RS | iSHMED",
+      "Account": "RS MVZ Support",
+      "FieldService": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios",
+      "ServiceDesk": "RS MVZ Support"
     },
     "AMAGS": {
-      "Infrastructure": "TBD",
-      "Clinical": "TBD",
-      "SAP": "TBD",
-      "Account": "TBD",
-      "FieldService": "TBD",
-      "ServiceDesk": "TBD"
+      "ServiceDesk": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "Account": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "Infrastructure": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "Clinical": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "SAP": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "FieldService": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
     },
     "HK": {
-      "Infrastructure": "TBD",
-      "Clinical": "TBD",
-      "SAP": "TBD",
-      "Account": "TBD",
-      "FieldService": "TBD",
-      "ServiceDesk": "TBD"
+      "ServiceDesk": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "Account": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "Infrastructure": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "Clinical": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "SAP": "Local IT (confirm with site — until then use Wave 1 / Global Helios)",
+      "FieldService": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
     },
     "MVZ Nord": {
-      "Infrastructure": "TBD",
-      "Clinical": "TBD",
-      "SAP": "TBD",
-      "Account": "TBD",
-      "FieldService": "TBD",
-      "ServiceDesk": "TBD"
+      "Infrastructure": "MVZ-IT RN/RW Team",
+      "Clinical": "MVZ-IT RN/RW Team & MVZ Produktmanagement",
+      "SAP": "MVZ Produktmanagement",
+      "Account": "RN/RW MVZ Support",
+      "FieldService": "MVZ-IT RN/RW Team",
+      "ServiceDesk": "RN/RW MVZ Support"
     }
   },
   "apps": {
@@ -2525,7 +2525,7 @@
         ],
         [
           "Clinical / SAP",
-          "TBD"
+          "CL-Wiesbaden-Taunus | ServiceDesk"
         ]
       ]
     },
@@ -2550,7 +2550,7 @@
         ],
         [
           "SAP",
-          "TBD"
+          "LPZ-IT | Active Directory"
         ]
       ]
     },
@@ -2667,6 +2667,10 @@
         [
           "Field Service",
           "EF-IT | Fieldservice"
+        ],
+        [
+          "SAP / KIS",
+          "EF-IT | ServiceDesk"
         ]
       ]
     },
@@ -2892,6 +2896,10 @@
         [
           "Clinical Applications",
           "BKG-IT | Klinische Anwendungen"
+        ],
+        [
+          "SAP / KIS",
+          "BKG-IT | Servicedesk"
         ]
       ]
     },
@@ -2961,6 +2969,10 @@
         [
           "Wave",
           "Wave 2"
+        ],
+        [
+          "SAP / KIS",
+          "HI-IT | Orbis"
         ]
       ]
     },
@@ -3114,7 +3126,7 @@
         ],
         [
           "SAP / KIS",
-          "TBD"
+          "HBH-IT"
         ],
         [
           "Wave",
@@ -3341,6 +3353,10 @@
         [
           "Field Service",
           "CL-Nordsee | Fieldservice"
+        ],
+        [
+          "SAP / KIS",
+          "CL-Nordsee | Service Desk"
         ]
       ]
     },
@@ -3362,6 +3378,10 @@
         [
           "Field Service",
           "CL-Ostsee | Fieldservice"
+        ],
+        [
+          "SAP / KIS",
+          "CL-Ostsee | Service Desk"
         ]
       ]
     },
@@ -3504,12 +3524,24 @@
           "MVZ Süd"
         ],
         [
-          "Assignment groups",
-          "TBD"
+          "Account / Service Desk",
+          "RS MVZ Support"
         ],
         [
-          "Note",
-          "Wave 3 MVZ Süd — assignment groups TBD"
+          "Infrastructure",
+          "RS | Infrastruktur"
+        ],
+        [
+          "Clinical Applications",
+          "RS | Klinische Prozesse & Anwendungen"
+        ],
+        [
+          "SAP / KIS",
+          "RS | iSHMED"
+        ],
+        [
+          "Field Service",
+          "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
         ]
       ]
     },
@@ -3521,12 +3553,24 @@
           "MVZ Nord"
         ],
         [
-          "Assignment groups",
-          "TBD"
+          "Account / Service Desk",
+          "RN/RW MVZ Support"
         ],
         [
-          "Note",
-          "Wave 5 MVZ Nord — assignment groups TBD"
+          "Infrastructure",
+          "MVZ-IT RN/RW Team"
+        ],
+        [
+          "Clinical Applications",
+          "MVZ-IT RN/RW Team & MVZ Produktmanagement"
+        ],
+        [
+          "SAP / KIS",
+          "MVZ Produktmanagement"
+        ],
+        [
+          "Field Service",
+          "MVZ-IT RN/RW Team"
         ]
       ]
     },
@@ -3534,16 +3578,24 @@
       "name": "AMAGS",
       "rows": [
         [
-          "Wave / planning unit",
-          "AMAGS"
+          "Service Desk / Local IT",
+          "Local IT (confirm with site — until then use Wave 1 / Global Helios)"
         ],
         [
-          "Assignment groups",
-          "TBD"
+          "Infrastructure",
+          "Local IT (confirm with site — until then use Wave 1 / Global Helios)"
+        ],
+        [
+          "Clinical / SAP / KIS",
+          "Local IT (confirm with site — until then use Wave 1 / Global Helios)"
+        ],
+        [
+          "Field Service",
+          "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
         ],
         [
           "Note",
-          "Wave 4 AMAGS — assignment groups TBD"
+          "AMAGS — no dedicated Local IT groups confirmed yet; use Wave 1 keyword routing and Global Helios for general topics."
         ]
       ]
     },
@@ -3551,16 +3603,24 @@
       "name": "HK",
       "rows": [
         [
-          "Wave / planning unit",
-          "HK"
+          "Service Desk / Local IT",
+          "Local IT (confirm with site — until then use Wave 1 / Global Helios)"
         ],
         [
-          "Assignment groups",
-          "TBD"
+          "Infrastructure",
+          "Local IT (confirm with site — until then use Wave 1 / Global Helios)"
+        ],
+        [
+          "Clinical / SAP / KIS",
+          "Local IT (confirm with site — until then use Wave 1 / Global Helios)"
+        ],
+        [
+          "Field Service",
+          "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
         ],
         [
           "Note",
-          "Wave 5 HK — assignment groups TBD"
+          "HK — no dedicated Local IT groups confirmed yet; use Wave 1 keyword routing and Global Helios for general topics."
         ]
       ]
     }
@@ -5995,7 +6055,7 @@
         "account": "HBH-IT",
         "infrastructure": "HBH-IT",
         "clinical": "HBH-IT",
-        "sap": "TBD",
+        "sap": "HBH-IT",
         "fieldService": "HBH-IT",
         "specials": [],
         "topics": [],
@@ -6009,7 +6069,7 @@
         "account": "HI-IT | Service Desk",
         "infrastructure": "HI-IT |  Infrastruktur",
         "clinical": "HI-IT | Orbis",
-        "sap": "TBD",
+        "sap": "HI-IT | Orbis",
         "fieldService": "HI-IT",
         "specials": [
           {
