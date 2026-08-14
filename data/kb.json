@@ -4,8 +4,8 @@
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Berlin · Global Helios",
     "version": "2.0",
-    "author": "K. Karankiewicz",
-    "email": "krystian.karankiewicz@capgemini.com",
+    "author": "Krystian Karankiewicz",
+    "status": "Production Draft",
     "updated": "2026-08-14"
   },
   "clusters": {
@@ -1382,13 +1382,13 @@
       "Only Servicedesk | Mgt should be used from Mgt groups."
     ],
     "doc": {
-      "document": "CL-Berlin Master Knowledge Base",
-      "version": "1.0",
+      "document": "Helios Master Matrix",
+      "version": "2.0",
       "status": "Production Draft",
-      "cluster": "Berlin Brandenburg",
-      "sites": "Berlin Buch, Berlin Zehlendorf, Bad Saarow",
+      "cluster": "Helios",
+      "sites": "Waves 1–5 (see Clusters)",
       "author": "Krystian Karankiewicz",
-      "date": "15 July 2026"
+      "date": "14 August 2026"
     }
   },
   "globalHelios": [
@@ -7448,47 +7448,41 @@
   },
   "changelog": [
     {
-      "date": "2026-08-14",
+      "date": "2026-08-12",
       "version": "2.0",
       "changes": [
-        "Added Changelog tab",
-        "Updated document footer: Helios Master Matrix, Version 2.0, author K. Karankiewicz"
-      ]
-    },
-    {
-      "date": "2026-08-12",
-      "version": "1.9",
-      "changes": [
-        "Added Dachau under Region South with assignment group DAH-IT (SNOW location Helios Ambulant/Amper-MVZ Dachau GmbH)",
-        "Fixed Start search duplicate suggestions (removed native browser datalist)",
-        "Completed Wave 1–5 Local IT / Service Desk / SAP·KIS routing matrices",
-        "General keyword routing for all waves based on Wave 1",
-        "Removed Users and Tickets Ø/mo columns from Waves and Regions",
-        "Simplified Start search: typing a cluster/location shows all of its groups",
-        "Split matrix into Waves, Regions and Clusters tabs",
-        "Added Wave 2 location routing matrix",
-        "Completed Lengerich, Salzgitter and Northeim routing"
+        "Added Dachau under Region South — assignment group DAH-IT (Helios Ambulant/Amper-MVZ Dachau GmbH)",
+        "Completed Local IT / Service Desk / SAP·KIS groups for Wave 1–5 service units",
+        "Added Wave 2 location routing groups (Duisburg, Herzberg, Hildesheim, Kassel, Krefeld, Lengerich, MVZ West, Northeim, Salzgitter)",
+        "Completed Lengerich, Salzgitter and Northeim specialty / KIS routing",
+        "Updated MVZ Süd, MVZ Nord, Cluster Sachsen and Cluster Sachsen-Anhalt assignment groups"
       ]
     },
     {
       "date": "2026-08-11",
       "version": "1.5",
       "changes": [
-        "Added missing site clusters from SNOW groups",
-        "Removed Group Directory tab",
-        "Added Northeim and MVZ groups",
+        "Added missing site clusters and assignment groups from SNOW",
+        "Added Northeim topic routing and MVZ groups",
         "Added Hildburghausen (HBN) location and assignment groups",
-        "Expanded Start search filters; switched UI to English",
-        "Reworked navigation tabs and search behavior",
-        "Built single-file Helios Master Matrix"
+        "Expanded Application Base and cluster location cards"
       ]
     },
     {
       "date": "2026-07-24",
       "version": "1.0",
       "changes": [
-        "Initial repository setup"
+        "Initial Helios Master Matrix content (clusters, Berlin groups, Global Helios groups, Wave 1 keyword routing)"
       ]
     }
-  ]
+  ],
+  "doc": {
+    "document": "Helios Master Matrix",
+    "version": "2.0",
+    "status": "Production Draft",
+    "cluster": "Helios",
+    "sites": "Waves 1–5 (see Clusters)",
+    "author": "Krystian Karankiewicz",
+    "date": "14 August 2026"
+  }
 }

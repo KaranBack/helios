@@ -1,22 +1,23 @@
 # Helios Master Matrix
 
-Single Catch & Dispatch / Swivel Chair knowledge base in **`matrix.html`**.
+Catch & Dispatch knowledge base for Helios assignment groups, clusters, waves and applications.
 
 ## Files
 
-- [`matrix.html`](matrix.html) — full knowledge base + UI
-- [`data/kb.json`](data/kb.json) — same database as JSON
+- `matrix.html` — knowledge base and UI
+- `data/kb.json` — knowledge base data (JSON)
 
 ## Tabs
 
 | Tab | Purpose |
 |-----|---------|
-| Start | Whole-database search |
-| Application Base | Application name + Cluster filter |
-| Waves | Waves planning FINAL (Wave 1–5) + Wave 1/2 routing detail |
-| Regions | Nord / Ost / Süd / West distribution |
-| Clusters | Cluster routing matrix (with Wave/Region tags) |
-| Berlin Groups | Berlin / Brandenburg groups |
+| Start | Search clusters, locations, applications and groups |
+| Application Base | Applications by cluster |
+| Waves | Wave 1–5 planning and local routing |
+| Regions | Nord / Ost / Süd / West |
+| Clusters | Cluster and location assignment groups |
+| Berlin Groups | Berlin / Brandenburg routing |
 | Global Helios Groups | Global Helios assignment groups |
+| Changelog | Matrix content changes (groups, clusters, locations, applications) |
 
-Planning data lives in `KB.planning.serviceUnits`. Routing detail for Wave 3–5 specialties is TBD where not yet confirmed.
+Document information (version, status, author) is shown on every tab.
