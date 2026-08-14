@@ -108,7 +108,12 @@ footer {
     background: var(--primary); color: white; padding: 20px; text-align: center;
     margin-top: 40px; font-size: 13px;
 }
-.footer-doc { margin: 0 auto; max-width: 1700px; width: 98%; text-align: left; }
+.footer-doc {
+    margin: 0 auto; max-width: 1700px; width: 98%; text-align: left;
+    background: var(--card-bg); color: var(--text);
+}
+.footer-doc .card-header { cursor: default; }
+.footer-doc td, .footer-doc th { color: var(--text); }
 .meta { color: #64748b; font-size: 12px; margin-left: auto; }
 .src { display:inline-block; font-size:11px; font-weight:700; padding:2px 7px; border-radius:3px; background:#e2e8f0; color:#334155; }
 .src-app { background:#e0f2fe; color:#0369a1; }
@@ -428,7 +433,7 @@ tr.wave-5 { background:#f0fdf4; }
         <div class="card-content">
             <table>
                 <thead><tr><th style="width:30%">Field</th><th>Value</th></tr></thead>
-                <tbody id="footerDocTable"></tbody>
+                <tbody id="footerDocTable"><tr><td><strong>document</strong></td><td>Helios Master Matrix</td></tr><tr><td><strong>version</strong></td><td>2.0</td></tr><tr><td><strong>status</strong></td><td>Production Draft</td></tr><tr><td><strong>cluster</strong></td><td>Helios</td></tr><tr><td><strong>sites</strong></td><td>Waves 1–5 (see Clusters)</td></tr><tr><td><strong>author</strong></td><td>Krystian Karankiewicz</td></tr><tr><td><strong>date</strong></td><td>14 August 2026</td></tr></tbody>
             </table>
         </div>
     </div>
@@ -1815,12 +1820,13 @@ function documentInfoRows() {
 }
 
 function renderDocInfo() {
+    const footerBody = document.getElementById("footerDocTable");
+    if (!footerBody) return;
     const rows = documentInfoRows();
-    const body = rows.map(r =>
+    if (!rows.length) return;
+    footerBody.innerHTML = rows.map(r =>
         "<tr><td><strong>" + esc(r[0]) + "</strong></td><td>" + esc(r[1]) + "</td></tr>"
     ).join("");
-    const footerBody = document.getElementById("footerDocTable");
-    if (footerBody) footerBody.innerHTML = body;
 }
 
 function renderChangelog() {
