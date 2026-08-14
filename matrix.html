@@ -109,7 +109,6 @@ footer {
     margin-top: 40px; font-size: 13px;
 }
 .footer-doc { margin: 0 auto; max-width: 1700px; width: 98%; text-align: left; }
-.doc-info-host { margin-top: 20px; }
 .meta { color: #64748b; font-size: 12px; margin-left: auto; }
 .src { display:inline-block; font-size:11px; font-weight:700; padding:2px 7px; border-radius:3px; background:#e2e8f0; color:#334155; }
 .src-app { background:#e0f2fe; color:#0369a1; }
@@ -222,8 +221,6 @@ tr.wave-5 { background:#f0fdf4; }
             </table>
         </div>
     </div>
-
-    <div class="doc-info-host" id="docInfo-home"></div>
 </section>
 
 <section class="section" id="apps">
@@ -264,8 +261,6 @@ tr.wave-5 { background:#f0fdf4; }
             </table>
         </div>
     </div>
-
-    <div class="doc-info-host" id="docInfo-apps"></div>
 </section>
 
 
@@ -304,8 +299,6 @@ tr.wave-5 { background:#f0fdf4; }
         </div>
     </div>
     <div id="wavesRoutingBlock"></div>
-
-    <div class="doc-info-host" id="docInfo-waves"></div>
 </section>
 
 <section class="section" id="regions">
@@ -350,8 +343,6 @@ tr.wave-5 { background:#f0fdf4; }
         </div>
     </div>
     <div id="regionsClusterCards"></div>
-
-    <div class="doc-info-host" id="docInfo-regions"></div>
 </section>
 
 <section class="section" id="clusters">
@@ -382,8 +373,6 @@ tr.wave-5 { background:#f0fdf4; }
         </div>
     </div>
     <div id="locationCards"></div>
-
-    <div class="doc-info-host" id="docInfo-clusters"></div>
 </section>
 
 <section class="section" id="berlin">
@@ -391,8 +380,6 @@ tr.wave-5 { background:#f0fdf4; }
         <input type="text" id="berlinSearch" class="search-box" placeholder="Search Berlin group / application / keyword..." oninput="filterBerlin()">
     </div>
     <div id="berlinContent"></div>
-
-    <div class="doc-info-host" id="docInfo-berlin"></div>
 </section>
 
 
@@ -413,8 +400,6 @@ tr.wave-5 { background:#f0fdf4; }
             </table>
         </div>
     </div>
-
-    <div class="doc-info-host" id="docInfo-global"></div>
 </section>
 
 <section class="section" id="changelog">
@@ -433,8 +418,6 @@ tr.wave-5 { background:#f0fdf4; }
             </table>
         </div>
     </div>
-
-    <div class="doc-info-host" id="docInfo-changelog"></div>
 </section>
 
 </div>
@@ -1836,13 +1819,6 @@ function renderDocInfo() {
     const body = rows.map(r =>
         "<tr><td><strong>" + esc(r[0]) + "</strong></td><td>" + esc(r[1]) + "</td></tr>"
     ).join("");
-    const tableHtml =
-        '<div class="card"><div class="card-header"><span>Document Information</span></div>' +
-        '<div class="card-content"><table><thead><tr><th style="width:30%">Field</th><th>Value</th></tr></thead><tbody>' +
-        body + "</tbody></table></div></div>";
-    document.querySelectorAll(".doc-info-host").forEach(host => {
-        host.innerHTML = tableHtml;
-    });
     const footerBody = document.getElementById("footerDocTable");
     if (footerBody) footerBody.innerHTML = body;
 }
