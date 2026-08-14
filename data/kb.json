@@ -1,9 +1,12 @@
 {
   "meta": {
     "title": "Helios Master Matrix",
-    "subtitle": "Global Routing · Berlin KB · Wave 1 Keyword Routing · v2026-08-11",
-    "version": "2026-08-11",
-    "author": "Krystian Karankiewicz / Capgemini Swivel Chair"
+    "document": "Helios Master Matrix",
+    "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Berlin · Global Helios",
+    "version": "2.0",
+    "author": "K. Karankiewicz",
+    "email": "krystian.karankiewicz@capgemini.com",
+    "updated": "2026-08-14"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -7442,5 +7445,50 @@
       "snowLocation": "Helios Ambulant/Amper-MVZ Dachau GmbH",
       "groupDescription": "Dachau - IT | Supportgruppe von der Dachau IT"
     }
-  }
+  },
+  "changelog": [
+    {
+      "date": "2026-08-14",
+      "version": "2.0",
+      "changes": [
+        "Added Changelog tab",
+        "Updated document footer: Helios Master Matrix, Version 2.0, author K. Karankiewicz"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "version": "1.9",
+      "changes": [
+        "Added Dachau under Region South with assignment group DAH-IT (SNOW location Helios Ambulant/Amper-MVZ Dachau GmbH)",
+        "Fixed Start search duplicate suggestions (removed native browser datalist)",
+        "Completed Wave 1–5 Local IT / Service Desk / SAP·KIS routing matrices",
+        "General keyword routing for all waves based on Wave 1",
+        "Removed Users and Tickets Ø/mo columns from Waves and Regions",
+        "Simplified Start search: typing a cluster/location shows all of its groups",
+        "Split matrix into Waves, Regions and Clusters tabs",
+        "Added Wave 2 location routing matrix",
+        "Completed Lengerich, Salzgitter and Northeim routing"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "version": "1.5",
+      "changes": [
+        "Added missing site clusters from SNOW groups",
+        "Removed Group Directory tab",
+        "Added Northeim and MVZ groups",
+        "Added Hildburghausen (HBN) location and assignment groups",
+        "Expanded Start search filters; switched UI to English",
+        "Reworked navigation tabs and search behavior",
+        "Built single-file Helios Master Matrix"
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "version": "1.0",
+      "changes": [
+        "Initial repository setup"
+      ]
+    }
+  ]
 }
