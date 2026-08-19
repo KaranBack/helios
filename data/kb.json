@@ -3,7 +3,7 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Berlin · Global Helios",
-    "version": "2.2",
+    "version": "2.4",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
     "updated": "2026-08-19"
@@ -1391,7 +1391,7 @@
     ],
     "doc": {
       "document": "Helios Master Matrix",
-      "version": "2.2",
+      "version": "2.3",
       "status": "Production Draft",
       "cluster": "Helios",
       "sites": "Waves 1–5 (see Clusters)",
@@ -7649,8 +7649,19 @@
   "changelog": [
     {
       "date": "2026-08-19",
-      "version": "2.2",
+      "version": "2.4",
       "changes": [
+        "Clinical Applications UI: marked post Go-Live routing as pending confirmation across Application Base, Waves, Clusters, Start search and Global Helios",
+        "Go-live locations keep local Clinical Applications groups visible until a dedicated Global Helios Clinical group is confirmed",
+        "No Global Helios Clinical Applications group invented — open question documented for Service Desk"
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "version": "2.3",
+      "changes": [
+        "Clinical Applications: pre-wave locations keep local/legacy Clinical groups",
+        "Clinical Applications after Wave Go-Live: pending confirmation — no dedicated Global Helios Clinical Applications group confirmed yet",
         "Added location Plauen (Helios Vogtland-Klinikum Plauen GmbH) under Cluster Sachsen — assignment group PL-IT | Mgt",
         "Wave 4 go-live 16/10/2026 not yet reached → local routing (PL-IT | Mgt), not Global Helios Groups"
       ]
@@ -7695,7 +7706,7 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.2",
+    "version": "2.4",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
@@ -7704,13 +7715,17 @@
   },
   "routingPolicy": {
     "title": "IMPORTANT — Wave go-live routing",
-    "rule": "If a location / region / cluster is Wave go-live, use ONLY Global Helios Groups. If it is not go-live yet, continue using the local / legacy groups for that location. Check the Waves tab for go-live status and date.",
-    "shortRule": "Go-live → ONLY Global Helios Groups · Pre-wave → local groups",
+    "rule": "If a location / region / cluster is Wave go-live, use ONLY Global Helios Groups for general topics. If it is not go-live yet, continue using the local / legacy groups. Exception — Clinical Applications: after Go-Live there is no confirmed dedicated Global Helios Clinical Applications group yet; routing for Clinical Applications post Go-Live is pending confirmation (pre-wave still uses local Clinical groups).",
+    "shortRule": "Go-live → Global Helios Groups · Pre-wave → local groups · Clinical Applications after Go-Live → pending confirmation",
     "source": "T&T - Wolfgardt Bjorn",
     "date": "18.08.2026",
     "goLiveLabel": "GO-LIVE — use ONLY Global Helios Groups",
     "preWaveLabel": "PRE-WAVE — use local / legacy groups",
-    "bannerHideSource": true
+    "bannerHideSource": true,
+    "clinicalNote": "Clinical Applications after Go-Live: no confirmed dedicated Global Helios Clinical Applications group. For pre-wave locations continue using local/legacy Clinical Application groups. For post Go-Live locations it is still unclear whether a dedicated Global Helios Clinical group exists or whether local Clinical Applications groups should continue to be used — pending confirmation.",
+    "clinicalStatus": "pending confirmation",
+    "clinicalPreWave": "Use local / legacy Clinical Applications groups",
+    "clinicalPostGoLive": "Pending confirmation — dedicated Global Helios Clinical Applications group vs continue local Clinical groups"
   },
   "waveGoLive": {
     "1": {
