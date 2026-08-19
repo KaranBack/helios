@@ -1245,7 +1245,7 @@ function mapToGlobalHelios(item) {
         if (/backup|storage|restore/i.test(hay) && /storage|backup/i.test(service)) score += 12;
         if (score > bestScore) { bestScore = score; best = g; }
     });
-    if (bestScore >= 8) return best;
+    if (bestScore >= 15) return best;
     return null;
 }
 
