@@ -3,10 +3,10 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Berlin · Global Helios",
-    "version": "2.1",
+    "version": "2.2",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
-    "updated": "2026-08-18"
+    "updated": "2026-08-19"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -668,6 +668,14 @@
       "Account": "RN/RW MVZ Support",
       "FieldService": "MVZ-IT RN/RW Team",
       "ServiceDesk": "RN/RW MVZ Support"
+    },
+    "Plauen": {
+      "ServiceDesk": "PL-IT | Mgt",
+      "Account": "PL-IT | Mgt",
+      "Infrastructure": "PL-IT | Mgt",
+      "Clinical": "PL-IT | Mgt",
+      "SAP": "PL-IT | Mgt",
+      "FieldService": "PL-IT | Mgt"
     }
   },
   "apps": {
@@ -1383,12 +1391,12 @@
     ],
     "doc": {
       "document": "Helios Master Matrix",
-      "version": "2.1",
+      "version": "2.2",
       "status": "Production Draft",
       "cluster": "Helios",
       "sites": "Waves 1–5 (see Clusters)",
       "author": "Krystian Karankiewicz",
-      "date": "18 August 2026"
+      "date": "19 August 2026"
     }
   },
   "globalHelios": [
@@ -3472,6 +3480,10 @@
         [
           "MVZ Management",
           "CLS-IT | MVZ | Mgt"
+        ],
+        [
+          "Helios Vogtland-Klinikum Plauen GmbH",
+          "PL-IT | Mgt"
         ]
       ]
     },
@@ -3664,6 +3676,71 @@
         [
           "Note",
           "HK — no dedicated Local IT groups confirmed yet; use Wave 1 keyword routing and Global Helios for general topics."
+        ]
+      ]
+    },
+    {
+      "name": "Plauen",
+      "rows": [
+        [
+          "SNOW location",
+          "Helios Vogtland-Klinikum Plauen GmbH"
+        ],
+        [
+          "Street",
+          "Röntgenstraße 2"
+        ],
+        [
+          "City / ZIP",
+          "08529 Plauen"
+        ],
+        [
+          "State",
+          "Sachsen"
+        ],
+        [
+          "Country",
+          "Germany"
+        ],
+        [
+          "Parent cluster",
+          "Cluster Sachsen"
+        ],
+        [
+          "Life Cycle",
+          "Operational / In Use"
+        ],
+        [
+          "Company",
+          "Fresenius Helios"
+        ],
+        [
+          "Service Desk / Local IT",
+          "PL-IT | Mgt"
+        ],
+        [
+          "Infrastructure",
+          "PL-IT | Mgt"
+        ],
+        [
+          "Clinical Applications",
+          "PL-IT | Mgt"
+        ],
+        [
+          "SAP / KIS",
+          "PL-IT | Mgt"
+        ],
+        [
+          "Field Service",
+          "PL-IT | Mgt"
+        ],
+        [
+          "Wave",
+          "Wave 4 (go-live 16/10/2026) — not go-live yet → local groups"
+        ],
+        [
+          "Routing",
+          "PRE-WAVE — use local group PL-IT | Mgt (not Global Helios until Wave 4 go-live)"
         ]
       ]
     }
@@ -7537,9 +7614,47 @@
       ],
       "snowLocation": "Helios Ambulant/Amper-MVZ Dachau GmbH",
       "groupDescription": "Dachau - IT | Supportgruppe von der Dachau IT"
+    },
+    "Plauen": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "parentCluster": "Cluster Sachsen",
+      "planningUnits": [
+        "CL-Sachsen + Kronach + MVZ"
+      ],
+      "snowLocation": "Helios Vogtland-Klinikum Plauen GmbH",
+      "address": "Röntgenstraße 2, 08529 Plauen, Sachsen, Germany",
+      "lifeCycle": "Operational / In Use",
+      "company": "Fresenius Helios"
+    },
+    "Vogtland": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "parentCluster": "Cluster Sachsen",
+      "planningUnits": [
+        "CL-Sachsen + Kronach + MVZ"
+      ]
     }
   },
   "changelog": [
+    {
+      "date": "2026-08-19",
+      "version": "2.2",
+      "changes": [
+        "Added location Plauen (Helios Vogtland-Klinikum Plauen GmbH) under Cluster Sachsen — assignment group PL-IT | Mgt",
+        "Wave 4 go-live 16/10/2026 not yet reached → local routing (PL-IT | Mgt), not Global Helios Groups"
+      ]
+    },
     {
       "date": "2026-08-18",
       "version": "2.1",
@@ -7580,12 +7695,12 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.1",
+    "version": "2.2",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
     "author": "Krystian Karankiewicz",
-    "date": "18 August 2026"
+    "date": "19 August 2026"
   },
   "routingPolicy": {
     "title": "IMPORTANT — Wave go-live routing",
