@@ -9,11 +9,17 @@ Catch & Dispatch knowledge base for Helios assignment groups, clusters, waves an
 
 ## Routing rule (Wave go-live)
 
-- **Go-live** location / cluster / region → use **Global Helios Groups**
+- **Go-live** location / cluster / region → use **ONLY Global Helios Groups**
 - **Pre-wave** (not go-live yet) → use **local / legacy groups** for that location
-- Status is shown on the Waves tab (Go-live / Routing columns)
+- Go-live dates are on the Waves tab
 
-Source: T&T - Wolfgardt Bjorn, 18.08.2026
+| Wave | Go-live date |
+|------|----------------|
+| 1 | 29/07/2026 |
+| 2 | 26/08/2026 |
+| 3 | 23/09/2026 |
+| 4 | 16/10/2026 |
+| 5 | 30/10/2026 |
 
 ## Tabs
 
@@ -21,7 +27,7 @@ Source: T&T - Wolfgardt Bjorn, 18.08.2026
 |-----|---------|
 | Start | Search clusters, locations, applications and groups |
 | Application Base | Applications by cluster |
-| Waves | Wave 1–5 planning, go-live status and local routing |
+| Waves | Wave 1–5 planning, go-live dates and local routing |
 | Regions | Nord / Ost / Süd / West |
 | Clusters | Cluster and location assignment groups |
 | Berlin Groups | Berlin / Brandenburg routing |
