@@ -6483,7 +6483,8 @@
         },
         "notes": "",
         "goLive": true,
-        "waveStatus": "go-live"
+        "waveStatus": "go-live",
+        "goLiveDate": "Live"
       },
       {
         "unit": "Gifhorn",
@@ -6504,7 +6505,8 @@
         },
         "notes": "",
         "goLive": true,
-        "waveStatus": "go-live"
+        "waveStatus": "go-live",
+        "goLiveDate": "Live"
       },
       {
         "unit": "Gotha",
@@ -6525,7 +6527,8 @@
         },
         "notes": "",
         "goLive": true,
-        "waveStatus": "go-live"
+        "waveStatus": "go-live",
+        "goLiveDate": "Live"
       },
       {
         "unit": "Duisburg (Pilot)",
@@ -6546,7 +6549,8 @@
         },
         "notes": "Pilot",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Herzberg (Pilot)",
@@ -6567,7 +6571,8 @@
         },
         "notes": "Pilot",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Hildesheim",
@@ -6588,7 +6593,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Kassel",
@@ -6609,7 +6615,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Krefeld",
@@ -6630,7 +6637,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Lengerich",
@@ -6651,7 +6659,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "MVZ West",
@@ -6672,7 +6681,8 @@
         },
         "notes": "MVZ West locations primarily Region West",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Northeim",
@@ -6693,7 +6703,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Salzgitter",
@@ -6714,7 +6725,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Bad Kissingen",
@@ -6735,7 +6747,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Blankenhain",
@@ -6756,7 +6769,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Bleicherode",
@@ -6777,7 +6791,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Erfurt (Pilot)",
@@ -6798,7 +6813,8 @@
         },
         "notes": "Pilot",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Hildburghausen",
@@ -6819,7 +6835,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Cluster Wiesbaden-Taunus",
@@ -6840,7 +6857,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Service Desk Süd",
@@ -6861,7 +6879,8 @@
         },
         "notes": "Service Desk Süd",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "MVZ Süd",
@@ -6882,7 +6901,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "AMAGS",
@@ -6903,7 +6923,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "CL-Berlin Brandenburg",
@@ -6924,7 +6945,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "CL-Sachsen + Kronach + MVZ",
@@ -6945,7 +6967,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Leipzig + MVZ",
@@ -6966,7 +6989,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "MVZ CL-Sachsen-Anhalt",
@@ -6987,7 +7011,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "CL-Nordsee",
@@ -7008,7 +7033,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "CL-Ostsee",
@@ -7029,7 +7055,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Helmstedt",
@@ -7050,7 +7077,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "HK",
@@ -7071,7 +7099,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "MVZ Nord",
@@ -7092,7 +7121,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       },
       {
         "unit": "Nienburg",
@@ -7113,7 +7143,8 @@
         },
         "notes": "",
         "goLive": false,
-        "waveStatus": "not go-live"
+        "waveStatus": "not go-live",
+        "goLiveDate": "TBD"
       }
     ]
   },
@@ -7513,8 +7544,9 @@
       "date": "2026-08-18",
       "version": "2.1",
       "changes": [
-        "Wave go-live routing rule: after Wave go-live use Global Helios Groups; before go-live use local/legacy groups for the location (clusters, regions, applications, search). Source: T&T - Wolfgardt Bjorn, 18.08.2026",
-        "Wave 1 marked as go-live; Waves 2–5 marked as not go-live yet (see Waves tab)"
+        "IMPORTANT: Wave go-live locations/regions/clusters must use ONLY Global Helios Groups; pre-wave locations keep local/legacy groups. Source: T&T - Wolfgardt Bjorn, 18.08.2026",
+        "Rule applied in every search and card (Start, Applications, Waves, Regions, Clusters, Global Helios)",
+        "Wave 1 = go-live; Waves 2–5 = not go-live yet (go-live date TBD on Waves tab)"
       ]
     },
     {
@@ -7556,38 +7588,44 @@
     "date": "18 August 2026"
   },
   "routingPolicy": {
-    "title": "Wave go-live routing rule",
-    "rule": "When a location / cluster / region has entered Wave go-live, use Global Helios Groups. When the location has not yet gone through its Wave (see Waves tab), use the legacy local assignment groups for that location.",
+    "title": "IMPORTANT — Wave go-live routing",
+    "rule": "If a location / region / cluster is Wave go-live, use ONLY Global Helios Groups. If it is not go-live yet, continue using the local / legacy groups for that location. Check the Waves tab for go-live status and date.",
+    "shortRule": "Go-live → ONLY Global Helios Groups · Pre-wave → local groups",
     "source": "T&T - Wolfgardt Bjorn",
     "date": "18.08.2026",
-    "goLiveLabel": "Go-live — use Global Helios Groups",
-    "preWaveLabel": "Pre-wave — use local / legacy groups"
+    "goLiveLabel": "GO-LIVE — use ONLY Global Helios Groups",
+    "preWaveLabel": "PRE-WAVE — use local / legacy groups"
   },
   "waveGoLive": {
     "1": {
       "goLive": true,
       "status": "go-live",
-      "note": "Use Global Helios Groups"
+      "goLiveDate": "Live",
+      "note": "Use ONLY Global Helios Groups"
     },
     "2": {
       "goLive": false,
       "status": "not go-live",
-      "note": "Pilot / in progress — use local groups"
+      "goLiveDate": "TBD",
+      "note": "Not go-live yet — use local groups"
     },
     "3": {
       "goLive": false,
       "status": "not go-live",
-      "note": "Planned — use local groups"
+      "goLiveDate": "TBD",
+      "note": "Not go-live yet — use local groups"
     },
     "4": {
       "goLive": false,
       "status": "not go-live",
-      "note": "Planned — use local groups"
+      "goLiveDate": "TBD",
+      "note": "Not go-live yet — use local groups"
     },
     "5": {
       "goLive": false,
       "status": "not go-live",
-      "note": "Planned — use local groups"
+      "goLiveDate": "TBD",
+      "note": "Not go-live yet — use local groups"
     }
   }
 }
