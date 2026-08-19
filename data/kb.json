@@ -7651,17 +7651,15 @@
       "date": "2026-08-19",
       "version": "2.4",
       "changes": [
-        "Clinical Applications UI: marked post Go-Live routing as pending confirmation across Application Base, Waves, Clusters, Start search and Global Helios",
-        "Go-live locations keep local Clinical Applications groups visible until a dedicated Global Helios Clinical group is confirmed",
-        "No Global Helios Clinical Applications group invented — open question documented for Service Desk"
+        "Clinical Applications always use local location groups — before and after Wave Go-Live",
+        "Application Base: Clinical stays on local Clinical group for go-live and pre-wave clusters",
+        "Start search: go-live places keep Clinical Applications on local groups (Global Helios for everything else)"
       ]
     },
     {
       "date": "2026-08-19",
       "version": "2.3",
       "changes": [
-        "Clinical Applications: pre-wave locations keep local/legacy Clinical groups",
-        "Clinical Applications after Wave Go-Live: pending confirmation — no dedicated Global Helios Clinical Applications group confirmed yet",
         "Added location Plauen (Helios Vogtland-Klinikum Plauen GmbH) under Cluster Sachsen — assignment group PL-IT | Mgt",
         "Wave 4 go-live 16/10/2026 not yet reached → local routing (PL-IT | Mgt), not Global Helios Groups"
       ]
@@ -7715,17 +7713,18 @@
   },
   "routingPolicy": {
     "title": "IMPORTANT — Wave go-live routing",
-    "rule": "If a location / region / cluster is Wave go-live, use ONLY Global Helios Groups for general topics. If it is not go-live yet, continue using the local / legacy groups. Exception — Clinical Applications: after Go-Live there is no confirmed dedicated Global Helios Clinical Applications group yet; routing for Clinical Applications post Go-Live is pending confirmation (pre-wave still uses local Clinical groups).",
-    "shortRule": "Go-live → Global Helios Groups · Pre-wave → local groups · Clinical Applications after Go-Live → pending confirmation",
+    "rule": "If a location / region / cluster is Wave go-live, use ONLY Global Helios Groups for general topics. If it is not go-live yet, continue using the local / legacy groups. Clinical Applications always use the local / location Clinical Applications groups — Wave go-live does not change Clinical routing.",
+    "shortRule": "Go-live → Global Helios Groups · Pre-wave → local groups · Clinical Applications → always local location groups",
     "source": "T&T - Wolfgardt Bjorn",
     "date": "18.08.2026",
     "goLiveLabel": "GO-LIVE — use ONLY Global Helios Groups",
     "preWaveLabel": "PRE-WAVE — use local / legacy groups",
     "bannerHideSource": true,
-    "clinicalNote": "Clinical Applications after Go-Live: no confirmed dedicated Global Helios Clinical Applications group. For pre-wave locations continue using local/legacy Clinical Application groups. For post Go-Live locations it is still unclear whether a dedicated Global Helios Clinical group exists or whether local Clinical Applications groups should continue to be used — pending confirmation.",
-    "clinicalStatus": "pending confirmation",
-    "clinicalPreWave": "Use local / legacy Clinical Applications groups",
-    "clinicalPostGoLive": "Pending confirmation — dedicated Global Helios Clinical Applications group vs continue local Clinical groups"
+    "clinicalNote": "Clinical Applications always route to the local / location Clinical Applications groups, whether the site is pre-wave or already Wave go-live. Global Helios Groups do not replace Clinical Applications routing.",
+    "clinicalStatus": "always local",
+    "clinicalPreWave": "Use local / location Clinical Applications groups",
+    "clinicalPostGoLive": "Still use local / location Clinical Applications groups (same as pre-wave)",
+    "clinicalRule": "Clinical → local Clinical Applications group (also after Go-Live)"
   },
   "waveGoLive": {
     "1": {
