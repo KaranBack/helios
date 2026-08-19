@@ -3,10 +3,10 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Berlin · Global Helios",
-    "version": "2.0",
+    "version": "2.1",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
-    "updated": "2026-08-14"
+    "updated": "2026-08-18"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -1383,12 +1383,12 @@
     ],
     "doc": {
       "document": "Helios Master Matrix",
-      "version": "2.0",
+      "version": "2.1",
       "status": "Production Draft",
       "cluster": "Helios",
       "sites": "Waves 1–5 (see Clusters)",
       "author": "Krystian Karankiewicz",
-      "date": "14 August 2026"
+      "date": "18 August 2026"
     }
   },
   "globalHelios": [
@@ -6481,7 +6481,9 @@
           "Süd": 0,
           "West": 19
         },
-        "notes": ""
+        "notes": "",
+        "goLive": true,
+        "waveStatus": "go-live"
       },
       {
         "unit": "Gifhorn",
@@ -6500,7 +6502,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": true,
+        "waveStatus": "go-live"
       },
       {
         "unit": "Gotha",
@@ -6519,7 +6523,9 @@
           "Süd": 3,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": true,
+        "waveStatus": "go-live"
       },
       {
         "unit": "Duisburg (Pilot)",
@@ -6538,7 +6544,9 @@
           "Süd": 0,
           "West": 9
         },
-        "notes": "Pilot"
+        "notes": "Pilot",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Herzberg (Pilot)",
@@ -6557,7 +6565,9 @@
           "Süd": 0,
           "West": 3
         },
-        "notes": "Pilot"
+        "notes": "Pilot",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Hildesheim",
@@ -6576,7 +6586,9 @@
           "Süd": 0,
           "West": 1
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Kassel",
@@ -6595,7 +6607,9 @@
           "Süd": 0,
           "West": 2
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Krefeld",
@@ -6614,7 +6628,9 @@
           "Süd": 0,
           "West": 9
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Lengerich",
@@ -6633,7 +6649,9 @@
           "Süd": 0,
           "West": 5
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "MVZ West",
@@ -6652,7 +6670,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": "MVZ West locations primarily Region West"
+        "notes": "MVZ West locations primarily Region West",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Northeim",
@@ -6671,7 +6691,9 @@
           "Süd": 0,
           "West": 1
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Salzgitter",
@@ -6690,7 +6712,9 @@
           "Süd": 0,
           "West": 1
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Bad Kissingen",
@@ -6709,7 +6733,9 @@
           "Süd": 3,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Blankenhain",
@@ -6728,7 +6754,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Bleicherode",
@@ -6747,7 +6775,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Erfurt (Pilot)",
@@ -6766,7 +6796,9 @@
           "Süd": 6,
           "West": 0
         },
-        "notes": "Pilot"
+        "notes": "Pilot",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Hildburghausen",
@@ -6785,7 +6817,9 @@
           "Süd": 6,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Cluster Wiesbaden-Taunus",
@@ -6804,7 +6838,9 @@
           "Süd": 5,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Service Desk Süd",
@@ -6823,7 +6859,9 @@
           "Süd": 17,
           "West": 0
         },
-        "notes": "Service Desk Süd"
+        "notes": "Service Desk Süd",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "MVZ Süd",
@@ -6842,7 +6880,9 @@
           "Süd": 50,
           "West": 1
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "AMAGS",
@@ -6861,7 +6901,9 @@
           "Süd": 5,
           "West": 3
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "CL-Berlin Brandenburg",
@@ -6880,7 +6922,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "CL-Sachsen + Kronach + MVZ",
@@ -6899,7 +6943,9 @@
           "Süd": 3,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Leipzig + MVZ",
@@ -6918,7 +6964,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "MVZ CL-Sachsen-Anhalt",
@@ -6937,7 +6985,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "CL-Nordsee",
@@ -6956,7 +7006,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "CL-Ostsee",
@@ -6975,7 +7027,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Helmstedt",
@@ -6994,7 +7048,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "HK",
@@ -7013,7 +7069,9 @@
           "Süd": 3,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "MVZ Nord",
@@ -7032,7 +7090,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       },
       {
         "unit": "Nienburg",
@@ -7051,7 +7111,9 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": ""
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live"
       }
     ]
   },
@@ -7448,6 +7510,14 @@
   },
   "changelog": [
     {
+      "date": "2026-08-18",
+      "version": "2.1",
+      "changes": [
+        "Wave go-live routing rule: after Wave go-live use Global Helios Groups; before go-live use local/legacy groups for the location (clusters, regions, applications, search). Source: T&T - Wolfgardt Bjorn, 18.08.2026",
+        "Wave 1 marked as go-live; Waves 2–5 marked as not go-live yet (see Waves tab)"
+      ]
+    },
+    {
       "date": "2026-08-12",
       "version": "2.0",
       "changes": [
@@ -7478,11 +7548,46 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.0",
+    "version": "2.1",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
     "author": "Krystian Karankiewicz",
-    "date": "14 August 2026"
+    "date": "18 August 2026"
+  },
+  "routingPolicy": {
+    "title": "Wave go-live routing rule",
+    "rule": "When a location / cluster / region has entered Wave go-live, use Global Helios Groups. When the location has not yet gone through its Wave (see Waves tab), use the legacy local assignment groups for that location.",
+    "source": "T&T - Wolfgardt Bjorn",
+    "date": "18.08.2026",
+    "goLiveLabel": "Go-live — use Global Helios Groups",
+    "preWaveLabel": "Pre-wave — use local / legacy groups"
+  },
+  "waveGoLive": {
+    "1": {
+      "goLive": true,
+      "status": "go-live",
+      "note": "Use Global Helios Groups"
+    },
+    "2": {
+      "goLive": false,
+      "status": "not go-live",
+      "note": "Pilot / in progress — use local groups"
+    },
+    "3": {
+      "goLive": false,
+      "status": "not go-live",
+      "note": "Planned — use local groups"
+    },
+    "4": {
+      "goLive": false,
+      "status": "not go-live",
+      "note": "Planned — use local groups"
+    },
+    "5": {
+      "goLive": false,
+      "status": "not go-live",
+      "note": "Planned — use local groups"
+    }
   }
 }
