@@ -6484,7 +6484,7 @@
         "notes": "",
         "goLive": true,
         "waveStatus": "go-live",
-        "goLiveDate": "Live"
+        "goLiveDate": "29/07/2026"
       },
       {
         "unit": "Gifhorn",
@@ -6506,7 +6506,7 @@
         "notes": "",
         "goLive": true,
         "waveStatus": "go-live",
-        "goLiveDate": "Live"
+        "goLiveDate": "29/07/2026"
       },
       {
         "unit": "Gotha",
@@ -6528,7 +6528,7 @@
         "notes": "",
         "goLive": true,
         "waveStatus": "go-live",
-        "goLiveDate": "Live"
+        "goLiveDate": "29/07/2026"
       },
       {
         "unit": "Duisburg (Pilot)",
@@ -6550,7 +6550,7 @@
         "notes": "Pilot",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Herzberg (Pilot)",
@@ -6572,7 +6572,7 @@
         "notes": "Pilot",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Hildesheim",
@@ -6594,7 +6594,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Kassel",
@@ -6616,7 +6616,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Krefeld",
@@ -6638,7 +6638,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Lengerich",
@@ -6660,7 +6660,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "MVZ West",
@@ -6682,7 +6682,7 @@
         "notes": "MVZ West locations primarily Region West",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Northeim",
@@ -6704,7 +6704,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Salzgitter",
@@ -6726,7 +6726,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "26/08/2026"
       },
       {
         "unit": "Bad Kissingen",
@@ -6748,7 +6748,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "Blankenhain",
@@ -6770,7 +6770,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "Bleicherode",
@@ -6792,7 +6792,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "Erfurt (Pilot)",
@@ -6814,7 +6814,7 @@
         "notes": "Pilot",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "Hildburghausen",
@@ -6836,7 +6836,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "Cluster Wiesbaden-Taunus",
@@ -6858,7 +6858,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "Service Desk Süd",
@@ -6880,7 +6880,7 @@
         "notes": "Service Desk Süd",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "MVZ Süd",
@@ -6902,7 +6902,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "23/09/2026"
       },
       {
         "unit": "AMAGS",
@@ -6924,7 +6924,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "16/10/2026"
       },
       {
         "unit": "CL-Berlin Brandenburg",
@@ -6946,7 +6946,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "16/10/2026"
       },
       {
         "unit": "CL-Sachsen + Kronach + MVZ",
@@ -6968,7 +6968,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "16/10/2026"
       },
       {
         "unit": "Leipzig + MVZ",
@@ -6990,7 +6990,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "16/10/2026"
       },
       {
         "unit": "MVZ CL-Sachsen-Anhalt",
@@ -7012,7 +7012,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "16/10/2026"
       },
       {
         "unit": "CL-Nordsee",
@@ -7034,7 +7034,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "30/10/2026"
       },
       {
         "unit": "CL-Ostsee",
@@ -7056,7 +7056,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "30/10/2026"
       },
       {
         "unit": "Helmstedt",
@@ -7078,7 +7078,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "30/10/2026"
       },
       {
         "unit": "HK",
@@ -7100,7 +7100,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "30/10/2026"
       },
       {
         "unit": "MVZ Nord",
@@ -7122,7 +7122,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "30/10/2026"
       },
       {
         "unit": "Nienburg",
@@ -7144,7 +7144,7 @@
         "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
-        "goLiveDate": "TBD"
+        "goLiveDate": "30/10/2026"
       }
     ]
   },
@@ -7594,38 +7594,44 @@
     "source": "T&T - Wolfgardt Bjorn",
     "date": "18.08.2026",
     "goLiveLabel": "GO-LIVE — use ONLY Global Helios Groups",
-    "preWaveLabel": "PRE-WAVE — use local / legacy groups"
+    "preWaveLabel": "PRE-WAVE — use local / legacy groups",
+    "bannerHideSource": true
   },
   "waveGoLive": {
     "1": {
-      "goLive": true,
+      "goLiveDate": "29/07/2026",
+      "goLiveDateIso": "2026-07-29",
       "status": "go-live",
-      "goLiveDate": "Live",
-      "note": "Use ONLY Global Helios Groups"
+      "note": "Use ONLY Global Helios Groups",
+      "goLive": true
     },
     "2": {
-      "goLive": false,
+      "goLiveDate": "26/08/2026",
+      "goLiveDateIso": "2026-08-26",
       "status": "not go-live",
-      "goLiveDate": "TBD",
-      "note": "Not go-live yet — use local groups"
+      "note": "Not go-live yet — use local groups",
+      "goLive": false
     },
     "3": {
-      "goLive": false,
+      "goLiveDate": "23/09/2026",
+      "goLiveDateIso": "2026-09-23",
       "status": "not go-live",
-      "goLiveDate": "TBD",
-      "note": "Not go-live yet — use local groups"
+      "note": "Not go-live yet — use local groups",
+      "goLive": false
     },
     "4": {
-      "goLive": false,
+      "goLiveDate": "16/10/2026",
+      "goLiveDateIso": "2026-10-16",
       "status": "not go-live",
-      "goLiveDate": "TBD",
-      "note": "Not go-live yet — use local groups"
+      "note": "Not go-live yet — use local groups",
+      "goLive": false
     },
     "5": {
-      "goLive": false,
+      "goLiveDate": "30/10/2026",
+      "goLiveDateIso": "2026-10-30",
       "status": "not go-live",
-      "goLiveDate": "TBD",
-      "note": "Not go-live yet — use local groups"
+      "note": "Not go-live yet — use local groups",
+      "goLive": false
     }
   }
 }
