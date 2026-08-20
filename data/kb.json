@@ -3,10 +3,10 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Berlin · Global Helios",
-    "version": "2.4",
+    "version": "2.5",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
-    "updated": "2026-08-19"
+    "updated": "2026-08-20"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -3131,8 +3131,72 @@
       "name": "Uelzen",
       "rows": [
         [
-          "General IT",
+          "SNOW location",
+          "Helios Klinikum Uelzen GmbH"
+        ],
+        [
+          "Full name",
+          "Region Nord/Helios Klinikum Uelzen GmbH"
+        ],
+        [
+          "Street",
+          "Hagenskamp 34"
+        ],
+        [
+          "City / ZIP",
+          "29525 Uelzen"
+        ],
+        [
+          "State",
+          "Niedersachsen"
+        ],
+        [
+          "Country",
+          "Germany"
+        ],
+        [
+          "Parent",
+          "Region Nord"
+        ],
+        [
+          "Life Cycle",
+          "Operational / In Use"
+        ],
+        [
+          "Company",
+          "Fresenius Helios"
+        ],
+        [
+          "Contact",
+          "Frank Bergmann"
+        ],
+        [
+          "Service Desk / Local IT",
           "UE-IT"
+        ],
+        [
+          "Infrastructure",
+          "UE-IT"
+        ],
+        [
+          "Clinical Applications",
+          "UE-IT"
+        ],
+        [
+          "SAP / KIS",
+          "UE-IT"
+        ],
+        [
+          "Field Service",
+          "UE-IT"
+        ],
+        [
+          "SNOW group description",
+          "Uelzen | Supportgruppe der Uelzen IT"
+        ],
+        [
+          "Routing",
+          "Use local group UE-IT (no Wave go-live assigned yet — not Global Helios)"
         ]
       ]
     },
@@ -3741,6 +3805,31 @@
         [
           "Routing",
           "PRE-WAVE — use local group PL-IT | Mgt (not Global Helios until Wave 4 go-live)"
+        ]
+      ]
+    },
+    {
+      "name": "Region Nord",
+      "rows": [
+        [
+          "Region",
+          "Nord"
+        ],
+        [
+          "Uelzen (Helios Klinikum Uelzen GmbH)",
+          "UE-IT"
+        ],
+        [
+          "Uelzen — SNOW description",
+          "Uelzen | Supportgruppe der Uelzen IT"
+        ],
+        [
+          "Uelzen — address",
+          "Hagenskamp 34, 29525 Uelzen, Niedersachsen, Germany"
+        ],
+        [
+          "Uelzen — contact",
+          "Frank Bergmann"
         ]
       ]
     }
@@ -7644,9 +7733,38 @@
       "planningUnits": [
         "CL-Sachsen + Kronach + MVZ"
       ]
+    },
+    "Uelzen": {
+      "waves": [],
+      "regions": [
+        "Nord"
+      ],
+      "kritis": false,
+      "parentCluster": "Region Nord",
+      "planningUnits": [],
+      "snowLocation": "Helios Klinikum Uelzen GmbH",
+      "groupDescription": "Uelzen | Supportgruppe der Uelzen IT",
+      "street": "Hagenskamp 34",
+      "city": "Uelzen",
+      "zip": "29525",
+      "state": "Niedersachsen",
+      "country": "Germany",
+      "fullName": "Region Nord/Helios Klinikum Uelzen GmbH",
+      "lifeCycle": "Operational / In Use",
+      "company": "Fresenius Helios",
+      "contact": "Frank Bergmann"
     }
   },
   "changelog": [
+    {
+      "date": "2026-08-20",
+      "version": "2.5",
+      "changes": [
+        "Added / completed location Uelzen (Helios Klinikum Uelzen GmbH) under Region Nord",
+        "Assignment group UE-IT — Uelzen | Supportgruppe der Uelzen IT",
+        "SNOW address: Hagenskamp 34, 29525 Uelzen, Niedersachsen — contact Frank Bergmann"
+      ]
+    },
     {
       "date": "2026-08-19",
       "version": "2.4",
@@ -7704,12 +7822,12 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.4",
+    "version": "2.5",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
     "author": "Krystian Karankiewicz",
-    "date": "19 August 2026"
+    "date": "20 August 2026"
   },
   "routingPolicy": {
     "title": "IMPORTANT — Wave go-live routing",
