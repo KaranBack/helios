@@ -30,6 +30,7 @@ Catch & Dispatch knowledge base for Helios assignment groups, clusters, waves an
 | Waves | Wave 1–5 planning, go-live dates and local routing |
 | Regions | Nord / Ost / Süd / West |
 | Clusters | Cluster and location assignment groups |
+| Med. Clusters | Helios Med. Cluster map clinics (local IT or cluster/region fallback) |
 | Berlin Groups | Berlin / Brandenburg routing |
 | Global Helios Groups | Global Helios assignment groups (go-live) |
 | Changelog | Matrix content changes |
