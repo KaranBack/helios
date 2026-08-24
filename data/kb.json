@@ -3,10 +3,10 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios",
-    "version": "2.6",
+    "version": "2.7",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
-    "updated": "2026-08-20"
+    "updated": "2026-08-24"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -1859,6 +1859,11 @@
       "service": "Web Security Gateway (WSG)",
       "group": "WSG | Zentrale",
       "notes": "Network traffic security and filtering"
+    },
+    {
+      "service": "SAP Basis",
+      "group": "SAP Basis",
+      "notes": "Wave go-live (W1/W2): use for SAP topics. Clinical Applications stay on local IT. Source: KS-IT."
     }
   ],
   "wave1": [
@@ -1959,9 +1964,9 @@
         "SAP Berechtigung",
         "D-Berichte"
       ],
-      "description": "SAP access, roles and Launchpad.",
-      "quick": "Check SAP access, test GUI, clear cache.",
-      "group": "CL-Wuppertal | SAP"
+      "description": "SAP access, roles and Launchpad. After Wave go-live use SAP Basis.",
+      "quick": "Check SAP access, test GUI, clear cache. Go-live: assign to SAP Basis.",
+      "group": "SAP Basis"
     },
     {
       "topic": "SAP / KIS (Gotha)",
@@ -1972,9 +1977,9 @@
         "i.s.h.med",
         "SAP i.s.h.med"
       ],
-      "description": "SAP and KIS (i.s.h.med).",
-      "quick": "Check SAP access, document the error and escalate.",
-      "group": "SAP i.s.h.med | Mgt"
+      "description": "SAP and KIS (i.s.h.med). After Wave go-live use SAP Basis.",
+      "quick": "Check SAP access, document the error and escalate. Go-live: assign to SAP Basis.",
+      "group": "SAP Basis"
     },
     {
       "topic": "Citrix / Polaris / Published Apps",
@@ -8135,7 +8140,8 @@
           }
         ],
         "topics": [],
-        "notes": "Wave 2 pilot. Use Duisburg cluster specials for Orbis/Muse/JiveX/Software."
+        "notes": "Wave 2 pilot. Use Duisburg cluster specials for Orbis/Muse/JiveX/Software.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Herzberg",
@@ -8149,7 +8155,8 @@
         "fieldService": "HBH-IT",
         "specials": [],
         "topics": [],
-        "notes": "Wave 2 pilot. Confirmed local group HBH-IT. SAP/KIS specialty TBD."
+        "notes": "Wave 2 pilot. Confirmed local group HBH-IT. SAP/KIS specialty TBD.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Hildesheim",
@@ -8172,7 +8179,8 @@
           }
         ],
         "topics": [],
-        "notes": "Local HI-IT groups. SAP specialty beyond Orbis: TBD."
+        "notes": "Local HI-IT groups. SAP specialty beyond Orbis: TBD.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Kassel",
@@ -8186,7 +8194,8 @@
         "fieldService": "KS-IT",
         "specials": [],
         "topics": [],
-        "notes": "All local IT currently routes to KS-IT. Specialty splits TBD."
+        "notes": "All local IT currently routes to KS-IT. Specialty splits TBD.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Krefeld",
@@ -8205,7 +8214,8 @@
           }
         ],
         "topics": [],
-        "notes": "Use KR-IT role groups from cluster mapping."
+        "notes": "Use KR-IT role groups from cluster mapping.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Lengerich",
@@ -8246,7 +8256,8 @@
             "quick": "Route to Orbis."
           }
         ],
-        "notes": "Confirmed: only LEN-IT locally; SAP/KIS → Orbis."
+        "notes": "Confirmed: only LEN-IT locally; SAP/KIS → Orbis.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "MVZ West",
@@ -8265,7 +8276,8 @@
           }
         ],
         "topics": [],
-        "notes": "Use RN/RW MVZ Support for local MVZ. Product topics → MVZ Produktmanagement."
+        "notes": "Use RN/RW MVZ Support for local MVZ. Product topics → MVZ Produktmanagement.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Northeim",
@@ -8458,7 +8470,8 @@
             "quick": "Route to CLBB-IT | KIS Support."
           }
         ],
-        "notes": "Full topic routing confirmed for Northeim."
+        "notes": "Full topic routing confirmed for Northeim.",
+        "sapGoLive": "SAP Basis"
       },
       {
         "location": "Salzgitter",
@@ -8499,7 +8512,8 @@
             "quick": "Route to iMedOne."
           }
         ],
-        "notes": "All local → SZ-IT; SAP/KIS → iMedOne."
+        "notes": "All local → SZ-IT; SAP/KIS → iMedOne.",
+        "sapGoLive": "SAP Basis"
       }
     ]
   },
@@ -8595,8 +8609,8 @@
           "West": 9
         },
         "notes": "Pilot",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8617,8 +8631,8 @@
           "West": 3
         },
         "notes": "Pilot",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8639,8 +8653,8 @@
           "West": 1
         },
         "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8661,8 +8675,8 @@
           "West": 2
         },
         "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8683,8 +8697,8 @@
           "West": 9
         },
         "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8705,8 +8719,8 @@
           "West": 5
         },
         "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8727,8 +8741,8 @@
           "West": 0
         },
         "notes": "MVZ West locations primarily Region West",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8749,8 +8763,8 @@
           "West": 1
         },
         "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -8771,8 +8785,8 @@
           "West": 1
         },
         "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
+        "goLive": true,
+        "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
       },
       {
@@ -10601,6 +10615,17 @@
   },
   "changelog": [
     {
+      "date": "2026-08-24",
+      "version": "2.7",
+      "changes": [
+        "Wave 2 (go-live 26/08/2026): use general Global Helios Groups — same model as Wave 1",
+        "SAP topics after Go-Live → assignment group SAP Basis (Wave 1 aligned)",
+        "Clinical Applications → always local IT groups (e.g. KS-IT for Kassel)",
+        "Added links to the Global Helios Groups tab wherever “Use ONLY Global Helios Groups” is shown",
+        "Information updated based on input from KS-IT"
+      ]
+    },
+    {
       "date": "2026-08-20",
       "version": "2.6",
       "changes": [
@@ -10676,42 +10701,44 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.6",
+    "version": "2.7",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
     "author": "Krystian Karankiewicz",
-    "date": "20 August 2026"
+    "date": "24 August 2026"
   },
   "routingPolicy": {
     "title": "IMPORTANT — Wave go-live routing",
-    "rule": "If a location / region / cluster is Wave go-live, use ONLY Global Helios Groups for general topics. If it is not go-live yet, continue using the local / legacy groups. Clinical Applications always use the local / location Clinical Applications groups — Wave go-live does not change Clinical routing.",
-    "shortRule": "Go-live → Global Helios Groups · Pre-wave → local groups · Clinical Applications → always local location groups",
-    "source": "T&T - Wolfgardt Bjorn",
-    "date": "18.08.2026",
+    "rule": "If a location / region / cluster is Wave go-live (Wave 1 and Wave 2), use ONLY Global Helios Groups for general topics. If it is not go-live yet, continue using the local / legacy groups. SAP topics after Go-Live → assignment group SAP Basis. Clinical Applications always use the local / location IT groups (e.g. KS-IT for Kassel) — Wave go-live does not change Clinical routing.",
+    "shortRule": "Go-live (W1+W2) → Global Helios Groups · SAP → SAP Basis · Clinical → always local IT · Pre-wave → local groups",
+    "source": "KS-IT (Wave 2 / SAP Basis / Clinical local); T&T - Wolfgardt Bjorn (go-live Global Helios)",
+    "date": "24.08.2026",
     "goLiveLabel": "GO-LIVE — use ONLY Global Helios Groups",
     "preWaveLabel": "PRE-WAVE — use local / legacy groups",
     "bannerHideSource": true,
-    "clinicalNote": "Clinical Applications always route to the local / location Clinical Applications groups, whether the site is pre-wave or already Wave go-live. Global Helios Groups do not replace Clinical Applications routing.",
+    "clinicalNote": "Clinical Applications always route to the local / location IT groups (e.g. KS-IT for Kassel), whether the site is pre-wave or Wave go-live. Global Helios Groups do not replace Clinical Applications routing.",
     "clinicalStatus": "always local",
     "clinicalPreWave": "Use local / location Clinical Applications groups",
     "clinicalPostGoLive": "Still use local / location Clinical Applications groups (same as pre-wave)",
-    "clinicalRule": "Clinical → local Clinical Applications group (also after Go-Live)"
+    "clinicalRule": "Clinical → local IT group (e.g. KS-IT) — also after Go-Live",
+    "sapRule": "After Wave Go-Live: SAP topics → SAP Basis",
+    "sapGroup": "SAP Basis"
   },
   "waveGoLive": {
     "1": {
       "goLiveDate": "29/07/2026",
       "goLiveDateIso": "2026-07-29",
       "status": "go-live",
-      "note": "Use ONLY Global Helios Groups",
+      "note": "Use ONLY Global Helios Groups. SAP → SAP Basis. Clinical → local IT.",
       "goLive": true
     },
     "2": {
       "goLiveDate": "26/08/2026",
       "goLiveDateIso": "2026-08-26",
-      "status": "not go-live",
-      "note": "Not go-live yet — use local groups",
-      "goLive": false
+      "status": "go-live",
+      "note": "Use ONLY Global Helios Groups (same as Wave 1). SAP → SAP Basis. Clinical → local IT.",
+      "goLive": true
     },
     "3": {
       "goLiveDate": "23/09/2026",
