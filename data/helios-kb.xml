@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<heliosKnowledgeBase version="2.8" exportedFrom="matrix.html" note="Edit this XML, then open wave2.html (via local HTTP server) to view.">
+<heliosKnowledgeBase version="2.9" exportedFrom="matrix.html" note="Edit this XML, then open wave2.html (via local HTTP server) to view.">
   <meta>
     <title>Helios Master Matrix</title>
     <document>Helios Master Matrix</document>
     <subtitle>Catch &amp; Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios</subtitle>
-    <version>2.8</version>
+    <version>2.9</version>
     <author>Krystian Karankiewicz</author>
     <status>Production Draft</status>
-    <updated>2026-08-26</updated>
+    <updated>2026-08-27</updated>
   </meta>
   <documentInfo>
     <document>Helios Master Matrix</document>
-    <version>2.8</version>
+    <version>2.9</version>
     <status>Production Draft</status>
     <cluster>Helios</cluster>
     <sites>Waves 1–5 (see Clusters)</sites>
     <author>Krystian Karankiewicz</author>
-    <date>26 August 2026</date>
+    <date>27 August 2026</date>
   </documentInfo>
   <routingPolicy>
     <title>IMPORTANT — Wave go-live routing</title>
@@ -483,8 +483,6 @@
         </waves>
         <regions>
           <item>Ost</item>
-          <item>Nord</item>
-          <item>Süd</item>
         </regions>
         <kritis>false</kritis>
         <planningUnits>
@@ -513,8 +511,6 @@
         </waves>
         <regions>
           <item>Ost</item>
-          <item>Nord</item>
-          <item>Süd</item>
         </regions>
         <kritis>false</kritis>
         <planningUnits>
@@ -590,8 +586,14 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Burg</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -662,7 +664,7 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <kritis>false</kritis>
+        <kritis>true</kritis>
         <planningUnits>
           <item>CL-Ostsee</item>
         </planningUnits>
@@ -997,8 +999,14 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Erlenbach</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">ELB-IT</group>
@@ -1066,7 +1074,7 @@
           <item>1</item>
         </waves>
         <regions>
-          <item>Süd</item>
+          <item>Ost</item>
         </regions>
         <kritis>false</kritis>
         <planningUnits>
@@ -1272,7 +1280,7 @@
           <item>3</item>
         </waves>
         <regions>
-          <item>Süd</item>
+          <item>Ost</item>
         </regions>
         <kritis>false</kritis>
         <planningUnits>
@@ -1354,11 +1362,16 @@
         <mapFullName>St. Elisabeth Klinik Hünfeld</mapFullName>
         <ohneCluster>false</ohneCluster>
         <regions>
-          <item>Süd</item>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Hünfeld</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">HUE-IT</group>
@@ -1546,8 +1559,14 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Köthen</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -1619,8 +1638,14 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Leisnig + MVZ</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">LEI-IT | Infrastruktur</group>
@@ -1755,9 +1780,15 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
         <mapHub>true</mapHub>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>MSH</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -1820,11 +1851,16 @@
         <mapFullName>Klinik Meiningen</mapFullName>
         <ohneCluster>false</ohneCluster>
         <regions>
-          <item>Süd</item>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Meiningen</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">MGN | Infrastruktur</group>
@@ -2046,8 +2082,14 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Oschersleben</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -2375,6 +2417,26 @@
         <group role="ServiceDesk">CL-Ostsee | Service Desk</group>
       </groups>
     </cluster>
+    <cluster name="Service Desk Süd">
+      <meta>
+        <waves>
+          <item>3</item>
+        </waves>
+        <regions>
+          <item>Süd</item>
+        </regions>
+        <kritis>false</kritis>
+        <parentCluster>Region Süd</parentCluster>
+      </meta>
+      <groups>
+        <group role="Infrastructure">RS | Infrastruktur</group>
+        <group role="Clinical">RS | Klinische Prozesse &amp; Anwendungen</group>
+        <group role="SAP">RS | iSHMED</group>
+        <group role="Account">RS MVZ Support</group>
+        <group role="FieldService">Ext_DE_FSO_Incidents_SLS_Capgemini_Helios</group>
+        <group role="ServiceDesk">RS | Servicedesk</group>
+      </groups>
+    </cluster>
     <cluster name="Siegburg">
       <meta>
         <medCluster>Rhein-Sieg</medCluster>
@@ -2505,13 +2567,17 @@
     </cluster>
     <cluster name="Uelzen">
       <meta>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <regions>
           <item>Nord</item>
         </regions>
         <kritis>false</kritis>
         <parentCluster>Region Nord</parentCluster>
-        <planningUnits/>
+        <planningUnits>
+          <item>Uelzen</item>
+        </planningUnits>
         <snowLocation>Helios Klinikum Uelzen GmbH</snowLocation>
         <groupDescription>Uelzen | Supportgruppe der Uelzen IT</groupDescription>
         <street>Hagenskamp 34</street>
@@ -2571,8 +2637,14 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Vogelsang-Gommern</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -2651,6 +2723,26 @@
         <group role="ServiceDesk">CL-Nordsee | Service Desk</group>
       </groups>
     </cluster>
+    <cluster name="Wiesbaden">
+      <meta>
+        <waves>
+          <item>3</item>
+        </waves>
+        <regions>
+          <item>Süd</item>
+        </regions>
+        <kritis>false</kritis>
+        <parentCluster>Wiesbaden Local</parentCluster>
+      </meta>
+      <groups>
+        <group role="Infrastructure">WID-IT</group>
+        <group role="Clinical">WID-IT</group>
+        <group role="SAP">WID-IT</group>
+        <group role="Account">WID-IT</group>
+        <group role="FieldService">WID-IT</group>
+        <group role="ServiceDesk">WID-IT</group>
+      </groups>
+    </cluster>
     <cluster name="Wiesbaden Local">
       <meta>
         <medCluster>Wiesbaden-Main-Taunus</medCluster>
@@ -2660,11 +2752,16 @@
         <ohneCluster>false</ohneCluster>
         <regions>
           <item>Süd</item>
-          <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
         <mapHub>true</mapHub>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Wiesbaden</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">WID-IT</group>
@@ -2759,8 +2856,14 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <kritis>false</kritis>
+        <planningUnits>
+          <item>Zerbst</item>
+        </planningUnits>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -3426,14 +3529,15 @@
     </location>
   </wave2Locations>
   <planning>
-    <serviceUnit name="CL-Wuppertal" wave="1">
-      <clusterKey>CL-Wuppertal</clusterKey>
+    <source>Waves planning FINAL spreadsheet</source>
+    <updated>2026-08-27</updated>
+    <serviceUnit name="CL-Wuppertal" wave="1" clusterKey="CL-Wuppertal">
       <locations>31</locations>
       <users>10756</users>
       <adminPct>TBD</adminPct>
       <clinicalPct>TBD</clinicalPct>
       <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <ticketsPerMonth>2866</ticketsPerMonth>
       <kritis>true</kritis>
       <regions>
         <region name="Nord">1</region>
@@ -3446,14 +3550,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>29/07/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Gifhorn" wave="1">
-      <clusterKey>Gifhorn</clusterKey>
+    <serviceUnit name="Gifhorn" wave="1" clusterKey="Gifhorn">
       <locations>16</locations>
       <users>1325</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>323</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">5</region>
@@ -3466,19 +3569,18 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>29/07/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Gotha" wave="1">
-      <clusterKey>Gotha</clusterKey>
+    <serviceUnit name="Gotha" wave="1" clusterKey="Gotha">
       <locations>3</locations>
       <users>813</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>104</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
-        <region name="Ost">0</region>
-        <region name="Süd">3</region>
+        <region name="Ost">3</region>
+        <region name="Süd">0</region>
         <region name="West">0</region>
       </regions>
       <notes/>
@@ -3486,14 +3588,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>29/07/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Duisburg (Pilot)" wave="2">
-      <clusterKey>Duisburg</clusterKey>
+    <serviceUnit name="Duisburg (Pilot)" wave="2" clusterKey="Duisburg">
       <locations>9</locations>
       <users>3674</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>15%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>1359</ticketsPerMonth>
       <kritis>true</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3501,19 +3602,18 @@
         <region name="Süd">0</region>
         <region name="West">9</region>
       </regions>
-      <notes>Pilot</notes>
+      <notes/>
       <goLive>true</goLive>
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Herzberg (Pilot)" wave="2">
-      <clusterKey>Herzberg</clusterKey>
+    <serviceUnit name="Herzberg (Pilot)" wave="2" clusterKey="Herzberg">
       <locations>3</locations>
       <users>739</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>2%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>1%</otherPct>
+      <ticketsPerMonth>170</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3521,19 +3621,18 @@
         <region name="Süd">0</region>
         <region name="West">3</region>
       </regions>
-      <notes>Pilot</notes>
+      <notes/>
       <goLive>true</goLive>
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Hildesheim" wave="2">
-      <clusterKey>Hildesheim</clusterKey>
+    <serviceUnit name="Hildesheim" wave="2" clusterKey="Hildesheim">
       <locations>4</locations>
       <users>2062</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
+      <adminPct>8%</adminPct>
+      <clinicalPct>72%</clinicalPct>
       <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <ticketsPerMonth>271</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3546,14 +3645,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Kassel" wave="2">
-      <clusterKey>Kassel</clusterKey>
+    <serviceUnit name="Kassel" wave="2" clusterKey="Kassel">
       <locations>3</locations>
       <users>852</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>6%</adminPct>
+      <clinicalPct>86%</clinicalPct>
+      <otherPct>8%</otherPct>
+      <ticketsPerMonth>210</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3566,14 +3664,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Krefeld" wave="2">
-      <clusterKey>Krefeld</clusterKey>
+    <serviceUnit name="Krefeld" wave="2" clusterKey="Krefeld">
       <locations>10</locations>
       <users>5398</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>5%</adminPct>
+      <clinicalPct>95%</clinicalPct>
+      <otherPct>1%</otherPct>
+      <ticketsPerMonth>2200</ticketsPerMonth>
       <kritis>true</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3586,14 +3683,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Lengerich" wave="2">
-      <clusterKey>Lengerich</clusterKey>
+    <serviceUnit name="Lengerich" wave="2" clusterKey="Lengerich">
       <locations>5</locations>
       <users>466</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
+      <adminPct>9%</adminPct>
+      <clinicalPct>91%</clinicalPct>
       <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <ticketsPerMonth>22</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3606,8 +3702,7 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="MVZ West" wave="2">
-      <clusterKey>MVZ West</clusterKey>
+    <serviceUnit name="MVZ West" wave="2" clusterKey="MVZ West">
       <locations>55</locations>
       <users>456</users>
       <adminPct>TBD</adminPct>
@@ -3621,19 +3716,18 @@
         <region name="Süd">0</region>
         <region name="West">0</region>
       </regions>
-      <notes>MVZ West locations primarily Region West</notes>
+      <notes/>
       <goLive>true</goLive>
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Northeim" wave="2">
-      <clusterKey>Northeim</clusterKey>
+    <serviceUnit name="Northeim" wave="2" clusterKey="Northeim">
       <locations>2</locations>
       <users>677</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>259</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3646,14 +3740,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Salzgitter" wave="2">
-      <clusterKey>Salzgitter</clusterKey>
+    <serviceUnit name="Salzgitter" wave="2" clusterKey="Salzgitter">
       <locations>1</locations>
       <users>893</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>240</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3666,14 +3759,13 @@
       <waveStatus>go-live</waveStatus>
       <goLiveDate>26/08/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Bad Kissingen" wave="3">
-      <clusterKey>Bad Kissingen</clusterKey>
-      <locations>TBD</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+    <serviceUnit name="Bad Kissingen" wave="3" clusterKey="Bad Kissingen">
+      <locations>2</locations>
+      <users>683</users>
+      <adminPct>15%</adminPct>
+      <clinicalPct>77%</clinicalPct>
+      <otherPct>8%</otherPct>
+      <ticketsPerMonth>138</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3686,18 +3778,17 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>23/09/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Blankenhain" wave="3">
-      <clusterKey>Blankenhain</clusterKey>
-      <locations>TBD</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+    <serviceUnit name="Blankenhain" wave="3" clusterKey="Blankenhain">
+      <locations>2</locations>
+      <users>323</users>
+      <adminPct>2%</adminPct>
+      <clinicalPct>96%</clinicalPct>
+      <otherPct>2%</otherPct>
+      <ticketsPerMonth>37</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
-        <region name="Ost">0</region>
+        <region name="Ost">2</region>
         <region name="Süd">0</region>
         <region name="West">0</region>
       </regions>
@@ -3706,59 +3797,18 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>23/09/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Bleicherode" wave="3">
-      <clusterKey>Bleicherode</clusterKey>
-      <locations>TBD</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+    <serviceUnit name="Bleicherode" wave="3" clusterKey="Bleicherode">
+      <locations>1</locations>
+      <users>169</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>85%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>9</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
-        <region name="Ost">0</region>
-        <region name="Süd">0</region>
-        <region name="West">0</region>
-      </regions>
-      <notes/>
-      <goLive>false</goLive>
-      <waveStatus>not go-live</waveStatus>
-      <goLiveDate>23/09/2026</goLiveDate>
-    </serviceUnit>
-    <serviceUnit name="Erfurt (Pilot)" wave="3">
-      <clusterKey>Erfurt</clusterKey>
-      <locations>TBD</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
-      <kritis>true</kritis>
-      <regions>
-        <region name="Nord">1</region>
         <region name="Ost">1</region>
-        <region name="Süd">6</region>
-        <region name="West">0</region>
-      </regions>
-      <notes>Pilot</notes>
-      <goLive>false</goLive>
-      <waveStatus>not go-live</waveStatus>
-      <goLiveDate>23/09/2026</goLiveDate>
-    </serviceUnit>
-    <serviceUnit name="Hildburghausen" wave="3">
-      <clusterKey>Hildburghausen</clusterKey>
-      <locations>TBD</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
-      <kritis>false</kritis>
-      <regions>
-        <region name="Nord">0</region>
-        <region name="Ost">0</region>
-        <region name="Süd">6</region>
+        <region name="Süd">0</region>
         <region name="West">0</region>
       </regions>
       <notes/>
@@ -3766,14 +3816,13 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>23/09/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Cluster Wiesbaden-Taunus" wave="3">
-      <clusterKey>Wiesbaden-Main-Taunus</clusterKey>
-      <locations>TBD</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+    <serviceUnit name="Cluster Wiesbaden-Taunus" wave="3" clusterKey="Wiesbaden-Main-Taunus">
+      <locations>6</locations>
+      <users>4400</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>500</ticketsPerMonth>
       <kritis>true</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3786,34 +3835,108 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>23/09/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Service Desk Süd" wave="3">
-      <clusterKey>Region Süd</clusterKey>
-      <locations>17</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
-      <kritis>false</kritis>
+    <serviceUnit name="Erfurt (Pilot)" wave="3" clusterKey="Erfurt">
+      <locations>19</locations>
+      <users>3962</users>
+      <adminPct>7%</adminPct>
+      <clinicalPct>92%</clinicalPct>
+      <otherPct>1%</otherPct>
+      <ticketsPerMonth>956</ticketsPerMonth>
+      <kritis>true</kritis>
       <regions>
-        <region name="Nord">0</region>
-        <region name="Ost">0</region>
-        <region name="Süd">17</region>
+        <region name="Nord">1</region>
+        <region name="Ost">1</region>
+        <region name="Süd">6</region>
         <region name="West">0</region>
       </regions>
-      <notes>Service Desk Süd</notes>
+      <notes/>
       <goLive>false</goLive>
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>23/09/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="MVZ Süd" wave="3">
-      <clusterKey>MVZ Süd</clusterKey>
-      <locations>62</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
+    <serviceUnit name="Erlenbach" wave="3" clusterKey="Erlenbach">
+      <locations>1</locations>
+      <users>850</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>397</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">0</region>
+        <region name="Süd">1</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>23/09/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Hildburghausen" wave="3" clusterKey="Hildburghausen">
+      <locations>6</locations>
+      <users>937</users>
+      <adminPct>6%</adminPct>
+      <clinicalPct>94%</clinicalPct>
       <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <ticketsPerMonth>315</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">6</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>23/09/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Hünfeld" wave="3" clusterKey="Hünfeld">
+      <locations>2</locations>
+      <users>338</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>93%</clinicalPct>
+      <otherPct>2%</otherPct>
+      <ticketsPerMonth>31</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">2</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>23/09/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Meiningen" wave="3" clusterKey="Meiningen">
+      <locations>3</locations>
+      <users>1145</users>
+      <adminPct>15%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>285</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">3</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>23/09/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="MVZ Süd" wave="3" clusterKey="MVZ Süd">
+      <locations>62</locations>
+      <users>381</users>
+      <adminPct>10%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>TBD</otherPct>
+      <ticketsPerMonth>114</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3826,10 +3949,47 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>23/09/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="AMAGS" wave="4">
-      <clusterKey>AMAGS</clusterKey>
+    <serviceUnit name="Service Desk Süd" wave="3" clusterKey="Region Süd">
+      <locations>30</locations>
+      <users>7768</users>
+      <adminPct>8%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>2%</otherPct>
+      <ticketsPerMonth>3103</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">0</region>
+        <region name="Süd">17</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>23/09/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Wiesbaden" wave="3" clusterKey="Wiesbaden Local">
+      <locations>7</locations>
+      <users>354</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>194</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">0</region>
+        <region name="Süd">1</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>23/09/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="AMAGS" wave="4" clusterKey="AMAGS">
       <locations>26</locations>
-      <users>TBD</users>
+      <users>221</users>
       <adminPct>TBD</adminPct>
       <clinicalPct>TBD</clinicalPct>
       <otherPct>TBD</otherPct>
@@ -3846,14 +4006,32 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>16/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="CL-Berlin Brandenburg" wave="4">
-      <clusterKey>Berlin</clusterKey>
+    <serviceUnit name="Burg" wave="4" clusterKey="Burg">
+      <locations>1</locations>
+      <users>664</users>
+      <adminPct>10%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>169</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">2</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="CL-Berlin Brandenburg" wave="4" clusterKey="Berlin">
       <locations>74</locations>
       <users>7221</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <adminPct>10%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>3233</ticketsPerMonth>
       <kritis>true</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3866,14 +4044,13 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>16/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="CL-Sachsen + Kronach + MVZ" wave="4">
-      <clusterKey>Cluster Sachsen</clusterKey>
+    <serviceUnit name="CL-Sachsen + Kronach + MVZ" wave="4" clusterKey="Cluster Sachsen">
       <locations>60</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <users>6542</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>2261</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3886,14 +4063,32 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>16/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Leipzig + MVZ" wave="4">
-      <clusterKey>Leipzig</clusterKey>
+    <serviceUnit name="Köthen" wave="4" clusterKey="Köthen">
+      <locations>1</locations>
+      <users>520</users>
+      <adminPct>2%</adminPct>
+      <clinicalPct>94%</clinicalPct>
+      <otherPct>4%</otherPct>
+      <ticketsPerMonth>69</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">3</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Leipzig + MVZ" wave="4" clusterKey="Leipzig">
       <locations>24</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <users>3525</users>
+      <adminPct>10%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>998</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3906,14 +4101,51 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>16/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="MVZ CL-Sachsen-Anhalt" wave="4">
-      <clusterKey>Cluster Sachsen-Anhalt</clusterKey>
+    <serviceUnit name="Leisnig + MVZ" wave="4" clusterKey="Leisnig">
+      <locations>6</locations>
+      <users>412</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>85%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>147</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">4</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="MSH" wave="4" clusterKey="Mansfeld-Südharz">
+      <locations>4</locations>
+      <users>1396</users>
+      <adminPct>2.5%</adminPct>
+      <clinicalPct>95%</clinicalPct>
+      <otherPct>3%</otherPct>
+      <ticketsPerMonth>88</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">4</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="MVZ CL-Sachsen-Anhalt" wave="4" clusterKey="Cluster Sachsen-Anhalt">
       <locations>21</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
+      <users>102</users>
+      <adminPct>1%</adminPct>
+      <clinicalPct>99%</clinicalPct>
       <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <ticketsPerMonth>108</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -3926,14 +4158,70 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>16/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="CL-Nordsee" wave="5">
-      <clusterKey>CL-Nordsee</clusterKey>
+    <serviceUnit name="Oschersleben" wave="4" clusterKey="Oschersleben">
+      <locations>3</locations>
+      <users>376</users>
+      <adminPct>2%</adminPct>
+      <clinicalPct>96%</clinicalPct>
+      <otherPct>2%</otherPct>
+      <ticketsPerMonth>31</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">3</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Vogelsang-Gommern" wave="4" clusterKey="Vogelsang-Gommern">
+      <locations>1</locations>
+      <users>280</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>42</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">1</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Zerbst" wave="4" clusterKey="Zerbst">
+      <locations>1</locations>
+      <users>315</users>
+      <adminPct>5%</adminPct>
+      <clinicalPct>90%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>86</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">0</region>
+        <region name="Ost">1</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>16/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="CL-Nordsee" wave="5" clusterKey="CL-Nordsee">
       <locations>39</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <users>4767</users>
+      <adminPct>25%</adminPct>
+      <clinicalPct>70%</clinicalPct>
+      <otherPct>5%</otherPct>
+      <ticketsPerMonth>1049</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">26</region>
@@ -3946,15 +4234,14 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>30/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="CL-Ostsee" wave="5">
-      <clusterKey>CL-Ostsee</clusterKey>
+    <serviceUnit name="CL-Ostsee" wave="5" clusterKey="CL-Ostsee">
       <locations>35</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
-      <kritis>false</kritis>
+      <users>6846</users>
+      <adminPct>10%</adminPct>
+      <clinicalPct>80%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>1501</ticketsPerMonth>
+      <kritis>true</kritis>
       <regions>
         <region name="Nord">21</region>
         <region name="Ost">0</region>
@@ -3966,14 +4253,13 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>30/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Helmstedt" wave="5">
-      <clusterKey>Helmstedt</clusterKey>
+    <serviceUnit name="Helmstedt" wave="5" clusterKey="Helmstedt">
       <locations>2</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <users>868</users>
+      <adminPct>20%</adminPct>
+      <clinicalPct>70%</clinicalPct>
+      <otherPct>10%</otherPct>
+      <ticketsPerMonth>38</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">2</region>
@@ -3986,14 +4272,13 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>30/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="HK" wave="5">
-      <clusterKey>HK</clusterKey>
+    <serviceUnit name="HK" wave="5" clusterKey="HK">
       <locations>25</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
-      <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <users>1762</users>
+      <adminPct>98%</adminPct>
+      <clinicalPct>0%</clinicalPct>
+      <otherPct>2%</otherPct>
+      <ticketsPerMonth>1052</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">0</region>
@@ -4006,10 +4291,9 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>30/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="MVZ Nord" wave="5">
-      <clusterKey>MVZ Nord</clusterKey>
+    <serviceUnit name="MVZ Nord" wave="5" clusterKey="MVZ Nord">
       <locations>29</locations>
-      <users>TBD</users>
+      <users>205</users>
       <adminPct>TBD</adminPct>
       <clinicalPct>TBD</clinicalPct>
       <otherPct>TBD</otherPct>
@@ -4026,17 +4310,35 @@
       <waveStatus>not go-live</waveStatus>
       <goLiveDate>30/10/2026</goLiveDate>
     </serviceUnit>
-    <serviceUnit name="Nienburg" wave="5">
-      <clusterKey>Nienburg</clusterKey>
+    <serviceUnit name="Nienburg" wave="5" clusterKey="Nienburg">
       <locations>5</locations>
-      <users>TBD</users>
-      <adminPct>TBD</adminPct>
-      <clinicalPct>TBD</clinicalPct>
+      <users>940</users>
+      <adminPct>10%</adminPct>
+      <clinicalPct>90%</clinicalPct>
       <otherPct>TBD</otherPct>
-      <ticketsPerMonth>TBD</ticketsPerMonth>
+      <ticketsPerMonth>139</ticketsPerMonth>
       <kritis>false</kritis>
       <regions>
         <region name="Nord">3</region>
+        <region name="Ost">0</region>
+        <region name="Süd">0</region>
+        <region name="West">0</region>
+      </regions>
+      <notes/>
+      <goLive>false</goLive>
+      <waveStatus>not go-live</waveStatus>
+      <goLiveDate>30/10/2026</goLiveDate>
+    </serviceUnit>
+    <serviceUnit name="Uelzen" wave="5" clusterKey="Uelzen">
+      <locations>2</locations>
+      <users>1045</users>
+      <adminPct>10%</adminPct>
+      <clinicalPct>70%</clinicalPct>
+      <otherPct>20%</otherPct>
+      <ticketsPerMonth>168</ticketsPerMonth>
+      <kritis>false</kritis>
+      <regions>
+        <region name="Nord">2</region>
         <region name="Ost">0</region>
         <region name="Süd">0</region>
         <region name="West">0</region>
@@ -5827,8 +6129,29 @@
       <row area="Group source">cluster/region fallback</row>
       <row area="Routing note">If group is cluster/region fallback — confirm site-specific IT when available</row>
     </card>
+    <card name="Service Desk Süd">
+      <row area="Planning unit">Service Desk Süd</row>
+      <row area="Cluster key">Region Süd</row>
+      <row area="Wave">Wave 3 (go-live 23/09/2026)</row>
+      <row area="Locations">30</row>
+      <row area="Users">7768</row>
+      <row area="Tickets Ø/mo">3103</row>
+      <row area="KRITIS">—</row>
+      <row area="Regions">Süd:17</row>
+      <row area="Service Desk / Local IT">RS | Servicedesk</row>
+      <row area="Clinical Applications">RS | Klinische Prozesse &amp; Anwendungen</row>
+      <row area="SAP / KIS">RS | iSHMED</row>
+      <row area="Infrastructure">RS | Infrastruktur</row>
+      <row area="Field Service">Ext_DE_FSO_Incidents_SLS_Capgemini_Helios</row>
+    </card>
   </locationCards>
   <changelog>
+    <entry date="2026-08-27" version="2.9">
+      <change>Waves tab: completed service units from Waves planning FINAL spreadsheet (Waves 1–5)</change>
+      <change>Added missing planning units: Erlenbach, Hünfeld, Meiningen, Wiesbaden, Burg, Köthen, Leisnig + MVZ, MSH, Oschersleben, Vogelsang-Gommern, Zerbst, Uelzen</change>
+      <change>Filled locations / users / staff % / tickets Ø/mo / KRITIS / region counts where provided</change>
+      <change>Aligned Gotha &amp; Hildburghausen region tags to Ost per spreadsheet</change>
+    </entry>
     <entry date="2026-08-26" version="2.8">
       <change>Kassel: specialty application routing added (ApoFact, Delegate, Evident, iMedOne, 3M QSMED, Dragon Medical One / DMO)</change>
       <change>Kassel groups: Amor/Muse, Delegate, EF-IT | Klinische Anwendungen, IMEDOne, IMOne, INK DMO</change>

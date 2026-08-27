@@ -3,10 +3,10 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios",
-    "version": "2.8",
+    "version": "2.9",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
-    "updated": "2026-08-26"
+    "updated": "2026-08-27"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -916,6 +916,22 @@
       "Account": "CL-Ostsee | Service Desk",
       "FieldService": "CL-Ostsee | Service Desk",
       "ServiceDesk": "CL-Ostsee | Service Desk"
+    },
+    "Wiesbaden": {
+      "Infrastructure": "WID-IT",
+      "Clinical": "WID-IT",
+      "SAP": "WID-IT",
+      "Account": "WID-IT",
+      "FieldService": "WID-IT",
+      "ServiceDesk": "WID-IT"
+    },
+    "Service Desk Süd": {
+      "Infrastructure": "RS | Infrastruktur",
+      "Clinical": "RS | Klinische Prozesse & Anwendungen",
+      "SAP": "RS | iSHMED",
+      "Account": "RS MVZ Support",
+      "FieldService": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios",
+      "ServiceDesk": "RS | Servicedesk"
     }
   },
   "apps": {
@@ -5766,6 +5782,63 @@
           "If group is cluster/region fallback — confirm site-specific IT when available"
         ]
       ]
+    },
+    {
+      "name": "Service Desk Süd",
+      "rows": [
+        [
+          "Planning unit",
+          "Service Desk Süd"
+        ],
+        [
+          "Cluster key",
+          "Region Süd"
+        ],
+        [
+          "Wave",
+          "Wave 3 (go-live 23/09/2026)"
+        ],
+        [
+          "Locations",
+          "30"
+        ],
+        [
+          "Users",
+          "7768"
+        ],
+        [
+          "Tickets Ø/mo",
+          "3103"
+        ],
+        [
+          "KRITIS",
+          "—"
+        ],
+        [
+          "Regions",
+          "Süd:17"
+        ],
+        [
+          "Service Desk / Local IT",
+          "RS | Servicedesk"
+        ],
+        [
+          "Clinical Applications",
+          "RS | Klinische Prozesse & Anwendungen"
+        ],
+        [
+          "SAP / KIS",
+          "RS | iSHMED"
+        ],
+        [
+          "Infrastructure",
+          "RS | Infrastruktur"
+        ],
+        [
+          "Field Service",
+          "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
+        ]
+      ]
     }
   ],
   "groupDirectory": [
@@ -8612,7 +8685,7 @@
         "adminPct": "TBD",
         "clinicalPct": "TBD",
         "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "ticketsPerMonth": 2866,
         "kritis": true,
         "wave": 1,
         "regions": {
@@ -8631,10 +8704,10 @@
         "clusterKey": "Gifhorn",
         "locations": 16,
         "users": 1325,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 323,
         "kritis": false,
         "wave": 1,
         "regions": {
@@ -8653,16 +8726,16 @@
         "clusterKey": "Gotha",
         "locations": 3,
         "users": 813,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 104,
         "kritis": false,
         "wave": 1,
         "regions": {
           "Nord": 0,
-          "Ost": 0,
-          "Süd": 3,
+          "Ost": 3,
+          "Süd": 0,
           "West": 0
         },
         "notes": "",
@@ -8675,10 +8748,10 @@
         "clusterKey": "Duisburg",
         "locations": 9,
         "users": 3674,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "15%",
+        "clinicalPct": "80%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 1359,
         "kritis": true,
         "wave": 2,
         "regions": {
@@ -8687,7 +8760,7 @@
           "Süd": 0,
           "West": 9
         },
-        "notes": "Pilot",
+        "notes": "",
         "goLive": true,
         "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
@@ -8697,10 +8770,10 @@
         "clusterKey": "Herzberg",
         "locations": 3,
         "users": 739,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "2%",
+        "clinicalPct": "80%",
+        "otherPct": "1%",
+        "ticketsPerMonth": 170,
         "kritis": false,
         "wave": 2,
         "regions": {
@@ -8709,7 +8782,7 @@
           "Süd": 0,
           "West": 3
         },
-        "notes": "Pilot",
+        "notes": "",
         "goLive": true,
         "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
@@ -8719,10 +8792,10 @@
         "clusterKey": "Hildesheim",
         "locations": 4,
         "users": 2062,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
+        "adminPct": "8%",
+        "clinicalPct": "72%",
         "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "ticketsPerMonth": 271,
         "kritis": false,
         "wave": 2,
         "regions": {
@@ -8741,10 +8814,10 @@
         "clusterKey": "Kassel",
         "locations": 3,
         "users": 852,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "6%",
+        "clinicalPct": "86%",
+        "otherPct": "8%",
+        "ticketsPerMonth": 210,
         "kritis": false,
         "wave": 2,
         "regions": {
@@ -8763,10 +8836,10 @@
         "clusterKey": "Krefeld",
         "locations": 10,
         "users": 5398,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "5%",
+        "clinicalPct": "95%",
+        "otherPct": "1%",
+        "ticketsPerMonth": 2200,
         "kritis": true,
         "wave": 2,
         "regions": {
@@ -8785,10 +8858,10 @@
         "clusterKey": "Lengerich",
         "locations": 5,
         "users": 466,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
+        "adminPct": "9%",
+        "clinicalPct": "91%",
         "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "ticketsPerMonth": 22,
         "kritis": false,
         "wave": 2,
         "regions": {
@@ -8819,7 +8892,7 @@
           "Süd": 0,
           "West": 0
         },
-        "notes": "MVZ West locations primarily Region West",
+        "notes": "",
         "goLive": true,
         "waveStatus": "go-live",
         "goLiveDate": "26/08/2026"
@@ -8829,10 +8902,10 @@
         "clusterKey": "Northeim",
         "locations": 2,
         "users": 677,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 259,
         "kritis": false,
         "wave": 2,
         "regions": {
@@ -8851,10 +8924,10 @@
         "clusterKey": "Salzgitter",
         "locations": 1,
         "users": 893,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 240,
         "kritis": false,
         "wave": 2,
         "regions": {
@@ -8871,12 +8944,12 @@
       {
         "unit": "Bad Kissingen",
         "clusterKey": "Bad Kissingen",
-        "locations": "TBD",
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "locations": 2,
+        "users": 683,
+        "adminPct": "15%",
+        "clinicalPct": "77%",
+        "otherPct": "8%",
+        "ticketsPerMonth": 138,
         "kritis": false,
         "wave": 3,
         "regions": {
@@ -8893,17 +8966,17 @@
       {
         "unit": "Blankenhain",
         "clusterKey": "Blankenhain",
-        "locations": "TBD",
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "locations": 2,
+        "users": 323,
+        "adminPct": "2%",
+        "clinicalPct": "96%",
+        "otherPct": "2%",
+        "ticketsPerMonth": 37,
         "kritis": false,
         "wave": 3,
         "regions": {
           "Nord": 0,
-          "Ost": 0,
+          "Ost": 2,
           "Süd": 0,
           "West": 0
         },
@@ -8915,62 +8988,18 @@
       {
         "unit": "Bleicherode",
         "clusterKey": "Bleicherode",
-        "locations": "TBD",
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "locations": 1,
+        "users": 169,
+        "adminPct": "5%",
+        "clinicalPct": "85%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 9,
         "kritis": false,
         "wave": 3,
         "regions": {
           "Nord": 0,
-          "Ost": 0,
-          "Süd": 0,
-          "West": 0
-        },
-        "notes": "",
-        "goLive": false,
-        "waveStatus": "not go-live",
-        "goLiveDate": "23/09/2026"
-      },
-      {
-        "unit": "Erfurt (Pilot)",
-        "clusterKey": "Erfurt",
-        "locations": "TBD",
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
-        "kritis": true,
-        "wave": 3,
-        "regions": {
-          "Nord": 1,
           "Ost": 1,
-          "Süd": 6,
-          "West": 0
-        },
-        "notes": "Pilot",
-        "goLive": false,
-        "waveStatus": "not go-live",
-        "goLiveDate": "23/09/2026"
-      },
-      {
-        "unit": "Hildburghausen",
-        "clusterKey": "Hildburghausen",
-        "locations": "TBD",
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
-        "kritis": false,
-        "wave": 3,
-        "regions": {
-          "Nord": 0,
-          "Ost": 0,
-          "Süd": 6,
+          "Süd": 0,
           "West": 0
         },
         "notes": "",
@@ -8981,12 +9010,12 @@
       {
         "unit": "Cluster Wiesbaden-Taunus",
         "clusterKey": "Wiesbaden-Main-Taunus",
-        "locations": "TBD",
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "locations": 6,
+        "users": 4400,
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 500,
         "kritis": true,
         "wave": 3,
         "regions": {
@@ -9001,23 +9030,111 @@
         "goLiveDate": "23/09/2026"
       },
       {
-        "unit": "Service Desk Süd",
-        "clusterKey": "Region Süd",
-        "locations": 17,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "unit": "Erfurt (Pilot)",
+        "clusterKey": "Erfurt",
+        "locations": 19,
+        "users": 3962,
+        "adminPct": "7%",
+        "clinicalPct": "92%",
+        "otherPct": "1%",
+        "ticketsPerMonth": 956,
+        "kritis": true,
+        "wave": 3,
+        "regions": {
+          "Nord": 1,
+          "Ost": 1,
+          "Süd": 6,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "23/09/2026"
+      },
+      {
+        "unit": "Erlenbach",
+        "clusterKey": "Erlenbach",
+        "locations": 1,
+        "users": 850,
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 397,
         "kritis": false,
         "wave": 3,
         "regions": {
           "Nord": 0,
           "Ost": 0,
-          "Süd": 17,
+          "Süd": 1,
           "West": 0
         },
-        "notes": "Service Desk Süd",
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "23/09/2026"
+      },
+      {
+        "unit": "Hildburghausen",
+        "clusterKey": "Hildburghausen",
+        "locations": 6,
+        "users": 937,
+        "adminPct": "6%",
+        "clinicalPct": "94%",
+        "otherPct": "TBD",
+        "ticketsPerMonth": 315,
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 6,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "23/09/2026"
+      },
+      {
+        "unit": "Hünfeld",
+        "clusterKey": "Hünfeld",
+        "locations": 2,
+        "users": 338,
+        "adminPct": "5%",
+        "clinicalPct": "93%",
+        "otherPct": "2%",
+        "ticketsPerMonth": 31,
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 2,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "23/09/2026"
+      },
+      {
+        "unit": "Meiningen",
+        "clusterKey": "Meiningen",
+        "locations": 3,
+        "users": 1145,
+        "adminPct": "15%",
+        "clinicalPct": "80%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 285,
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 3,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
         "goLive": false,
         "waveStatus": "not go-live",
         "goLiveDate": "23/09/2026"
@@ -9026,11 +9143,11 @@
         "unit": "MVZ Süd",
         "clusterKey": "MVZ Süd",
         "locations": 62,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
+        "users": 381,
+        "adminPct": "10%",
+        "clinicalPct": "90%",
         "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "ticketsPerMonth": 114,
         "kritis": false,
         "wave": 3,
         "regions": {
@@ -9045,10 +9162,54 @@
         "goLiveDate": "23/09/2026"
       },
       {
+        "unit": "Service Desk Süd",
+        "clusterKey": "Region Süd",
+        "locations": 30,
+        "users": 7768,
+        "adminPct": "8%",
+        "clinicalPct": "90%",
+        "otherPct": "2%",
+        "ticketsPerMonth": 3103,
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 17,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "23/09/2026"
+      },
+      {
+        "unit": "Wiesbaden",
+        "clusterKey": "Wiesbaden Local",
+        "locations": 7,
+        "users": 354,
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 194,
+        "kritis": false,
+        "wave": 3,
+        "regions": {
+          "Nord": 0,
+          "Ost": 0,
+          "Süd": 1,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "23/09/2026"
+      },
+      {
         "unit": "AMAGS",
         "clusterKey": "AMAGS",
         "locations": 26,
-        "users": "TBD",
+        "users": 221,
         "adminPct": "TBD",
         "clinicalPct": "TBD",
         "otherPct": "TBD",
@@ -9067,14 +9228,36 @@
         "goLiveDate": "16/10/2026"
       },
       {
+        "unit": "Burg",
+        "clusterKey": "Burg",
+        "locations": 1,
+        "users": 664,
+        "adminPct": "10%",
+        "clinicalPct": "80%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 169,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 2,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
         "unit": "CL-Berlin Brandenburg",
         "clusterKey": "Berlin",
         "locations": 74,
         "users": 7221,
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "adminPct": "10%",
+        "clinicalPct": "80%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 3233,
         "kritis": true,
         "wave": 4,
         "regions": {
@@ -9092,11 +9275,11 @@
         "unit": "CL-Sachsen + Kronach + MVZ",
         "clusterKey": "Cluster Sachsen",
         "locations": 60,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "users": 6542,
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 2261,
         "kritis": false,
         "wave": 4,
         "regions": {
@@ -9111,14 +9294,36 @@
         "goLiveDate": "16/10/2026"
       },
       {
+        "unit": "Köthen",
+        "clusterKey": "Köthen",
+        "locations": 1,
+        "users": 520,
+        "adminPct": "2%",
+        "clinicalPct": "94%",
+        "otherPct": "4%",
+        "ticketsPerMonth": 69,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 3,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
         "unit": "Leipzig + MVZ",
         "clusterKey": "Leipzig",
         "locations": 24,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "users": 3525,
+        "adminPct": "10%",
+        "clinicalPct": "80%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 998,
         "kritis": false,
         "wave": 4,
         "regions": {
@@ -9133,14 +9338,58 @@
         "goLiveDate": "16/10/2026"
       },
       {
+        "unit": "Leisnig + MVZ",
+        "clusterKey": "Leisnig",
+        "locations": 6,
+        "users": 412,
+        "adminPct": "5%",
+        "clinicalPct": "85%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 147,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 4,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
+        "unit": "MSH",
+        "clusterKey": "Mansfeld-Südharz",
+        "locations": 4,
+        "users": 1396,
+        "adminPct": "2.5%",
+        "clinicalPct": "95%",
+        "otherPct": "3%",
+        "ticketsPerMonth": 88,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 4,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
         "unit": "MVZ CL-Sachsen-Anhalt",
         "clusterKey": "Cluster Sachsen-Anhalt",
         "locations": 21,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
+        "users": 102,
+        "adminPct": "1%",
+        "clinicalPct": "99%",
         "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "ticketsPerMonth": 108,
         "kritis": false,
         "wave": 4,
         "regions": {
@@ -9155,14 +9404,80 @@
         "goLiveDate": "16/10/2026"
       },
       {
+        "unit": "Oschersleben",
+        "clusterKey": "Oschersleben",
+        "locations": 3,
+        "users": 376,
+        "adminPct": "2%",
+        "clinicalPct": "96%",
+        "otherPct": "2%",
+        "ticketsPerMonth": 31,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 3,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
+        "unit": "Vogelsang-Gommern",
+        "clusterKey": "Vogelsang-Gommern",
+        "locations": 1,
+        "users": 280,
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 42,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 1,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
+        "unit": "Zerbst",
+        "clusterKey": "Zerbst",
+        "locations": 1,
+        "users": 315,
+        "adminPct": "5%",
+        "clinicalPct": "90%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 86,
+        "kritis": false,
+        "wave": 4,
+        "regions": {
+          "Nord": 0,
+          "Ost": 1,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "16/10/2026"
+      },
+      {
         "unit": "CL-Nordsee",
         "clusterKey": "CL-Nordsee",
         "locations": 39,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "users": 4767,
+        "adminPct": "25%",
+        "clinicalPct": "70%",
+        "otherPct": "5%",
+        "ticketsPerMonth": 1049,
         "kritis": false,
         "wave": 5,
         "regions": {
@@ -9180,12 +9495,12 @@
         "unit": "CL-Ostsee",
         "clusterKey": "CL-Ostsee",
         "locations": 35,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
-        "kritis": false,
+        "users": 6846,
+        "adminPct": "10%",
+        "clinicalPct": "80%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 1501,
+        "kritis": true,
         "wave": 5,
         "regions": {
           "Nord": 21,
@@ -9202,11 +9517,11 @@
         "unit": "Helmstedt",
         "clusterKey": "Helmstedt",
         "locations": 2,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "users": 868,
+        "adminPct": "20%",
+        "clinicalPct": "70%",
+        "otherPct": "10%",
+        "ticketsPerMonth": 38,
         "kritis": false,
         "wave": 5,
         "regions": {
@@ -9224,11 +9539,11 @@
         "unit": "HK",
         "clusterKey": "HK",
         "locations": 25,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
-        "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "users": 1762,
+        "adminPct": "98%",
+        "clinicalPct": "0%",
+        "otherPct": "2%",
+        "ticketsPerMonth": 1052,
         "kritis": false,
         "wave": 5,
         "regions": {
@@ -9246,7 +9561,7 @@
         "unit": "MVZ Nord",
         "clusterKey": "MVZ Nord",
         "locations": 29,
-        "users": "TBD",
+        "users": 205,
         "adminPct": "TBD",
         "clinicalPct": "TBD",
         "otherPct": "TBD",
@@ -9268,11 +9583,11 @@
         "unit": "Nienburg",
         "clusterKey": "Nienburg",
         "locations": 5,
-        "users": "TBD",
-        "adminPct": "TBD",
-        "clinicalPct": "TBD",
+        "users": 940,
+        "adminPct": "10%",
+        "clinicalPct": "90%",
         "otherPct": "TBD",
-        "ticketsPerMonth": "TBD",
+        "ticketsPerMonth": 139,
         "kritis": false,
         "wave": 5,
         "regions": {
@@ -9285,8 +9600,32 @@
         "goLive": false,
         "waveStatus": "not go-live",
         "goLiveDate": "30/10/2026"
+      },
+      {
+        "unit": "Uelzen",
+        "clusterKey": "Uelzen",
+        "locations": 2,
+        "users": 1045,
+        "adminPct": "10%",
+        "clinicalPct": "70%",
+        "otherPct": "20%",
+        "ticketsPerMonth": 168,
+        "kritis": false,
+        "wave": 5,
+        "regions": {
+          "Nord": 2,
+          "Ost": 0,
+          "Süd": 0,
+          "West": 0
+        },
+        "notes": "",
+        "goLive": false,
+        "waveStatus": "not go-live",
+        "goLiveDate": "30/10/2026"
       }
-    ]
+    ],
+    "source": "Waves planning FINAL spreadsheet",
+    "updated": "2026-08-27"
   },
   "clusterMeta": {
     "CL-Wuppertal": {
@@ -9331,7 +9670,7 @@
         1
       ],
       "regions": [
-        "Süd"
+        "Ost"
       ],
       "kritis": false,
       "planningUnits": [
@@ -9522,9 +9861,7 @@
         3
       ],
       "regions": [
-        "Ost",
-        "Nord",
-        "Süd"
+        "Ost"
       ],
       "kritis": false,
       "planningUnits": [
@@ -9542,9 +9879,7 @@
         3
       ],
       "regions": [
-        "Ost",
-        "Nord",
-        "Süd"
+        "Ost"
       ],
       "kritis": false,
       "planningUnits": [
@@ -9582,7 +9917,7 @@
         3
       ],
       "regions": [
-        "Süd"
+        "Ost"
       ],
       "kritis": false,
       "planningUnits": [
@@ -9743,7 +10078,7 @@
       "regions": [
         "Nord"
       ],
-      "kritis": false,
+      "kritis": true,
       "planningUnits": [
         "CL-Ostsee"
       ],
@@ -9873,13 +10208,17 @@
       ]
     },
     "Uelzen": {
-      "waves": [],
+      "waves": [
+        5
+      ],
       "regions": [
         "Nord"
       ],
       "kritis": false,
       "parentCluster": "Region Nord",
-      "planningUnits": [],
+      "planningUnits": [
+        "Uelzen"
+      ],
       "snowLocation": "Helios Klinikum Uelzen GmbH",
       "groupDescription": "Uelzen | Supportgruppe der Uelzen IT",
       "street": "Hagenskamp 34",
@@ -10129,12 +10468,17 @@
       "mapFullName": "Wiesbaden Local IT",
       "ohneCluster": false,
       "regions": [
-        "Süd",
-        "West"
+        "Süd"
       ],
-      "waves": [],
+      "waves": [
+        3
+      ],
       "groupSource": "local (existing)",
-      "mapHub": true
+      "mapHub": true,
+      "kritis": false,
+      "planningUnits": [
+        "Wiesbaden"
+      ]
     },
     "Erlenbach": {
       "medCluster": "Oberbayern",
@@ -10145,8 +10489,14 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Erlenbach"
+      ]
     },
     "München Pasing": {
       "medCluster": "Oberbayern",
@@ -10191,11 +10541,16 @@
       "mapFullName": "Klinik Meiningen",
       "ohneCluster": false,
       "regions": [
-        "Süd",
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Meiningen"
+      ]
     },
     "Hünfeld": {
       "medCluster": "Mainfranken-Südthüringen",
@@ -10204,11 +10559,16 @@
       "mapFullName": "St. Elisabeth Klinik Hünfeld",
       "ohneCluster": false,
       "regions": [
-        "Süd",
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Hünfeld"
+      ]
     },
     "Aue": {
       "medCluster": "Südsachsen-Franken",
@@ -10267,8 +10627,14 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Leisnig + MVZ"
+      ]
     },
     "Schkeuditz": {
       "medCluster": "Leipzig",
@@ -10351,9 +10717,15 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
+      "waves": [
+        4
+      ],
       "groupSource": "local (existing)",
-      "mapHub": true
+      "mapHub": true,
+      "kritis": false,
+      "planningUnits": [
+        "MSH"
+      ]
     },
     "Warburg": {
       "medCluster": "Südniedersachsen-Nordhessen",
@@ -10533,8 +10905,14 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Köthen"
+      ]
     },
     "Burg": {
       "medCluster": "Magdeburg",
@@ -10545,8 +10923,14 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Burg"
+      ]
     },
     "Vogelsang-Gommern": {
       "medCluster": "Magdeburg",
@@ -10557,8 +10941,14 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Vogelsang-Gommern"
+      ]
     },
     "Zerbst": {
       "medCluster": "Magdeburg",
@@ -10569,8 +10959,14 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Zerbst"
+      ]
     },
     "Oschersleben": {
       "medCluster": "Magdeburg",
@@ -10581,8 +10977,14 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "kritis": false,
+      "planningUnits": [
+        "Oschersleben"
+      ]
     },
     "Pforzheim": {
       "medCluster": "Nordbaden",
@@ -10690,9 +11092,142 @@
       "regions": [],
       "waves": [],
       "groupSource": "cluster/region fallback"
+    },
+    "Duisburg (Pilot)": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": true,
+      "parentCluster": "Duisburg"
+    },
+    "Herzberg (Pilot)": {
+      "waves": [
+        2
+      ],
+      "regions": [
+        "West"
+      ],
+      "kritis": false,
+      "parentCluster": "Herzberg"
+    },
+    "Cluster Wiesbaden-Taunus": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": true,
+      "parentCluster": "Wiesbaden-Main-Taunus"
+    },
+    "Erfurt (Pilot)": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Nord",
+        "Ost",
+        "Süd"
+      ],
+      "kritis": true,
+      "parentCluster": "Erfurt"
+    },
+    "Service Desk Süd": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "parentCluster": "Region Süd"
+    },
+    "Wiesbaden": {
+      "waves": [
+        3
+      ],
+      "regions": [
+        "Süd"
+      ],
+      "kritis": false,
+      "parentCluster": "Wiesbaden Local"
+    },
+    "CL-Berlin Brandenburg": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": true,
+      "parentCluster": "Berlin"
+    },
+    "CL-Sachsen + Kronach + MVZ": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost",
+        "Süd"
+      ],
+      "kritis": false,
+      "parentCluster": "Cluster Sachsen"
+    },
+    "Leipzig + MVZ": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "parentCluster": "Leipzig"
+    },
+    "Leisnig + MVZ": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "parentCluster": "Leisnig"
+    },
+    "MSH": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "parentCluster": "Mansfeld-Südharz"
+    },
+    "MVZ CL-Sachsen-Anhalt": {
+      "waves": [
+        4
+      ],
+      "regions": [
+        "Ost"
+      ],
+      "kritis": false,
+      "parentCluster": "Cluster Sachsen-Anhalt"
     }
   },
   "changelog": [
+    {
+      "date": "2026-08-27",
+      "version": "2.9",
+      "changes": [
+        "Waves tab: completed service units from Waves planning FINAL spreadsheet (Waves 1–5)",
+        "Added missing planning units: Erlenbach, Hünfeld, Meiningen, Wiesbaden, Burg, Köthen, Leisnig + MVZ, MSH, Oschersleben, Vogelsang-Gommern, Zerbst, Uelzen",
+        "Filled locations / users / staff % / tickets Ø/mo / KRITIS / region counts where provided",
+        "Aligned Gotha & Hildburghausen region tags to Ost per spreadsheet"
+      ]
+    },
     {
       "date": "2026-08-26",
       "version": "2.8",
@@ -10789,12 +11324,12 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.8",
+    "version": "2.9",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
     "author": "Krystian Karankiewicz",
-    "date": "26 August 2026"
+    "date": "27 August 2026"
   },
   "routingPolicy": {
     "title": "IMPORTANT — Wave go-live routing",

@@ -100,6 +100,7 @@ code.assignment {
 
 <nav class="nav" id="nav">
     <button type="button" data-sec="home" class="active">Start</button>
+    <button type="button" data-sec="wavesplan">Waves Planning</button>
     <button type="button" data-sec="wave2">Wave 2 Locations</button>
     <button type="button" data-sec="apps">Site Apps</button>
     <button type="button" data-sec="global">Global Helios</button>
@@ -127,6 +128,25 @@ code.assignment {
         <div class="card">
             <div class="card-header">Routing policy</div>
             <div class="card-content" id="homePolicy"></div>
+        </div>
+    </section>
+
+    <section class="section" id="wavesplan">
+        <div id="wavesPlanBanner"></div>
+        <div class="controls-card">
+            <select id="waveFilter" class="filter-select" onchange="renderAll()">
+                <option value="">All Waves</option>
+                <option value="1">Wave 1</option>
+                <option value="2">Wave 2</option>
+                <option value="3">Wave 3</option>
+                <option value="4">Wave 4</option>
+                <option value="5">Wave 5</option>
+            </select>
+            <span class="muted" id="wavesPlanMeta"></span>
+        </div>
+        <div class="card">
+            <div class="card-header">Waves planning FINAL — service units</div>
+            <div class="card-content" id="wavesPlanContent"></div>
         </div>
     </section>
 
@@ -276,6 +296,32 @@ function getWaves(root) {
     }));
 }
 
+function getPlanningUnits(root) {
+    return Array.from(root.querySelectorAll("planning > serviceUnit")).map(u => {
+        const regions = {};
+        u.querySelectorAll("regions > region").forEach(r => {
+            regions[r.getAttribute("name") || ""] = Number(r.textContent || 0);
+        });
+        return {
+            unit: u.getAttribute("name") || "",
+            wave: Number(u.getAttribute("wave") || 0),
+            clusterKey: u.getAttribute("clusterKey") || text(u, "clusterKey"),
+            locations: text(u, "locations"),
+            users: text(u, "users"),
+            adminPct: text(u, "adminPct"),
+            clinicalPct: text(u, "clinicalPct"),
+            otherPct: text(u, "otherPct"),
+            ticketsPerMonth: text(u, "ticketsPerMonth"),
+            kritis: text(u, "kritis") === "true",
+            goLive: text(u, "goLive") === "true",
+            goLiveDate: text(u, "goLiveDate"),
+            waveStatus: text(u, "waveStatus"),
+            notes: text(u, "notes"),
+            regions
+        };
+    });
+}
+
 function getWave2Locations(root) {
     return Array.from(root.querySelectorAll("wave2Locations > location")).map(loc => {
         const specials = Array.from(loc.querySelectorAll("specials > special")).map(s => ({
@@ -384,6 +430,46 @@ function renderAll() {
 
     document.getElementById("homeBanner").innerHTML = banner;
     document.getElementById("wave2Banner").innerHTML = banner;
+    const wpb = document.getElementById("wavesPlanBanner");
+    if (wpb) wpb.innerHTML = banner;
+
+    const waveFilter = ((document.getElementById("waveFilter") || {}).value || "");
+    const planning = getPlanningUnits(KBX).filter(u => {
+        if (waveFilter && String(u.wave) !== String(waveFilter)) return false;
+        return !q || qMatch(JSON.stringify(u), q);
+    });
+    const planMeta = document.getElementById("wavesPlanMeta");
+    if (planMeta) planMeta.textContent = planning.length + " service unit(s)";
+    const planHost = document.getElementById("wavesPlanContent");
+    if (planHost) {
+        planHost.innerHTML =
+            "<table><thead><tr>" +
+            "<th>Service Unit</th><th>Wave</th><th>Go-live</th><th>Date</th><th>Locations</th><th>Users</th>" +
+            "<th>Admin %</th><th>Clinical %</th><th>Other %</th><th>Tickets Ø/mo</th><th>KRITIS</th>" +
+            "<th>Nord</th><th>Ost</th><th>Süd</th><th>West</th><th>Cluster key</th>" +
+            "</tr></thead><tbody>" +
+            planning.map(u =>
+                "<tr class=\"wave-" + esc(u.wave) + "\">" +
+                "<td><strong>" + esc(u.unit) + "</strong>" + (u.notes ? '<div class="meta">' + esc(u.notes) + "</div>" : "") + "</td>" +
+                "<td>Wave " + esc(u.wave) + "</td>" +
+                "<td>" + (u.goLive ? '<span class="badge badge-golive">Go-live</span>' : '<span class="badge badge-prewave">Pre-wave</span>') + "</td>" +
+                "<td>" + esc(u.goLiveDate || "") + "</td>" +
+                "<td>" + esc(u.locations) + "</td>" +
+                "<td>" + esc(u.users) + "</td>" +
+                "<td>" + esc(u.adminPct) + "</td>" +
+                "<td>" + esc(u.clinicalPct) + "</td>" +
+                "<td>" + esc(u.otherPct) + "</td>" +
+                "<td>" + esc(u.ticketsPerMonth) + "</td>" +
+                "<td>" + (u.kritis ? '<span style="color:#b91c1c;font-weight:700;">1</span>' : "") + "</td>" +
+                "<td>" + esc(u.regions.Nord || 0) + "</td>" +
+                "<td>" + esc(u.regions.Ost || 0) + "</td>" +
+                "<td>" + esc(u.regions.Süd || 0) + "</td>" +
+                "<td>" + esc(u.regions.West || 0) + "</td>" +
+                "<td>" + esc(u.clusterKey) + "</td>" +
+                "</tr>"
+            ).join("") +
+            "</tbody></table>";
+    }
 
     document.getElementById("homeMeta").innerHTML =
         "<table><tbody>" +
