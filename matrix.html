@@ -1618,6 +1618,7 @@ function findHeliosLoc(keyOrName) {
 function scoreHeliosLoc(loc, q) {
     if (!loc || !q || q.length < 2) return 0;
     const qLow = q.toLowerCase().trim();
+    const name = (loc.name || "").toLowerCase();
     const fields = [
         loc.name || "",
         loc.label || "",
@@ -1631,9 +1632,19 @@ function scoreHeliosLoc(loc, q) {
     fields.forEach(f => {
         best = Math.max(best, scorePlaceName(f, qLow));
     });
-    // abbrev exact
+    // abbrev / matrix / service-unit exact
     if (loc.abbrev && loc.abbrev.toLowerCase() === qLow) best = Math.max(best, 98);
+    if (loc.matrixKey && loc.matrixKey.toLowerCase() === qLow) best = Math.max(best, 97);
+    if (loc.groupHub && loc.groupHub.toLowerCase() === qLow) best = Math.max(best, 94);
+    if (loc.serviceUnitKey && loc.serviceUnitKey.toLowerCase() === qLow) best = Math.max(best, 93);
     if (loc.city && loc.city.toLowerCase() === qLow) best = Math.max(best, 88);
+    // Prefer acute hospitals / clinics over training / admin / MVZ satellites for city queries
+    const isCityQuery = loc.city && loc.city.toLowerCase() === qLow;
+    const isAkut = /akut|klinikum|klinik(?!en)/i.test(loc.type || "") || /klinikum|krankenhaus/i.test(name);
+    const isSecondary = /bildungszentrum|verwaltung|facility|hausservice|reinigung|catering|fahrdienst|steril|tipp |ambulanz|mvz|zweigpraxis|filiale/i.test(name);
+    if (isCityQuery && isAkut) best += 12;
+    if (isCityQuery && isSecondary) best -= 20;
+    if ((loc.type || "").toLowerCase() === "mvz" && isCityQuery) best -= 8;
     return best;
 }
 
@@ -1723,7 +1734,19 @@ function findMatchingPlaces(q) {
 
     return Array.from(scored.entries())
         .map(([name, score]) => ({ name, score, loc: findHeliosLoc(name) }))
-        .sort((a, b) => b.score - a.score || String(a.name).localeCompare(String(b.name)))
+        .sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            const rank = (p) => {
+                const loc = p.loc;
+                if (!loc) return 1;
+                const n = (loc.name || "").toLowerCase();
+                if (/klinikum|krankenhaus/i.test(n)) return 0;
+                if ((loc.type || "").toLowerCase() === "akut") return 0;
+                if (/bildungszentrum|verwaltung|mvz/i.test(n)) return 2;
+                return 1;
+            };
+            return rank(a) - rank(b) || String(placeDisplayName(a.name)).localeCompare(String(placeDisplayName(b.name)));
+        })
         .slice(0, 12);
 }
 
