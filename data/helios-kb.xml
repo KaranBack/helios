@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<heliosKnowledgeBase version="2.10" exportedFrom="matrix.html" note="Edit this XML, then open wave2.html (via local HTTP server) to view.">
+<heliosKnowledgeBase version="2.11" exportedFrom="matrix.html" note="Edit this XML, then open wave2.html (via local HTTP server) to view.">
   <meta>
     <title>Helios Master Matrix</title>
     <document>Helios Master Matrix</document>
     <subtitle>Catch &amp; Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios</subtitle>
-    <version>2.10</version>
+    <version>2.11</version>
     <author>Krystian Karankiewicz</author>
     <status>Production Draft</status>
     <updated>2026-08-27</updated>
@@ -103,6 +103,12 @@
     <hub site="Vogelsang-Gommern">Vogelsang-Gommern</hub>
     <hub site="Zerbst">Zerbst</hub>
   </siteWaveHubs>
+  <siteGroupHubs>
+    <hub site="Attendorn">CL-Wuppertal</hub>
+    <hub site="Schwelm">CL-Wuppertal</hub>
+    <hub site="Niederberg">CL-Wuppertal</hub>
+    <hub site="Wipperfürth">CL-Wuppertal</hub>
+  </siteGroupHubs>
   <waveGoLive>
     <wave number="1">
       <goLiveDate>29/07/2026</goLiveDate>
@@ -368,16 +374,17 @@
         <waves>
           <item>1</item>
         </waves>
-        <groupSource>local (existing)</groupSource>
+        <groupSource>via CL-Wuppertal (Wave hub)</groupSource>
         <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
+        <inheritsGroupsFrom>CL-Wuppertal</inheritsGroupsFrom>
       </meta>
       <groups>
-        <group role="Infrastructure">ATT-IT</group>
-        <group role="Clinical">ATT-IT</group>
-        <group role="SAP">ATT-IT</group>
-        <group role="Account">ATT-IT</group>
-        <group role="FieldService">ATT-IT</group>
-        <group role="ServiceDesk">ATT-IT</group>
+        <group role="Infrastructure">CL-Wuppertal | Infrastruktur</group>
+        <group role="Clinical">CL-Wuppertal | Klinische Anwendungen</group>
+        <group role="SAP">CL-Wuppertal | SAP</group>
+        <group role="Account">CL-Wuppertal | Accountmanagement</group>
+        <group role="FieldService">CL-Wuppertal | Field Service</group>
+        <group role="ServiceDesk">CL-Wuppertal | Remotesupport</group>
       </groups>
     </cluster>
     <cluster name="Aue">
@@ -2131,16 +2138,17 @@
         <waves>
           <item>1</item>
         </waves>
-        <groupSource>local (existing)</groupSource>
+        <groupSource>via CL-Wuppertal (Wave hub)</groupSource>
         <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
+        <inheritsGroupsFrom>CL-Wuppertal</inheritsGroupsFrom>
       </meta>
       <groups>
-        <group role="Infrastructure">NDB-IT</group>
-        <group role="Clinical">NDB-IT</group>
-        <group role="SAP">NDB-IT</group>
-        <group role="Account">NDB-IT</group>
-        <group role="FieldService">NDB-IT</group>
-        <group role="ServiceDesk">NDB-IT</group>
+        <group role="Infrastructure">CL-Wuppertal | Infrastruktur</group>
+        <group role="Clinical">CL-Wuppertal | Klinische Anwendungen</group>
+        <group role="SAP">CL-Wuppertal | SAP</group>
+        <group role="Account">CL-Wuppertal | Accountmanagement</group>
+        <group role="FieldService">CL-Wuppertal | Field Service</group>
+        <group role="ServiceDesk">CL-Wuppertal | Remotesupport</group>
       </groups>
     </cluster>
     <cluster name="Nienburg">
@@ -2569,16 +2577,17 @@
         <waves>
           <item>1</item>
         </waves>
-        <groupSource>local (existing)</groupSource>
+        <groupSource>via CL-Wuppertal (Wave hub)</groupSource>
         <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
+        <inheritsGroupsFrom>CL-Wuppertal</inheritsGroupsFrom>
       </meta>
       <groups>
-        <group role="Infrastructure">SWE-IT</group>
-        <group role="Clinical">SWE-IT</group>
-        <group role="SAP">SWE-IT</group>
-        <group role="Account">SWE-IT</group>
-        <group role="FieldService">SWE-IT</group>
-        <group role="ServiceDesk">SWE-IT</group>
+        <group role="Infrastructure">CL-Wuppertal | Infrastruktur</group>
+        <group role="Clinical">CL-Wuppertal | Klinische Anwendungen</group>
+        <group role="SAP">CL-Wuppertal | SAP</group>
+        <group role="Account">CL-Wuppertal | Accountmanagement</group>
+        <group role="FieldService">CL-Wuppertal | Field Service</group>
+        <group role="ServiceDesk">CL-Wuppertal | Remotesupport</group>
       </groups>
     </cluster>
     <cluster name="Schwerin">
@@ -3025,16 +3034,17 @@
         <waves>
           <item>1</item>
         </waves>
-        <groupSource>local (existing)</groupSource>
+        <groupSource>via CL-Wuppertal (Wave hub)</groupSource>
         <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
+        <inheritsGroupsFrom>CL-Wuppertal</inheritsGroupsFrom>
       </meta>
       <groups>
-        <group role="Infrastructure">GM-IT</group>
-        <group role="Clinical">GM-IT</group>
-        <group role="SAP">GM-IT</group>
-        <group role="Account">GM-IT</group>
-        <group role="FieldService">GM-IT</group>
-        <group role="ServiceDesk">GM-IT</group>
+        <group role="Infrastructure">CL-Wuppertal | Infrastruktur</group>
+        <group role="Clinical">CL-Wuppertal | Klinische Anwendungen</group>
+        <group role="SAP">CL-Wuppertal | SAP</group>
+        <group role="Account">CL-Wuppertal | Accountmanagement</group>
+        <group role="FieldService">CL-Wuppertal | Field Service</group>
+        <group role="ServiceDesk">CL-Wuppertal | Remotesupport</group>
       </groups>
     </cluster>
     <cluster name="Wittingen">
@@ -4896,23 +4906,23 @@
       <clinics>
         <clinic mapId="10" name="Attendorn" matrixKey="Attendorn">
           <fullName>KH St. Barbara Attendorn</fullName>
-          <assignmentGroup>ATT-IT</assignmentGroup>
-          <groupSource>local (existing)</groupSource>
+          <assignmentGroup>CL-Wuppertal | Remotesupport</assignmentGroup>
+          <groupSource>via CL-Wuppertal (Wave hub — same groups as Wuppertal)</groupSource>
         </clinic>
         <clinic mapId="11" name="Niederberg" matrixKey="Niederberg">
           <fullName>Klinikum Niederberg</fullName>
-          <assignmentGroup>NDB-IT</assignmentGroup>
-          <groupSource>local (existing)</groupSource>
+          <assignmentGroup>CL-Wuppertal | Remotesupport</assignmentGroup>
+          <groupSource>via CL-Wuppertal (Wave hub — same groups as Wuppertal)</groupSource>
         </clinic>
         <clinic mapId="12" name="Wipperfürth" matrixKey="Wipperfürth">
           <fullName>Klinik Wipperfürth</fullName>
-          <assignmentGroup>GM-IT</assignmentGroup>
-          <groupSource>local (existing)</groupSource>
+          <assignmentGroup>CL-Wuppertal | Remotesupport</assignmentGroup>
+          <groupSource>via CL-Wuppertal (Wave hub — same groups as Wuppertal)</groupSource>
         </clinic>
         <clinic mapId="13" name="Schwelm" matrixKey="Schwelm">
           <fullName>Klinikum Schwelm</fullName>
-          <assignmentGroup>SWE-IT</assignmentGroup>
-          <groupSource>local (existing)</groupSource>
+          <assignmentGroup>CL-Wuppertal | Remotesupport</assignmentGroup>
+          <groupSource>via CL-Wuppertal (Wave hub — same groups as Wuppertal)</groupSource>
         </clinic>
         <clinic mapId="14" name="Wuppertal" matrixKey="CL-Wuppertal">
           <fullName>Klinikum Wuppertal</fullName>
@@ -5671,7 +5681,12 @@
       <row area="General IT">SU-IT</row>
     </card>
     <card name="Schwelm">
-      <row area="General IT">SWE-IT</row>
+      <row area="Service Desk">CL-Wuppertal | Remotesupport</row>
+      <row area="Account Management">CL-Wuppertal | Accountmanagement</row>
+      <row area="Infrastructure">CL-Wuppertal | Infrastruktur</row>
+      <row area="Field Service">CL-Wuppertal | Field Service</row>
+      <row area="Clinical Applications">CL-Wuppertal | Klinische Anwendungen</row>
+      <row area="SAP">CL-Wuppertal | SAP</row>
     </card>
     <card name="Lengerich">
       <row area="All / Local IT">LEN-IT</row>
@@ -5680,19 +5695,34 @@
       <row area="Note">Only LEN-IT exists locally. SAP/KIS cases → Orbis.</row>
     </card>
     <card name="Niederberg">
-      <row area="General IT">NDB-IT</row>
+      <row area="Service Desk">CL-Wuppertal | Remotesupport</row>
+      <row area="Account Management">CL-Wuppertal | Accountmanagement</row>
+      <row area="Infrastructure">CL-Wuppertal | Infrastruktur</row>
+      <row area="Field Service">CL-Wuppertal | Field Service</row>
+      <row area="Clinical Applications">CL-Wuppertal | Klinische Anwendungen</row>
+      <row area="SAP">CL-Wuppertal | SAP</row>
     </card>
     <card name="Oberhausen">
       <row area="General IT">OB-IT</row>
     </card>
     <card name="Attendorn">
-      <row area="General IT">ATT-IT</row>
+      <row area="Service Desk">CL-Wuppertal | Remotesupport</row>
+      <row area="Account Management">CL-Wuppertal | Accountmanagement</row>
+      <row area="Infrastructure">CL-Wuppertal | Infrastruktur</row>
+      <row area="Field Service">CL-Wuppertal | Field Service</row>
+      <row area="Clinical Applications">CL-Wuppertal | Klinische Anwendungen</row>
+      <row area="SAP">CL-Wuppertal | SAP</row>
     </card>
     <card name="Bonn">
       <row area="General IT">BON-IT</row>
     </card>
     <card name="Wipperfürth">
-      <row area="General IT">GM-IT</row>
+      <row area="Service Desk">CL-Wuppertal | Remotesupport</row>
+      <row area="Account Management">CL-Wuppertal | Accountmanagement</row>
+      <row area="Infrastructure">CL-Wuppertal | Infrastruktur</row>
+      <row area="Field Service">CL-Wuppertal | Field Service</row>
+      <row area="Clinical Applications">CL-Wuppertal | Klinische Anwendungen</row>
+      <row area="SAP">CL-Wuppertal | SAP</row>
     </card>
     <card name="Warburg">
       <row area="General IT">WAR-IT</row>
@@ -6363,6 +6393,12 @@
     </card>
   </locationCards>
   <changelog>
+    <entry version="2.11" date="2026-08-27">
+      <change>Start search: satellite locations under a Wave hub use the same assignment groups as the hub (e.g. Attendorn → CL-Wuppertal groups)</change>
+      <change>Bergisches Land (Attendorn, Schwelm, Niederberg, Wipperfürth) Clinical / local groups aligned to CL-Wuppertal</change>
+      <change>Added siteGroupHubs + inheritsGroupsFrom for group inheritance in Start search</change>
+    </entry>
+
     <entry date="2026-08-27" version="2.10">
       <change>Start search: locations under a Wave hub inherit that Wave go-live routing (e.g. Attendorn → CL-Wuppertal / Wave 1)</change>
       <change>Bergisches Land (Attendorn, Schwelm, Niederberg, Wipperfürth) use Wave 1 Global Helios rules like Wuppertal</change>

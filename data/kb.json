@@ -3,7 +3,7 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios",
-    "version": "2.10",
+    "version": "2.11",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
     "updated": "2026-08-27"
@@ -318,12 +318,12 @@
       "ServiceDesk": "SU-IT"
     },
     "Schwelm": {
-      "Infrastructure": "SWE-IT",
-      "Clinical": "SWE-IT",
-      "SAP": "SWE-IT",
-      "Account": "SWE-IT",
-      "FieldService": "SWE-IT",
-      "ServiceDesk": "SWE-IT"
+      "Infrastructure": "CL-Wuppertal | Infrastruktur",
+      "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+      "SAP": "CL-Wuppertal | SAP",
+      "Account": "CL-Wuppertal | Accountmanagement",
+      "FieldService": "CL-Wuppertal | Field Service",
+      "ServiceDesk": "CL-Wuppertal | Remotesupport"
     },
     "Lengerich": {
       "Infrastructure": "LEN-IT",
@@ -335,12 +335,12 @@
       "Orbis": "Orbis"
     },
     "Niederberg": {
-      "Infrastructure": "NDB-IT",
-      "Clinical": "NDB-IT",
-      "SAP": "NDB-IT",
-      "Account": "NDB-IT",
-      "FieldService": "NDB-IT",
-      "ServiceDesk": "NDB-IT"
+      "Infrastructure": "CL-Wuppertal | Infrastruktur",
+      "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+      "SAP": "CL-Wuppertal | SAP",
+      "Account": "CL-Wuppertal | Accountmanagement",
+      "FieldService": "CL-Wuppertal | Field Service",
+      "ServiceDesk": "CL-Wuppertal | Remotesupport"
     },
     "Oberhausen": {
       "Infrastructure": "OB-IT",
@@ -351,12 +351,12 @@
       "ServiceDesk": "OB-IT"
     },
     "Attendorn": {
-      "Infrastructure": "ATT-IT",
-      "Clinical": "ATT-IT",
-      "SAP": "ATT-IT",
-      "Account": "ATT-IT",
-      "FieldService": "ATT-IT",
-      "ServiceDesk": "ATT-IT"
+      "Infrastructure": "CL-Wuppertal | Infrastruktur",
+      "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+      "SAP": "CL-Wuppertal | SAP",
+      "Account": "CL-Wuppertal | Accountmanagement",
+      "FieldService": "CL-Wuppertal | Field Service",
+      "ServiceDesk": "CL-Wuppertal | Remotesupport"
     },
     "Bonn": {
       "Infrastructure": "BON-IT",
@@ -367,12 +367,12 @@
       "ServiceDesk": "BON-IT"
     },
     "Wipperfürth": {
-      "Infrastructure": "GM-IT",
-      "Clinical": "GM-IT",
-      "SAP": "GM-IT",
-      "Account": "GM-IT",
-      "FieldService": "GM-IT",
-      "ServiceDesk": "GM-IT"
+      "Infrastructure": "CL-Wuppertal | Infrastruktur",
+      "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+      "SAP": "CL-Wuppertal | SAP",
+      "Account": "CL-Wuppertal | Accountmanagement",
+      "FieldService": "CL-Wuppertal | Field Service",
+      "ServiceDesk": "CL-Wuppertal | Remotesupport"
     },
     "Warburg": {
       "Infrastructure": "WAR-IT",
@@ -3317,10 +3317,31 @@
       "name": "Schwelm",
       "rows": [
         [
-          "General IT",
-          "SWE-IT"
+          "Service Desk",
+          "CL-Wuppertal | Remotesupport"
+        ],
+        [
+          "Account Management",
+          "CL-Wuppertal | Accountmanagement"
+        ],
+        [
+          "Infrastructure",
+          "CL-Wuppertal | Infrastruktur"
+        ],
+        [
+          "Field Service",
+          "CL-Wuppertal | Field Service"
+        ],
+        [
+          "Clinical Applications",
+          "CL-Wuppertal | Klinische Anwendungen"
+        ],
+        [
+          "SAP",
+          "CL-Wuppertal | SAP"
         ]
-      ]
+      ],
+      "note": "Uses same assignment groups as CL-Wuppertal (Bergisches Land Wave hub)."
     },
     {
       "name": "Lengerich",
@@ -3347,10 +3368,31 @@
       "name": "Niederberg",
       "rows": [
         [
-          "General IT",
-          "NDB-IT"
+          "Service Desk",
+          "CL-Wuppertal | Remotesupport"
+        ],
+        [
+          "Account Management",
+          "CL-Wuppertal | Accountmanagement"
+        ],
+        [
+          "Infrastructure",
+          "CL-Wuppertal | Infrastruktur"
+        ],
+        [
+          "Field Service",
+          "CL-Wuppertal | Field Service"
+        ],
+        [
+          "Clinical Applications",
+          "CL-Wuppertal | Klinische Anwendungen"
+        ],
+        [
+          "SAP",
+          "CL-Wuppertal | SAP"
         ]
-      ]
+      ],
+      "note": "Uses same assignment groups as CL-Wuppertal (Bergisches Land Wave hub)."
     },
     {
       "name": "Oberhausen",
@@ -3365,10 +3407,31 @@
       "name": "Attendorn",
       "rows": [
         [
-          "General IT",
-          "ATT-IT"
+          "Service Desk",
+          "CL-Wuppertal | Remotesupport"
+        ],
+        [
+          "Account Management",
+          "CL-Wuppertal | Accountmanagement"
+        ],
+        [
+          "Infrastructure",
+          "CL-Wuppertal | Infrastruktur"
+        ],
+        [
+          "Field Service",
+          "CL-Wuppertal | Field Service"
+        ],
+        [
+          "Clinical Applications",
+          "CL-Wuppertal | Klinische Anwendungen"
+        ],
+        [
+          "SAP",
+          "CL-Wuppertal | SAP"
         ]
-      ]
+      ],
+      "note": "Uses same assignment groups as CL-Wuppertal (Bergisches Land Wave hub)."
     },
     {
       "name": "Bonn",
@@ -3383,10 +3446,31 @@
       "name": "Wipperfürth",
       "rows": [
         [
-          "General IT",
-          "GM-IT"
+          "Service Desk",
+          "CL-Wuppertal | Remotesupport"
+        ],
+        [
+          "Account Management",
+          "CL-Wuppertal | Accountmanagement"
+        ],
+        [
+          "Infrastructure",
+          "CL-Wuppertal | Infrastruktur"
+        ],
+        [
+          "Field Service",
+          "CL-Wuppertal | Field Service"
+        ],
+        [
+          "Clinical Applications",
+          "CL-Wuppertal | Klinische Anwendungen"
+        ],
+        [
+          "SAP",
+          "CL-Wuppertal | SAP"
         ]
-      ]
+      ],
+      "note": "Uses same assignment groups as CL-Wuppertal (Bergisches Land Wave hub)."
     },
     {
       "name": "Warburg",
@@ -10374,8 +10458,9 @@
       "waves": [
         1
       ],
-      "groupSource": "local (existing)",
-      "inheritsWaveFrom": "CL-Wuppertal"
+      "groupSource": "via CL-Wuppertal (Wave hub)",
+      "inheritsWaveFrom": "CL-Wuppertal",
+      "inheritsGroupsFrom": "CL-Wuppertal"
     },
     "Niederberg": {
       "medCluster": "Bergisches Land",
@@ -10390,8 +10475,9 @@
       "waves": [
         1
       ],
-      "groupSource": "local (existing)",
-      "inheritsWaveFrom": "CL-Wuppertal"
+      "groupSource": "via CL-Wuppertal (Wave hub)",
+      "inheritsWaveFrom": "CL-Wuppertal",
+      "inheritsGroupsFrom": "CL-Wuppertal"
     },
     "Wipperfürth": {
       "medCluster": "Bergisches Land",
@@ -10406,8 +10492,9 @@
       "waves": [
         1
       ],
-      "groupSource": "local (existing)",
-      "inheritsWaveFrom": "CL-Wuppertal"
+      "groupSource": "via CL-Wuppertal (Wave hub)",
+      "inheritsWaveFrom": "CL-Wuppertal",
+      "inheritsGroupsFrom": "CL-Wuppertal"
     },
     "Schwelm": {
       "medCluster": "Bergisches Land",
@@ -10422,8 +10509,9 @@
       "waves": [
         1
       ],
-      "groupSource": "local (existing)",
-      "inheritsWaveFrom": "CL-Wuppertal"
+      "groupSource": "via CL-Wuppertal (Wave hub)",
+      "inheritsWaveFrom": "CL-Wuppertal",
+      "inheritsGroupsFrom": "CL-Wuppertal"
     },
     "Siegburg": {
       "medCluster": "Rhein-Sieg",
@@ -11368,6 +11456,15 @@
   },
   "changelog": [
     {
+      "version": "2.11",
+      "date": "2026-08-27",
+      "changes": [
+        "Start search: satellite locations under a Wave hub use the same assignment groups as the hub (e.g. Attendorn → CL-Wuppertal groups)",
+        "Bergisches Land (Attendorn, Schwelm, Niederberg, Wipperfürth) Clinical / local groups aligned to CL-Wuppertal",
+        "Added siteGroupHubs + inheritsGroupsFrom for group inheritance in Start search"
+      ]
+    },
+    {
       "date": "2026-08-27",
       "version": "2.10",
       "changes": [
@@ -11668,36 +11765,36 @@
             "name": "Attendorn",
             "fullName": "KH St. Barbara Attendorn",
             "matrixKey": "Attendorn",
-            "localGroup": "ATT-IT",
-            "assignmentGroup": "ATT-IT",
-            "groupSource": "local (existing)"
+            "localGroup": "CL-Wuppertal | Remotesupport",
+            "assignmentGroup": "CL-Wuppertal | Remotesupport",
+            "groupSource": "via CL-Wuppertal (Wave hub — same groups as Wuppertal)"
           },
           {
             "mapId": "11",
             "name": "Niederberg",
             "fullName": "Klinikum Niederberg",
             "matrixKey": "Niederberg",
-            "localGroup": "NDB-IT",
-            "assignmentGroup": "NDB-IT",
-            "groupSource": "local (existing)"
+            "localGroup": "CL-Wuppertal | Remotesupport",
+            "assignmentGroup": "CL-Wuppertal | Remotesupport",
+            "groupSource": "via CL-Wuppertal (Wave hub — same groups as Wuppertal)"
           },
           {
             "mapId": "12",
             "name": "Wipperfürth",
             "fullName": "Klinik Wipperfürth",
             "matrixKey": "Wipperfürth",
-            "localGroup": "GM-IT",
-            "assignmentGroup": "GM-IT",
-            "groupSource": "local (existing)"
+            "localGroup": "CL-Wuppertal | Remotesupport",
+            "assignmentGroup": "CL-Wuppertal | Remotesupport",
+            "groupSource": "via CL-Wuppertal (Wave hub — same groups as Wuppertal)"
           },
           {
             "mapId": "13",
             "name": "Schwelm",
             "fullName": "Klinikum Schwelm",
             "matrixKey": "Schwelm",
-            "localGroup": "SWE-IT",
-            "assignmentGroup": "SWE-IT",
-            "groupSource": "local (existing)"
+            "localGroup": "CL-Wuppertal | Remotesupport",
+            "assignmentGroup": "CL-Wuppertal | Remotesupport",
+            "groupSource": "via CL-Wuppertal (Wave hub — same groups as Wuppertal)"
           },
           {
             "mapId": "14",
@@ -12732,5 +12829,11 @@
     "Oschersleben": "Oschersleben",
     "Vogelsang-Gommern": "Vogelsang-Gommern",
     "Zerbst": "Zerbst"
+  },
+  "siteGroupHubs": {
+    "Attendorn": "CL-Wuppertal",
+    "Schwelm": "CL-Wuppertal",
+    "Niederberg": "CL-Wuppertal",
+    "Wipperfürth": "CL-Wuppertal"
   }
 }
