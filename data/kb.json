@@ -3,7 +3,7 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios",
-    "version": "2.9",
+    "version": "2.10",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
     "updated": "2026-08-27"
@@ -9772,7 +9772,8 @@
       "mapId": "2",
       "mapFullName": "Klinikum Krefeld",
       "ohneCluster": false,
-      "groupSource": "local (existing)"
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Krefeld"
     },
     "Lengerich": {
       "waves": [
@@ -10169,7 +10170,8 @@
       "mapId": "23",
       "mapFullName": "Helios Amper-Klinikum Dachau",
       "ohneCluster": false,
-      "groupSource": "local (existing)"
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Plauen": {
       "waves": [
@@ -10192,7 +10194,8 @@
       "mapId": "30",
       "mapFullName": "Vogtland-Klinikum Plauen",
       "ohneCluster": false,
-      "groupSource": "local (existing)"
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Cluster Sachsen"
     },
     "Vogtland": {
       "waves": [
@@ -10205,7 +10208,8 @@
       "parentCluster": "Cluster Sachsen",
       "planningUnits": [
         "CL-Sachsen + Kronach + MVZ"
-      ]
+      ],
+      "inheritsWaveFrom": "Cluster Sachsen"
     },
     "Uelzen": {
       "waves": [
@@ -10246,8 +10250,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Duisburg"
     },
     "Hüls": {
       "medCluster": "Niederrhein",
@@ -10258,8 +10265,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Krefeld"
     },
     "Oberhausen": {
       "medCluster": "Niederrhein",
@@ -10270,8 +10280,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        2
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Duisburg"
     },
     "St. Johannes": {
       "medCluster": "Niederrhein",
@@ -10282,8 +10295,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Duisburg"
     },
     "Marien Duisburg": {
       "medCluster": "Niederrhein",
@@ -10294,8 +10310,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Duisburg"
     },
     "St. Anna Duisburg": {
       "medCluster": "Niederrhein",
@@ -10306,8 +10325,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Duisburg"
     },
     "Duisburg Homberg": {
       "medCluster": "Niederrhein",
@@ -10318,8 +10340,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Duisburg"
     },
     "Helios Rhein Klinik": {
       "medCluster": "Niederrhein",
@@ -10330,8 +10355,11 @@
       "regions": [
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        2
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Duisburg"
     },
     "Attendorn": {
       "medCluster": "Bergisches Land",
@@ -10343,8 +10371,11 @@
         "West",
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        1
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "CL-Wuppertal"
     },
     "Niederberg": {
       "medCluster": "Bergisches Land",
@@ -10356,8 +10387,11 @@
         "West",
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        1
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "CL-Wuppertal"
     },
     "Wipperfürth": {
       "medCluster": "Bergisches Land",
@@ -10369,8 +10403,11 @@
         "West",
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        1
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "CL-Wuppertal"
     },
     "Schwelm": {
       "medCluster": "Bergisches Land",
@@ -10382,8 +10419,11 @@
         "West",
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        1
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "CL-Wuppertal"
     },
     "Siegburg": {
       "medCluster": "Rhein-Sieg",
@@ -10419,8 +10459,11 @@
         "Süd",
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        3
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Wiesbaden-Main-Taunus"
     },
     "Aukamm Wiesbaden": {
       "medCluster": "Wiesbaden-Main-Taunus",
@@ -10432,8 +10475,11 @@
         "Süd",
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        3
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Wiesbaden-Main-Taunus"
     },
     "DKD Wiesbaden": {
       "medCluster": "Wiesbaden-Main-Taunus",
@@ -10445,8 +10491,11 @@
         "Süd",
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        3
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Wiesbaden-Main-Taunus"
     },
     "HSK Wiesbaden": {
       "medCluster": "Wiesbaden-Main-Taunus",
@@ -10458,8 +10507,11 @@
         "Süd",
         "West"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        3
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Wiesbaden-Main-Taunus"
     },
     "Wiesbaden Local": {
       "medCluster": "Wiesbaden-Main-Taunus",
@@ -10507,8 +10559,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "München Perlach": {
       "medCluster": "Oberbayern",
@@ -10519,8 +10574,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Indersdorf": {
       "medCluster": "Oberbayern",
@@ -10531,8 +10589,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Meiningen": {
       "medCluster": "Mainfranken-Südthüringen",
@@ -10579,8 +10640,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Cluster Sachsen"
     },
     "Kronach": {
       "medCluster": "Südsachsen-Franken",
@@ -10591,8 +10655,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Cluster Sachsen"
     },
     "Pirna": {
       "medCluster": "Südsachsen-Franken",
@@ -10603,8 +10670,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Cluster Sachsen"
     },
     "Freital": {
       "medCluster": "Südsachsen-Franken",
@@ -10615,8 +10685,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Cluster Sachsen"
     },
     "Leisnig": {
       "medCluster": "Leipzig",
@@ -10634,7 +10707,8 @@
       "kritis": false,
       "planningUnits": [
         "Leisnig + MVZ"
-      ]
+      ],
+      "inheritsWaveFrom": "Leisnig"
     },
     "Schkeuditz": {
       "medCluster": "Leipzig",
@@ -10645,8 +10719,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Leipzig"
     },
     "Herzzentrum Leipzig": {
       "medCluster": "Leipzig",
@@ -10657,8 +10734,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        4
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Leipzig"
     },
     "Park-Klinikum Leipzig": {
       "medCluster": "Leipzig",
@@ -10669,8 +10749,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        4
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Leipzig"
     },
     "Sangerhausen": {
       "medCluster": "Mansfeld-Südharz (MSH)",
@@ -10681,8 +10764,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        4
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Mansfeld-Südharz"
     },
     "Hettstedt": {
       "medCluster": "Mansfeld-Südharz (MSH)",
@@ -10693,8 +10779,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        4
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Mansfeld-Südharz"
     },
     "Eisleben": {
       "medCluster": "Mansfeld-Südharz (MSH)",
@@ -10705,8 +10794,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        4
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "Mansfeld-Südharz"
     },
     "Mansfeld-Südharz": {
       "medCluster": "Mansfeld-Südharz (MSH)",
@@ -10773,8 +10865,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Schwerin": {
       "medCluster": "West-Mecklenburg",
@@ -10785,8 +10880,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Cuxhaven": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10797,8 +10895,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Nordsee"
     },
     "Wesermarsch": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10809,8 +10910,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Nordsee"
     },
     "Mariahilf Hamburg": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10821,8 +10925,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "ENDO-Klinik Hamburg": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10833,8 +10940,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Kiel": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10845,8 +10955,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Bad Schwartau": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10857,8 +10970,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Schleswig": {
       "medCluster": "Nordsee / Ostsee / Hamburg",
@@ -10869,8 +10985,11 @@
       "regions": [
         "Nord"
       ],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Berlin Zehlendorf": {
       "medCluster": "Berlin-Brandenburg",
@@ -10881,8 +11000,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Berlin"
     },
     "Bad Saarow": {
       "medCluster": "Berlin-Brandenburg",
@@ -10893,8 +11015,11 @@
       "regions": [
         "Ost"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        4
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Berlin"
     },
     "Köthen": {
       "medCluster": "Magdeburg",
@@ -10912,7 +11037,8 @@
       "kritis": false,
       "planningUnits": [
         "Köthen"
-      ]
+      ],
+      "inheritsWaveFrom": "Köthen"
     },
     "Burg": {
       "medCluster": "Magdeburg",
@@ -10930,7 +11056,8 @@
       "kritis": false,
       "planningUnits": [
         "Burg"
-      ]
+      ],
+      "inheritsWaveFrom": "Burg"
     },
     "Vogelsang-Gommern": {
       "medCluster": "Magdeburg",
@@ -10948,7 +11075,8 @@
       "kritis": false,
       "planningUnits": [
         "Vogelsang-Gommern"
-      ]
+      ],
+      "inheritsWaveFrom": "Vogelsang-Gommern"
     },
     "Zerbst": {
       "medCluster": "Magdeburg",
@@ -10966,7 +11094,8 @@
       "kritis": false,
       "planningUnits": [
         "Zerbst"
-      ]
+      ],
+      "inheritsWaveFrom": "Zerbst"
     },
     "Oschersleben": {
       "medCluster": "Magdeburg",
@@ -10984,7 +11113,8 @@
       "kritis": false,
       "planningUnits": [
         "Oschersleben"
-      ]
+      ],
+      "inheritsWaveFrom": "Oschersleben"
     },
     "Pforzheim": {
       "medCluster": "Nordbaden",
@@ -11032,8 +11162,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Mülheim": {
       "medCluster": "Schwarzwald-Bodensee",
@@ -11044,8 +11177,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Überlingen": {
       "medCluster": "Schwarzwald-Bodensee",
@@ -11056,8 +11192,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Titisee": {
       "medCluster": "Schwarzwald-Bodensee",
@@ -11068,8 +11207,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Breisach": {
       "medCluster": "Schwarzwald-Bodensee",
@@ -11080,8 +11222,11 @@
       "regions": [
         "Süd"
       ],
-      "waves": [],
-      "groupSource": "local (existing)"
+      "waves": [
+        3
+      ],
+      "groupSource": "local (existing)",
+      "inheritsWaveFrom": "Region Süd"
     },
     "Stralsund": {
       "medCluster": "Ohne Cluster",
@@ -11090,8 +11235,11 @@
       "mapFullName": "Hanseklinikum Stralsund",
       "ohneCluster": true,
       "regions": [],
-      "waves": [],
-      "groupSource": "cluster/region fallback"
+      "waves": [
+        5
+      ],
+      "groupSource": "cluster/region fallback",
+      "inheritsWaveFrom": "CL-Ostsee"
     },
     "Duisburg (Pilot)": {
       "waves": [
@@ -11153,7 +11301,8 @@
         "Süd"
       ],
       "kritis": false,
-      "parentCluster": "Wiesbaden Local"
+      "parentCluster": "Wiesbaden Local",
+      "inheritsWaveFrom": "Wiesbaden Local"
     },
     "CL-Berlin Brandenburg": {
       "waves": [
@@ -11218,6 +11367,16 @@
     }
   },
   "changelog": [
+    {
+      "date": "2026-08-27",
+      "version": "2.10",
+      "changes": [
+        "Start search: locations under a Wave hub inherit that Wave go-live routing (e.g. Attendorn → CL-Wuppertal / Wave 1)",
+        "Bergisches Land (Attendorn, Schwelm, Niederberg, Wipperfürth) use Wave 1 Global Helios rules like Wuppertal",
+        "Niederrhein satellite sites inherit Wave 2 from Duisburg/Krefeld",
+        "Added medClusterWaveHubs + inheritsWaveFrom metadata for Wave inheritance"
+      ]
+    },
     {
       "date": "2026-08-27",
       "version": "2.9",
@@ -11324,7 +11483,7 @@
   ],
   "doc": {
     "document": "Helios Master Matrix",
-    "version": "2.9",
+    "version": "2.10",
     "status": "Production Draft",
     "cluster": "Helios",
     "sites": "Waves 1–5 (see Clusters)",
@@ -12505,5 +12664,73 @@
         }
       ]
     }
+  },
+  "medClusterWaveHubs": {
+    "Bergisches Land": "CL-Wuppertal",
+    "Niederrhein": "Duisburg",
+    "Wiesbaden-Main-Taunus": "Wiesbaden-Main-Taunus",
+    "Oberbayern": "Region Süd",
+    "Südsachsen-Franken": "Cluster Sachsen",
+    "Leipzig": "Leipzig",
+    "Thüringen Mitte": "Erfurt",
+    "Mansfeld-Südharz (MSH)": "Mansfeld-Südharz",
+    "Berlin-Brandenburg": "Berlin",
+    "Magdeburg": "Cluster Sachsen-Anhalt",
+    "West-Mecklenburg": "CL-Ostsee",
+    "Schwarzwald-Bodensee": "Region Süd"
+  },
+  "siteWaveHubs": {
+    "Krefeld": "Krefeld",
+    "Cuxhaven": "CL-Nordsee",
+    "Wesermarsch": "CL-Nordsee",
+    "Mariahilf Hamburg": "CL-Ostsee",
+    "ENDO-Klinik Hamburg": "CL-Ostsee",
+    "Kiel": "CL-Ostsee",
+    "Bad Schwartau": "CL-Ostsee",
+    "Schleswig": "CL-Ostsee",
+    "Leezen": "CL-Ostsee",
+    "Schwerin": "CL-Ostsee",
+    "Stralsund": "CL-Ostsee",
+    "Attendorn": "CL-Wuppertal",
+    "Niederberg": "CL-Wuppertal",
+    "Wipperfürth": "CL-Wuppertal",
+    "Schwelm": "CL-Wuppertal",
+    "Uerdingen": "Duisburg",
+    "Hüls": "Krefeld",
+    "Oberhausen": "Duisburg",
+    "St. Johannes": "Duisburg",
+    "Marien Duisburg": "Duisburg",
+    "St. Anna Duisburg": "Duisburg",
+    "Duisburg Homberg": "Duisburg",
+    "Helios Rhein Klinik": "Duisburg",
+    "Idstein": "Wiesbaden-Main-Taunus",
+    "Aukamm Wiesbaden": "Wiesbaden-Main-Taunus",
+    "DKD Wiesbaden": "Wiesbaden-Main-Taunus",
+    "HSK Wiesbaden": "Wiesbaden-Main-Taunus",
+    "Wiesbaden": "Wiesbaden Local",
+    "Dachau": "Region Süd",
+    "Indersdorf": "Region Süd",
+    "München Pasing": "Region Süd",
+    "München Perlach": "Region Süd",
+    "Aue": "Cluster Sachsen",
+    "Kronach": "Cluster Sachsen",
+    "Pirna": "Cluster Sachsen",
+    "Freital": "Cluster Sachsen",
+    "Plauen": "Cluster Sachsen",
+    "Vogtland": "Cluster Sachsen",
+    "Schkeuditz": "Leipzig",
+    "Herzzentrum Leipzig": "Leipzig",
+    "Park-Klinikum Leipzig": "Leipzig",
+    "Leisnig": "Leisnig",
+    "Sangerhausen": "Mansfeld-Südharz",
+    "Hettstedt": "Mansfeld-Südharz",
+    "Eisleben": "Mansfeld-Südharz",
+    "Berlin Zehlendorf": "Berlin",
+    "Bad Saarow": "Berlin",
+    "Köthen": "Köthen",
+    "Burg": "Burg",
+    "Oschersleben": "Oschersleben",
+    "Vogelsang-Gommern": "Vogelsang-Gommern",
+    "Zerbst": "Zerbst"
   }
 }

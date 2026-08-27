@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<heliosKnowledgeBase version="2.9" exportedFrom="matrix.html" note="Edit this XML, then open wave2.html (via local HTTP server) to view.">
+<heliosKnowledgeBase version="2.10" exportedFrom="matrix.html" note="Edit this XML, then open wave2.html (via local HTTP server) to view.">
   <meta>
     <title>Helios Master Matrix</title>
     <document>Helios Master Matrix</document>
     <subtitle>Catch &amp; Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios</subtitle>
-    <version>2.9</version>
+    <version>2.10</version>
     <author>Krystian Karankiewicz</author>
     <status>Production Draft</status>
     <updated>2026-08-27</updated>
   </meta>
   <documentInfo>
     <document>Helios Master Matrix</document>
-    <version>2.9</version>
+    <version>2.10</version>
     <status>Production Draft</status>
     <cluster>Helios</cluster>
     <sites>Waves 1–5 (see Clusters)</sites>
@@ -35,6 +35,74 @@
     <sapRule>After Wave Go-Live: SAP topics → SAP Basis</sapRule>
     <sapGroup>SAP Basis</sapGroup>
   </routingPolicy>
+  <medClusterWaveHubs>
+    <hub medCluster="Bergisches Land">CL-Wuppertal</hub>
+    <hub medCluster="Niederrhein">Duisburg</hub>
+    <hub medCluster="Wiesbaden-Main-Taunus">Wiesbaden-Main-Taunus</hub>
+    <hub medCluster="Oberbayern">Region Süd</hub>
+    <hub medCluster="Südsachsen-Franken">Cluster Sachsen</hub>
+    <hub medCluster="Leipzig">Leipzig</hub>
+    <hub medCluster="Thüringen Mitte">Erfurt</hub>
+    <hub medCluster="Mansfeld-Südharz (MSH)">Mansfeld-Südharz</hub>
+    <hub medCluster="Berlin-Brandenburg">Berlin</hub>
+    <hub medCluster="Magdeburg">Cluster Sachsen-Anhalt</hub>
+    <hub medCluster="West-Mecklenburg">CL-Ostsee</hub>
+    <hub medCluster="Schwarzwald-Bodensee">Region Süd</hub>
+  </medClusterWaveHubs>
+  <siteWaveHubs>
+    <hub site="Krefeld">Krefeld</hub>
+    <hub site="Cuxhaven">CL-Nordsee</hub>
+    <hub site="Wesermarsch">CL-Nordsee</hub>
+    <hub site="Mariahilf Hamburg">CL-Ostsee</hub>
+    <hub site="ENDO-Klinik Hamburg">CL-Ostsee</hub>
+    <hub site="Kiel">CL-Ostsee</hub>
+    <hub site="Bad Schwartau">CL-Ostsee</hub>
+    <hub site="Schleswig">CL-Ostsee</hub>
+    <hub site="Leezen">CL-Ostsee</hub>
+    <hub site="Schwerin">CL-Ostsee</hub>
+    <hub site="Stralsund">CL-Ostsee</hub>
+    <hub site="Attendorn">CL-Wuppertal</hub>
+    <hub site="Niederberg">CL-Wuppertal</hub>
+    <hub site="Wipperfürth">CL-Wuppertal</hub>
+    <hub site="Schwelm">CL-Wuppertal</hub>
+    <hub site="Uerdingen">Duisburg</hub>
+    <hub site="Hüls">Krefeld</hub>
+    <hub site="Oberhausen">Duisburg</hub>
+    <hub site="St. Johannes">Duisburg</hub>
+    <hub site="Marien Duisburg">Duisburg</hub>
+    <hub site="St. Anna Duisburg">Duisburg</hub>
+    <hub site="Duisburg Homberg">Duisburg</hub>
+    <hub site="Helios Rhein Klinik">Duisburg</hub>
+    <hub site="Idstein">Wiesbaden-Main-Taunus</hub>
+    <hub site="Aukamm Wiesbaden">Wiesbaden-Main-Taunus</hub>
+    <hub site="DKD Wiesbaden">Wiesbaden-Main-Taunus</hub>
+    <hub site="HSK Wiesbaden">Wiesbaden-Main-Taunus</hub>
+    <hub site="Wiesbaden">Wiesbaden Local</hub>
+    <hub site="Dachau">Region Süd</hub>
+    <hub site="Indersdorf">Region Süd</hub>
+    <hub site="München Pasing">Region Süd</hub>
+    <hub site="München Perlach">Region Süd</hub>
+    <hub site="Aue">Cluster Sachsen</hub>
+    <hub site="Kronach">Cluster Sachsen</hub>
+    <hub site="Pirna">Cluster Sachsen</hub>
+    <hub site="Freital">Cluster Sachsen</hub>
+    <hub site="Plauen">Cluster Sachsen</hub>
+    <hub site="Vogtland">Cluster Sachsen</hub>
+    <hub site="Schkeuditz">Leipzig</hub>
+    <hub site="Herzzentrum Leipzig">Leipzig</hub>
+    <hub site="Park-Klinikum Leipzig">Leipzig</hub>
+    <hub site="Leisnig">Leisnig</hub>
+    <hub site="Sangerhausen">Mansfeld-Südharz</hub>
+    <hub site="Hettstedt">Mansfeld-Südharz</hub>
+    <hub site="Eisleben">Mansfeld-Südharz</hub>
+    <hub site="Berlin Zehlendorf">Berlin</hub>
+    <hub site="Bad Saarow">Berlin</hub>
+    <hub site="Köthen">Köthen</hub>
+    <hub site="Burg">Burg</hub>
+    <hub site="Oschersleben">Oschersleben</hub>
+    <hub site="Vogelsang-Gommern">Vogelsang-Gommern</hub>
+    <hub site="Zerbst">Zerbst</hub>
+  </siteWaveHubs>
   <waveGoLive>
     <wave number="1">
       <goLiveDate>29/07/2026</goLiveDate>
@@ -297,8 +365,11 @@
           <item>West</item>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>1</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">ATT-IT</group>
@@ -319,8 +390,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Cluster Sachsen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">AU-IT | Infrastruktur</group>
@@ -342,8 +416,11 @@
           <item>Süd</item>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Wiesbaden-Main-Taunus</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Wiesbaden-Taunus | ServiceDesk</group>
@@ -392,8 +469,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Berlin</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CLBB-IT | Infrastruktur</group>
@@ -414,8 +494,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -464,8 +547,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Berlin</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CLBB-IT | Infrastruktur</group>
@@ -564,8 +650,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">BRE-IT</group>
@@ -594,6 +683,7 @@
         <planningUnits>
           <item>Burg</item>
         </planningUnits>
+        <inheritsWaveFrom>Burg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -793,8 +883,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Nordsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Nordsee | Service Desk</group>
@@ -816,8 +909,11 @@
           <item>Süd</item>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Wiesbaden-Main-Taunus</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Wiesbaden-Taunus | ServiceDesk</group>
@@ -849,6 +945,7 @@
         <mapFullName>Helios Amper-Klinikum Dachau</mapFullName>
         <ohneCluster>false</ohneCluster>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">DAH-IT</group>
@@ -902,8 +999,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -924,8 +1024,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -946,8 +1049,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Mansfeld-Südharz</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">MSH-IT | Servicedesk</group>
@@ -1027,8 +1133,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Cluster Sachsen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">FTL-IT | Infrastruktur</group>
@@ -1140,8 +1249,11 @@
           <item>Süd</item>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Wiesbaden-Main-Taunus</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Wiesbaden-Taunus | ServiceDesk</group>
@@ -1162,8 +1274,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -1240,8 +1355,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Leipzig</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">LEI-IT / LPZ-IT / SKZ-IT (Leipzig Med. Cluster — confirm site)</group>
@@ -1262,8 +1380,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Mansfeld-Südharz</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">MSH-IT | Servicedesk</group>
@@ -1342,8 +1463,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Krefeld</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -1393,8 +1517,11 @@
           <item>Süd</item>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Wiesbaden-Main-Taunus</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Wiesbaden-Taunus | ServiceDesk</group>
@@ -1415,8 +1542,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">IDD-IT</group>
@@ -1487,8 +1617,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -1517,6 +1650,7 @@
         <mapFullName>Klinikum Krefeld</mapFullName>
         <ohneCluster>false</ohneCluster>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Krefeld</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT | Infrastruktur</group>
@@ -1537,8 +1671,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Cluster Sachsen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -1567,6 +1704,7 @@
         <planningUnits>
           <item>Köthen</item>
         </planningUnits>
+        <inheritsWaveFrom>Köthen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -1587,8 +1725,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -1646,6 +1787,7 @@
         <planningUnits>
           <item>Leisnig + MVZ</item>
         </planningUnits>
+        <inheritsWaveFrom>Leisnig</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">LEI-IT | Infrastruktur</group>
@@ -1809,8 +1951,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -1831,8 +1976,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -1904,8 +2052,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">MUE-IT</group>
@@ -1926,8 +2077,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">MPA-IT</group>
@@ -1948,8 +2102,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">MPE-IT</group>
@@ -1971,8 +2128,11 @@
           <item>West</item>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>1</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">NDB-IT</group>
@@ -2060,8 +2220,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">OB-IT</group>
@@ -2090,6 +2253,7 @@
         <planningUnits>
           <item>Oschersleben</item>
         </planningUnits>
+        <inheritsWaveFrom>Oschersleben</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -2110,8 +2274,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Leipzig</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">LEI-IT / LPZ-IT / SKZ-IT (Leipzig Med. Cluster — confirm site)</group>
@@ -2154,8 +2321,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Cluster Sachsen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">PIR-IT | Infrastruktur</group>
@@ -2190,6 +2360,7 @@
         <mapFullName>Vogtland-Klinikum Plauen</mapFullName>
         <ohneCluster>false</ohneCluster>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Cluster Sachsen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="ServiceDesk">PL-IT | Mgt</group>
@@ -2244,8 +2415,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">ROT-IT</group>
@@ -2305,8 +2479,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Mansfeld-Südharz</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">MSH-IT | Servicedesk</group>
@@ -2327,8 +2504,11 @@
         <regions>
           <item>Ost</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>4</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Leipzig</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">SKZ-IT | Infrastruktur</group>
@@ -2350,8 +2530,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -2383,8 +2566,11 @@
           <item>West</item>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>1</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">SWE-IT</group>
@@ -2405,8 +2591,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -2469,8 +2658,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -2491,8 +2683,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -2511,8 +2706,11 @@
         <mapFullName>Hanseklinikum Stralsund</mapFullName>
         <ohneCluster>true</ohneCluster>
         <regions/>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Ostsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Ostsee | Service Desk</group>
@@ -2553,8 +2751,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TIT-IT</group>
@@ -2615,8 +2816,11 @@
         <regions>
           <item>West</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>2</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>Duisburg</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">KR-IT / DU-IT / OB-IT (Niederrhein Med. Cluster — confirm site)</group>
@@ -2645,6 +2849,7 @@
         <planningUnits>
           <item>Vogelsang-Gommern</item>
         </planningUnits>
+        <inheritsWaveFrom>Vogelsang-Gommern</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -2668,6 +2873,7 @@
         <planningUnits>
           <item>CL-Sachsen + Kronach + MVZ</item>
         </planningUnits>
+        <inheritsWaveFrom>Cluster Sachsen</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">PL-IT | Infrastruktur</group>
@@ -2711,8 +2917,11 @@
         <regions>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>5</item>
+        </waves>
         <groupSource>cluster/region fallback</groupSource>
+        <inheritsWaveFrom>CL-Nordsee</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">CL-Nordsee | Service Desk</group>
@@ -2733,6 +2942,7 @@
         </regions>
         <kritis>false</kritis>
         <parentCluster>Wiesbaden Local</parentCluster>
+        <inheritsWaveFrom>Wiesbaden Local</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">WID-IT</group>
@@ -2812,8 +3022,11 @@
           <item>West</item>
           <item>Nord</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>1</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>CL-Wuppertal</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">GM-IT</group>
@@ -2864,6 +3077,7 @@
         <planningUnits>
           <item>Zerbst</item>
         </planningUnits>
+        <inheritsWaveFrom>Zerbst</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">TBD</group>
@@ -2884,8 +3098,11 @@
         <regions>
           <item>Süd</item>
         </regions>
-        <waves/>
+        <waves>
+          <item>3</item>
+        </waves>
         <groupSource>local (existing)</groupSource>
+        <inheritsWaveFrom>Region Süd</inheritsWaveFrom>
       </meta>
       <groups>
         <group role="Infrastructure">UEB-IT</group>
@@ -6146,6 +6363,12 @@
     </card>
   </locationCards>
   <changelog>
+    <entry date="2026-08-27" version="2.10">
+      <change>Start search: locations under a Wave hub inherit that Wave go-live routing (e.g. Attendorn → CL-Wuppertal / Wave 1)</change>
+      <change>Bergisches Land (Attendorn, Schwelm, Niederberg, Wipperfürth) use Wave 1 Global Helios rules like Wuppertal</change>
+      <change>Niederrhein satellite sites inherit Wave 2 from Duisburg/Krefeld</change>
+      <change>Added medClusterWaveHubs + inheritsWaveFrom metadata for Wave inheritance</change>
+    </entry>
     <entry date="2026-08-27" version="2.9">
       <change>Waves tab: completed service units from Waves planning FINAL spreadsheet (Waves 1–5)</change>
       <change>Added missing planning units: Erlenbach, Hünfeld, Meiningen, Wiesbaden, Burg, Köthen, Leisnig + MVZ, MSH, Oschersleben, Vogelsang-Gommern, Zerbst, Uelzen</change>
