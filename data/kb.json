@@ -3,10 +3,10 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios",
-    "version": "2.12",
+    "version": "2.13",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
-    "updated": "2026-08-27"
+    "updated": "2026-09-03"
   },
   "clusters": {
     "CL-Wuppertal": {
@@ -8399,6 +8399,11 @@
         "fieldService": "KS-IT",
         "specials": [
           {
+            "topic": "CGM MUSE",
+            "group": "Amor/Muse",
+            "notes": "Software für Stations- und Kliniklogistik im Krankenhausumfeld. Sie organisiert und dokumentiert Material- und Arzneimittelprozesse"
+          },
+          {
             "topic": "ApoFact",
             "group": "Amor/Muse",
             "notes": "Taxierungs- und Abrechnungssoftware für Krankenhausapotheken"
@@ -8406,12 +8411,12 @@
           {
             "topic": "Delegate",
             "group": "Delegate",
-            "notes": "Essensversorgung / Unterstützung mobile Stationsbestellungen"
+            "notes": "Essensversorgung/ Unterstützung mobile Stationsbestellungen"
           },
           {
             "topic": "Evident",
             "group": "EF-IT | Klinische Anwendungen",
-            "notes": "Modulare Praxis- und Verwaltungssoftware für Zahnärzte, MKG und Kieferorthopäden (EVIDENT GmbH) — Patientenverwaltung, Abrechnung, Terminplanung, Dokumentation; optional KI, Online-Termine, TI-Schnittstellen."
+            "notes": "Softwarelösung für Zahnärzte, Oralchirurgen und Kieferorthopäden"
           },
           {
             "topic": "iMedOne",
@@ -8421,16 +8426,171 @@
           {
             "topic": "3M QSMED",
             "group": "IMOne",
-            "notes": "Qualitätssicherung und Qualitätsmanagement in der Medizin — QS-Bögen, strukturierte Dokumentation und Auswertung medizinischer Daten."
+            "notes": "QSMED unterstützt die Qualitätssicherung und das Qualitätsmanagement in der Medizin durch strukturierte Dokumentation"
           },
           {
             "topic": "Dragon Medical One (DMO)",
             "group": "INK DMO",
-            "notes": "Nuance Dragon Medical One — cloudbasierte, KI-gestützte medizinische Spracherkennung / Diktat für Dokumentation in KIS/PVS."
+            "notes": "cloudbasierte, KI-gestützte medizinische Spracherkennungs- und Diktatsoftware"
+          },
+          {
+            "topic": "Hybase",
+            "group": "KS-IT",
+            "notes": "Krankenhaushygiene-Software"
+          },
+          {
+            "topic": "OpenScape xpressions",
+            "group": "KS-IT",
+            "notes": "Anrufbeantworter System"
+          },
+          {
+            "topic": "eisTIK.NET",
+            "group": "KS-IT",
+            "notes": "Software zur Bearbeitung von MDK-Anfragen"
+          },
+          {
+            "topic": "Allplan CAD",
+            "group": "KS-IT",
+            "notes": "CAD-Lösung für Gebäudetechnik und Facility Management"
+          },
+          {
+            "topic": "Sidexis",
+            "group": "EF-IT | Klinische Anwendungen",
+            "notes": "Bildgebung in MVZ, OPG"
+          },
+          {
+            "topic": "Mitel Concierge",
+            "group": "KS-IT",
+            "notes": "Callcenter Software"
+          },
+          {
+            "topic": "Datev",
+            "group": "KS-IT",
+            "notes": "Digitale Steuererklärung"
+          },
+          {
+            "topic": "DAKS",
+            "group": "KS-IT",
+            "notes": "Alarmierungs- und Kommunikationsserver"
+          },
+          {
+            "topic": "DoseM",
+            "group": "KS-IT",
+            "notes": "Dosiserfassung radiologischer Maßnahmen"
+          },
+          {
+            "topic": "E-ConsentPro",
+            "group": "KS-IT",
+            "notes": "Software für digitale Patientenaufklärung und Einwilligungsdokumentation (Aufklärungsbögen)"
+          },
+          {
+            "topic": "instacount® PLUS",
+            "group": "KS-IT",
+            "notes": "Softwarelösung für das Instrumenten- und Sterilgutmanagement in Krankenhäusern"
+          },
+          {
+            "topic": "JiveX",
+            "group": "KS-IT",
+            "notes": "Medizinische Daten- und Bildmanagement-Software (PACS)"
+          },
+          {
+            "topic": "MKIS",
+            "group": "KS-IT",
+            "notes": "KIS/KAS Altsystem"
+          },
+          {
+            "topic": "MediCAD",
+            "group": "KS-IT",
+            "notes": "Medizinische Planungs- und Analyse-Software für orthopädische Eingriffe"
+          },
+          {
+            "topic": "Medilog Darwin v2",
+            "group": "KS-IT",
+            "notes": "Auswertung von Langzeit-EKG und Blutdruckmessungen"
+          },
+          {
+            "topic": "Canfield Mirror",
+            "group": "KS-IT",
+            "notes": "Bilddatenbank"
+          },
+          {
+            "topic": "MetaVision",
+            "group": "KS-IT",
+            "notes": "Klinisches Informations- und Patientendaten-Management-System (CIS/PDMS) für Intensivmedizin"
+          },
+          {
+            "topic": "Pegasos",
+            "group": "KS-IT",
+            "notes": "Multimediales Langzeitarchiv"
+          },
+          {
+            "topic": "PalliDoc",
+            "group": "KS-IT",
+            "notes": "Software zur Unterstützung und Koordination der Palliativversorgung"
+          },
+          {
+            "topic": "IRIS Print / -View",
+            "group": "KS-IT",
+            "notes": "Patientenkurvensicherung Orbis. Webbasierte Anwendung (Teil des iris-KIS-Ausfallsystems)"
+          },
+          {
+            "topic": "NIDA",
+            "group": "KS-IT",
+            "notes": "Vernetzung mit dem Rettungsdienst / Voranmeldung"
+          },
+          {
+            "topic": "QlikView",
+            "group": "KS-IT",
+            "notes": "Business-Intelligence-Tool zur interaktiven Datenanalyse"
+          },
+          {
+            "topic": "SimonVoss",
+            "group": "KS-IT",
+            "notes": "Schließanlage"
+          },
+          {
+            "topic": "Neurowerk",
+            "group": "KS-IT",
+            "notes": "Software für Aufzeichnung und Auswertung von EEGs"
+          },
+          {
+            "topic": "Sonowin",
+            "group": "KS-IT",
+            "notes": "Sonographie Software"
+          },
+          {
+            "topic": "Telepaxx",
+            "group": "KS-IT",
+            "notes": "System für die Langzeitarchivierung von bildgebenden Daten"
+          },
+          {
+            "topic": "Kirsch",
+            "group": "KS-IT",
+            "notes": "Temperaturüberwachung medizinischer Kühlschränke"
+          },
+          {
+            "topic": "ZENZY",
+            "group": "KS-IT",
+            "notes": "Programm für die Organisation der Zytostatikaherstellung in Apotheken"
+          },
+          {
+            "topic": "Timeoffice",
+            "group": "Personalabteilung",
+            "notes": "Dienstplanung"
+          },
+          {
+            "topic": "ORBIS",
+            "group": "KS-IT",
+            "notes": "KIS"
+          },
+          {
+            "topic": "ORBIS (KIS Useranlagen)",
+            "group": "ORBIS",
+            "notes": "KIS Useranlagen"
           }
         ],
         "topics": [],
-        "notes": "Specialty clinical apps have dedicated groups (see specials). General Clinical otherwise KS-IT. Go-live: Global Helios for general; SAP → SAP Basis; Clinical specialty as listed.",
+        "notes": "Specialty clinical apps from Kassel matrix (see specials). Go-live: Global Helios for general; SAP → SAP Basis; Clinical specialty as listed.",
         "sapGoLive": "SAP Basis"
       },
       {
@@ -11455,6 +11615,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "2.13",
+      "date": "2026-09-03",
+      "changes": [
+        "Kassel: full specialty software matrix update (Zuweisungsgruppe + Kritikalität) for Start / Application Base",
+        "Mansfeld-Südharz (MSH): specialty software matrix added (MSH-IT | Servicedesk + Amor/Muse, Delegate, CLBB-IT KIS)",
+        "MSH sites Sangerhausen / Hettstedt / Eisleben inherit MSH siteApps routing",
+        "Apps without confirmed group kept as TBD (Basis, MedlinQ, data4doc, Pegasos MSH)"
+      ]
+    },
     {
       "version": "2.12",
       "date": "2026-08-27",
@@ -19627,44 +19797,471 @@
   },
   "siteApps": {
     "Kassel": {
-      "source": "Kassel specialty application routing",
-      "note": "Clinical / specialty apps for Kassel — use these groups (not generic KS-IT). Evident routes to EF-IT | Klinische Anwendungen as provided.",
+      "source": "Kassel specialty application matrix (update)",
+      "note": "Clinical / specialty apps for Kassel. Use listed Zuweisungsgruppe (not only generic KS-IT). Empty/TBD groups left pending confirmation.",
+      "sites": [
+        "Kassel"
+      ],
       "apps": [
+        {
+          "application": "CGM MUSE",
+          "description": "Software für Stations- und Kliniklogistik im Krankenhausumfeld. Sie organisiert und dokumentiert Material- und Arzneimittelprozesse",
+          "criticality": "Hoch",
+          "group": "Amor/Muse",
+          "category": "Clinical Application"
+        },
         {
           "application": "ApoFact",
           "description": "Taxierungs- und Abrechnungssoftware für Krankenhausapotheken",
+          "criticality": "Hoch",
           "group": "Amor/Muse",
           "category": "Clinical Application"
         },
         {
           "application": "Delegate",
-          "description": "Essensversorgung / Unterstützung mobile Stationsbestellungen",
+          "description": "Essensversorgung/ Unterstützung mobile Stationsbestellungen",
+          "criticality": "Hoch",
           "group": "Delegate",
           "category": "Clinical Application"
         },
         {
           "application": "Evident",
-          "description": "Modulare Praxis- und Verwaltungssoftware für Zahnärzte, MKG und Kieferorthopäden (EVIDENT GmbH) — Patientenverwaltung, Abrechnung, Terminplanung, Dokumentation; optional KI, Online-Termine, TI-Schnittstellen.",
+          "description": "Softwarelösung für Zahnärzte, Oralchirurgen und Kieferorthopäden",
+          "criticality": "Hoch",
           "group": "EF-IT | Klinische Anwendungen",
           "category": "Clinical Application"
         },
         {
           "application": "iMedOne",
           "description": "KIS",
+          "criticality": "Hoch",
           "group": "IMEDOne",
           "category": "Clinical Application"
         },
         {
           "application": "3M QSMED",
-          "description": "Qualitätssicherung und Qualitätsmanagement in der Medizin — QS-Bögen, strukturierte Dokumentation und Auswertung medizinischer Daten.",
+          "description": "QSMED unterstützt die Qualitätssicherung und das Qualitätsmanagement in der Medizin durch strukturierte Dokumentation",
+          "criticality": "Niedrig",
           "group": "IMOne",
           "category": "Clinical Application"
         },
         {
           "application": "Dragon Medical One (DMO)",
-          "description": "Nuance Dragon Medical One — cloudbasierte, KI-gestützte medizinische Spracherkennung / Diktat für Dokumentation in KIS/PVS.",
+          "description": "cloudbasierte, KI-gestützte medizinische Spracherkennungs- und Diktatsoftware",
+          "criticality": "Mittel",
           "group": "INK DMO",
           "category": "Clinical Application"
+        },
+        {
+          "application": "Hybase",
+          "description": "Krankenhaushygiene-Software",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "OpenScape xpressions",
+          "description": "Anrufbeantworter System",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "eisTIK.NET",
+          "description": "Software zur Bearbeitung von MDK-Anfragen",
+          "criticality": "Niedrig",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Allplan CAD",
+          "description": "CAD-Lösung für Gebäudetechnik und Facility Management",
+          "criticality": "Niedrig",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Sidexis",
+          "description": "Bildgebung in MVZ, OPG",
+          "criticality": "Hoch",
+          "group": "EF-IT | Klinische Anwendungen",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Mitel Concierge",
+          "description": "Callcenter Software",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Datev",
+          "description": "Digitale Steuererklärung",
+          "criticality": "Niedrig",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "DAKS",
+          "description": "Alarmierungs- und Kommunikationsserver",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "DoseM",
+          "description": "Dosiserfassung radiologischer Maßnahmen",
+          "criticality": "Niedrig",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "E-ConsentPro",
+          "description": "Software für digitale Patientenaufklärung und Einwilligungsdokumentation (Aufklärungsbögen)",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "instacount® PLUS",
+          "description": "Softwarelösung für das Instrumenten- und Sterilgutmanagement in Krankenhäusern",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "JiveX",
+          "description": "Medizinische Daten- und Bildmanagement-Software (PACS)",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MKIS",
+          "description": "KIS/KAS Altsystem",
+          "criticality": "Niedrig",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MediCAD",
+          "description": "Medizinische Planungs- und Analyse-Software für orthopädische Eingriffe",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Medilog Darwin v2",
+          "description": "Auswertung von Langzeit-EKG und Blutdruckmessungen",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Canfield Mirror",
+          "description": "Bilddatenbank",
+          "criticality": "Niedrig",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MetaVision",
+          "description": "Klinisches Informations- und Patientendaten-Management-System (CIS/PDMS) für Intensivmedizin",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Pegasos",
+          "description": "Multimediales Langzeitarchiv",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "PalliDoc",
+          "description": "Software zur Unterstützung und Koordination der Palliativversorgung",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "IRIS Print / -View",
+          "description": "Patientenkurvensicherung Orbis. Webbasierte Anwendung (Teil des iris-KIS-Ausfallsystems)",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "NIDA",
+          "description": "Vernetzung mit dem Rettungsdienst / Voranmeldung",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "QlikView",
+          "description": "Business-Intelligence-Tool zur interaktiven Datenanalyse",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "SimonVoss",
+          "description": "Schließanlage",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Neurowerk",
+          "description": "Software für Aufzeichnung und Auswertung von EEGs",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Sonowin",
+          "description": "Sonographie Software",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Telepaxx",
+          "description": "System für die Langzeitarchivierung von bildgebenden Daten",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Kirsch",
+          "description": "Temperaturüberwachung medizinischer Kühlschränke",
+          "criticality": "Mittel",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "ZENZY",
+          "description": "Programm für die Organisation der Zytostatikaherstellung in Apotheken",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Timeoffice",
+          "description": "Dienstplanung",
+          "criticality": "Mittel",
+          "group": "Personalabteilung",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Basis",
+          "description": "Software Betriebsarzt (AMAGS)",
+          "criticality": "Niedrig",
+          "group": "TBD",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MedlinQ",
+          "description": "Anästhesieinformationsmanagementsystem (AIMS)",
+          "criticality": "Hoch",
+          "group": "TBD",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "data4doc",
+          "description": "Rezeptsoftware",
+          "criticality": "Mittel",
+          "group": "TBD",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "ORBIS",
+          "description": "KIS",
+          "criticality": "Hoch",
+          "group": "KS-IT",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "ORBIS (KIS Useranlagen)",
+          "description": "KIS Useranlagen",
+          "criticality": "Hoch",
+          "group": "ORBIS",
+          "category": "Clinical Application"
+        }
+      ]
+    },
+    "Mansfeld-Südharz": {
+      "source": "MSH specialty application matrix",
+      "note": "Clinical / specialty apps for Mansfeld-Südharz (MSH) and sites Sangerhausen, Hettstedt, Eisleben. Pegasos group blank in source → TBD.",
+      "sites": [
+        "Mansfeld-Südharz",
+        "Sangerhausen",
+        "Hettstedt",
+        "Eisleben"
+      ],
+      "apps": [
+        {
+          "application": "CGM MUSE",
+          "description": "Software für Stations- und Kliniklogistik im Krankenhausumfeld. Sie organisiert und dokumentiert Material- und Arzneimittelprozesse",
+          "criticality": "Mittel",
+          "group": "Amor/Muse",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "ApoFact",
+          "description": "Taxierungs- und Abrechnungssoftware für Krankenhausapotheken",
+          "criticality": "Hoch",
+          "group": "Amor/Muse",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Delegate",
+          "description": "Essensversorgung/ Unterstützung mobile Stationsbestellungen",
+          "criticality": "Hoch",
+          "group": "Delegate",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "3M QSMED",
+          "description": "QSMED unterstützt die Qualitätssicherung und das Qualitätsmanagement in der Medizin durch strukturierte Dokumentation",
+          "criticality": "Niedrig",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Dragon Medical One (DMO)",
+          "description": "cloudbasierte, KI-gestützte medizinische Spracherkennungs- und Diktatsoftware",
+          "criticality": "Mittel",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "OpenScape xpressions",
+          "description": "Anrufbeantworter System",
+          "criticality": "Mittel",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "DoseM",
+          "description": "Dosiserfassung radiologischer Maßnahmen",
+          "criticality": "Niedrig",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "E-ConsentPro",
+          "description": "Software für digitale Patientenaufklärung und Einwilligungsdokumentation (Aufklärungsbögen)",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "instacount® PLUS",
+          "description": "Softwarelösung für das Instrumenten- und Sterilgutmanagement in Krankenhäusern",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "JiveX",
+          "description": "Medizinische Daten- und Bildmanagement-Software (PACS)",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MKIS",
+          "description": "KIS/KAS Altsystem",
+          "criticality": "Niedrig",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MediCAD",
+          "description": "Medizinische Planungs- und Analyse-Software für orthopädische Eingriffe",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "MetaVision",
+          "description": "Klinisches Informations- und Patientendaten-Management-System (CIS/PDMS) für Intensivmedizin",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Pegasos",
+          "description": "Multimediales Langzeitarchiv",
+          "criticality": "Hoch",
+          "group": "TBD",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "IRIS Print / -View",
+          "description": "Patientenkurvensicherung Orbis. Webbasierte Anwendung (Teil des iris-KIS-Ausfallsystems)",
+          "criticality": "Mittel",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "QlikView",
+          "description": "Business-Intelligence-Tool zur interaktiven Datenanalyse",
+          "criticality": "Mittel",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Neurowerk",
+          "description": "Software für Aufzeichnung und Auswertung von EEGs",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Sonowin",
+          "description": "Sonographie Software",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Telepaxx",
+          "description": "System für die Langzeitarchivierung von bildgebenden Daten",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Kirsch",
+          "description": "Temperaturüberwachung medizinischer Kühlschränke",
+          "criticality": "Mittel",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "ZENZY",
+          "description": "Programm für die Organisation der Zytostatikaherstellung in Apotheken",
+          "criticality": "Hoch",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "Tubomed",
+          "description": "Ambulanzsystem",
+          "criticality": "Mittel",
+          "group": "MSH-IT | Servicedesk",
+          "category": "Clinical Application"
+        },
+        {
+          "application": "KIS/KAS SAP P28 Einrichtung 72",
+          "description": "KIS/KAS System P28 Mandant 100 Einrichtung 72",
+          "criticality": "Hoch",
+          "group": "CLBB-IT | KIS Support; CLBB-IT | KIS Beratung",
+          "category": "SAP / KIS"
         }
       ]
     }
