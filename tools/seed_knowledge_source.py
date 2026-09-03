@@ -142,18 +142,168 @@ prompt = {
 }
 
 ticket_template = [
-    "User details",
-    "Phone number",
-    "Location",
-    "Issue description",
-    "Start date of the issue",
-    "Error message",
-    "Observation during initial investigation",
-    "Troubleshooting steps taken",
-    "Hostname",
-    "Windows version",
-    "Availability",
+    {"field": "User details", "detail": "Full Name, User ID, Department"},
+    {"field": "Phone number", "detail": "Contact number"},
+    {"field": "Location", "detail": "Site, Building, Country"},
+    {"field": "Issue description", "detail": "Detailed description of the issue"},
+    {"field": "Start date of the issue", "detail": "When did the issue begin?"},
+    {"field": "Error message", "detail": "Exact error message if available"},
+    {"field": "Observation during initial investigation", "detail": "", "default": "N/A"},
+    {"field": "Troubleshooting steps taken", "detail": "List all actions already performed"},
+    {"field": "Hostname", "detail": "", "default": "Internal"},
+    {"field": "Windows version", "detail": "", "default": "Windows 11 24H2"},
+    {"field": "Availability", "detail": "State user availability for further troubleshooting"},
 ]
+
+service_desk_kb = {
+    "purpose": "Assist Service Desk Agents, Major Incident Managers and IT Support Teams in resolving "
+               "incidents, routing requests and following operational procedures.",
+    "prioritization": [
+        {"level": "Priority 1", "name": "Critical",
+         "conditions": ["Complete service outage", "Multiple users affected", "Business-critical service unavailable"],
+         "action": ["Immediate escalation", "Major Incident process"]},
+        {"level": "Priority 2", "name": "High",
+         "conditions": ["Important service degraded", "Workaround unavailable"],
+         "action": ["Immediate assignment to support team"]},
+        {"level": "Priority 3", "name": "Medium",
+         "conditions": ["Limited business impact", "Workaround available"],
+         "action": ["Standard support process"]},
+        {"level": "Priority 4", "name": "Low",
+         "conditions": ["Information request", "Cosmetic issue"],
+         "action": ["Schedule within SLA"]},
+    ],
+    "methodology": [
+        {"step": "Step 1", "title": "Verify", "items": ["User identity", "Affected application", "Scope of impact"]},
+        {"step": "Step 2", "title": "Check", "items": ["Service health", "Monitoring alerts", "Existing incidents"]},
+        {"step": "Step 3", "title": "Validate", "items": ["Network connectivity", "User permissions", "Device status"]},
+        {"step": "Step 4", "title": "Review", "items": ["Recent changes", "Planned maintenance", "Known errors"]},
+        {"step": "Step 5", "title": "Escalate when",
+         "items": ["Root cause unknown", "Administrative permissions required", "Infrastructure modification needed"]},
+    ],
+    "escalationRules": [
+        {"target": "Local IT", "issues": ["Hardware", "Printer problems", "Local network", "Workstations"]},
+        {"target": "Application Support",
+         "issues": ["Application errors", "Performance degradation", "Database access", "Configuration problems"]},
+        {"target": "Infrastructure Team", "issues": ["Servers", "Active Directory", "Storage", "Virtualization"]},
+        {"target": "Security Team",
+         "issues": ["Malware", "Suspicious emails", "Unauthorized access", "Data leakage risk"]},
+    ],
+    "communication": [
+        {"stage": "Initial contact", "items": ["Confirmation of issue", "Incident number", "Expected next action"]},
+        {"stage": "Progress update", "items": ["Current status", "Work completed", "Next planned step"]},
+        {"stage": "Resolution message", "items": ["Root cause", "Resolution", "Confirmation request"]},
+    ],
+    "majorIncident": {
+        "identification": ["Large user impact", "Multiple locations affected", "Critical business services unavailable"],
+        "actions": ["Create Major Incident", "Notify stakeholders", "Engage support teams", "Start bridge call",
+                    "Provide regular updates", "Document timeline", "Complete post-incident review"],
+    },
+    "adProcedures": [
+        {"topic": "Password Reset", "verify": ["Full name", "Employee ID", "Manager verification if necessary"]},
+        {"topic": "Account Unlock", "verify": ["Reason for lockout", "Recent password changes", "Failed login attempts"]},
+    ],
+    "remoteSupport": {
+        "before": ["User approval received", "Device confirmed", "Session logging enabled"],
+        "verify": ["Network", "Applications", "Security alerts"],
+        "document": ["Actions performed", "Results", "Follow-up requirements"],
+    },
+    "bestPractices": [
+        "Always collect complete diagnostic information.",
+        "Avoid unnecessary reassignments.",
+        "Document every troubleshooting step.",
+        "Verify resolution with the user.",
+        "Use knowledge articles whenever available.",
+        "Follow SLA requirements.",
+        "Escalate with complete documentation.",
+    ],
+    "routingMatrixStructure": [
+        {"field": "Location", "detail": "Site name"},
+        {"field": "Assignment Group", "detail": "Responsible support team"},
+        {"field": "Service Scope", "detail": "Supported services"},
+        {"field": "Escalation Path", "detail": "Primary and secondary support groups"},
+        {"field": "Notes", "detail": "Special handling instructions"},
+    ],
+}
+
+templates = [
+    {"id": "incident", "title": "Incident",
+     "sections": [
+         {"heading": "Mandatory information", "items": [t["field"] + (f" — {t['detail']}" if t.get("detail") else "")
+                                                        + (f" (default: {t['default']})" if t.get("default") else "")
+                                                        for t in ticket_template]},
+         {"heading": "Priority", "items": [f"{p['level']} ({p['name']}): " + "; ".join(p["conditions"])
+                                           for p in service_desk_kb["prioritization"]]},
+         {"heading": "Assignment", "body": "Determine location, cluster, wave and application first, then apply "
+                                           "the routing rules (Global Helios → local cluster → local site)."},
+     ]},
+    {"id": "request", "title": "Service Request",
+     "sections": [
+         {"heading": "Mandatory information",
+          "items": ["User details (Full Name, User ID, Department)", "Phone number", "Location (Site, Building, Country)",
+                    "Requested service or item", "Business justification", "Required by date", "Manager approval"]},
+         {"heading": "Assignment", "body": "Route to the group that owns the requested service. "
+                                           "Account and access requests follow the Active Directory procedures."},
+     ]},
+    {"id": "escalation", "title": "Escalation",
+     "sections": [
+         {"heading": "Before escalating",
+          "items": ["Complete diagnostic information collected", "All troubleshooting steps documented",
+                    "Priority and business impact confirmed", "Correct assignment group identified"]},
+         {"heading": "Escalation targets",
+          "items": [f"{r['target']}: " + ", ".join(r["issues"]) for r in service_desk_kb["escalationRules"]]},
+         {"heading": "Content",
+          "items": ["Incident number", "Summary and business impact", "Affected users and locations",
+                    "Steps already taken and results", "Requested action from the receiving team"]},
+     ]},
+    {"id": "known_error", "title": "Known Error",
+     "sections": [
+         {"heading": "Fields", "items": ["Title — concise error title", "Symptoms — observable symptoms",
+                                         "Root Cause — confirmed cause", "Resolution — permanent fix",
+                                         "Workaround — if available", "Related Systems — affected systems"]},
+     ]},
+    {"id": "knowledge_article", "title": "Knowledge Article",
+     "sections": [
+         {"heading": "Fields", "items": ["Summary — short description", "Symptoms — observed behavior",
+                                         "Cause — known root cause", "Solution — step-by-step resolution",
+                                         "Validation — how to confirm the issue is resolved",
+                                         "Related Articles — links to relevant KBs"]},
+     ]},
+]
+
+prompts = [
+    {"id": "service_desk_agent", "title": "Service Desk Agent",
+     "purpose": "Route and document incidents for Helios / Fresenius locations.",
+     "instructions": [
+         "Determine location, cluster, region, application, wave status and assignment group.",
+         "Apply routing priority: Global Helios Group → Local Cluster Group → Local Site Group.",
+         "Wave 1 / Wave 2 SAP topics go to SAP Basis; Clinical Applications always stay on local IT.",
+         "Collect the mandatory ticket template fields before assigning.",
+         "Never invent assignment groups — use only groups from the knowledge base.",
+     ],
+     "output": ["Location", "Cluster", "Wave", "Assignment Group", "Reason",
+                "Required Information", "Initial Troubleshooting", "Next Action"]},
+    {"id": "major_incident_manager", "title": "Major Incident Manager",
+     "purpose": "Drive major incidents from identification to post-incident review.",
+     "instructions": [
+         "Confirm major incident criteria: large user impact, multiple locations, critical service unavailable.",
+         "Create the Major Incident and notify stakeholders.",
+         "Engage the support teams that own the affected services and start the bridge call.",
+         "Provide regular updates and document the timeline.",
+         "Complete the post-incident review and record the known error.",
+     ],
+     "output": ["Incident number", "Impact and scope", "Engaged teams", "Current status",
+                "Next update time", "Timeline", "Post-incident actions"]},
+    {"id": "translator", "title": "Translator",
+     "purpose": "Translate ticket content between German and English without changing technical meaning.",
+     "instructions": [
+         "Keep assignment group names, hostnames, application names and error messages unchanged.",
+         "Translate the description, observations and troubleshooting steps only.",
+         "Preserve the ticket template structure and field order.",
+         "Mark uncertain medical or product terms instead of guessing.",
+     ],
+     "output": ["Original language", "Translated text", "Terms left untranslated"]},
+]
+
 
 global_helios_groups = [
     {"service": "Active Directory", "group": "Ext_WW_AD_FLS_Capgemini_Helios"},
@@ -177,6 +327,61 @@ assignment_rules = {
     ],
     "neverInvent": "Only assignment groups present in the matrix / knowledge base may be used. Unknown groups stay TBD.",
 }
+
+def routing_matrix_card(location, key, service_scope, escalation, notes=""):
+    c = CLUSTERS.get(key) or {}
+    return {
+        "id": location.lower().replace(" ", "_"),
+        "location": location,
+        "assignmentGroup": c.get("ServiceDesk", ""),
+        "wave": wave_of(key),
+        "serviceScope": service_scope,
+        "escalationPath": escalation,
+        "notes": notes,
+    }
+
+
+routing_matrix = [
+    routing_matrix_card(
+        "Berlin", "Berlin",
+        ["Service Desk", "Account Management", "Infrastructure", "Clinical Applications", "KIS", "Field Service"],
+        {"Primary": "CLBB-IT | Servicedesk",
+         "Infrastructure": "CLBB-IT | Infrastruktur",
+         "Clinical": "CLBB-IT | Klinische Anwendungen",
+         "KIS / SAP": "CLBB-IT | KIS Support",
+         "Field Service": "BLN-IT | Fieldservice"},
+        "Cluster Berlin Brandenburg. Field service is site-specific (BLN-IT, BEB-IT, BS-IT)."),
+    routing_matrix_card(
+        "Duisburg", "Duisburg",
+        ["Service Desk", "Infrastructure", "Software", "Clinical Applications", "Orbis", "Muse", "JiveX"],
+        {"Primary": "DU-IT | Client Mgt",
+         "Infrastructure": "DU-IT | Infrastruktur",
+         "Software": "DU-IT | Software & Systeme",
+         "Clinical / JiveX": "SKZ-IT | Klinische Anwendungen",
+         "Orbis": "Orbis",
+         "Muse": "AMOR/MUSE",
+         "SAP": "SAP Basis"},
+        "Wave 2 go-live: general topics use Global Helios Groups, SAP uses SAP Basis, Clinical stays local."),
+    routing_matrix_card(
+        "Krefeld", "Krefeld",
+        ["Service Desk", "Infrastructure", "Clinical Applications", "Medico / SAP", "Field Service"],
+        {"Primary": "KR-IT | Service Desk",
+         "Infrastructure": "KR-IT | Infrastruktur",
+         "Clinical": "KR-IT | Klinische Applikationen",
+         "Medico / KIS": "KR-IT | Medico",
+         "Field Service": "KR-IT | Fieldservice"},
+        "Wave 2 go-live. Hüls inherits Krefeld routing."),
+    {
+        "id": "helios_global",
+        "location": "Helios Global (Wave go-live)",
+        "assignmentGroup": "Global Helios Groups",
+        "wave": "1 / 2",
+        "serviceScope": [g["service"] for g in global_helios_groups],
+        "escalationPath": {g["service"]: g["group"] for g in global_helios_groups},
+        "notes": "Used for every Wave 1 / Wave 2 location. SAP → SAP Basis. "
+                 "Clinical Applications always stay on the local IT group.",
+    },
+]
 
 applications = [
     {
@@ -474,6 +679,10 @@ source = {
         "globalHeliosGroups": global_helios_groups,
         "assignmentRules": assignment_rules,
     },
+    "serviceDeskKb": service_desk_kb,
+    "templates": templates,
+    "prompts": prompts,
+    "routingMatrix": routing_matrix,
     "applications": applications,
     "locations": locations,
     "clusters": clusters,

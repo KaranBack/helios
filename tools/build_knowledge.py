@@ -62,6 +62,8 @@ def render_prompt(p):
         out.append("Response Format:\n\n" + md_list(p["responseFormat"]) + "\n")
     if p.get("requiredInformation"):
         out.append("Required Information:\n\n" + md_list(p["requiredInformation"]) + "\n")
+    if p.get("ticketDefaults"):
+        out.append("Ticket defaults:\n\n" + md_list(p["ticketDefaults"]) + "\n")
     if p.get("searchPriority"):
         out.append("Always search knowledge/ before answering.\n\nPriority:\n\n"
                    + md_numbered(p["searchPriority"]) + "\n")
@@ -201,7 +203,104 @@ def render_berlin(kb):
 
 
 def render_ticket_template(items):
-    return "# Ticket Template\n\n" + md_numbered(items)
+    out = ["# Ticket Template", "", "## Mandatory Information", ""]
+    for i, t in enumerate(items):
+        out.append(f"### {i + 1}. {t['field']}")
+        out.append("")
+        if t.get("detail"):
+            out.append(t["detail"])
+            out.append("")
+        if t.get("default"):
+            out.append("Default value:")
+            out.append("")
+            out.append("```")
+            out.append(t["default"])
+            out.append("```")
+            out.append("")
+    return "\n".join(out)
+
+
+def render_service_desk_kb(kb_doc):
+    out = ["# Global IT Service Desk Knowledge Base", "", "## Purpose", "", kb_doc["purpose"], ""]
+
+    out.append("## Incident Prioritization\n")
+    for p in kb_doc["prioritization"]:
+        out.append(f"### {p['level']} ({p['name']})\n")
+        out.append("Conditions:\n\n" + md_list(p["conditions"]) + "\n")
+        out.append("Action:\n\n" + md_list(p["action"]) + "\n")
+
+    out.append("## Troubleshooting Methodology\n")
+    for s in kb_doc["methodology"]:
+        out.append(f"### {s['step']} — {s['title']}\n")
+        out.append(md_list(s["items"]) + "\n")
+
+    out.append("## Escalation Rules\n")
+    for r in kb_doc["escalationRules"]:
+        out.append(f"### Escalate to {r['target']}\n")
+        out.append(md_list(r["issues"]) + "\n")
+
+    out.append("## User Communication Standards\n")
+    for c in kb_doc["communication"]:
+        out.append(f"### {c['stage']}\n")
+        out.append(md_list(c["items"]) + "\n")
+
+    out.append("## Major Incident Process\n")
+    out.append("Identification:\n\n" + md_list(kb_doc["majorIncident"]["identification"]) + "\n")
+    out.append("Actions:\n\n" + md_numbered(kb_doc["majorIncident"]["actions"]) + "\n")
+
+    out.append("## Active Directory Procedures\n")
+    for a in kb_doc["adProcedures"]:
+        out.append(f"### {a['topic']}\n")
+        out.append("Verify:\n\n" + md_list(a["verify"]) + "\n")
+
+    out.append("## Remote Support Checklist\n")
+    out.append("Before connecting:\n\n" + md_list(kb_doc["remoteSupport"]["before"]) + "\n")
+    out.append("Verify:\n\n" + md_list(kb_doc["remoteSupport"]["verify"]) + "\n")
+    out.append("Document:\n\n" + md_list(kb_doc["remoteSupport"]["document"]) + "\n")
+
+    out.append("## Routing Matrix Structure\n")
+    out.append(md_list([f"**{f['field']}** — {f['detail']}" for f in kb_doc["routingMatrixStructure"]]) + "\n")
+
+    out.append("## Best Practices\n")
+    out.append(md_list(kb_doc["bestPractices"]) + "\n")
+    return "\n".join(out)
+
+
+def render_template(t):
+    out = [f"# {t['title']}", ""]
+    for s in t.get("sections", []):
+        out.append(f"## {s['heading']}\n")
+        if s.get("body"):
+            out.append(s["body"] + "\n")
+        if s.get("items"):
+            out.append(md_list(s["items"]) + "\n")
+    return "\n".join(out)
+
+
+def render_agent_prompt(p):
+    out = [f"# {p['title']}", ""]
+    out.append(md_kv_block("Purpose", p.get("purpose", "")))
+    if p.get("instructions"):
+        out.append("Instructions:\n\n" + md_numbered(p["instructions"]) + "\n")
+    if p.get("output"):
+        out.append("Output:\n\n" + md_list(p["output"]) + "\n")
+    return "\n".join(out)
+
+
+def render_routing_matrix(r):
+    out = [f"# {r['location']}", ""]
+    out.append(md_kv_block("Location", r["location"]))
+    if r.get("wave"):
+        out.append(md_kv_block("Wave", str(r["wave"])))
+    out.append(md_kv_block("Assignment Group", r.get("assignmentGroup", "")))
+    if r.get("serviceScope"):
+        out.append("Service Scope:\n\n" + md_list(r["serviceScope"]) + "\n")
+    if r.get("escalationPath"):
+        rows = [f"{k}:\n{v}" for k, v in r["escalationPath"].items()]
+        out.append("Escalation Path:\n\n" + "\n\n".join(rows) + "\n")
+    if r.get("notes"):
+        out.append(md_kv_block("Notes", r["notes"]))
+    return "\n".join(out)
 
 
 def render_reference_locations(kb):
@@ -321,6 +420,25 @@ def main():
                                     render_troubleshooting(t)),
                       "title": t["title"], "category": "troubleshooting"})
 
+    files.append({"path": write(OUT_DIR / "knowledge_base.md",
+                                render_service_desk_kb(src["serviceDeskKb"])),
+                  "title": "Global IT Service Desk Knowledge Base", "category": "process"})
+
+    for t in src.get("templates", []):
+        files.append({"path": write(OUT_DIR / "templates" / f"{slug(t.get('id') or t['title'])}.md",
+                                    render_template(t)),
+                      "title": t["title"], "category": "templates"})
+
+    for p in src.get("prompts", []):
+        files.append({"path": write(OUT_DIR / "prompts" / f"{slug(p.get('id') or p['title'])}.md",
+                                    render_agent_prompt(p)),
+                      "title": p["title"], "category": "prompts"})
+
+    for r in src.get("routingMatrix", []):
+        files.append({"path": write(OUT_DIR / "routing_matrix" / f"{slug(r.get('id') or r['location'])}.md",
+                                    render_routing_matrix(r)),
+                      "title": r["location"], "category": "routing_matrix"})
+
     files.append({"path": write(OUT_DIR / "reference" / "helios_locations.md",
                                 render_reference_locations(kb)),
                   "title": "Helios Locations", "category": "reference"})
@@ -339,6 +457,10 @@ def main():
         "prompt": src["prompt"],
         "ticketTemplate": src["ticketTemplate"],
         "routing": src["routing"],
+        "serviceDeskKb": src.get("serviceDeskKb", {}),
+        "templates": src.get("templates", []),
+        "prompts": src.get("prompts", []),
+        "routingMatrix": src.get("routingMatrix", []),
         "applications": src["applications"],
         "locations": src["locations"],
         "clusters": src.get("clusters", []),
@@ -353,8 +475,9 @@ def main():
     KB_PATH.write_text(json.dumps(kb, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"knowledge files: {len(files)}")
-    for cat in ["prompt", "routing", "applications", "locations", "clusters",
-                "service_groups", "troubleshooting", "reference"]:
+    for cat in ["prompt", "process", "routing", "routing_matrix", "templates", "prompts",
+                "applications", "locations", "clusters", "service_groups",
+                "troubleshooting", "reference"]:
         print(f"  {cat}: {sum(1 for f in files if f['category'] == cat)}")
 
 

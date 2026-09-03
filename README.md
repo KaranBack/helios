@@ -51,6 +51,10 @@ Service Desk knowledge base for Helios / Fresenius agents.
 | `service_groups/` | Group responsibilities and escalations |
 | `troubleshooting/` | Guides: what to collect, checks, routing |
 | `reference/` | Generated from the matrix: locations, regions, clusters, application catalog |
+| `knowledge_base.md` | Global service desk process: prioritization, methodology, escalation, major incident, best practices |
+| `routing_matrix/` | Per-site routing matrix: assignment group, service scope, escalation path |
+| `templates/` | Incident, request, escalation, known error and knowledge article templates |
+| `prompts/` | Agent prompts: service desk agent, major incident manager, translator |
 
 Rebuild after changing `data/knowledge-source.json` or `data/kb.json`:
 
