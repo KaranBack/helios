@@ -36,3 +36,27 @@ Catch & Dispatch knowledge base for Helios assignment groups, clusters, waves an
 | Changelog | Matrix content changes |
 
 Document information (version, status, author) is shown in the footer.
+
+## knowledge/
+
+Service Desk knowledge base for Helios / Fresenius agents.
+
+| Folder | Content |
+|--------|---------|
+| `prompt.md` | Agent prompt: what to determine, routing priority, response format |
+| `routing/` | Global Helios groups, assignment rules, waves, Berlin groups, ticket template |
+| `applications/` | Application cards: criticality, keywords, routing per location, troubleshooting |
+| `locations/` | Location cards: region, cluster, wave, routing per area |
+| `clusters/` | Cluster cards with assignment groups |
+| `service_groups/` | Group responsibilities and escalations |
+| `troubleshooting/` | Guides: what to collect, checks, routing |
+| `reference/` | Generated from the matrix: locations, regions, clusters, application catalog |
+
+Rebuild after changing `data/knowledge-source.json` or `data/kb.json`:
+
+```bash
+python3 tools/seed_knowledge_source.py   # optional: re-seed curated cards from the matrix
+python3 tools/build_knowledge.py         # writes knowledge/*.md, data/knowledge.json, KB.knowledge
+```
+
+Assignment groups are never invented: anything unconfirmed stays `TBD`.

@@ -1,0 +1,362 @@
+#!/usr/bin/env python3
+"""Build the knowledge/ markdown tree and KB.knowledge from curated data + data/kb.json.
+
+Curated content (agent prompt, routing rules, application and location cards,
+service groups, troubleshooting guides) lives in data/knowledge-source.json.
+Reference pages are generated from data/kb.json so they stay in sync.
+
+Assignment groups are never invented here: anything not confirmed stays "TBD".
+"""
+
+import json
+import os
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+KB_PATH = ROOT / "data" / "kb.json"
+SRC_PATH = ROOT / "data" / "knowledge-source.json"
+OUT_DIR = ROOT / "knowledge"
+KNOWLEDGE_JSON = ROOT / "data" / "knowledge.json"
+
+
+def slug(text):
+    s = str(text).lower()
+    s = s.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss")
+    s = re.sub(r"[^a-z0-9]+", "_", s).strip("_")
+    return s or "item"
+
+
+def md_list(items, bullet="-"):
+    return "\n".join(f"{bullet} {i}" for i in items if i)
+
+
+def md_numbered(items):
+    return "\n".join(f"{i + 1}. {v}" for i, v in enumerate(items) if v)
+
+
+def md_kv_block(title, value):
+    if not value:
+        return ""
+    return f"{title}:\n{value}\n"
+
+
+def write(path, text):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text.rstrip() + "\n", encoding="utf-8")
+    return str(path.relative_to(ROOT))
+
+
+def render_prompt(p):
+    out = ["# Helios Service Desk AI Assistant", ""]
+    out.append(md_kv_block("Goal", p.get("goal", "")))
+    if p.get("determine"):
+        out.append("Always determine:\n\n" + md_numbered(p["determine"]) + "\n")
+    if p.get("routingPriority"):
+        out.append("Routing Priority:\n\n" + md_numbered(p["routingPriority"]) + "\n")
+    if p.get("sap"):
+        out.append("SAP:\n\n" + p["sap"] + "\n")
+    if p.get("clinical"):
+        out.append("Clinical Applications:\n\n" + p["clinical"] + "\n")
+    if p.get("responseFormat"):
+        out.append("Response Format:\n\n" + md_list(p["responseFormat"]) + "\n")
+    if p.get("requiredInformation"):
+        out.append("Required Information:\n\n" + md_list(p["requiredInformation"]) + "\n")
+    if p.get("searchPriority"):
+        out.append("Always search knowledge/ before answering.\n\nPriority:\n\n"
+                   + md_numbered(p["searchPriority"]) + "\n")
+    if p.get("rules"):
+        out.append(md_list(p["rules"]) + "\n")
+    return "\n".join(out)
+
+
+def render_application(app):
+    out = [f"# {app['name']}", ""]
+    if app.get("aliases"):
+        out.append(md_kv_block("Alias", ", ".join(app["aliases"])))
+    if app.get("type"):
+        out.append(md_kv_block("Type", app["type"]))
+    if app.get("criticality"):
+        out.append(md_kv_block("Criticality", app["criticality"]))
+    if app.get("defaultGroup"):
+        out.append(md_kv_block("Assignment Group", app["defaultGroup"]))
+    if app.get("description"):
+        out.append(md_kv_block("Description", app["description"]))
+    if app.get("keywords"):
+        out.append("Keywords:\n\n" + md_list(app["keywords"]) + "\n")
+    if app.get("routing"):
+        rows = [f"{loc}:\n{grp}" for loc, grp in app["routing"].items()]
+        out.append("Routing:\n\n" + "\n\n".join(rows) + "\n")
+    if app.get("requiredInformation"):
+        out.append("Required Information:\n\n" + md_list(app["requiredInformation"]) + "\n")
+    if app.get("troubleshooting"):
+        out.append("Troubleshooting:\n\n" + md_numbered(app["troubleshooting"]) + "\n")
+    if app.get("note"):
+        out.append(md_kv_block("Note", app["note"]))
+    return "\n".join(out)
+
+
+def render_location(loc):
+    out = [f"# {loc['name']}", ""]
+    for label, key in [("Region", "region"), ("Cluster", "cluster"), ("Med. Cluster", "medCluster"),
+                       ("Wave", "wave"), ("Go-live", "goLiveDate"), ("Service Unit", "serviceUnit"),
+                       ("Default Group", "defaultGroup")]:
+        if loc.get(key):
+            out.append(md_kv_block(label, str(loc[key])))
+    if loc.get("applications"):
+        out.append("Applications:\n\n" + md_list(loc["applications"]) + "\n")
+    if loc.get("routing"):
+        rows = [f"{area}:\n{grp}" for area, grp in loc["routing"].items()]
+        out.append("Routing:\n\n" + "\n\n".join(rows) + "\n")
+    if loc.get("note"):
+        out.append(md_kv_block("Note", loc["note"]))
+    return "\n".join(out)
+
+
+def render_service_group(g):
+    out = [f"# {g['name']}", ""]
+    if g.get("scope"):
+        out.append(md_kv_block("Scope", g["scope"]))
+    if g.get("responsibilities"):
+        out.append("Responsibilities:\n\n" + md_list(g["responsibilities"]) + "\n")
+    if g.get("escalations"):
+        rows = [f"{area}:\n{grp}" for area, grp in g["escalations"].items()]
+        out.append("Escalations:\n\n" + "\n\n".join(rows) + "\n")
+    if g.get("note"):
+        out.append(md_kv_block("Note", g["note"]))
+    return "\n".join(out)
+
+
+def render_troubleshooting(t):
+    out = [f"# {t['title']}", ""]
+    if t.get("collect"):
+        out.append("Collect:\n\n" + md_list(t["collect"]) + "\n")
+    if t.get("checks"):
+        out.append("Checks:\n\n" + md_numbered(t["checks"]) + "\n")
+    if t.get("routing"):
+        rows = [f"{scope}:\n{grp}" for scope, grp in t["routing"].items()]
+        out.append("Routing:\n\n" + "\n\n".join(rows) + "\n")
+    if t.get("note"):
+        out.append(md_kv_block("Note", t["note"]))
+    return "\n".join(out)
+
+
+def render_global_groups(rows):
+    out = ["# Global Helios Groups", ""]
+    for r in rows:
+        out.append(f"## {r['service']}\n")
+        out.append(f"Group:\n{r['group']}\n")
+        if r.get("rule"):
+            out.append(f"Rule:\n{r['rule']}\n")
+    return "\n".join(out)
+
+
+def render_assignment_rules(rules, policy):
+    out = ["# Assignment Rules", ""]
+    out.append(md_kv_block("Rule", policy.get("rule", "")))
+    out.append(md_kv_block("Short rule", policy.get("shortRule", "")))
+    out.append("Priority:\n\n" + md_numbered(rules.get("priority", [])) + "\n")
+    if rules.get("rules"):
+        out.append("Rules:\n\n" + md_list(rules["rules"]) + "\n")
+    if rules.get("neverInvent"):
+        out.append(md_kv_block("Constraint", rules["neverInvent"]))
+    return "\n".join(out)
+
+
+def render_waves(kb):
+    out = ["# Waves", "", "| Wave | Go-live date | Status | Routing |", "|---|---|---|---|"]
+    for w in sorted((kb.get("waveGoLive") or {}).keys()):
+        s = kb["waveGoLive"][w]
+        routing = ("ONLY Global Helios Groups · SAP → SAP Basis · Clinical → local IT"
+                   if s.get("goLive") else "Local / legacy groups")
+        out.append(f"| {w} | {s.get('goLiveDate', '')} | {s.get('status', '')} | {routing} |")
+    out.append("")
+    out.append("## Service Units")
+    out.append("")
+    out.append("| Service Unit | Wave | Go-live | KRITIS |")
+    out.append("|---|---|---|---|")
+    for u in (kb.get("planning") or {}).get("serviceUnits") or []:
+        out.append(f"| {u.get('unit', '')} | {u.get('wave', '')} | {u.get('goLiveDate', '')} | "
+                   f"{'yes' if u.get('kritis') else 'no'} |")
+    return "\n".join(out)
+
+
+def render_berlin(kb):
+    b = kb.get("berlin") or {}
+    out = ["# Berlin Groups", ""]
+    if b.get("assignmentGroups"):
+        out.append("| Group | Responsibility |")
+        out.append("|---|---|")
+        for g in b["assignmentGroups"]:
+            out.append(f"| {g.get('group', '')} | {g.get('responsibility', '')} |")
+        out.append("")
+    if b.get("requiredInfo"):
+        out.append("Required Information:\n\n" + md_list(b["requiredInfo"]) + "\n")
+    if b.get("keywords"):
+        out.append("| Keyword | Group |")
+        out.append("|---|---|")
+        for k in b["keywords"]:
+            out.append(f"| {k.get('keyword', '')} | {k.get('group', '')} |")
+    return "\n".join(out)
+
+
+def render_ticket_template(items):
+    return "# Ticket Template\n\n" + md_numbered(items)
+
+
+def render_reference_locations(kb):
+    out = ["# Helios Locations", "",
+           f"Total: {len(kb.get('heliosLocations') or [])} locations "
+           "(no street addresses, ticket volumes or FTE).", "",
+           "| Location | City | Wave | Go-live | Service Unit | Group hub | Region |",
+           "|---|---|---|---|---|---|---|"]
+    for l in sorted(kb.get("heliosLocations") or [], key=lambda x: (str(x.get("city") or ""), x["name"])):
+        out.append(f"| {l['name']} | {l.get('city', '')} | {l.get('wave', '')} | "
+                   f"{l.get('goLiveDate', '')} | {l.get('serviceUnit', '')} | "
+                   f"{l.get('groupHub', '')} | {l.get('region', '')} |")
+    return "\n".join(out)
+
+
+def render_reference_regions(kb):
+    regions = {}
+    for l in kb.get("heliosLocations") or []:
+        regions.setdefault(l.get("region") or "—", []).append(l)
+    out = ["# Helios Regions", "", "| Region | Locations | Waves |", "|---|---|---|"]
+    for r, items in sorted(regions.items()):
+        waves = sorted({str(i.get("wave")) for i in items if i.get("wave")})
+        out.append(f"| {r} | {len(items)} | {', '.join(waves)} |")
+    return "\n".join(out)
+
+
+def render_reference_clusters(kb):
+    out = ["# Helios Clusters", "",
+           "| Cluster / site | Service Desk | Infrastructure | Clinical | SAP | Field Service |",
+           "|---|---|---|---|---|---|"]
+    for name in sorted(kb.get("clusters") or {}):
+        c = kb["clusters"][name]
+        out.append(f"| {name} | {c.get('ServiceDesk', '')} | {c.get('Infrastructure', '')} | "
+                   f"{c.get('Clinical', '')} | {c.get('SAP', '')} | {c.get('FieldService', '')} |")
+    out.append("")
+    out.append("## Med. Clusters")
+    out.append("")
+    out.append("| Med. Cluster | Fallback group | Clinics | Locations |")
+    out.append("|---|---|---|---|")
+    for mc in (kb.get("medClusters") or {}).get("clusters") or []:
+        out.append(f"| {mc['name']} | {mc.get('fallbackGroup', '')} | "
+                   f"{len(mc.get('clinics') or [])} | {len(mc.get('sites') or [])} |")
+    return "\n".join(out)
+
+
+def render_application_catalog(kb, apps):
+    out = ["# Application Catalog", "",
+           "Assignment groups per site come from the site software matrices in the matrix "
+           "(`siteApps`). TBD means the source left the group blank.", ""]
+    for site, data in sorted((kb.get("siteApps") or {}).items()):
+        out.append(f"## {site}")
+        out.append("")
+        if data.get("note"):
+            out.append(data["note"])
+            out.append("")
+        out.append("| Software | Kritikalität | Assignment Group |")
+        out.append("|---|---|---|")
+        for a in data.get("apps") or []:
+            out.append(f"| {a['application']} | {a.get('criticality', '')} | {a.get('group') or 'TBD'} |")
+        out.append("")
+    if apps:
+        out.append("## Application cards")
+        out.append("")
+        out.append("| Application | Criticality | Default group |")
+        out.append("|---|---|---|")
+        for a in apps:
+            out.append(f"| {a['name']} | {a.get('criticality', '')} | {a.get('defaultGroup') or 'TBD'} |")
+    return "\n".join(out)
+
+
+def main():
+    kb = json.loads(KB_PATH.read_text(encoding="utf-8"))
+    src = json.loads(SRC_PATH.read_text(encoding="utf-8"))
+
+    files = []
+
+    files.append({"path": write(OUT_DIR / "prompt.md", render_prompt(src["prompt"])),
+                  "title": "Agent prompt", "category": "prompt"})
+
+    files.append({"path": write(OUT_DIR / "routing" / "global_helios_groups.md",
+                                render_global_groups(src["routing"]["globalHeliosGroups"])),
+                  "title": "Global Helios Groups", "category": "routing"})
+    files.append({"path": write(OUT_DIR / "routing" / "assignment_rules.md",
+                                render_assignment_rules(src["routing"]["assignmentRules"],
+                                                        kb.get("routingPolicy") or {})),
+                  "title": "Assignment Rules", "category": "routing"})
+    files.append({"path": write(OUT_DIR / "routing" / "waves.md", render_waves(kb)),
+                  "title": "Waves", "category": "routing"})
+    files.append({"path": write(OUT_DIR / "routing" / "berlin_groups.md", render_berlin(kb)),
+                  "title": "Berlin Groups", "category": "routing"})
+    files.append({"path": write(OUT_DIR / "routing" / "ticket_template.md",
+                                render_ticket_template(src["ticketTemplate"])),
+                  "title": "Ticket Template", "category": "routing"})
+
+    for app in src["applications"]:
+        files.append({"path": write(OUT_DIR / "applications" / f"{slug(app.get('id') or app['name'])}.md",
+                                    render_application(app)),
+                      "title": app["name"], "category": "applications"})
+
+    for loc in src["locations"]:
+        files.append({"path": write(OUT_DIR / "locations" / f"{slug(loc.get('id') or loc['name'])}.md",
+                                    render_location(loc)),
+                      "title": loc["name"], "category": "locations"})
+
+    for cl in src.get("clusters", []):
+        files.append({"path": write(OUT_DIR / "clusters" / f"{slug(cl.get('id') or cl['name'])}.md",
+                                    render_location(cl)),
+                      "title": cl["name"], "category": "clusters"})
+
+    for g in src["serviceGroups"]:
+        files.append({"path": write(OUT_DIR / "service_groups" / f"{slug(g.get('id') or g['name'])}.md",
+                                    render_service_group(g)),
+                      "title": g["name"], "category": "service_groups"})
+
+    for t in src["troubleshooting"]:
+        files.append({"path": write(OUT_DIR / "troubleshooting" / f"{slug(t.get('id') or t['title'])}.md",
+                                    render_troubleshooting(t)),
+                      "title": t["title"], "category": "troubleshooting"})
+
+    files.append({"path": write(OUT_DIR / "reference" / "helios_locations.md",
+                                render_reference_locations(kb)),
+                  "title": "Helios Locations", "category": "reference"})
+    files.append({"path": write(OUT_DIR / "reference" / "helios_regions.md",
+                                render_reference_regions(kb)),
+                  "title": "Helios Regions", "category": "reference"})
+    files.append({"path": write(OUT_DIR / "reference" / "helios_clusters.md",
+                                render_reference_clusters(kb)),
+                  "title": "Helios Clusters", "category": "reference"})
+    files.append({"path": write(OUT_DIR / "reference" / "application_catalog.md",
+                                render_application_catalog(kb, src["applications"])),
+                  "title": "Application Catalog", "category": "reference"})
+
+    knowledge = {
+        "meta": dict(src["meta"], files=len(files)),
+        "prompt": src["prompt"],
+        "ticketTemplate": src["ticketTemplate"],
+        "routing": src["routing"],
+        "applications": src["applications"],
+        "locations": src["locations"],
+        "clusters": src.get("clusters", []),
+        "serviceGroups": src["serviceGroups"],
+        "troubleshooting": src["troubleshooting"],
+        "files": files,
+    }
+
+    KNOWLEDGE_JSON.write_text(json.dumps(knowledge, ensure_ascii=False, indent=2) + "\n",
+                              encoding="utf-8")
+    kb["knowledge"] = knowledge
+    KB_PATH.write_text(json.dumps(kb, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    print(f"knowledge files: {len(files)}")
+    for cat in ["prompt", "routing", "applications", "locations", "clusters",
+                "service_groups", "troubleshooting", "reference"]:
+        print(f"  {cat}: {sum(1 for f in files if f['category'] == cat)}")
+
+
+if __name__ == "__main__":
+    main()

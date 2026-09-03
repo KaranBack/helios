@@ -1,0 +1,1151 @@
+{
+  "meta": {
+    "title": "Helios Service Desk knowledge base",
+    "source": "knowledge/ tree provided for Helios / Fresenius service desk agents",
+    "updated": "2026-09-03",
+    "priority": [
+      "locations/",
+      "applications/",
+      "service_groups/",
+      "routing/",
+      "troubleshooting/"
+    ],
+    "rules": [
+      "Always search knowledge/ before answering.",
+      "Never invent assignment groups — use only groups from the matrix / knowledge base."
+    ]
+  },
+  "prompt": {
+    "goal": "Support Service Desk Analysts in the Helios environment.",
+    "determine": [
+      "Location",
+      "Cluster",
+      "Region",
+      "Application",
+      "Wave Status",
+      "Assignment Group"
+    ],
+    "routingPriority": [
+      "Global Helios Group",
+      "Local Cluster Group",
+      "Local Site Group"
+    ],
+    "sap": "Wave 1 / Wave 2: SAP Basis",
+    "clinical": "Always stay on Local IT.",
+    "responseFormat": [
+      "Location",
+      "Cluster",
+      "Wave",
+      "Assignment Group",
+      "Reason"
+    ],
+    "requiredInformation": [
+      "User",
+      "Hostname",
+      "Error Message",
+      "Business Impact"
+    ],
+    "searchPriority": [
+      "locations/",
+      "applications/",
+      "service_groups/",
+      "routing/",
+      "troubleshooting/"
+    ],
+    "rules": [
+      "Always search knowledge/ before answering.",
+      "When the user provides a location and an application, always return: Assignment Group, Reason, Required Information, Initial Troubleshooting.",
+      "Never invent assignment groups. Use only groups found in knowledge/."
+    ]
+  },
+  "ticketTemplate": [
+    "User details",
+    "Phone number",
+    "Location",
+    "Issue description",
+    "Start date of the issue",
+    "Error message",
+    "Observation during initial investigation",
+    "Troubleshooting steps taken",
+    "Hostname",
+    "Windows version",
+    "Availability"
+  ],
+  "routing": {
+    "globalHeliosGroups": [
+      {
+        "service": "Active Directory",
+        "group": "Ext_WW_AD_FLS_Capgemini_Helios"
+      },
+      {
+        "service": "Office365 / Outlook / Teams",
+        "group": "Ext_WW_Collaboration_SLS_Capgemini_Helios"
+      },
+      {
+        "service": "Printer Services",
+        "group": "Ext_WW_Printer-Services_SLS_Capgemini_Helios"
+      },
+      {
+        "service": "Network",
+        "group": "Ext_WW_Network_SLS_Capgemini_Helios"
+      },
+      {
+        "service": "Virtual Workplace",
+        "group": "Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios"
+      },
+      {
+        "service": "Physical Workplace",
+        "group": "Ext_WW_Physical-Workplace_SLS_Capgemini_Helios"
+      },
+      {
+        "service": "Mobile Devices",
+        "group": "Ext_WW_Mobile-Workplace_SLS_Capgemini_Helios"
+      },
+      {
+        "service": "SAP",
+        "group": "SAP Basis",
+        "rule": "Wave 1 and Wave 2 only."
+      }
+    ],
+    "assignmentRules": {
+      "priority": [
+        "Global Helios Group",
+        "Local Cluster Group",
+        "Local Site Group"
+      ],
+      "rules": [
+        "Wave go-live (Wave 1 and Wave 2): general topics use ONLY Global Helios Groups.",
+        "Pre-wave (Wave 3-5): use the local / legacy groups of the location.",
+        "SAP after go-live: SAP Basis.",
+        "Clinical Applications: always the local IT group, before and after go-live.",
+        "A site under a Wave hub uses the hub's Wave and assignment groups (e.g. Attendorn under CL-Wuppertal)."
+      ],
+      "neverInvent": "Only assignment groups present in the matrix / knowledge base may be used. Unknown groups stay TBD."
+    }
+  },
+  "applications": [
+    {
+      "id": "orbis",
+      "name": "ORBIS",
+      "type": "KIS",
+      "criticality": "High",
+      "description": "Hospital Information System.",
+      "keywords": [
+        "ORBIS",
+        "KIS",
+        "Patient Record",
+        "Clinical Documentation"
+      ],
+      "routing": {
+        "Kassel": "KS-IT",
+        "Berlin": "CLBB-IT | KIS Support",
+        "Duisburg": "Orbis"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Error Message",
+        "Screenshot"
+      ],
+      "troubleshooting": [
+        "Verify application availability",
+        "Test login",
+        "Verify Citrix session",
+        "Verify user permissions"
+      ],
+      "note": "Kassel KIS Useranlagen route to the group ORBIS (see Kassel software matrix)."
+    },
+    {
+      "id": "dragon_medical_one",
+      "name": "Dragon Medical One",
+      "aliases": [
+        "DMO",
+        "Nuance Dragon Medical One"
+      ],
+      "criticality": "Medium",
+      "defaultGroup": "INK DMO",
+      "description": "Cloud-based medical speech recognition.",
+      "keywords": [
+        "DMO",
+        "Dictation",
+        "Speech Recognition",
+        "Nuance"
+      ],
+      "requiredInformation": [
+        "Headset model",
+        "Username",
+        "Error message",
+        "Hostname"
+      ],
+      "troubleshooting": [
+        "Verify microphone",
+        "Verify DMO profile",
+        "Restart DMO",
+        "Verify audio device",
+        "Test speech recognition"
+      ]
+    },
+    {
+      "id": "apofact",
+      "name": "ApoFact",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "Taxierungs- und Abrechnungssoftware für Krankenhausapotheken",
+      "keywords": [
+        "ApoFact",
+        "Apotheke",
+        "Taxierung",
+        "Abrechnung"
+      ],
+      "routing": {
+        "Kassel": "Amor/Muse",
+        "Mansfeld-Südharz": "Amor/Muse"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "delegate",
+      "name": "Delegate",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "Essensversorgung/ Unterstützung mobile Stationsbestellungen",
+      "keywords": [
+        "Delegate",
+        "Essensbestellung",
+        "Catering",
+        "Stationsbestellung"
+      ],
+      "routing": {
+        "Kassel": "Delegate",
+        "Mansfeld-Südharz": "Delegate"
+      },
+      "requiredInformation": [
+        "Username",
+        "Ward / Station",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "evident",
+      "name": "Evident",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "Softwarelösung für Zahnärzte, Oralchirurgen und Kieferorthopäden",
+      "keywords": [
+        "Evident",
+        "Zahnarzt",
+        "MKG",
+        "Praxissoftware"
+      ],
+      "routing": {
+        "Kassel": "EF-IT | Klinische Anwendungen"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "imedone",
+      "name": "iMedOne",
+      "aliases": [
+        "i.MedOne",
+        "IMedOne"
+      ],
+      "criticality": "Hoch",
+      "description": "KIS",
+      "keywords": [
+        "iMedOne",
+        "KIS",
+        "iMedOne"
+      ],
+      "routing": {
+        "Kassel": "IMEDOne",
+        "Hildburghausen": "HBN | iMedOne",
+        "Pirna": "PIR-IT | iMedOne",
+        "Freital": "FTL-IT | iMedOne",
+        "Meiningen": "MGN | ImedOne",
+        "Salzgitter": "iMedOne",
+        "Cluster Sachsen": "CLS-IT | iMedOne"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Error message",
+        "Screenshot"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "jivex",
+      "name": "JiveX",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "Medizinische Daten- und Bildmanagement-Software (PACS)",
+      "keywords": [
+        "JiveX",
+        "PACS",
+        "Bildmanagement",
+        "Visus"
+      ],
+      "routing": {
+        "Kassel": "KS-IT",
+        "Mansfeld-Südharz": "MSH-IT | Servicedesk",
+        "Duisburg": "SKZ-IT | Klinische Anwendungen"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Study / Accession number",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "metavision",
+      "name": "MetaVision",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "Klinisches Informations- und Patientendaten-Management-System (CIS/PDMS) für Intensivmedizin",
+      "keywords": [
+        "MetaVision",
+        "PDMS",
+        "CIS",
+        "Intensivmedizin",
+        "iMDsoft"
+      ],
+      "routing": {
+        "Kassel": "KS-IT",
+        "Mansfeld-Südharz": "MSH-IT | Servicedesk"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Ward / ICU",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "3m_qsmed",
+      "name": "3M QSMED",
+      "aliases": [
+        "QSMED",
+        "QS-MED"
+      ],
+      "criticality": "Niedrig",
+      "description": "QSMED unterstützt die Qualitätssicherung und das Qualitätsmanagement in der Medizin durch strukturierte Dokumentation",
+      "keywords": [
+        "3M QSMED",
+        "Qualitätssicherung",
+        "QS-Bögen"
+      ],
+      "routing": {
+        "Kassel": "IMOne",
+        "Mansfeld-Südharz": "MSH-IT | Servicedesk"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "telepaxx",
+      "name": "Telepaxx",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "System für die Langzeitarchivierung von bildgebenden Daten",
+      "keywords": [
+        "Telepaxx",
+        "Langzeitarchiv",
+        "Bildarchiv"
+      ],
+      "routing": {
+        "Kassel": "KS-IT",
+        "Mansfeld-Südharz": "MSH-IT | Servicedesk"
+      },
+      "requiredInformation": [
+        "Username",
+        "Study / Accession number",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    },
+    {
+      "id": "zenzy",
+      "name": "ZENZY",
+      "aliases": [],
+      "criticality": "Hoch",
+      "description": "Programm für die Organisation der Zytostatikaherstellung in Apotheken",
+      "keywords": [
+        "ZENZY",
+        "Zytostatika",
+        "Apotheke"
+      ],
+      "routing": {
+        "Kassel": "KS-IT",
+        "Mansfeld-Südharz": "MSH-IT | Servicedesk"
+      },
+      "requiredInformation": [
+        "Username",
+        "Hostname",
+        "Error message"
+      ],
+      "troubleshooting": [],
+      "note": "Assignment group depends on the site software matrix; TBD means the source left it blank."
+    }
+  ],
+  "locations": [
+    {
+      "id": "kassel",
+      "name": "Kassel",
+      "region": "West",
+      "medCluster": "Südniedersachsen-Nordhessen",
+      "wave": 2,
+      "goLiveDate": "26/08/2026",
+      "defaultGroup": "KS-IT",
+      "routing": {
+        "Service Desk": "KS-IT",
+        "Infrastructure": "KS-IT",
+        "Clinical": "KS-IT",
+        "SAP": "SAP Basis",
+        "Field Service": "KS-IT"
+      },
+      "applications": [
+        "CGM MUSE",
+        "ApoFact",
+        "Delegate",
+        "Evident",
+        "iMedOne",
+        "3M QSMED",
+        "Dragon Medical One (DMO)",
+        "Hybase",
+        "OpenScape xpressions",
+        "eisTIK.NET",
+        "Allplan CAD",
+        "Sidexis",
+        "Mitel Concierge",
+        "Datev",
+        "DAKS",
+        "DoseM",
+        "E-ConsentPro",
+        "instacount® PLUS",
+        "JiveX",
+        "MKIS",
+        "MediCAD",
+        "Medilog Darwin v2",
+        "Canfield Mirror",
+        "MetaVision",
+        "Pegasos",
+        "PalliDoc",
+        "IRIS Print / -View",
+        "NIDA",
+        "QlikView",
+        "SimonVoss",
+        "Neurowerk",
+        "Sonowin",
+        "Telepaxx",
+        "Kirsch",
+        "ZENZY",
+        "Timeoffice",
+        "Basis",
+        "MedlinQ",
+        "data4doc",
+        "ORBIS",
+        "ORBIS (KIS Useranlagen)"
+      ],
+      "note": "Wave 2 go-live: general topics via Global Helios Groups, SAP via SAP Basis, Clinical stays on KS-IT. Legacy local SAP group in the matrix is KS-IT."
+    },
+    {
+      "id": "duisburg",
+      "name": "Duisburg",
+      "region": "West",
+      "medCluster": "Niederrhein",
+      "wave": 2,
+      "goLiveDate": "26/08/2026",
+      "defaultGroup": "DU-IT | Client Mgt",
+      "routing": {
+        "Service Desk": "DU-IT | Client Mgt",
+        "Infrastructure": "DU-IT | Infrastruktur",
+        "Clinical": "SKZ-IT | Klinische Anwendungen",
+        "SAP": "SAP Basis",
+        "Software": "DU-IT | Software & Systeme",
+        "Orbis": "Orbis",
+        "Muse": "AMOR/MUSE",
+        "JiveX": "SKZ-IT | Klinische Anwendungen"
+      },
+      "applications": []
+    },
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "region": "Ost",
+      "medCluster": "Berlin-Brandenburg",
+      "wave": 4,
+      "goLiveDate": "16/10/2026",
+      "defaultGroup": "CLBB-IT | Servicedesk",
+      "routing": {
+        "Service Desk": "CLBB-IT | Servicedesk",
+        "Infrastructure": "CLBB-IT | Infrastruktur",
+        "Clinical": "CLBB-IT | Klinische Anwendungen",
+        "KIS": "CLBB-IT | KIS Support",
+        "Account Management": "CLBB-IT | Accountmanagement",
+        "Field Service": "BLN-IT | Fieldservice"
+      },
+      "applications": [],
+      "cluster": "Berlin Brandenburg"
+    },
+    {
+      "id": "wuppertal",
+      "name": "Wuppertal",
+      "region": "Nord, West",
+      "medCluster": "Bergisches Land",
+      "wave": 1,
+      "goLiveDate": "29/07/2026",
+      "defaultGroup": "CL-Wuppertal | Remotesupport",
+      "routing": {
+        "Service Desk": "CL-Wuppertal | Remotesupport",
+        "Account Management": "CL-Wuppertal | Accountmanagement",
+        "Infrastructure": "CL-Wuppertal | Infrastruktur",
+        "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+        "SAP": "CL-Wuppertal | SAP",
+        "Field Service": "CL-Wuppertal | Field Service"
+      },
+      "applications": [],
+      "cluster": "CL-Wuppertal"
+    },
+    {
+      "id": "northeim",
+      "name": "Northeim",
+      "region": "West",
+      "medCluster": "Südniedersachsen-Nordhessen",
+      "wave": 2,
+      "goLiveDate": "26/08/2026",
+      "defaultGroup": "NOM-IT",
+      "routing": {
+        "Service Desk": "NOM-IT",
+        "Account Management": "NOM-IT",
+        "Infrastructure": "NOM-IT",
+        "Clinical": "NOM-IT",
+        "SAP": "CLBB-IT | KIS Support",
+        "Field Service": "NOM-IT"
+      },
+      "applications": []
+    },
+    {
+      "id": "erfurt",
+      "name": "Erfurt",
+      "region": "Nord, Ost, Süd",
+      "medCluster": "Thüringen Mitte",
+      "wave": 3,
+      "goLiveDate": "23/09/2026",
+      "defaultGroup": "EF-IT | ServiceDesk",
+      "routing": {
+        "Service Desk": "EF-IT | ServiceDesk",
+        "Account Management": "EF-IT | Benutzerantrag",
+        "Infrastructure": "EF-IT | Infrastruktur",
+        "Clinical": "EF-IT | Klinische Anwendungen",
+        "SAP": "EF-IT | ServiceDesk",
+        "Field Service": "EF-IT | Fieldservice",
+        "Netzwerk": "EF-IT | Netzwerk"
+      },
+      "applications": []
+    },
+    {
+      "id": "pirna",
+      "name": "Pirna",
+      "region": "Ost",
+      "medCluster": "Südsachsen-Franken",
+      "wave": 4,
+      "goLiveDate": "16/10/2026",
+      "defaultGroup": "PIR-IT | ServiceDesk",
+      "routing": {
+        "Service Desk": "PIR-IT | ServiceDesk",
+        "Account Management": "PIR-IT | Benutzeranträge",
+        "Infrastructure": "PIR-IT | Infrastruktur",
+        "Clinical": "PIR-IT | Klinische Anwendungen",
+        "Field Service": "PIR-IT | Fieldservice",
+        "iMedOne": "PIR-IT | iMedOne"
+      },
+      "applications": []
+    },
+    {
+      "id": "hildburghausen",
+      "name": "Hildburghausen",
+      "region": "Ost",
+      "medCluster": "Mainfranken-Südthüringen",
+      "wave": 3,
+      "goLiveDate": "23/09/2026",
+      "defaultGroup": "HBN | ServiceDesk",
+      "routing": {
+        "Service Desk": "HBN | ServiceDesk",
+        "Account Management": "HBN | ServiceDesk",
+        "Infrastructure": "HBN | Infrastruktur",
+        "Clinical": "HBN | Klinische Anwendungen",
+        "SAP": "HBN | SAP",
+        "Field Service": "HBN | Fieldservice",
+        "iMedOne": "HBN | iMedOne"
+      },
+      "applications": []
+    },
+    {
+      "id": "krefeld",
+      "name": "Krefeld",
+      "region": "West",
+      "medCluster": "Niederrhein",
+      "wave": 2,
+      "goLiveDate": "26/08/2026",
+      "defaultGroup": "KR-IT | Service Desk",
+      "routing": {
+        "Service Desk": "KR-IT | Service Desk",
+        "Account Management": "KR-IT",
+        "Infrastructure": "KR-IT | Infrastruktur",
+        "Clinical": "KR-IT | Klinische Applikationen",
+        "SAP": "KR-IT | Medico",
+        "Field Service": "KR-IT | Fieldservice"
+      },
+      "applications": []
+    },
+    {
+      "id": "mansfeld_suedharz",
+      "name": "Mansfeld-Südharz",
+      "region": "Ost",
+      "medCluster": "Mansfeld-Südharz (MSH)",
+      "wave": 4,
+      "goLiveDate": "16/10/2026",
+      "defaultGroup": "MSH-IT | Servicedesk",
+      "routing": {
+        "Service Desk": "MSH-IT | Servicedesk",
+        "Account Management": "MSH-IT | Servicedesk",
+        "Field Service": "MSH-IT | Fieldservice"
+      },
+      "applications": [
+        "CGM MUSE",
+        "ApoFact",
+        "Delegate",
+        "3M QSMED",
+        "Dragon Medical One (DMO)",
+        "OpenScape xpressions",
+        "DoseM",
+        "E-ConsentPro",
+        "instacount® PLUS",
+        "JiveX",
+        "MKIS",
+        "MediCAD",
+        "MetaVision",
+        "Pegasos",
+        "IRIS Print / -View",
+        "QlikView",
+        "Neurowerk",
+        "Sonowin",
+        "Telepaxx",
+        "Kirsch",
+        "ZENZY",
+        "Tubomed",
+        "KIS/KAS SAP P28 Einrichtung 72"
+      ]
+    },
+    {
+      "id": "attendorn",
+      "name": "Attendorn",
+      "region": "West, Nord",
+      "medCluster": "Bergisches Land",
+      "wave": 1,
+      "goLiveDate": "29/07/2026",
+      "defaultGroup": "CL-Wuppertal | Remotesupport",
+      "routing": {
+        "Service Desk": "CL-Wuppertal | Remotesupport",
+        "Account Management": "CL-Wuppertal | Accountmanagement",
+        "Infrastructure": "CL-Wuppertal | Infrastruktur",
+        "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+        "SAP": "CL-Wuppertal | SAP",
+        "Field Service": "CL-Wuppertal | Field Service"
+      },
+      "applications": [],
+      "note": "Attendorn sits under CL-Wuppertal (Wave 1) and uses the CL-Wuppertal assignment groups."
+    },
+    {
+      "id": "uelzen",
+      "name": "Uelzen",
+      "region": "Nord",
+      "medCluster": "Niedersachsen Nord",
+      "wave": 5,
+      "goLiveDate": "30/10/2026",
+      "defaultGroup": "UE-IT",
+      "routing": {
+        "Service Desk": "UE-IT",
+        "Account Management": "UE-IT",
+        "Infrastructure": "UE-IT",
+        "Clinical": "UE-IT",
+        "SAP": "UE-IT",
+        "Field Service": "UE-IT"
+      },
+      "applications": []
+    }
+  ],
+  "clusters": [
+    {
+      "id": "berlin_brandenburg",
+      "name": "Cluster Berlin Brandenburg",
+      "region": "Ost",
+      "medCluster": "Berlin-Brandenburg",
+      "wave": 4,
+      "goLiveDate": "16/10/2026",
+      "defaultGroup": "CLBB-IT | Servicedesk",
+      "routing": {
+        "Service Desk": "CLBB-IT | Servicedesk",
+        "Account Management": "CLBB-IT | Accountmanagement",
+        "Infrastructure": "CLBB-IT | Infrastruktur",
+        "Clinical": "CLBB-IT | Klinische Anwendungen",
+        "SAP": "CLBB-IT | KIS-Support",
+        "Field Service": "BLN-IT | Fieldservice"
+      },
+      "applications": []
+    },
+    {
+      "id": "wuppertal",
+      "name": "Cluster Wuppertal",
+      "region": "Nord, West",
+      "medCluster": "Bergisches Land",
+      "wave": 1,
+      "goLiveDate": "29/07/2026",
+      "defaultGroup": "CL-Wuppertal | Remotesupport",
+      "routing": {
+        "Service Desk": "CL-Wuppertal | Remotesupport",
+        "Account Management": "CL-Wuppertal | Accountmanagement",
+        "Infrastructure": "CL-Wuppertal | Infrastruktur",
+        "Clinical": "CL-Wuppertal | Klinische Anwendungen",
+        "SAP": "CL-Wuppertal | SAP",
+        "Field Service": "CL-Wuppertal | Field Service"
+      },
+      "applications": []
+    },
+    {
+      "id": "nordsee",
+      "name": "Cluster Nordsee",
+      "region": "Nord",
+      "medCluster": "Nordsee / Ostsee / Hamburg",
+      "wave": 5,
+      "goLiveDate": "30/10/2026",
+      "defaultGroup": "CL-Nordsee | Service Desk",
+      "routing": {
+        "Service Desk": "CL-Nordsee | Service Desk",
+        "Account Management": "CL-Nordsee | Service Desk",
+        "Infrastructure": "CL-Nordsee | Infrastruktur",
+        "Clinical": "CL-Nordsee | Klinische Anwendungen",
+        "SAP": "CL-Nordsee | Service Desk",
+        "Field Service": "CL-Nordsee | Fieldservice"
+      },
+      "applications": []
+    },
+    {
+      "id": "ostsee",
+      "name": "Cluster Ostsee",
+      "region": "Nord",
+      "medCluster": "Nordsee / Ostsee / Hamburg",
+      "wave": 5,
+      "goLiveDate": "30/10/2026",
+      "defaultGroup": "CL-Ostsee | Service Desk",
+      "routing": {
+        "Service Desk": "CL-Ostsee | Service Desk",
+        "Account Management": "CL-Ostsee | Service Desk",
+        "Infrastructure": "CL-Ostsee | Infrastruktur",
+        "Clinical": "CL-Ostsee | Klinische Anwendungen",
+        "SAP": "CL-Ostsee | Service Desk",
+        "Field Service": "CL-Ostsee | Fieldservice"
+      },
+      "applications": []
+    },
+    {
+      "id": "nordbaden",
+      "name": "Cluster Nordbaden",
+      "region": "Süd",
+      "medCluster": "Nordbaden",
+      "wave": "",
+      "goLiveDate": "",
+      "defaultGroup": "CL-Nordbaden | Fieldservice",
+      "routing": {
+        "Service Desk": "CL-Nordbaden | Fieldservice",
+        "Account Management": "CL-Nordbaden | Fieldservice",
+        "Infrastructure": "CL-Nordbaden | Fieldservice",
+        "Clinical": "CL-Nordbaden | Klinische Anwendungen",
+        "SAP": "CL-Nordbaden | Fieldservice",
+        "Field Service": "CL-Nordbaden | Fieldservice"
+      },
+      "applications": []
+    },
+    {
+      "id": "region_sued",
+      "name": "Region Süd",
+      "region": "Süd",
+      "medCluster": "",
+      "wave": 3,
+      "goLiveDate": "23/09/2026",
+      "defaultGroup": "RS | Servicedesk",
+      "routing": {
+        "Service Desk": "RS | Servicedesk",
+        "Account Management": "RS MVZ Support",
+        "Infrastructure": "RS | Infrastruktur",
+        "Clinical": "RS | Klinische Prozesse & Anwendungen",
+        "SAP": "RS | iSHMED",
+        "Field Service": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios"
+      },
+      "applications": []
+    },
+    {
+      "id": "region_ost",
+      "name": "Region Ost",
+      "region": "",
+      "medCluster": "",
+      "wave": "",
+      "goLiveDate": "",
+      "defaultGroup": "TBD",
+      "routing": {
+        "Infrastructure": "RO-IT | Infrastruktur",
+        "Clinical": "RO | Klinische Anwendungen | Subsysteme",
+        "SAP": "RO | Klinische Anwendungen SAP"
+      },
+      "applications": []
+    },
+    {
+      "id": "sachsen",
+      "name": "Cluster Sachsen",
+      "region": "Ost, Süd",
+      "medCluster": "",
+      "wave": 4,
+      "goLiveDate": "16/10/2026",
+      "defaultGroup": "CLS-IT | MVZ",
+      "routing": {
+        "Service Desk": "CLS-IT | MVZ",
+        "Account Management": "CLS-IT | MVZ",
+        "Infrastructure": "CLS-IT | Infrastruktur",
+        "Clinical": "CLS-IT | iMedOne",
+        "SAP": "CLS-IT | SAP Expert",
+        "Field Service": "CLS-IT | Infrastruktur",
+        "iMedOne": "CLS-IT | iMedOne"
+      },
+      "applications": []
+    },
+    {
+      "id": "sachsen_anhalt",
+      "name": "Cluster Sachsen-Anhalt",
+      "region": "Ost",
+      "medCluster": "",
+      "wave": 4,
+      "goLiveDate": "16/10/2026",
+      "defaultGroup": "CLST-IT | MVZ",
+      "routing": {
+        "Service Desk": "CLST-IT | MVZ",
+        "Account Management": "CLST-IT | MVZ",
+        "Infrastructure": "CLST-IT | Infrastruktur",
+        "Clinical": "CLST-IT | Application Management",
+        "SAP": "CLST-IT | SAP",
+        "Field Service": "CLST-IT | Infrastruktur"
+      },
+      "applications": []
+    }
+  ],
+  "serviceGroups": [
+    {
+      "id": "CLBB-IT | Servicedesk",
+      "name": "CLBB-IT | Servicedesk",
+      "scope": "Cluster Berlin Brandenburg | Supportgruppe des ServiceDesks",
+      "responsibilities": [
+        "Password Reset",
+        "MFA",
+        "Outlook",
+        "Teams",
+        "Windows Login",
+        "User Administration"
+      ],
+      "escalations": {
+        "Infrastructure": "CLBB-IT | Infrastruktur",
+        "Clinical": "CLBB-IT | Klinische Anwendungen",
+        "SAP": "CLBB-IT | KIS Support"
+      },
+      "note": "Management group: CLBB-IT | Servicedesk | Mgt"
+    },
+    {
+      "id": "CLBB-IT | Infrastruktur",
+      "name": "CLBB-IT | Infrastruktur",
+      "scope": "Cluster Berlin Brandenburg | Supportgruppe für Infrastruktur",
+      "responsibilities": [],
+      "escalations": {
+        "Service Desk": "CLBB-IT | Servicedesk"
+      },
+      "note": "Management group: CLBB-IT | Infrastruktur | Mgt"
+    },
+    {
+      "id": "KS-IT",
+      "name": "KS-IT",
+      "scope": "Kassel | Supportgruppe der Kassel IT",
+      "responsibilities": [],
+      "escalations": {
+        "SAP (Wave 2 go-live)": "SAP Basis"
+      },
+      "note": "Management group: KS-IT | Mgt. Kassel local IT: Service Desk, Infrastructure, Clinical and Field Service."
+    },
+    {
+      "id": "KR-IT | Service Desk",
+      "name": "KR-IT | Service Desk",
+      "scope": "Krefeld | Supportgruppe des ServiceDesks",
+      "responsibilities": [],
+      "escalations": {},
+      "note": "Management group: KR-IT | Mgt"
+    },
+    {
+      "id": "MSH-IT | Servicedesk",
+      "name": "MSH-IT | Servicedesk",
+      "scope": "Mansfeld-Südharz | Supportgruppe  des ServiceDesks",
+      "responsibilities": [],
+      "escalations": {
+        "Field Service": "MSH-IT | Fieldservice"
+      },
+      "note": "Management group: CLST-IT | Mgt. Mansfeld-Südharz sites: Sangerhausen, Hettstedt, Eisleben."
+    },
+    {
+      "id": "RS | Servicedesk",
+      "name": "RS | Servicedesk",
+      "scope": "Region Süd | Supportgruppe  des ServiceDesks",
+      "responsibilities": [],
+      "escalations": {
+        "Infrastructure": "RS | Infrastruktur",
+        "Clinical": "RS | Klinische Prozesse & Anwendungen"
+      },
+      "note": "Management group: RS | Servicedesk | Mgt"
+    },
+    {
+      "id": "SAP Basis",
+      "name": "SAP Basis",
+      "scope": "SAP | Supportgruppe für SAP Basis",
+      "responsibilities": [],
+      "escalations": {},
+      "note": "Management group: SAP Basis | Mgt. SAP topics for Wave 1 and Wave 2 go-live locations."
+    }
+  ],
+  "troubleshooting": [
+    {
+      "id": "vpn",
+      "title": "VPN Troubleshooting",
+      "collect": [
+        "Username",
+        "Hostname",
+        "VPN Client",
+        "Error Message"
+      ],
+      "checks": [
+        "Internet access",
+        "MFA status",
+        "VPN profile",
+        "Certificate status",
+        "User credentials"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_Network_SLS_Capgemini_Helios",
+        "Berlin": "CLBB-IT | Infrastruktur",
+        "Kassel": "KS-IT"
+      }
+    },
+    {
+      "id": "active_directory",
+      "title": "Active Directory / Password",
+      "collect": [
+        "Username",
+        "Hostname",
+        "Error Message",
+        "Affected system"
+      ],
+      "checks": [
+        "Account locked or disabled",
+        "Password expiry",
+        "AD group membership",
+        "Windows login on a second device"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_AD_FLS_Capgemini_Helios",
+        "Permissions / AD groups": "Ext_WW_AD_FLS_Capgemini_Helios",
+        "Pre-wave": "Local IT group of the location"
+      }
+    },
+    {
+      "id": "mfa",
+      "title": "MFA / Account disabled",
+      "collect": [
+        "Username",
+        "Registered device",
+        "Error Message"
+      ],
+      "checks": [
+        "Account status",
+        "Registered MFA method",
+        "Device time / token sync"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_OCC_SLS_Capgemini_Helios",
+        "Berlin": "CLBB-IT | Servicedesk",
+        "Pre-wave": "Local IT group of the location"
+      }
+    },
+    {
+      "id": "outlook",
+      "title": "Outlook / Exchange",
+      "collect": [
+        "Username",
+        "Hostname",
+        "Mailbox / Shared Mailbox",
+        "Error Message"
+      ],
+      "checks": [
+        "Outlook profile",
+        "Mailbox size / quota",
+        "Shared mailbox permissions",
+        "Webmail test"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_Collaboration_SLS_Capgemini_Helios",
+        "Pre-wave": "Local IT group of the location"
+      }
+    },
+    {
+      "id": "teams",
+      "title": "Microsoft Teams / SharePoint / OneDrive",
+      "collect": [
+        "Username",
+        "Hostname",
+        "Team / Site",
+        "Error Message"
+      ],
+      "checks": [
+        "Teams client version",
+        "Sign-in status",
+        "Web client test",
+        "Cache reset"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_Collaboration_SLS_Capgemini_Helios",
+        "Pre-wave": "Local IT group of the location"
+      }
+    },
+    {
+      "id": "citrix",
+      "title": "Citrix / Published Apps",
+      "collect": [
+        "Username",
+        "Hostname",
+        "Published app name",
+        "Error Message"
+      ],
+      "checks": [
+        "Citrix Workspace version",
+        "Session state / black screen",
+        "Published app availability",
+        "Login on a second device"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_Virtual-Workplace_SLS_Capgemini_Helios",
+        "Central SysOp": "SysOp | Citrix | Zentrale"
+      }
+    },
+    {
+      "id": "printer",
+      "title": "Printer / FollowMe / Label printer",
+      "collect": [
+        "Printer name / queue",
+        "Hostname",
+        "Location / ward",
+        "Error Message"
+      ],
+      "checks": [
+        "Printer online",
+        "Print queue",
+        "Driver / mapping",
+        "Test page"
+      ],
+      "routing": {
+        "Wave 1/2": "Ext_WW_Printer-Services_SLS_Capgemini_Helios",
+        "Hardware defect / onsite": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios",
+        "Pre-wave": "Local IT group of the location"
+      }
+    },
+    {
+      "id": "sap",
+      "title": "SAP / KIS",
+      "collect": [
+        "SAP user",
+        "System / client",
+        "Transaction",
+        "Error Message"
+      ],
+      "checks": [
+        "SAP GUI / Launchpad reachable",
+        "User locked",
+        "Role / authorisation",
+        "Login on a second device"
+      ],
+      "routing": {
+        "Wave 1/2": "SAP Basis",
+        "Berlin": "CLBB-IT | KIS Support",
+        "Pre-wave": "Local IT / cluster SAP group"
+      }
+    },
+    {
+      "id": "workstation",
+      "title": "Workstation / Hardware",
+      "collect": [
+        "Hostname",
+        "Asset tag",
+        "Location / room",
+        "Error Message"
+      ],
+      "checks": [
+        "Power and cabling",
+        "Cross-test with another device",
+        "Disk space",
+        "Windows updates"
+      ],
+      "routing": {
+        "Slow PC / disk full (Wave 1/2)": "Ext_WW_Physical-Workplace_SLS_Capgemini_Helios",
+        "Hardware defect / onsite": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios",
+        "Pre-wave": "Local IT group of the location"
+      }
+    },
+    {
+      "id": "dmo",
+      "title": "Dragon Medical One (DMO)",
+      "collect": [
+        "Username",
+        "Hostname",
+        "Headset model",
+        "Error Message"
+      ],
+      "checks": [
+        "Verify microphone",
+        "Verify DMO profile",
+        "Restart DMO",
+        "Verify audio device",
+        "Test speech recognition"
+      ],
+      "routing": {
+        "All locations": "INK DMO"
+      }
+    }
+  ]
+}
