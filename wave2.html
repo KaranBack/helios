@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helios Wave 2 — XML Knowledge Base</title>
+<style>
+:root {
+    --primary: #003366;
+    --secondary: #005a9e;
+    --bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --text: #333333;
+    --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Tahoma, sans-serif; background: var(--bg); color: var(--text); }
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff; padding: 20px 24px;
+}
+header h1 { margin: 0 0 6px; font-size: 24px; }
+header p { margin: 0; opacity: .9; font-size: 14px; }
+.nav {
+    display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px;
+    background: #00264d; position: sticky; top: 0; z-index: 20;
+}
+.nav button {
+    background: transparent; border: 1px solid rgba(255,255,255,.25); color: #fff;
+    padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;
+}
+.nav button.active, .nav button:hover { background: var(--secondary); }
+.container { max-width: 1280px; margin: 0 auto; padding: 16px; }
+.section { display: none; }
+.section.on { display: block; }
+.card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 16px; overflow: hidden;
+}
+.card-header {
+    background: #e8f0f7; padding: 12px 14px; font-weight: 700; color: var(--primary);
+    border-bottom: 1px solid var(--border);
+}
+.card-content { padding: 14px; }
+.controls-card {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    background: #fff; border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px; margin-bottom: 16px;
+}
+.search-box, .filter-select, .file-btn {
+    padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;
+}
+.search-box { flex: 1 1 240px; min-width: 200px; }
+.routing-banner {
+    background: #fff3cd; border: 2px solid #f59e0b; border-left: 6px solid #d97706;
+    padding: 14px 16px; margin: 0 0 16px 0; border-radius: 6px; color: #78350f;
+}
+.clinical-note {
+    background: #eff6ff; border: 2px solid #3b82f6; border-left: 6px solid #1d4ed8;
+    padding: 12px 14px; margin: 0 0 16px 0; border-radius: 6px; color: #1e3a8a; font-size: 13px;
+}
+.note-box {
+    background: #f8fafc; border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 12px; margin-bottom: 12px; font-size: 13px;
+}
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: #f1f5f9; color: var(--primary); }
+code.assignment {
+    background: #eef6fc; padding: 2px 6px; border-radius: 4px; font-family: Consolas, monospace;
+}
+.copy-btn {
+    margin-left: 6px; border: 1px solid var(--border); background: #fff;
+    border-radius: 4px; padding: 2px 8px; cursor: pointer; font-size: 11px;
+}
+.badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; color: #fff; }
+.badge-golive { background: #166534; }
+.badge-prewave { background: #9a3412; }
+.badge-clinical { background: #0369a1; }
+.badge-sap { background: #be185d; }
+.meta { color: #64748b; font-size: 12px; margin-top: 4px; }
+.status {
+    padding: 10px 14px; border-radius: 6px; margin-bottom: 12px; font-size: 13px;
+}
+.status.ok { background: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
+.status.err { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.status.warn { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+.muted { color: #64748b; font-size: 12px; }
+@media (max-width: 700px) {
+    header h1 { font-size: 20px; }
+    .controls-card { flex-direction: column; align-items: stretch; }
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Helios Wave 2 Viewer</h1>
+    <p>Reads editable XML knowledge base · does not modify <code>matrix.html</code></p>
+</header>
+
+<nav class="nav" id="nav">
+    <button type="button" data-sec="home" class="active">Start</button>
+    <button type="button" data-sec="wavesplan">Waves Planning</button>
+    <button type="button" data-sec="wave2">Wave 2 Locations</button>
+    <button type="button" data-sec="apps">Site Apps</button>
+    <button type="button" data-sec="global">Global Helios</button>
+    <button type="button" data-sec="clusters">Clusters</button>
+    <button type="button" data-sec="changelog">Changelog</button>
+</nav>
+
+<div class="container">
+    <div id="loadStatus" class="status warn">Loading XML…</div>
+    <div class="controls-card">
+        <input type="text" id="searchBox" class="search-box" placeholder="Search location / app / group…" oninput="renderAll()">
+        <label class="file-btn" style="cursor:pointer;">
+            Load XML…
+            <input type="file" id="xmlFile" accept=".xml,text/xml,application/xml" hidden>
+        </label>
+        <span class="muted" id="xmlPathMeta">Source: data/helios-kb.xml</span>
+    </div>
+
+    <section class="section on" id="home">
+        <div id="homeBanner"></div>
+        <div class="card">
+            <div class="card-header">Document / Wave go-live</div>
+            <div class="card-content" id="homeMeta"></div>
+        </div>
+        <div class="card">
+            <div class="card-header">Routing policy</div>
+            <div class="card-content" id="homePolicy"></div>
+        </div>
+    </section>
+
+    <section class="section" id="wavesplan">
+        <div id="wavesPlanBanner"></div>
+        <div class="controls-card">
+            <select id="waveFilter" class="filter-select" onchange="renderAll()">
+                <option value="">All Waves</option>
+                <option value="1">Wave 1</option>
+                <option value="2">Wave 2</option>
+                <option value="3">Wave 3</option>
+                <option value="4">Wave 4</option>
+                <option value="5">Wave 5</option>
+            </select>
+            <span class="muted" id="wavesPlanMeta"></span>
+        </div>
+        <div class="card">
+            <div class="card-header">Waves planning FINAL — service units</div>
+            <div class="card-content" id="wavesPlanContent"></div>
+        </div>
+    </section>
+
+    <section class="section" id="wave2">
+        <div id="wave2Banner"></div>
+        <div class="card">
+            <div class="card-header">Wave 2 locations &amp; specialty routing</div>
+            <div class="card-content" id="wave2Content"></div>
+        </div>
+    </section>
+
+    <section class="section" id="apps">
+        <div class="clinical-note"><strong>Clinical / specialty apps</strong> — from <code>&lt;siteApps&gt;</code> in XML (e.g. Kassel).</div>
+        <div class="card">
+            <div class="card-header">Site-specific applications</div>
+            <div class="card-content" id="appsContent"></div>
+        </div>
+    </section>
+
+    <section class="section" id="global">
+        <div class="note-box">Go-live general topics → Global Helios Groups. SAP → <code>SAP Basis</code>.</div>
+        <div class="card">
+            <div class="card-header">Global Helios Groups</div>
+            <div class="card-content" id="globalContent"></div>
+        </div>
+    </section>
+
+    <section class="section" id="clusters">
+        <div class="card">
+            <div class="card-header">Clusters (assignment groups)</div>
+            <div class="card-content" id="clustersContent"></div>
+        </div>
+    </section>
+
+    <section class="section" id="changelog">
+        <div class="card">
+            <div class="card-header">Changelog</div>
+            <div class="card-content" id="changelogContent"></div>
+        </div>
+    </section>
+</div>
+
+<script>
+const DEFAULT_XML = "data/helios-kb.xml";
+let KBX = null;
+
+function esc(s) {
+    return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
+function text(el, sel) {
+    if (!el) return "";
+    const n = sel ? el.querySelector(sel) : el;
+    return n ? (n.textContent || "").trim() : "";
+}
+
+function texts(el, sel) {
+    return Array.from((el || document).querySelectorAll(sel)).map(n => (n.textContent || "").trim()).filter(Boolean);
+}
+
+function copyToClipboard(t) {
+    navigator.clipboard.writeText(t).catch(() => {});
+}
+
+function setStatus(msg, kind) {
+    const el = document.getElementById("loadStatus");
+    el.className = "status " + (kind || "ok");
+    el.innerHTML = msg;
+}
+
+function showSection(id) {
+    document.querySelectorAll(".section").forEach(s => s.classList.toggle("on", s.id === id));
+    document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("active", b.dataset.sec === id));
+}
+
+document.getElementById("nav").addEventListener("click", e => {
+    const b = e.target.closest("button[data-sec]");
+    if (!b) return;
+    showSection(b.dataset.sec);
+});
+
+document.body.addEventListener("click", e => {
+    const btn = e.target.closest("[data-copy]");
+    if (btn) copyToClipboard(btn.getAttribute("data-copy"));
+});
+
+function parseXml(xmlText) {
+    const doc = new DOMParser().parseFromString(xmlText, "application/xml");
+    if (doc.querySelector("parsererror")) throw new Error("Invalid XML");
+    const root = doc.documentElement;
+    if (!root || root.tagName !== "heliosKnowledgeBase") {
+        throw new Error("Root element must be <heliosKnowledgeBase>");
+    }
+    return root;
+}
+
+function fieldMap(parent) {
+    const out = {};
+    if (!parent) return out;
+    parent.querySelectorAll(":scope > field").forEach(f => {
+        out[f.getAttribute("name") || ""] = (f.textContent || "").trim();
+    });
+    // also direct child elements used as named fields
+    Array.from(parent.children).forEach(ch => {
+        if (ch.tagName === "field" || ch.tagName === "item" || ch.children.length) return;
+        if (!(ch.tagName in out)) out[ch.tagName] = (ch.textContent || "").trim();
+    });
+    return out;
+}
+
+function getMeta(root) {
+    const meta = root.querySelector("meta");
+    const doc = root.querySelector("documentInfo");
+    return {
+        version: text(meta, "version"),
+        title: text(meta, "title") || text(meta, "document"),
+        updated: text(meta, "updated"),
+        author: text(meta, "author") || text(doc, "author"),
+        status: text(meta, "status") || text(doc, "status"),
+        date: text(doc, "date")
+    };
+}
+
+function getPolicy(root) {
+    const p = root.querySelector("routingPolicy");
+    return {
+        title: text(p, "title"),
+        rule: text(p, "rule"),
+        shortRule: text(p, "shortRule"),
+        sapGroup: text(p, "sapGroup") || "SAP Basis",
+        clinicalRule: text(p, "clinicalRule"),
+        clinicalNote: text(p, "clinicalNote"),
+        source: text(p, "source"),
+        date: text(p, "date")
+    };
+}
+
+function getWaves(root) {
+    return Array.from(root.querySelectorAll("waveGoLive > wave")).map(w => ({
+        number: w.getAttribute("number"),
+        goLive: text(w, "goLive") === "true",
+        goLiveDate: text(w, "goLiveDate"),
+        status: text(w, "status"),
+        note: text(w, "note")
+    }));
+}
+
+function getPlanningUnits(root) {
+    return Array.from(root.querySelectorAll("planning > serviceUnit")).map(u => {
+        const regions = {};
+        u.querySelectorAll("regions > region").forEach(r => {
+            regions[r.getAttribute("name") || ""] = Number(r.textContent || 0);
+        });
+        return {
+            unit: u.getAttribute("name") || "",
+            wave: Number(u.getAttribute("wave") || 0),
+            clusterKey: u.getAttribute("clusterKey") || text(u, "clusterKey"),
+            locations: text(u, "locations"),
+            users: text(u, "users"),
+            adminPct: text(u, "adminPct"),
+            clinicalPct: text(u, "clinicalPct"),
+            otherPct: text(u, "otherPct"),
+            ticketsPerMonth: text(u, "ticketsPerMonth"),
+            kritis: text(u, "kritis") === "true",
+            goLive: text(u, "goLive") === "true",
+            goLiveDate: text(u, "goLiveDate"),
+            waveStatus: text(u, "waveStatus"),
+            notes: text(u, "notes"),
+            regions
+        };
+    });
+}
+
+function getWave2Locations(root) {
+    return Array.from(root.querySelectorAll("wave2Locations > location")).map(loc => {
+        const specials = Array.from(loc.querySelectorAll("specials > special")).map(s => ({
+            topic: text(s, "topic"),
+            group: text(s, "group") || text(s, "assignmentGroup"),
+            notes: text(s, "notes")
+        }));
+        return {
+            name: loc.getAttribute("name") || "",
+            clusterKey: loc.getAttribute("clusterKey") || "",
+            status: text(loc, "status"),
+            serviceDesk: text(loc, "serviceDesk"),
+            account: text(loc, "account"),
+            infrastructure: text(loc, "infrastructure"),
+            clinical: text(loc, "clinical"),
+            sap: text(loc, "sap"),
+            sapGoLive: text(loc, "sapGoLive"),
+            fieldService: text(loc, "fieldService"),
+            notes: text(loc, "notes"),
+            specials
+        };
+    });
+}
+
+function getSiteApps(root) {
+    return Array.from(root.querySelectorAll("siteApps > site")).map(site => ({
+        name: site.getAttribute("name") || "",
+        source: text(site, "source"),
+        note: text(site, "note"),
+        apps: Array.from(site.querySelectorAll("apps > app")).map(a => ({
+            application: a.getAttribute("name") || text(a, "application"),
+            description: text(a, "description"),
+            group: text(a, "assignmentGroup") || text(a, "group"),
+            category: text(a, "category")
+        }))
+    }));
+}
+
+function getGlobal(root) {
+    return Array.from(root.querySelectorAll("globalHeliosGroups > service")).map(s => ({
+        service: text(s, "name") || text(s, "service"),
+        group: text(s, "assignmentGroup") || text(s, "group"),
+        notes: text(s, "notes")
+    }));
+}
+
+function getClusters(root) {
+    return Array.from(root.querySelectorAll("clusters > cluster")).map(c => {
+        const groups = {};
+        c.querySelectorAll("groups > group").forEach(g => {
+            groups[g.getAttribute("role") || ""] = (g.textContent || "").trim();
+        });
+        const waves = texts(c, "meta > waves > item");
+        const regions = texts(c, "meta > regions > item");
+        return {
+            name: c.getAttribute("name") || "",
+            groups,
+            waves,
+            regions,
+            medCluster: text(c, "meta > medCluster")
+        };
+    });
+}
+
+function getChangelog(root) {
+    return Array.from(root.querySelectorAll("changelog > entry")).map(e => ({
+        date: e.getAttribute("date") || "",
+        version: e.getAttribute("version") || "",
+        changes: texts(e, "change")
+    }));
+}
+
+function qMatch(hay, q) {
+    if (!q) return true;
+    return String(hay || "").toLowerCase().includes(q);
+}
+
+function assignmentCell(group) {
+    const g = group || "TBD";
+    return '<code class="assignment">' + esc(g) + "</code>" +
+        '<button class="copy-btn" type="button" data-copy="' + esc(g) + '">Copy</button>';
+}
+
+function renderAll() {
+    if (!KBX) return;
+    const q = (document.getElementById("searchBox").value || "").toLowerCase().trim();
+    const meta = getMeta(KBX);
+    const policy = getPolicy(KBX);
+    const waves = getWaves(KBX);
+    const w2 = getWave2Locations(KBX).filter(l =>
+        !q || qMatch(JSON.stringify(l), q)
+    );
+    const sites = getSiteApps(KBX);
+    const globals = getGlobal(KBX).filter(g => !q || qMatch(g.service + g.group + g.notes, q));
+    const clusters = getClusters(KBX).filter(c => !q || qMatch(c.name + JSON.stringify(c.groups), q));
+    const changelog = getChangelog(KBX);
+
+    const w2info = waves.find(w => w.number === "2") || {};
+    const banner =
+        '<div class="routing-banner"><strong>⚠ ' + esc(policy.title || "Wave go-live routing") + "</strong><br>" +
+        esc(policy.rule || "") +
+        '<div class="meta" style="margin-top:8px;font-weight:700;">' + esc(policy.shortRule || "") + "</div>" +
+        '<div class="meta">Source: ' + esc(policy.source || "") + " · " + esc(policy.date || "") + "</div></div>" +
+        '<div class="clinical-note">' + esc(policy.clinicalNote || policy.clinicalRule || "") +
+        "<br><b>SAP after go-live:</b> <code class=\"assignment\">" + esc(policy.sapGroup) + "</code></div>";
+
+    document.getElementById("homeBanner").innerHTML = banner;
+    document.getElementById("wave2Banner").innerHTML = banner;
+    const wpb = document.getElementById("wavesPlanBanner");
+    if (wpb) wpb.innerHTML = banner;
+
+    const waveFilter = ((document.getElementById("waveFilter") || {}).value || "");
+    const planning = getPlanningUnits(KBX).filter(u => {
+        if (waveFilter && String(u.wave) !== String(waveFilter)) return false;
+        return !q || qMatch(JSON.stringify(u), q);
+    });
+    const planMeta = document.getElementById("wavesPlanMeta");
+    if (planMeta) planMeta.textContent = planning.length + " service unit(s)";
+    const planHost = document.getElementById("wavesPlanContent");
+    if (planHost) {
+        planHost.innerHTML =
+            "<table><thead><tr>" +
+            "<th>Service Unit</th><th>Wave</th><th>Go-live</th><th>Date</th><th>Locations</th><th>Users</th>" +
+            "<th>Admin %</th><th>Clinical %</th><th>Other %</th><th>Tickets Ø/mo</th><th>KRITIS</th>" +
+            "<th>Nord</th><th>Ost</th><th>Süd</th><th>West</th><th>Cluster key</th>" +
+            "</tr></thead><tbody>" +
+            planning.map(u =>
+                "<tr class=\"wave-" + esc(u.wave) + "\">" +
+                "<td><strong>" + esc(u.unit) + "</strong>" + (u.notes ? '<div class="meta">' + esc(u.notes) + "</div>" : "") + "</td>" +
+                "<td>Wave " + esc(u.wave) + "</td>" +
+                "<td>" + (u.goLive ? '<span class="badge badge-golive">Go-live</span>' : '<span class="badge badge-prewave">Pre-wave</span>') + "</td>" +
+                "<td>" + esc(u.goLiveDate || "") + "</td>" +
+                "<td>" + esc(u.locations) + "</td>" +
+                "<td>" + esc(u.users) + "</td>" +
+                "<td>" + esc(u.adminPct) + "</td>" +
+                "<td>" + esc(u.clinicalPct) + "</td>" +
+                "<td>" + esc(u.otherPct) + "</td>" +
+                "<td>" + esc(u.ticketsPerMonth) + "</td>" +
+                "<td>" + (u.kritis ? '<span style="color:#b91c1c;font-weight:700;">1</span>' : "") + "</td>" +
+                "<td>" + esc(u.regions.Nord || 0) + "</td>" +
+                "<td>" + esc(u.regions.Ost || 0) + "</td>" +
+                "<td>" + esc(u.regions.Süd || 0) + "</td>" +
+                "<td>" + esc(u.regions.West || 0) + "</td>" +
+                "<td>" + esc(u.clusterKey) + "</td>" +
+                "</tr>"
+            ).join("") +
+            "</tbody></table>";
+    }
+
+    document.getElementById("homeMeta").innerHTML =
+        "<table><tbody>" +
+        "<tr><td><strong>Title</strong></td><td>" + esc(meta.title) + "</td></tr>" +
+        "<tr><td><strong>Version</strong></td><td>" + esc(meta.version) + "</td></tr>" +
+        "<tr><td><strong>Updated</strong></td><td>" + esc(meta.updated || meta.date) + "</td></tr>" +
+        "<tr><td><strong>Author</strong></td><td>" + esc(meta.author) + "</td></tr>" +
+        "<tr><td><strong>Status</strong></td><td>" + esc(meta.status) + "</td></tr>" +
+        "</tbody></table>" +
+        '<div style="margin-top:14px;"><strong>Wave go-live flags</strong></div>' +
+        "<table><thead><tr><th>Wave</th><th>Go-live</th><th>Date</th><th>Status</th><th>Note</th></tr></thead><tbody>" +
+        waves.map(w =>
+            "<tr><td><strong>Wave " + esc(w.number) + "</strong></td>" +
+            "<td>" + (w.goLive ? '<span class="badge badge-golive">Go-live</span>' : '<span class="badge badge-prewave">Pre-wave</span>') + "</td>" +
+            "<td>" + esc(w.goLiveDate) + "</td><td>" + esc(w.status) + "</td><td>" + esc(w.note) + "</td></tr>"
+        ).join("") +
+        "</tbody></table>";
+
+    document.getElementById("homePolicy").innerHTML =
+        "<p>" + esc(policy.rule) + "</p>" +
+        '<p class="meta">' + esc(policy.shortRule) + "</p>";
+
+    // Wave 2 locations
+    let w2html = '<div class="note-box">Wave 2 go-live date: <b>' + esc(w2info.goLiveDate || "26/08/2026") + "</b> · " +
+        (w2info.goLive ? '<span class="badge badge-golive">Go-live</span>' : '<span class="badge badge-prewave">Pre-wave</span>') +
+        " · General → Global Helios · SAP → " + esc(policy.sapGroup) + " · Clinical specialty as listed</div>";
+
+    if (!w2.length) {
+        w2html += '<p class="meta">No Wave 2 locations match the filter.</p>';
+    } else {
+        w2.forEach(loc => {
+            w2html += '<div class="card" style="margin:12px 0;"><div class="card-header">' +
+                esc(loc.name) + (loc.clusterKey && loc.clusterKey !== loc.name ? " · " + esc(loc.clusterKey) : "") +
+                "</div><div class=\"card-content\">" +
+                "<table><tbody>" +
+                [["Service Desk", loc.serviceDesk], ["Infrastructure", loc.infrastructure],
+                 ["Clinical (general)", loc.clinical], ["SAP (legacy local)", loc.sap],
+                 ["SAP (go-live)", loc.sapGoLive || policy.sapGroup],
+                 ["Field Service", loc.fieldService], ["Notes", loc.notes]].map(r =>
+                    "<tr><td><strong>" + esc(r[0]) + "</strong></td><td>" +
+                    (r[0].startsWith("Notes") ? esc(r[1]) : assignmentCell(r[1])) +
+                    "</td></tr>"
+                ).join("") +
+                "</tbody></table>";
+            if (loc.specials.length) {
+                w2html += '<div style="margin-top:10px;"><span class="badge badge-clinical">Specialty apps</span></div>' +
+                    "<table><thead><tr><th>Topic / App</th><th>Assignment Group</th><th>Notes</th></tr></thead><tbody>" +
+                    loc.specials.map(s =>
+                        "<tr><td><strong>" + esc(s.topic) + "</strong></td><td>" + assignmentCell(s.group) +
+                        "</td><td>" + esc(s.notes || "") + "</td></tr>"
+                    ).join("") +
+                    "</tbody></table>";
+            }
+            w2html += "</div></div>";
+        });
+    }
+    document.getElementById("wave2Content").innerHTML = w2html;
+
+    // Site apps
+    let appsHtml = "";
+    sites.forEach(site => {
+        const apps = site.apps.filter(a => !q || qMatch(a.application + a.group + a.description + site.name, q));
+        if (q && !apps.length) return;
+        appsHtml += '<div class="card" style="margin-bottom:12px;"><div class="card-header">' + esc(site.name) +
+            '</div><div class="card-content">' +
+            (site.note ? '<div class="note-box">' + esc(site.note) + "</div>" : "") +
+            "<table><thead><tr><th>Application</th><th>Assignment Group</th><th>Category</th><th>Description</th></tr></thead><tbody>" +
+            apps.map(a =>
+                "<tr><td><strong>" + esc(a.application) + "</strong></td><td>" + assignmentCell(a.group) +
+                "</td><td>" + esc(a.category || "") + "</td><td>" + esc(a.description || "") + "</td></tr>"
+            ).join("") +
+            "</tbody></table></div></div>";
+    });
+    document.getElementById("appsContent").innerHTML = appsHtml || '<p class="meta">No site apps in XML (or no match).</p>';
+
+    // Global
+    document.getElementById("globalContent").innerHTML =
+        "<table><thead><tr><th>Service</th><th>Assignment Group</th><th>Notes</th></tr></thead><tbody>" +
+        globals.map(g =>
+            "<tr><td><strong>" + esc(g.service) + "</strong></td><td>" + assignmentCell(g.group) +
+            "</td><td>" + esc(g.notes || "") + "</td></tr>"
+        ).join("") +
+        "</tbody></table>";
+
+    // Clusters
+    document.getElementById("clustersContent").innerHTML =
+        "<table><thead><tr><th>Cluster</th><th>Wave</th><th>Regions</th><th>Service Desk</th><th>Clinical</th><th>SAP</th></tr></thead><tbody>" +
+        clusters.slice(0, q ? 300 : 120).map(c =>
+            "<tr><td><strong>" + esc(c.name) + "</strong>" +
+            (c.medCluster ? '<div class="meta">' + esc(c.medCluster) + "</div>" : "") +
+            "</td><td>" + esc((c.waves || []).join(", ")) +
+            "</td><td>" + esc((c.regions || []).join(", ")) +
+            "</td><td>" + assignmentCell(c.groups.ServiceDesk || c.groups.Account || "") +
+            "</td><td>" + assignmentCell(c.groups.Clinical || "") +
+            "</td><td>" + assignmentCell(c.groups.SAP || "") +
+            "</td></tr>"
+        ).join("") +
+        "</tbody></table>";
+
+    // Changelog
+    document.getElementById("changelogContent").innerHTML =
+        "<table><thead><tr><th>Date</th><th>Version</th><th>Changes</th></tr></thead><tbody>" +
+        changelog.map(e =>
+            "<tr><td><strong>" + esc(e.date) + "</strong></td><td>" + esc(e.version) +
+            "</td><td><ul style=\"margin:0;padding-left:18px;\">" +
+            e.changes.map(c => "<li>" + esc(c) + "</li>").join("") +
+            "</ul></td></tr>"
+        ).join("") +
+        "</tbody></table>";
+}
+
+async function loadFromUrl(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
+    const xmlText = await res.text();
+    KBX = parseXml(xmlText);
+    document.getElementById("xmlPathMeta").textContent = "Source: " + url + " · KB v" + (getMeta(KBX).version || "?");
+    setStatus("Loaded <code>" + esc(url) + "</code> (version " + esc(getMeta(KBX).version) + "). Edit the XML and reload.", "ok");
+    renderAll();
+}
+
+document.getElementById("xmlFile").addEventListener("change", async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    try {
+        const xmlText = await file.text();
+        KBX = parseXml(xmlText);
+        document.getElementById("xmlPathMeta").textContent = "Source: local file · " + file.name;
+        setStatus("Loaded local file <code>" + esc(file.name) + "</code>.", "ok");
+        renderAll();
+    } catch (err) {
+        setStatus("Failed to parse file: " + esc(err.message), "err");
+    }
+});
+
+(async function init() {
+    try {
+        await loadFromUrl(DEFAULT_XML);
+    } catch (err) {
+        setStatus(
+            "Could not auto-load <code>" + esc(DEFAULT_XML) + "</code> (" + esc(err.message) + "). " +
+            "If you opened this as a local file, start a server in the repo folder:<br>" +
+            "<code>python3 -m http.server 8080</code> then open <code>http://localhost:8080/wave2.html</code>, " +
+            "or use <b>Load XML…</b> to pick <code>data/helios-kb.xml</code>.",
+            "warn"
+        );
+    }
+})();
+</script>
+</body>
+</html>
