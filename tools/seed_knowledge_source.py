@@ -422,6 +422,22 @@ templates = [
           "items": ["Incident number", "Summary and business impact", "Affected users and locations",
                     "Steps already taken and results", "Requested action from the receiving team"]},
      ]},
+    {"id": "major_incident", "title": "Major Incident",
+     "sections": [
+         {"heading": "Ask the user (requester details)",
+          "items": ["Contact person for additional questions:", "Phone number:", "Customer's language:",
+                    "Secondary contact person:", "Phone number:", "Availability of the affected team:",
+                    "Error message / symptoms:"]},
+         {"heading": "Business impact (Propose Major Incident pop-up)",
+          "items": service_desk_kb["majorIncidentProcess"]["proposalFields"]["businessImpact"]},
+         {"heading": "Business impact questions",
+          "items": service_desk_kb["majorIncidentProcess"]["businessImpactQuestions"]},
+         {"heading": "How to propose",
+          "items": service_desk_kb["majorIncidentProcess"]["steps"]},
+         {"heading": "Contacts",
+          "items": [c["role"] + ": " + c["detail"]
+                    for c in service_desk_kb["majorIncidentProcess"]["contacts"]]},
+     ]},
     {"id": "known_error", "title": "Known Error",
      "sections": [
          {"heading": "Fields", "items": ["Title — concise error title", "Symptoms — observable symptoms",

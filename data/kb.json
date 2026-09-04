@@ -3,7 +3,7 @@
     "title": "Helios Master Matrix",
     "document": "Helios Master Matrix",
     "subtitle": "Catch & Dispatch · Waves · Regions · Clusters · Med. Clusters · Berlin · Global Helios",
-    "version": "2.16",
+    "version": "2.17",
     "author": "Krystian Karankiewicz",
     "status": "Production Draft",
     "updated": "2026-09-04"
@@ -11615,6 +11615,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "2.17",
+      "date": "2026-09-04",
+      "changes": [
+        "New Major Incident tab (red) with the full agent instruction: what to ask the user, how to propose the MI in ServiceNow, contacts and escalation",
+        "Copyable requester and business impact templates for Major Incidents",
+        "Priority hint links directly to the Major Incident instructions for P1",
+        "Added knowledge/templates/major_incident.md"
+      ]
+    },
     {
       "version": "2.16",
       "date": "2026-09-04",
@@ -34551,7 +34561,7 @@
         "Always search knowledge/ before answering.",
         "Never invent assignment groups — use only groups from the matrix / knowledge base."
       ],
-      "files": 75
+      "files": 76
     },
     "prompt": {
       "goal": "Support Service Desk Analysts in the Helios environment.",
@@ -35265,6 +35275,71 @@
               "Affected users and locations",
               "Steps already taken and results",
               "Requested action from the receiving team"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major_incident",
+        "title": "Major Incident",
+        "sections": [
+          {
+            "heading": "Ask the user (requester details)",
+            "items": [
+              "Contact person for additional questions:",
+              "Phone number:",
+              "Customer's language:",
+              "Secondary contact person:",
+              "Phone number:",
+              "Availability of the affected team:",
+              "Error message / symptoms:"
+            ]
+          },
+          {
+            "heading": "Business impact (Propose Major Incident pop-up)",
+            "items": [
+              "Application not working",
+              "When was it working fine / since when (CET)",
+              "Locations impacted",
+              "Number of users impacted",
+              "Any workaround available",
+              "Immediate business / financial impact"
+            ]
+          },
+          {
+            "heading": "Business impact questions",
+            "items": [
+              "Which application is not working as expected? (during network/VPN outage document all inaccessible applications)",
+              "What is the error message or symptoms?",
+              "When was it working fine / since when did the issue start (CET)?",
+              "Number of users impacted?",
+              "Any workaround available? (no P1 is declared when a workaround exists)",
+              "Who is the contact for clarifying additional questions, and are they available?",
+              "What is the immediate business / financial impact?",
+              "What is the remaining working time of the affected team? (bridge call starts asap)"
+            ]
+          },
+          {
+            "heading": "How to propose",
+            "items": [
+              "Identify a potential Major Incident based on impact and urgency.",
+              "Create the incident and apply the Major Incident template.",
+              "Use the “Propose Major Incident” action in ServiceNow.",
+              "Fill in Work Notes (contact details, availability, symptoms) and Business Impact (application affected, number of users, financial impact).",
+              "Call the MIM team at +91 2267 802 355 or contact them via FreDi Chat — mandatory even after proposing.",
+              "Send the MI email to the MIM distribution lists with ticket and user details.",
+              "Add a Work Note: “MIM informed”.",
+              "Follow the guidance of the Major Incident Manager on priority, assignment and next steps."
+            ]
+          },
+          {
+            "heading": "Contacts",
+            "items": [
+              "MIM hotline (24/7): +91 2267 802 355",
+              "MIM distribution list: dachmim.in@capgemini.com",
+              "MIM generic mailbox: dachmajorincidentmanagement.in@capgemini.com",
+              "Smart Hands Friedberg (HCL, 24/7): +49 731 96584000 — assignment group Ext_WW_GNS_NOC_HCL",
+              "Email subject format: Client Name (FDT/FMC/FME) // INC***** – short description // P2"
             ]
           }
         ]
@@ -36791,6 +36866,11 @@
       {
         "path": "knowledge/templates/escalation.md",
         "title": "Escalation",
+        "category": "templates"
+      },
+      {
+        "path": "knowledge/templates/major_incident.md",
+        "title": "Major Incident",
         "category": "templates"
       },
       {
