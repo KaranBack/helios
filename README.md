@@ -55,6 +55,7 @@ Service Desk knowledge base for Helios / Fresenius agents.
 | `routing_matrix/` | Per-site routing matrix: assignment group, service scope, escalation path |
 | `templates/` | Incident, request, escalation, known error and knowledge article templates |
 | `prompts/` | Agent prompts: service desk agent, major incident manager, translator |
+| `fhs/` | Fresenius Health Services coexistence phase: which account per app, support channels |
 
 Rebuild after changing `data/knowledge-source.json` or `data/kb.json`:
 
@@ -64,3 +65,10 @@ python3 tools/build_knowledge.py         # writes knowledge/*.md, data/knowledge
 ```
 
 Assignment groups are never invented: anything unconfirmed stays `TBD`.
+
+## docs/guides
+
+Source user guides used by the knowledge base:
+
+- `shared-mailbox-outlook-online-en.pdf` — shared mailbox access during the coexistence phase
+- `printer-mapping-post-migration.pdf` — reconnecting printers after the Fresenius migration

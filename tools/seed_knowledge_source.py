@@ -739,7 +739,120 @@ service_groups = [
                        note="SAP topics for Wave 1 and Wave 2 go-live locations."),
 ]
 
+fhs = {
+    "title": "FHS — Fresenius Health Services",
+    "notice": {
+        "title": "FHS Citrix — where to send the ticket",
+        "text": "If Helios users encounter issues with or request access to FHS Citrix, they must submit a ticket "
+                "by contacting it-services@vamed.com.",
+        "contact": "it-services@vamed.com",
+    },
+    "coexistence": {
+        "title": "Coexisting phase — which account to use",
+        "note": "During the coexistence phase two environments run in parallel. Use the account listed per app.",
+        "rows": [
+            {"app": "Laptop login", "account": "Fresenius",
+             "description": "After the migration, log in to your laptop using your Fresenius account credentials.",
+             "comment": "Your laptop is now managed by Fresenius."},
+            {"app": "VPN", "account": "Fresenius Health Services",
+             "description": "To establish a VPN connection use your FHS VPN client.",
+             "comment": "Temporary solution. You will be informed prior to the planned change."},
+            {"app": "Outlook (desktop)", "account": "Fresenius",
+             "description": "Use the Outlook desktop app for all your emails. This is the consolidated view "
+                            "(Fresenius + FHS). Do not use Citrix Outlook.",
+             "comment": "All inbound emails appear in your Fresenius mailbox. Outbound emails come from "
+                        "@fresenius.com with a banner explaining the change to external recipients."},
+            {"app": "Outlook Web App", "account": "Fresenius Health Services",
+             "description": "Use the Outlook Web App only to access shared mailboxes.",
+             "comment": "Access via a web browser, logged in with the FHS profile."},
+            {"app": "Teams", "account": "Fresenius",
+             "description": "Switch to your Fresenius account if required.",
+             "comment": "Your primary account is the Teams app."},
+            {"app": "Teams (FHS account)", "account": "Fresenius Health Services",
+             "description": "You can continue your work on your FHS account profile as usual.",
+             "comment": "Your additional account in Teams. This account must be manually added to your Teams app "
+                        "after the migration."},
+            {"app": "SharePoint", "account": "Fresenius",
+             "description": "Fresenius SharePoint websites.",
+             "comment": "Access via a web browser using the Fresenius profile."},
+            {"app": "SharePoint (FHS)", "account": "Fresenius Health Services",
+             "description": "FHS SharePoint websites.",
+             "comment": "Access via a web browser, logged in with the FHS profile."},
+            {"app": "OneDrive", "account": "Fresenius",
+             "description": "Use the Fresenius OneDrive desktop app for all files. The FHS content has been copied. "
+                            "When collaborating you must share the new file link, as colleagues may still be working "
+                            "on the FHS file.",
+             "comment": "Access via a web browser, logged in with the FHS profile."},
+            {"app": "OneDrive (FHS)", "account": "Fresenius Health Services",
+             "description": "Use only if you believe files have not been transferred.",
+             "comment": "Access via a web browser, logged in with the FHS profile."},
+            {"app": "Citrix (FHS)", "account": "Fresenius Health Services",
+             "description": "Use a web browser to access the FHS Citrix apps. Do not use the Outlook app in Citrix.",
+             "comment": "Access via a web browser, logged in with the FHS profile. "
+                        "Issues / access requests → it-services@vamed.com."},
+        ],
+    },
+    "support": {
+        "title": "Do you need support? Fresenius Global Service Desk",
+        "channels": [
+            {"channel": "FreDi live chat", "detail": "In Teams"},
+            {"channel": "Portal", "detail": "Open a ticket — https://fnc.service-now.com/sp"},
+            {"channel": "Phone", "detail": "+49 (0)6172 608-1111"},
+            {"channel": "Email", "detail": "GlobalServiceDesk@fresenius.com"},
+            {"channel": "FHS Citrix", "detail": "it-services@vamed.com"},
+        ],
+        "links": [
+            "myIT Information portal — myIT Community",
+            "myIT Link Cheat Page — all the key Fresenius links",
+            "Intranet home page — Fresenius One Site for all your news",
+        ],
+    },
+}
+
 troubleshooting = [
+    {
+        "id": "shared_mailbox",
+        "title": "Shared mailbox in Outlook Online (coexistence phase)",
+        "collect": ["Username", "Shared mailbox name or address", "Browser used", "Error message"],
+        "checks": [
+            "Open Edge logged in with the non-Fresenius (FHS) account.",
+            "Go to https://outlook.office.com (Outlook Online).",
+            "Click the profile icon (top right) and select “Open another mailbox”.",
+            "Enter the shared mailbox name or email, select it from the list and click “Open”.",
+            "The mailbox opens in a new browser tab — add it to favourites with the star icon.",
+        ],
+        "routing": {
+            "Coexistence phase": "Shared mailboxes must be used via Outlook Online, not the Outlook desktop app",
+            "Wave 1/2": "Ext_WW_Collaboration_SLS_Capgemini_Helios",
+            "Pre-wave": "Local IT group of the location",
+        },
+        "note": "Using Outlook Online avoids the shared mailbox missing in Outlook desktop, missing folders/emails "
+                "and not being able to send from the shared mailbox. Source: Using a Shared Mailbox in Outlook "
+                "Online — user guide.",
+    },
+    {
+        "id": "printer_mapping",
+        "title": "Post-migration printer mapping",
+        "collect": ["New printer name from the printer label (HOST NAME / GLOBAL PRINTER NAME)", "Hostname",
+                    "Location / room", "Error message"],
+        "checks": [
+            "Confirm the user is connected to the Fresenius corporate network.",
+            "Find the new printer name on the printer label (e.g. DEANS1RNF).",
+            "Press Windows + R and open \\\\PFDTFHSAP1001.ads.fresenius.com.",
+            "Locate the printer in the list and double-click it — Windows installs the printer and drivers.",
+            "Verify under Printers & scanners that the printer is listed.",
+            "Print a test page: Printers & scanners → printer → Printer properties → Print Test Page.",
+            "Optional: set as default via Settings → Bluetooth & devices → Printers & scanners → "
+            "More devices and printers settings → right-click → Set as default printer.",
+        ],
+        "routing": {
+            "Fresenius Service Desk": "+49 (0)6172 608-1111 · GlobalServiceDesk@fresenius.com · "
+                                      "https://fnc.service-now.com/sp",
+            "Wave 1/2": "Ext_WW_Printer-Services_SLS_Capgemini_Helios",
+            "Hardware defect / onsite": "Ext_DE_FSO_Incidents_SLS_Capgemini_Helios",
+        },
+        "note": "Printer names changed during the migration. Source: Post migration printer mapping — user guide.",
+    },
     {
         "id": "vpn",
         "title": "VPN Troubleshooting",
@@ -863,6 +976,7 @@ source = {
         "assignmentRules": assignment_rules,
     },
     "serviceDeskKb": service_desk_kb,
+    "fhs": fhs,
     "templates": templates,
     "prompts": prompts,
     "routingMatrix": routing_matrix,

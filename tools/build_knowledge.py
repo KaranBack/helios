@@ -359,6 +359,37 @@ def render_reference_snow(kb):
     return "\n".join(out)
 
 
+def render_fhs(fhs):
+    out = [f"# {fhs['title']}", ""]
+    n = fhs.get("notice") or {}
+    if n:
+        out.append(f"## {n.get('title', 'Notice')}\n")
+        out.append(n.get("text", "") + "\n")
+        if n.get("contact"):
+            out.append(md_kv_block("Contact", n["contact"]))
+    co = fhs.get("coexistence") or {}
+    if co.get("rows"):
+        out.append(f"## {co.get('title', 'Coexisting phase')}\n")
+        if co.get("note"):
+            out.append(co["note"] + "\n")
+        out.append("| App | Account | Description | Comment |")
+        out.append("|---|---|---|---|")
+        for r in co["rows"]:
+            out.append(f"| {r['app']} | {r['account']} | {r['description']} | {r.get('comment', '')} |")
+        out.append("")
+    sup = fhs.get("support") or {}
+    if sup.get("channels"):
+        out.append(f"## {sup.get('title', 'Support')}\n")
+        out.append("| Channel | Details |")
+        out.append("|---|---|")
+        for c in sup["channels"]:
+            out.append(f"| {c['channel']} | {c['detail']} |")
+        out.append("")
+    if sup.get("links"):
+        out.append("Useful links:\n\n" + md_list(sup["links"]) + "\n")
+    return "\n".join(out)
+
+
 def render_template(t):
     out = [f"# {t['title']}", ""]
     for s in t.get("sections", []):
@@ -526,6 +557,10 @@ def main():
                                     render_priority_keywords(src["serviceDeskKb"]["priorityKeywords"])),
                       "title": "Priority Keywords", "category": "routing"})
 
+    if src.get("fhs"):
+        files.append({"path": write(OUT_DIR / "fhs" / "coexistence.md", render_fhs(src["fhs"])),
+                      "title": "FHS — Fresenius Health Services", "category": "fhs"})
+
     for t in src.get("templates", []):
         files.append({"path": write(OUT_DIR / "templates" / f"{slug(t.get('id') or t['title'])}.md",
                                     render_template(t)),
@@ -564,6 +599,7 @@ def main():
         "ticketTemplate": src["ticketTemplate"],
         "routing": src["routing"],
         "serviceDeskKb": src.get("serviceDeskKb", {}),
+        "fhs": src.get("fhs", {}),
         "templates": src.get("templates", []),
         "prompts": src.get("prompts", []),
         "routingMatrix": src.get("routingMatrix", []),
@@ -581,7 +617,7 @@ def main():
     KB_PATH.write_text(json.dumps(kb, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"knowledge files: {len(files)}")
-    for cat in ["prompt", "process", "routing", "routing_matrix", "templates", "prompts",
+    for cat in ["prompt", "process", "routing", "routing_matrix", "fhs", "templates", "prompts",
                 "applications", "locations", "clusters", "service_groups",
                 "troubleshooting", "reference"]:
         print(f"  {cat}: {sum(1 for f in files if f['category'] == cat)}")
