@@ -359,6 +359,58 @@ def render_reference_snow(kb):
     return "\n".join(out)
 
 
+def render_ticket_routing(tr):
+    out = [f"# {tr['title']}", ""]
+    out.append(md_kv_block("Source", tr.get("source", "")))
+    s1 = tr.get("step1") or {}
+    out.append(f"## {s1.get('title', 'Step 1')}\n")
+    out.append(f"**{s1.get('warning', '')}**\n")
+    out.append("Analyse:\n\n" + md_list(s1.get("analyse", [])) + "\n")
+
+    out.append("## Decision tree\n")
+    for b in tr.get("decisionTree", []):
+        out.append(f"### {b['no']}. {b['question']}\n")
+        out.append("Examples:\n\n" + md_list(b["examples"]) + "\n")
+        out.append(md_kv_block("Routing", b["routing"]))
+
+    imp = tr.get("important") or {}
+    if imp:
+        out.append(f"## Important — {imp.get('title', '')}\n")
+        out.append("Do not decide only by:\n\n" + md_list(imp.get("doNotDecideBy", [])) + "\n")
+
+    if tr.get("examples"):
+        out.append("## Examples\n")
+        out.append("| Sent from | Problem concerns | Result |")
+        out.append("|---|---|---|")
+        for e in tr["examples"]:
+            out.append(f"| {e['sent']} | {e['concerns']} | {e['result']} ({e['not']}) |")
+        out.append("")
+
+    gr = tr.get("goldenRule") or {}
+    if gr:
+        out.append("## Golden rule\n")
+        out.append(md_list([gr.get("do", ""), gr.get("dont", "")]) + "\n")
+
+    cm = tr.get("commonMistake") or {}
+    if cm:
+        out.append("## Most common mistake\n")
+        out.append(cm.get("description", "") + "\n")
+        out.append(md_numbered(cm.get("steps", [])) + "\n")
+
+    hs = tr.get("heliosSupport") or {}
+    if hs:
+        out.append(f"## {hs.get('title', 'Helios support')}\n")
+        out.append(md_kv_block("Status", hs.get("status", "")))
+        out.append(md_list(hs.get("rules", [])) + "\n")
+        if hs.get("contacts"):
+            out.append("| Item | Details |")
+            out.append("|---|---|")
+            for c in hs["contacts"]:
+                out.append(f"| {c['role']} | {c['detail']} |")
+            out.append("")
+    return "\n".join(out)
+
+
 def render_fhs(fhs):
     out = [f"# {fhs['title']}", ""]
     n = fhs.get("notice") or {}
@@ -561,6 +613,11 @@ def main():
         files.append({"path": write(OUT_DIR / "fhs" / "coexistence.md", render_fhs(src["fhs"])),
                       "title": "FHS — Fresenius Health Services", "category": "fhs"})
 
+    if src.get("ticketRouting"):
+        files.append({"path": write(OUT_DIR / "routing" / "ticket_routing_rules.md",
+                                    render_ticket_routing(src["ticketRouting"])),
+                      "title": "Ticket routing rules (FHS/FDT/FSE/KABI/HELIOS)", "category": "routing"})
+
     for t in src.get("templates", []):
         files.append({"path": write(OUT_DIR / "templates" / f"{slug(t.get('id') or t['title'])}.md",
                                     render_template(t)),
@@ -600,6 +657,7 @@ def main():
         "routing": src["routing"],
         "serviceDeskKb": src.get("serviceDeskKb", {}),
         "fhs": src.get("fhs", {}),
+        "ticketRouting": src.get("ticketRouting", {}),
         "templates": src.get("templates", []),
         "prompts": src.get("prompts", []),
         "routingMatrix": src.get("routingMatrix", []),

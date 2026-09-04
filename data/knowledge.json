@@ -14,7 +14,7 @@
       "Always search knowledge/ before answering.",
       "Never invent assignment groups — use only groups from the matrix / knowledge base."
     ],
-    "files": 79
+    "files": 80
   },
   "prompt": {
     "goal": "Support Service Desk Analysts in the Helios environment.",
@@ -747,6 +747,121 @@
         "myIT Information portal — myIT Community",
         "myIT Link Cheat Page — all the key Fresenius links",
         "Intranet home page — Fresenius One Site for all your news"
+      ]
+    }
+  },
+  "ticketRouting": {
+    "title": "Ticket routing rules — FHS · FDT · FSE · KABI · HELIOS",
+    "source": "Zasady routingu ticketów (FHS/FDT/FSE/KABI/HELIOS) + Helios Support handling instruction",
+    "step1": {
+      "title": "Step 1 — read the ticket",
+      "warning": "Do not route by the sender domain alone. Always establish: which account does the problem concern?",
+      "analyse": [
+        "Description of the request",
+        "Account named by the user",
+        "Email address mentioned inside the request",
+        "Error messages",
+        "System or service the problem concerns"
+      ]
+    },
+    "decisionTree": [
+      {
+        "no": 1,
+        "question": "Does the problem concern an FHS / FDT / FSE / KABI / Fresenius account?",
+        "examples": [
+          "@fresenius.com account",
+          "FHS\\xxxx account",
+          "FDT\\xxxx account",
+          "FSE\\xxxx account",
+          "KABI\\xxxx account"
+        ],
+        "routing": "FHS / FDT"
+      },
+      {
+        "no": 2,
+        "question": "Does the problem concern a HELIOS account?",
+        "examples": [
+          "HELIOS-DOM account",
+          "HELIOS mailbox",
+          "HELIOS login",
+          "HELIOS password reset",
+          "HELIOS account lockout"
+        ],
+        "routing": "HELIOS SUPPORT"
+      },
+      {
+        "no": 3,
+        "question": "Does an FHS / FDT / FSE / KABI user need access to a HELIOS system?",
+        "examples": [
+          "Access to an application, system or data in the HELIOS environment"
+        ],
+        "routing": "HELIOS SUPPORT"
+      }
+    ],
+    "important": {
+      "title": "The address the request was sent from does not determine the routing",
+      "doNotDecideBy": [
+        "Sender address",
+        "Domain of the requester",
+        "Account used in Self Service",
+        "Email address used to create the ticket"
+      ]
+    },
+    "examples": [
+      {
+        "sent": "Sent from an email account",
+        "concerns": "Problem concerns an FHS / FDT account",
+        "result": "FHS / FDT",
+        "not": "NOT Helios"
+      },
+      {
+        "sent": "Sent from an email account",
+        "concerns": "Problem concerns a Helios system",
+        "result": "HELIOS SUPPORT",
+        "not": "NOT FHS / FDT"
+      }
+    ],
+    "goldenRule": {
+      "do": "Route by the account the problem concerns.",
+      "dont": "Do not route by the account the user sent the request from."
+    },
+    "commonMistake": {
+      "description": "The agent sees the sender domain (e.g. @hermed.de, @fresenius.com, @helios-gesundheit.de) and picks the queue straight away.",
+      "steps": [
+        "First read the request.",
+        "Check which account the problem concerns.",
+        "Only then set the correct routing."
+      ]
+    },
+    "heliosSupport": {
+      "title": "Calls from Helios users — FDT agents",
+      "status": "Tickets from users with the Helios domain are not handled by FDT yet.",
+      "rules": [
+        "Phone: ask the user to contact Helios support.",
+        "If someone already redirected the user to us: collect the user information, open a ticket, assign it to Swivel and hand it over to Aga / Gabi / Filip (they raise it with FDT).",
+        "If the user insists on a contact, the safest answer is the email myservice@helios-gesundheit.de.",
+        "Template “FDT Misplaced Call Helios related” — do not use it to close tickets from the Email and SSP channels.",
+        "Email / SSP / Chat go to the Swivel queue Ext_WW_Swivel-Chair-Helios_Capgemini_Helios.",
+        "Chats from Helios users should no longer appear — the option has been blocked.",
+        "An FHS user reporting a Helios problem is handled with the same instruction."
+      ],
+      "contacts": [
+        {
+          "role": "Helios user contact",
+          "detail": "myservice@helios-gesundheit.de"
+        },
+        {
+          "role": "Swivel queue (Email / SSP / Chat)",
+          "detail": "Ext_WW_Swivel-Chair-Helios_Capgemini_Helios"
+        },
+        {
+          "role": "Template",
+          "detail": "FDT Misplaced Call Helios related"
+        },
+        {
+          "role": "Hand over to",
+          "detail": "Aga / Gabi / Filip"
+        }
       ]
     }
   },
@@ -2478,6 +2593,11 @@
       "path": "knowledge/fhs/coexistence.md",
       "title": "FHS — Fresenius Health Services",
       "category": "fhs"
+    },
+    {
+      "path": "knowledge/routing/ticket_routing_rules.md",
+      "title": "Ticket routing rules (FHS/FDT/FSE/KABI/HELIOS)",
+      "category": "routing"
     },
     {
       "path": "knowledge/templates/incident.md",
