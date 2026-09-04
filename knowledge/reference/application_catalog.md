@@ -8,7 +8,7 @@ Clinical / specialty apps for Kassel. Use listed Zuweisungsgruppe (not only gene
 
 | Software | Kritikalität | Assignment Group |
 |---|---|---|
-| CGM MUSE | Hoch | Amor/Muse |
+| CGM MUSE | Mittel | Amor/Muse |
 | ApoFact | Hoch | Amor/Muse |
 | Delegate | Hoch | Delegate |
 | Evident | Hoch | EF-IT | Klinische Anwendungen |
@@ -22,7 +22,7 @@ Clinical / specialty apps for Kassel. Use listed Zuweisungsgruppe (not only gene
 | Sidexis | Hoch | EF-IT | Klinische Anwendungen |
 | Mitel Concierge | Hoch | KS-IT |
 | Datev | Niedrig | KS-IT |
-| DAKS | Mittel | KS-IT |
+| DAKS | Hoch | KS-IT |
 | DoseM | Niedrig | KS-IT |
 | E-ConsentPro | Hoch | KS-IT |
 | instacount® PLUS | Hoch | KS-IT |
@@ -39,7 +39,7 @@ Clinical / specialty apps for Kassel. Use listed Zuweisungsgruppe (not only gene
 | QlikView | Mittel | KS-IT |
 | SimonVoss | Mittel | KS-IT |
 | Neurowerk | Hoch | KS-IT |
-| Sonowin | Mittel | KS-IT |
+| Sonowin | Hoch | KS-IT |
 | Telepaxx | Hoch | KS-IT |
 | Kirsch | Mittel | KS-IT |
 | ZENZY | Hoch | KS-IT |

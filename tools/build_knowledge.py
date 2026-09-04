@@ -244,6 +244,34 @@ def render_service_desk_kb(kb_doc):
         out.append(f"### {c['stage']}\n")
         out.append(md_list(c["items"]) + "\n")
 
+    pk = kb_doc.get("priorityKeywords")
+    if pk:
+        out.append("## Priority Keywords (clinical)\n")
+        if pk.get("note"):
+            out.append(pk["note"] + "\n")
+        for lvl in pk.get("levels", []):
+            out.append(f"### {lvl['level']} — {lvl['name']}\n")
+            out.append(md_list(lvl["keywords"]) + "\n")
+
+    op = kb_doc.get("outagePriorities")
+    if op:
+        out.append("## Outage Priorities\n")
+        for lvl in op.get("levels", []):
+            out.append(f"### {lvl['level']}\n")
+            out.append(md_list(lvl["conditions"]) + "\n")
+        m = op.get("matrix") or {}
+        if m.get("rows"):
+            out.append(m.get("note", "") + "\n")
+            out.append("| Impact \\ Urgency | High (1) | Medium (2) | Low (3) |")
+            out.append("|---|---|---|---|")
+            for r in m["rows"]:
+                out.append(f"| {r['impact']} | {r['High (1)']} | {r['Medium (2)']} | {r['Low (3)']} |")
+            out.append("")
+        if op.get("planningOnly"):
+            out.append(op["planningOnly"] + "\n")
+        if op.get("outageCriteria"):
+            out.append("Open an outage when:\n\n" + md_list(op["outageCriteria"]) + "\n")
+
     out.append("## Major Incident Process\n")
     out.append("Identification:\n\n" + md_list(kb_doc["majorIncident"]["identification"]) + "\n")
     out.append("Actions:\n\n" + md_numbered(kb_doc["majorIncident"]["actions"]) + "\n")
@@ -263,6 +291,71 @@ def render_service_desk_kb(kb_doc):
 
     out.append("## Best Practices\n")
     out.append(md_list(kb_doc["bestPractices"]) + "\n")
+    return "\n".join(out)
+
+
+def render_major_incident_process(mi):
+    out = ["# Major Incident Handling (FDT)", ""]
+    out.append(md_kv_block("Source", mi.get("source", "")))
+    out.append(md_kv_block("Effective", mi.get("effective", "")))
+    out.append("## Important notice\n")
+    out.append(md_list(mi.get("importantNotice", [])) + "\n")
+    out.append("## Propose Major Incident — step by step\n")
+    out.append(md_numbered(mi.get("steps", [])) + "\n")
+    pf = mi.get("proposalFields") or {}
+    if pf:
+        out.append("## Proposal pop-up fields\n")
+        out.append("Work Notes:\n\n" + md_list(pf.get("workNotes", [])) + "\n")
+        out.append("Business Impact:\n\n" + md_list(pf.get("businessImpact", [])) + "\n")
+    if mi.get("businessImpactQuestions"):
+        out.append("## Business impact questions (collect before proposing)\n")
+        out.append(md_numbered(mi["businessImpactQuestions"]) + "\n")
+    for title, key in [("After promotion", "afterPromotion"),
+                       ("Outage related / child ticket", "childTicket"),
+                       ("Escalated P2", "escalatedP2"),
+                       ("FME tickets affecting FDT systems (eBonding)", "fmeEbonding"),
+                       ("IVR", "ivr"),
+                       ("Ticket escalation", "ticketEscalation")]:
+        if mi.get(key):
+            out.append(f"## {title}\n")
+            out.append(md_list(mi[key]) + "\n")
+    if mi.get("contacts"):
+        out.append("## Contacts\n")
+        out.append("| Role | Details |")
+        out.append("|---|---|")
+        for c in mi["contacts"]:
+            out.append(f"| {c['role']} | {c['detail']} |")
+        out.append("")
+    if mi.get("escalationLevels"):
+        out.append("## Escalation matrix (MIM hotline unreachable)\n")
+        out.append("| Level | Name | Mail | Phone |")
+        out.append("|---|---|---|---|")
+        for e in mi["escalationLevels"]:
+            out.append(f"| {e['level']} | {e['name']} | {e['mail']} | {e['phone']} |")
+        out.append("")
+    return "\n".join(out)
+
+
+def render_priority_keywords(pk):
+    out = ["# Priority Keywords", ""]
+    out.append(md_kv_block("Source", pk.get("source", "")))
+    if pk.get("note"):
+        out.append(pk["note"] + "\n")
+    for lvl in pk.get("levels", []):
+        out.append(f"## {lvl['level']} — {lvl['name']}\n")
+        out.append(md_list(lvl["keywords"]) + "\n")
+    return "\n".join(out)
+
+
+def render_reference_snow(kb):
+    rows = kb.get("snowLocations") or []
+    out = ["# Helios SNOW Location Registry", "",
+           f"Total: {len(rows)} entries. Street addresses, zip codes and phone numbers are not imported.", "",
+           "| Name | City | Type | Related Cluster | Related Region |",
+           "|---|---|---|---|---|"]
+    for r in sorted(rows, key=lambda x: (x.get("region", ""), x.get("name", ""))):
+        out.append(f"| {r.get('name', '')} | {r.get('city', '')} | {r.get('locationType', '')} | "
+                   f"{r.get('cluster', '')} | {r.get('region', '')} |")
     return "\n".join(out)
 
 
@@ -424,6 +517,15 @@ def main():
                                 render_service_desk_kb(src["serviceDeskKb"])),
                   "title": "Global IT Service Desk Knowledge Base", "category": "process"})
 
+    if src["serviceDeskKb"].get("majorIncidentProcess"):
+        files.append({"path": write(OUT_DIR / "process" / "major_incident_handling.md",
+                                    render_major_incident_process(src["serviceDeskKb"]["majorIncidentProcess"])),
+                      "title": "Major Incident Handling (FDT)", "category": "process"})
+    if src["serviceDeskKb"].get("priorityKeywords"):
+        files.append({"path": write(OUT_DIR / "routing" / "priority_keywords.md",
+                                    render_priority_keywords(src["serviceDeskKb"]["priorityKeywords"])),
+                      "title": "Priority Keywords", "category": "routing"})
+
     for t in src.get("templates", []):
         files.append({"path": write(OUT_DIR / "templates" / f"{slug(t.get('id') or t['title'])}.md",
                                     render_template(t)),
@@ -451,6 +553,10 @@ def main():
     files.append({"path": write(OUT_DIR / "reference" / "application_catalog.md",
                                 render_application_catalog(kb, src["applications"])),
                   "title": "Application Catalog", "category": "reference"})
+    if kb.get("snowLocations"):
+        files.append({"path": write(OUT_DIR / "reference" / "snow_locations.md",
+                                    render_reference_snow(kb)),
+                      "title": "Helios SNOW Location Registry", "category": "reference"})
 
     knowledge = {
         "meta": dict(src["meta"], files=len(files)),

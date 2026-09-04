@@ -134,6 +134,80 @@ Action:
 - Resolution
 - Confirmation request
 
+## Priority Keywords (clinical)
+
+Clinical keywords that drive the priority. A P1 is not declared when a workaround exists.
+
+### P1 — Kritisch
+
+- Risiko für die Patientensicherheit
+- Lebensgefahr für Patienten
+- Klinischer Schaden / Beeinträchtigung der Patientenversorgung
+- Notaufnahme außer Betrieb
+- Intensivstation außer Betrieb
+- Operationssaal / OP-Bereich außer Betrieb
+- Medikationssystem nicht verfügbar
+- Elektronische Patientenakte (EHR) nicht verfügbar
+- Krankenhausweiter Ausfall
+- Mehrere Abteilungen betroffen
+- Keine Umgehungslösung für kritische klinische Systeme/Anwendungen verfügbar
+- Kritische klinische Abläufe werden unterbrochen
+- Laborsystem außer Betrieb
+- Radiologiesystem außer Betrieb
+- Allgemeiner Netzwerkausfall
+- Rechenzentrumsausfall
+- Verletzung/Offenlegung geschützter Patienteninformationen (PHI)
+- Rechtliches Haftungsrisiko
+- Operationen abgesagt
+- Alle Benutzer betroffen
+
+### P2 — Hoch
+
+- Erhebliche Beeinträchtigung klinischer Abläufe
+- Ausfall einer Abteilung (abhängig von den Auswirkungen auf Finanzen, klinische Prozesse, Personalwesen oder Management)
+- Abteilungsweite Auswirkungen
+- Apotheke betroffen
+- Radiologie betroffen
+- Elektronische Patientenakte (EHR) arbeitet langsam
+- Wichtige Anwendung teilweise nicht verfügbar
+- PACS (Bildarchivierungs- und Kommunikationssystem) beeinträchtigt
+- Verzögerungen bei der Medikamentenausgabe
+- Verzögerungen in der Patientenversorgung
+- Erhebliche Anzahl von Benutzern betroffen
+
+## Outage Priorities
+
+### High (1)
+
+- All users in a corporate unit or region are impacted
+- Legal or major financial impact
+- Defined company critical service is impacted
+- Productivity is totally blocked; no workaround exists
+
+### Medium (2)
+
+- Multiple users in a corporate unit or region are impacted
+- Business-critical services significantly impacted but not yet a Major Incident
+- Productivity is partially blocked; significant service disruption
+
+Priority = Impact × Urgency (High 1 / Medium 2 / Low 3).
+
+| Impact \ Urgency | High (1) | Medium (2) | Low (3) |
+|---|---|---|---|
+| High (1) | 1 | 2 | 3 |
+| Medium (2) | 2 | 3 | 4 |
+| Low (3) | 3 | 4 | 5 |
+
+Priority 5 – Only Planning, e.g. for development / test systems affected.
+
+Open an outage when:
+
+- Whole or an important part of a service is not available and business-critical processes cannot be used.
+- Loss of the facility or essential supporting infrastructure (power grids, telephone switching centers, microwave towers).
+- Business relations between the Business Partners and their customers are likely to be disrupted.
+- Not Severity Level 1 yet, but could become one if not resolved quickly.
+- Affects a large group of end users or a critical process is not functioning.
+
 ## Major Incident Process
 
 Identification:

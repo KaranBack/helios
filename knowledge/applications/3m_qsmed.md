@@ -7,7 +7,7 @@ Criticality:
 Niedrig
 
 Description:
-QSMED unterstützt die Qualitätssicherung und das Qualitätsmanagement in der Medizin durch strukturierte Dokumentation
+QSMED unterstützt die Qualitätssicherung und das Qualitätsmanagement in der Medizin durch strukturierte Dokumentation, Erstellung von QS-Bögen und Auswertung medizinischer Daten zur Verbesserung der Behandlungsqualität.
 
 Keywords:
 

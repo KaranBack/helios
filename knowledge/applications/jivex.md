@@ -4,7 +4,7 @@ Criticality:
 Hoch
 
 Description:
-Medizinische Daten- und Bildmanagement-Software (PACS)
+JiveX von Visus ist eine medizinische Daten- und Bildmanagement-Software (insbesondere Enterprise PACS und Healthcare Content Management) für Kliniken und Praxen. Sie speichert, verwaltet, verteilt, archiviert und visualisiert medizinische Bilder und weitere Gesundheitsdaten (z. B. DICOM/HL7) in einem interoperablen System und ermöglicht so effiziente Diagnose-, Befund- und Informations-Workflows über Abteilungs- und Systemgrenzen hinweg.
 
 Keywords:
 

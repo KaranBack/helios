@@ -4,7 +4,7 @@ Criticality:
 Hoch
 
 Description:
-Programm für die Organisation der Zytostatikaherstellung in Apotheken
+Zenzy ist ein Programm für die Organisation der Zytostatikaherstellung in Apotheken (Zytostatikaplanung)
 
 Keywords:
 

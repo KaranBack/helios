@@ -4,7 +4,7 @@ Criticality:
 Hoch
 
 Description:
-Klinisches Informations- und Patientendaten-Management-System (CIS/PDMS) für Intensivmedizin
+MetaVision von iMDsoft ist ein klinisches Informations  und Patientendaten Management System (CIS/PDMS) für Intensivmedizin, Anästhesie und Akut Versorgung. Es dokumentiert, verwaltet und visualisiert Patientendaten in Echtzeit, optimiert klinische Workflows, unterstützt Entscheidungen und integriert medizinische Geräte sowie andere Krankenhaus IT Systeme; PDMS, Patientendatenmanagementsystem für Intensivstation und zu überwachende Bereiche
 
 Keywords:
 

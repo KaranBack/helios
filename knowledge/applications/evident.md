@@ -4,7 +4,7 @@ Criticality:
 Hoch
 
 Description:
-Softwarelösung für Zahnärzte, Oralchirurgen und Kieferorthopäden
+EVIDENT von der EVIDENT GmbH ist eine modulare Praxis- und Verwaltungssoftware für Zahnärzte, Mund-Kiefer-Gesichtschirurgen und Kieferorthopäden. Sie unterstützt die digitale Patientenverwaltung, Abrechnung, Terminplanung, Dokumentation und Praxisprozesse und kann mit modernen Funktionen wie KI-Modulen, Online-Terminvergabe und Telematikinfrastruktur-Schnittstellen erweitert werden.
 
 Keywords:
 
